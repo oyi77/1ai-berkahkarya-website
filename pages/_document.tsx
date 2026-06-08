@@ -6,12 +6,13 @@ export default function Document() {
     <Html lang="id">
       <Head>
         {/* Drive Tracking (emrld.ltd) - Veris */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
-          nowprocket="true"
+          data-nowprocket="true"
           data-noptimize="1"
           data-cfasync="false"
           data-wpfc-render="false"
-          seraph-accel-crit="1"
+          data-seraph-accel-crit="1"
           data-no-defer="1"
           dangerouslySetInnerHTML={{
             __html: `(function () {
