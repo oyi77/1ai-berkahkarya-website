@@ -25,3 +25,17 @@ jobs:
           META_PIXEL_ID: "771021905629860"
           META_CAPI_ACCESS_TOKEN: ${{ secrets.META_CAPI_ACCESS_TOKEN }}
           NEXT_PUBLIC_GA_MEASUREMENT_ID: "G-V9C14XZ9SG"
+          TRIPAY_API_KEY: ${{ secrets.TRIPAY_API_KEY }}
+          TRIPAY_PRIVATE_KEY: ${{ secrets.TRIPAY_PRIVATE_KEY }}
+          TRIPAY_MERCHANT_CODE: ${{ secrets.TRIPAY_MERCHANT_CODE }}
+      
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: .next
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Automated deploy from GitHub Actions"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
