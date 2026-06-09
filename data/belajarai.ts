@@ -290,8 +290,9 @@ export const belajaraiData = {
 
   en: {
     meta: {
-      title: 'AI Academy — Learn AI from Paijo (oyi77) | BerkahKarya',
-      description: 'Learn AI from a real OSS practitioner with 150+ repos. 6 core modules + Tripay payment. 📞 @codergaboets',
+      title: 'AI Academy — Learn AI from Fikri Izzuddin (oyi77) | BerkahKarya',
+      description: 'AI course from contributor to Next.js, trpc, Prisma, Vue.js. 6 practical modules: prompt engineering, content AI, automation, monetization. 10+ years professional experience. 7-day guarantee.',
+      keywords: 'learn AI, AI course, AI training, AI academy, ChatGPT course, prompt engineering, AI automation, freelance AI, online AI course, AI for beginners, Fikri Izzuddin, oyi77, BerkahKarya',
     },
     hero: {
       eyebrow: '🎓 HARSH TRUTH: 70% of Jobs Will Be Automated in 3 Years',
