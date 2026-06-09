@@ -59,9 +59,9 @@ export const omnirouteData = {
 # ✓ ROUTED → gemini-2.0-flash (98ms, cost: $0.00012)`,
     },
     pricing: [
-      { name: 'Starter', price: 'Rp 75K', period: '/bulan', features: ['10,000 requests/bulan', '398 model — akses semua', 'Auto-failover + smart routing', 'Usage dashboard', 'Email support', 'Single API key'], cta: { text: 'Mulai Sekarang', href: APP_URL } },
-      { name: 'Pro', price: 'Rp 285K', period: '/bulan', highlight: true, features: ['100,000 requests/bulan', '398 model — akses semua', 'Auto-failover + smart routing', 'Usage dashboard', 'Support Telegram <5 menit', 'Multiple API keys (5 keys)', 'Priority routing', 'Bayar lokal (GoPay/OVO/DANA)'], cta: { text: 'Mulai Sekarang', href: APP_URL } },
-      { name: 'Enterprise', price: 'Custom', period: '', features: ['Unlimited requests', 'Custom routing rules', 'SLA 99.9%', 'Dedicated infrastructure', 'On-premise option', 'Technical account manager', 'Priority failover', 'Custom contract'], cta: { text: 'Hubungi Kami', href: `${WA}?text=Halo%2C%20saya%20tertarik%201AI%20Enterprise` } },
+      { name: 'Starter', price: 'Rp 75K', period: '/bulan', features: ['100K requests/bulan', '100+ free models', 'Community support (Telegram)', '1 API key', 'Basic usage dashboard'], cta: { text: 'Mulai Sekarang', href: APP_URL } },
+      { name: 'Pro', price: 'Rp 375K', period: '/bulan', highlight: true, features: ['1M requests/bulan', '400+ models full access', 'Auto-failover built-in', 'Priority support <5min', '5 API keys', 'Advanced dashboard + analytics', 'Cost optimizer (auto-route to cheapest capable model)'], cta: { text: 'Mulai Sekarang', href: APP_URL } },
+      { name: 'Enterprise', price: 'Rp 1.5M', period: '/bulan', features: ['Unlimited requests', '400+ models full access', 'Auto-failover + multi-region redundancy', '24/7 priority support', 'Unlimited API keys', 'Custom routing rules', 'White-label option', 'SLA guarantee', 'Dedicated infrastructure option'], cta: { text: 'Hubungi Kami', href: APP_URL } },
     ],
     faq: {
       title: 'FAQ',
@@ -133,9 +133,9 @@ export const omnirouteData = {
 # ✓ ROUTED → gemini-2.0-flash (98ms, cost: $0.00012)`,
     },
     pricing: [
-      { name: 'Starter', price: '$5', period: '/mo', features: ['10,000 requests/month', '398 models — all access', 'Auto-failover + smart routing', 'Usage dashboard', 'Email support', 'Single API key'], cta: { text: 'Start Now', href: APP_URL } },
-      { name: 'Pro', price: '$19', period: '/mo', highlight: true, features: ['100,000 requests/month', '398 models — all access', 'Auto-failover + smart routing', 'Usage dashboard', 'Telegram support <5min', 'Multiple API keys (5 keys)', 'Priority routing', 'Local payment (GoPay/OVO/DANA)'], cta: { text: 'Start Now', href: APP_URL } },
-      { name: 'Enterprise', price: 'Custom', period: '', features: ['Unlimited requests', 'Custom routing rules', '99.9% SLA', 'Dedicated infrastructure', 'On-premise option', 'Technical account manager', 'Priority failover', 'Custom contract'], cta: { text: 'Contact Us', href: `${WA}?text=Hello%2C%20I%27m%20interested%20in%201AI%20Enterprise` } },
+      { name: 'Starter', price: '$5', period: '/mo', features: ['100K requests/month', '100+ free models', 'Community support (Telegram)', '1 API key', 'Basic usage dashboard'], cta: { text: 'Start Now', href: APP_URL } },
+      { name: 'Pro', price: '$25', period: '/mo', highlight: true, features: ['1M requests/month', '400+ models full access', 'Auto-failover built-in', 'Priority support <5min', '5 API keys', 'Advanced dashboard + analytics', 'Cost optimizer (auto-route to cheapest capable model)'], cta: { text: 'Start Now', href: APP_URL } },
+      { name: 'Enterprise', price: '$100', period: '/mo', features: ['Unlimited requests', '400+ models full access', 'Auto-failover + multi-region redundancy', '24/7 priority support', 'Unlimited API keys', 'Custom routing rules', 'White-label option', 'SLA guarantee', 'Dedicated infrastructure option'], cta: { text: 'Contact Us', href: APP_URL } },
     ],
     faq: {
       title: 'FAQ',

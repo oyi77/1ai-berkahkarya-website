@@ -13,40 +13,11 @@ interface NavItem {
 
 const navLinks: NavItem[] = [
   { slug: '', id: 'Beranda', en: 'Home' },
-  { slug: 'team', id: 'Tentang Kami', en: 'About Us' },
-  { slug: 'portfolio', id: 'Portfolio', en: 'Portfolio' },
-  {
-    slug: 'services',
-    id: 'Produk & Jasa',
-    en: 'Products & Services',
-    children: [
-      // AI & Automation
-      { slug: '__divider__', id: '🤖 AI & Otomasi', en: '🤖 AI & Automation' },
-      { slug: 'ai-video-studio', id: 'Video AI Studio', en: 'AI Video Studio' },
-      { slug: 'ai-agent-pro', id: 'AI Agent Pro', en: 'AI Agent Pro' },
-      { slug: 'ai-automation', id: 'AI Automation', en: 'AI Automation' },
-      { slug: 'adforge-ai', id: 'AdForge AI', en: 'AdForge AI' },
-      // Digital Services
-      { slug: '__divider__', id: '💼 Layanan Digital', en: '💼 Digital Services' },
-      { slug: 'website-development', id: 'Pembuatan Website', en: 'Website Development' },
-      { slug: 'social-media-management', id: 'Kelola Media Sosial', en: 'Social Media Management' },
-      { slug: 'video-production', id: 'Produksi Video', en: 'Video Production' },
-      { slug: 'custom-documents', id: 'Dokumen Custom', en: 'Custom Documents' },
-      { slug: 'certificate-design', id: 'Desain Sertifikat', en: 'Certificate Design' },
-      // Research & Security
-      { slug: '__divider__', id: '🔍 Riset & Keamanan', en: '🔍 Research & Security' },
-      { slug: 'deep-research', id: 'Deep Research', en: 'Deep Research' },
-      { slug: 'security-audit', id: 'Audit Keamanan', en: 'Security Audit' },
-      // Trading & Finance
-      { slug: '__divider__', id: '📈 Trading & Fintech', en: '📈 Trading & Fintech' },
-      { slug: 'algorithmic-trading', id: 'Trading Algoritmik', en: 'Algorithmic Trading' },
-      { slug: 'one-ai', id: '1Ai', en: '1Ai' },
-      // Digital Products
-      { slug: '__divider__', id: '📦 Produk Digital', en: '📦 Digital Products' },
-      { slug: 'digital-products', id: 'Produk Digital', en: 'Digital Products' },
-    ],
-  },
-  { slug: 'contact', id: 'Kontak', en: 'Contact' },
+  { slug: 'story', id: 'Cerita', en: 'Story' },
+  { slug: 'ecosystem', id: 'Ekosistem', en: 'Ecosystem' },
+  { slug: 'one-ai', id: '1ai', en: '1ai' },
+  { slug: 'pricing', id: 'Harga', en: 'Pricing' },
+  { slug: 'roadmap', id: 'Roadmap', en: 'Roadmap' },
 ];
 
 export default function Header() {
@@ -163,13 +134,11 @@ export default function Header() {
             🌐 {locale === 'id' ? 'EN' : 'ID'}
           </button>
           <a
-            href="https://wa.me/6285732740006"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`/${locale}/one-ai`}
             className={styles.ctaBtn}
-            onClick={() => trackAddToCart({content_name:'Header CTA WA',content_id:'header-cta-wa',content_type:'cta_whatsapp',destination:'whatsapp',destination_url:'https://wa.me/6285732740006'})}
+            onClick={() => trackAddToCart({content_name:'Header CTA Get API Key',content_id:'header-cta-api',content_type:'cta_api',destination:'/one-ai',destination_url:`/${locale}/one-ai`})}
           >
-            💬 {locale === 'id' ? 'Mulai Gratis' : 'Start Free'}
+            🔑 {locale === 'id' ? 'Dapatkan API Key' : 'Get API Key'}
           </a>
           <button
             className={`${styles.menuBtn} ${mobileOpen ? styles.menuOpen : ''}`}
@@ -192,13 +161,11 @@ export default function Header() {
             🌐 {locale === 'id' ? 'English' : 'Indonesia'}
           </button>
           <a
-            href="https://wa.me/6285732740006"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`/${locale}/one-ai`}
             className={styles.ctaBtn}
-            onClick={() => trackAddToCart({content_name:'Header Mobile CTA WA',content_id:'header-mobile-cta-wa',content_type:'cta_whatsapp',destination:'whatsapp',destination_url:'https://wa.me/6285732740006'})}
+            onClick={() => trackAddToCart({content_name:'Header Mobile CTA API Key',content_id:'header-mobile-cta-api',content_type:'cta_api',destination:'/one-ai',destination_url:`/${locale}/one-ai`})}
           >
-            💬 {locale === 'id' ? 'Hubungi Kami' : 'Contact Us'}
+            🔑 {locale === 'id' ? 'Dapatkan API Key' : 'Get API Key'}
           </a>
         </div>
       </div>
