@@ -63,3 +63,34 @@
   to = "/id/one-ai"
   status = 301
   force = true
+
+# Belajar AI Academy — clean URL redirects
+[[redirects]]
+  from = "/belajar"
+  to = "/id/belajarai"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/kurikulum"
+  to = "/id/belajar/kurikulum"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/daftar"
+  to = "/id/belajar/daftar"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/kurikulum"
+  to = "/en/belajar/kurikulum"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/daftar"
+  to = "/en/belajar/daftar"
+  status = 301
+  force = true
