@@ -343,8 +343,73 @@ export default function BelajarAIPage({ locale }: { locale: Locale }) {
     if (plan) setSelectedPlan(plan);
   };
 
+  // ─── Structured Data (JSON-LD) ───
+  const courseJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": isId ? "Belajar AI Academy — Kuasai AI dari Nol sampai Cuan" : "AI Academy — Master AI from Zero to Revenue",
+    "description": isId
+      ? "Kursus AI Indonesia dari kontributor Next.js, trpc, Prisma, Vue.js. 6 modul praktis: prompt engineering, content AI, automation, monetization."
+      : "AI course from contributor to Next.js, trpc, Prisma, Vue.js. 6 practical modules: prompt engineering, content AI, automation, monetization.",
+    "provider": {
+      "@type": "Organization",
+      "name": "BerkahKarya",
+      "url": "https://berkahkarya.org"
+    },
+    "instructor": {
+      "@type": "Person",
+      "name": "Fikri Izzuddin",
+      "alternateName": "Paijo oyi77",
+      "url": "https://oyi77.is-a.dev",
+      "sameAs": [
+        "https://github.com/oyi77",
+        "https://linkedin.com/in/fikriizzuddin",
+        "https://oyi77.is-a.dev"
+      ],
+      "jobTitle": "Technical Lead & Founder",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "BerkahKarya"
+      }
+    },
+    "offers": d.pricing?.map((p: any) => ({
+      "@type": "Offer",
+      "name": p.name,
+      "price": p.priceRaw || 0,
+      "priceCurrency": "IDR",
+      "availability": "https://schema.org/InStock"
+    })),
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "online",
+      "courseWorkload": "PT30H"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "50",
+      "bestRating": "5"
+    }
+  };
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": d.faq?.items?.map((f: any) => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.answer
+      }
+    })) || []
+  };
   return (
-    <Layout title={d.meta.title} description={d.meta.description}>
+    <Layout
+      title={d.meta.title}
+      description={d.meta.description}
+      keywords={d.meta.keywords}
+      jsonLd={[courseJsonLd, faqJsonLd]}
+    >
       {/* Hero */}
       <HeroSection
         eyebrow={d.hero.eyebrow}

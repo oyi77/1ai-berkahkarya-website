@@ -4,8 +4,9 @@ const WA = 'https://wa.me/6285732740006';
 export const belajaraiData = {
   id: {
     meta: {
-      title: 'Belajar AI Academy — Kuasai AI Bareng Paijo (oyi77) | BerkahKarya',
-      description: 'Belajar AI dari praktisi OSS dengan 150+ repositori. 6 modul lengkap + Tripay payment. 📞 @codergaboets',
+      title: 'Belajar AI Academy — Kuasai AI Bareng Fikri Izzuddin (oyi77) | BerkahKarya',
+      description: 'Kursus AI Indonesia dari kontributor Next.js, trpc, Prisma, Vue.js. 6 modul praktis: prompt engineering, content AI, automation, monetization. 10+ tahun pengalaman profesional. Garansi 7 hari.',
+      keywords: 'belajar AI Indonesia, kursus AI, pelatihan AI, AI academy, belajar ChatGPT, prompt engineering, AI automation, freelance AI, kursus AI online, belajar AI dari nol, Fikri Izzuddin, oyi77, BerkahKarya',
     },
     // ===== P A A S STRUCTURE =====
     // P = Pain — Masalah langsung ditunjuk
