@@ -7,10 +7,10 @@ import styles from './LandingPage.module.css';
 import TrackedCTA from './TrackedCTA';
 import { useEngagementTracking } from '@/hooks/useEngagementTracking';
 
-export default function LP4({ locale = 'id' }: { locale?: string }) {
+export default function LP4() {
   useEngagementTracking('AI Video Studio - LP4', '0', 'ai-video-studio-lp4');
   return (
-    <Layout 
+    <Layout
       title="Tinggal Upload Doang — AI Content Studio | BerkahKarya"
       description="Video viral tinggal upload. AI yang kerjain sisanya. BerkahKarya AI Content Studio."
     >
@@ -22,20 +22,20 @@ export default function LP4({ locale = 'id' }: { locale?: string }) {
               <span className={styles.badgeDot}></span>
               <span>Zero Effort Content</span>
             </div>
-            
+
             <h1 className={styles.title}>
               Tinggal<br/>
               <span className={styles.gradientTextTeal}>Upload Doang</span>
             </h1>
-            
+
             <p className={styles.subtitle}>
-              Upload foto produk. AI generate video + caption + hashtag + jadwal posting. 
+              Upload foto produk. AI generate video + caption + hashtag + jadwal posting.
               Kamu? Tinggal terima notifikasi "Video ready".
             </p>
-            
+
             <div className={styles.ctaRow}>
-              <TrackedCTA 
-                href="https://saas.aitradepulse.com/" 
+              <TrackedCTA
+                href="https://saas.aitradepulse.com/"
                 className={styles.btnPrimary}
                 productName="AI Video Studio - LP4 Hero"
                 productId="ai-video-studio-lp4"
@@ -43,7 +43,7 @@ export default function LP4({ locale = 'id' }: { locale?: string }) {
                 ⚡ Mau Yang Gampang
               </TrackedCTA>
             </div>
-            
+
             <div className={styles.trustStrip}>
               <span>✓ Upload sekali</span>
               <span>✓ Dapat 4 output</span>
@@ -56,8 +56,8 @@ export default function LP4({ locale = 'id' }: { locale?: string }) {
         <section className={styles.imageSection}>
           <div className={styles.container}>
             <div className={styles.heroImageWrapper}>
-              <Image 
-                src="https://i.postimg.cc/MGJ1Xf4N/Gemini-Generated-Image-m9dyorm9dyorm9dy.png" 
+              <Image
+                src="https://i.postimg.cc/MGJ1Xf4N/Gemini-Generated-Image-m9dyorm9dyorm9dy.png"
                 alt="AI Content Studio - Tinggal Upload Doang"
                 width={900}
                 height={600}
@@ -76,7 +76,7 @@ export default function LP4({ locale = 'id' }: { locale?: string }) {
             <h2 className={styles.sectionTitle}>
               Upload 1 Foto, <span className={styles.gradientText}>Dapat 4 Ini</span>
             </h2>
-            
+
             <div className={styles.grid4}>
               <div className={styles.card}>
                 <div className={styles.cardIcon}>🎬</div>
@@ -109,8 +109,8 @@ export default function LP4({ locale = 'id' }: { locale?: string }) {
               Mau Yang <span className={styles.gradientText}>Gampang?</span>
             </h2>
             <p className={styles.subtitle}>3 kredit gratis. Langsung cobain.</p>
-            <TrackedCTA 
-              href="https://saas.aitradepulse.com/" 
+            <TrackedCTA
+              href="https://saas.aitradepulse.com/"
               className={styles.btnPrimary}
               productName="AI Video Studio - LP4 Footer"
               productId="ai-video-studio-lp4-footer"

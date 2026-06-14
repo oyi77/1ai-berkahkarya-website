@@ -7,10 +7,10 @@ import styles from './LandingPage.module.css';
 import TrackedCTA from './TrackedCTA';
 import { useEngagementTracking } from '@/hooks/useEngagementTracking';
 
-export default function LP5({ locale = 'id' }: { locale?: string }) {
+export default function LP5() {
   useEngagementTracking('AI Video Studio - LP5', '0', 'ai-video-studio-lp5');
   return (
-    <Layout 
+    <Layout
       title="Ini Cara Baru — AI Content Studio | BerkahKarya"
       description="Cara baru bikin konten viral. AI Content Studio dari BerkahKarya."
     >
@@ -22,20 +22,20 @@ export default function LP5({ locale = 'id' }: { locale?: string }) {
               <span className={styles.badgeDot}></span>
               <span>The Future is Here</span>
             </div>
-            
+
             <h1 className={styles.title}>
               Ini<br/>
               <span className={styles.gradientTextIndigo}>Cara Baru</span>
             </h1>
-            
+
             <p className={styles.subtitle}>
-              Yang lain masih pakai cara 2020. Kamu? Pakai teknologi 2025. 
+              Yang lain masih pakai cara 2020. Kamu? Pakai teknologi 2025.
               Image-to-Video AI yang bikin konten viral dalam hitungan menit.
             </p>
-            
+
             <div className={styles.ctaRow}>
-              <TrackedCTA 
-                href="https://saas.aitradepulse.com/" 
+              <TrackedCTA
+                href="https://saas.aitradepulse.com/"
                 className={styles.btnPrimary}
                 productName="AI Video Studio - LP5 Hero"
                 productId="ai-video-studio-lp5"
@@ -43,7 +43,7 @@ export default function LP5({ locale = 'id' }: { locale?: string }) {
                 🚀 Upgrade Cara Kerja
               </TrackedCTA>
             </div>
-            
+
             <div className={styles.trustStrip}>
               <span>✓ Teknologi terbaru</span>
               <span>✓ First mover advantage</span>
@@ -56,8 +56,8 @@ export default function LP5({ locale = 'id' }: { locale?: string }) {
         <section className={styles.imageSection}>
           <div className={styles.container}>
             <div className={styles.heroImageWrapper}>
-              <Image 
-                src="https://i.postimg.cc/fbQYkSF6/Gemini-Generated-Image-n24qbzn24qbzn24q.png" 
+              <Image
+                src="https://i.postimg.cc/fbQYkSF6/Gemini-Generated-Image-n24qbzn24qbzn24q.png"
                 alt="AI Content Studio - Ini Cara Baru"
                 width={900}
                 height={600}
@@ -76,7 +76,7 @@ export default function LP5({ locale = 'id' }: { locale?: string }) {
             <h2 className={styles.sectionTitle}>
               Evolusi <span className={styles.gradientText}>Bikin Konten</span>
             </h2>
-            
+
             <div className={styles.timeline}>
               <div className={`${styles.timelineItem} ${styles.timelineOld}`}>
                 <div className={styles.timelineDot}></div>
@@ -117,8 +117,8 @@ export default function LP5({ locale = 'id' }: { locale?: string }) {
               Siap <span className={styles.gradientText}>Upgrade?</span>
             </h2>
             <p className={styles.subtitle}>Jangan ketinggalan. Kompetitor udah pakai ini.</p>
-            <TrackedCTA 
-              href="https://saas.aitradepulse.com/" 
+            <TrackedCTA
+              href="https://saas.aitradepulse.com/"
               className={styles.btnPrimary}
               productName="AI Video Studio - LP5 Footer"
               productId="ai-video-studio-lp5-footer"

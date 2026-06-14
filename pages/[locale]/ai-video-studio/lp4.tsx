@@ -20,6 +20,6 @@ type Props = {
   locale: Locale;
 };
 
-export default function LandingPage4({ locale }: Props) {
-  return <LP4Component locale={locale} />;
+export default function LandingPage4(_props: Props) {
+  return <LP4Component />;
 }

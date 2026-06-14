@@ -20,6 +20,6 @@ type Props = {
   locale: Locale;
 };
 
-export default function LandingPage5({ locale }: Props) {
-  return <LP5Component locale={locale} />;
+export default function LandingPage5(_props: Props) {
+  return <LP5Component />;
 }

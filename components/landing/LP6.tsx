@@ -7,10 +7,10 @@ import styles from './LandingPage.module.css';
 import TrackedCTA from './TrackedCTA';
 import { useEngagementTracking } from '@/hooks/useEngagementTracking';
 
-export default function LP6({ locale = 'id' }: { locale?: string }) {
+export default function LP6() {
   useEngagementTracking('AI Video Studio - LP6', '0', 'ai-video-studio-lp6');
   return (
-    <Layout 
+    <Layout
       title="Hasil Nyata Seller — AI Content Studio | BerkahKarya"
       description="Hasil nyata seller yang pakai AI Content Studio. Bukti, bukan janji."
     >
@@ -22,20 +22,20 @@ export default function LP6({ locale = 'id' }: { locale?: string }) {
               <span className={styles.badgeDot}></span>
               <span>Real Results, Real Sellers</span>
             </div>
-            
+
             <h1 className={styles.title}>
               Hasil Nyata<br/>
               <span className={styles.gradientTextGold}>Seller</span>
             </h1>
-            
+
             <p className={styles.subtitle}>
-              Bukan teori. Bukan janji manis. 
+              Bukan teori. Bukan janji manis.
               Ini hasil real dari seller yang udah pakai AI Content Studio.
             </p>
-            
+
             <div className={styles.ctaRow}>
-              <TrackedCTA 
-                href="https://saas.aitradepulse.com/" 
+              <TrackedCTA
+                href="https://saas.aitradepulse.com/"
                 className={styles.btnPrimary}
                 productName="AI Video Studio - LP6 Hero"
                 productId="ai-video-studio-lp6"
@@ -43,7 +43,7 @@ export default function LP6({ locale = 'id' }: { locale?: string }) {
                 ⭐ Mau Hasil Kayak Gini
               </TrackedCTA>
             </div>
-            
+
             <div className={styles.trustStrip}>
               <span>✓ Verified results</span>
               <span>✓ Real testimonials</span>
@@ -56,8 +56,8 @@ export default function LP6({ locale = 'id' }: { locale?: string }) {
         <section className={styles.imageSection}>
           <div className={styles.container}>
             <div className={styles.heroImageWrapper}>
-              <Image 
-                src="https://i.postimg.cc/VNPX50T2/Gemini-Generated-Image-wqs45xwqs45xwqs4.png" 
+              <Image
+                src="https://i.postimg.cc/VNPX50T2/Gemini-Generated-Image-wqs45xwqs45xwqs4.png"
                 alt="AI Content Studio - Hasil Nyata Seller"
                 width={900}
                 height={600}
@@ -76,7 +76,7 @@ export default function LP6({ locale = 'id' }: { locale?: string }) {
             <h2 className={styles.sectionTitle}>
               Kata Mereka yang <span className={styles.gradientText}>Udah Coba</span>
             </h2>
-            
+
             <div className={styles.grid3}>
               <div className={styles.testiCard}>
                 <div className={styles.testiStars}>★★★★★</div>
@@ -148,8 +148,8 @@ export default function LP6({ locale = 'id' }: { locale?: string }) {
               Giliran Kamu <span className={styles.gradientText}>Buktiin</span>
             </h2>
             <p className={styles.subtitle}>Join 500+ seller yang udah rasain hasilnya.</p>
-            <TrackedCTA 
-              href="https://saas.aitradepulse.com/" 
+            <TrackedCTA
+              href="https://saas.aitradepulse.com/"
               className={styles.btnPrimary}
               productName="AI Video Studio - LP6 Footer"
               productId="ai-video-studio-lp6-footer"

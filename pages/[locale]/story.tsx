@@ -1,14 +1,14 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Layout from '@/components/Layout';
-import HeroSection from '@/components/HeroSection';
-import StatsRow from '@/components/StatsRow';
-import CTASection from '@/components/CTASection';
-import { storyData } from '@/data/storyData';
+import { storyData } from '@/data/story';
 
 type Locale = 'id' | 'en';
 
 export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: [{ params: { locale: 'id' } }, { params: { locale: 'en' } }],
+  paths: [
+    { params: { locale: 'id' } },
+    { params: { locale: 'en' } },
+  ],
   fallback: false,
 });
 
@@ -18,52 +18,95 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
 
 export default function StoryPage({ locale }: { locale: Locale }) {
   const d = storyData[locale];
+
+  const withLocale = (href: string) => `/${locale}${href}`;
+
   return (
     <Layout title={d.meta.title} description={d.meta.description}>
-      <HeroSection
-        eyebrow={d.hero.eyebrow}
-        title={d.hero.title}
-        description={d.hero.description}
-        buttons={[...d.hero.buttons]}
-      />
-      <StatsRow items={[...d.stats]} />
-      <section className="light-bg">
-        <div style={{ maxWidth: 800, margin: '0 auto', padding: '5rem 1.5rem' }}>
-          {d.sections.map((section, i) => (
-            <div
-              key={i}
-              style={{
-                marginBottom: i < d.sections.length - 1 ? '3.5rem' : 0,
-                paddingBottom: i < d.sections.length - 1 ? '3.5rem' : 0,
-                borderBottom: i < d.sections.length - 1 ? '1px solid var(--border-light)' : 'none',
-              }}
-            >
-              <h2
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.5rem',
-                  fontWeight: 800,
-                  color: 'var(--text-primary)',
-                  marginBottom: '1rem',
-                }}
-              >
-                {section.title}
-              </h2>
-              <p
-                style={{
-                  fontSize: '1rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: 1.8,
-                  whiteSpace: 'pre-line',
-                }}
-              >
-                {section.content}
-              </p>
-            </div>
-          ))}
+      {/* Hero Narrative */}
+      <section className="story-hero">
+        <div className="container">
+          <span className="badge">{d.hero.badge}</span>
+          <h1 style={{ whiteSpace: 'pre-line' }}>{d.hero.title}</h1>
+          <p>{d.hero.subtitle}</p>
         </div>
       </section>
-      <CTASection title={d.cta.title} description={d.cta.description} button={{ ...d.cta.button }} />
+
+      {/* The Philosophy */}
+      <section className="section">
+        <div className="container">
+          <h2>{d.philosophy.title}</h2>
+          <div className="grid grid-3">
+            {d.philosophy.items.map((item) => (
+              <div key={item.title} className="card">
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Daily Reality */}
+      <section className="section light-bg">
+        <div className="container">
+          <h2>{d.daily.title}</h2>
+          <p>{d.daily.subtitle}</p>
+          <div className="grid grid-2 timeline">
+            {d.daily.timeline.map((item) => (
+              <div key={item.period} className="timeline-item">
+                <strong>{item.period}</strong>
+                <span>{item.duration}</span>
+                <p>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Agent Hierarchy */}
+      <section className="section">
+        <div className="container">
+          <h2>{d.hierarchy.title}</h2>
+          <p>{d.hierarchy.subtitle}</p>
+          <div className="hierarchy">
+            {d.hierarchy.levels.map((level) => (
+              <div key={level.role} className="hierarchy-level">
+                <div className="hierarchy-card">
+                  <h3>{level.role}</h3>
+                  <p>{level.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="section light-bg">
+        <div className="container">
+          <h2>{d.stats.title}</h2>
+          <div className="grid grid-4">
+            {d.stats.items.map((item) => (
+              <div key={item.label} className="stat-card">
+                <span className="stat-value">{item.value}</span>
+                <span className="stat-label">{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section">
+        <div className="container cta-block">
+          <h2>{d.cta.title}</h2>
+          <p>{d.cta.desc}</p>
+          <a href={withLocale(d.cta.href)} className="btn primary">
+            {d.cta.button}
+          </a>
+        </div>
+      </section>
     </Layout>
   );
 }
