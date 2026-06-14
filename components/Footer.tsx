@@ -47,7 +47,6 @@ export default function Footer() {
             <li><a href={`/${locale}/ai-video-studio`}>AI Video Studio</a></li>
             <li><a href={`/${locale}/adforge-ai`}>AdForge AI</a></li>
             <li><a href={`/${locale}/ai-agent-pro`}>AI Agent Pro</a></li>
-            <li><a href={`/${locale}/algorithmic-trading`}>Algo Trading</a></li>
             <li><a href={`/${locale}/digital-products`}>{locale === 'id' ? 'Produk Digital' : 'Digital Products'}</a></li>
             <li><a href={`/${locale}/one-ai`}>1Ai</a></li>
           </ul>
