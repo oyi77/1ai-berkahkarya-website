@@ -86,7 +86,7 @@ export const ecosystemData = {
           emoji: '🚪',
           name: 'CF-Router',
           tag: 'Infrastructure',
-          desc: 'Internet traffic, tunneling, CDN bypass, geo routing. Pengganti phantomfx di deploy production.',
+          desc: 'Internet traffic, tunneling, CDN bypass, geo routing. Production-grade traffic layer.',
           href: '/ecosystem#cf-router',
         },
         {
