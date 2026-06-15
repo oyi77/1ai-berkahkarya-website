@@ -3,13 +3,13 @@ export const ecosystemData = {
     meta: {
       title: 'Ekosistem BerkahKarya — 13 Layanan, 1 Perusahaan AI',
       description:
-        'Setiap department perusahaan — API, iklan, affiliate, content, trading, phone farm, routing — dijalankan AI secara otonom.',
+        'Setiap department perusahaan — API, iklan, affiliate, content, automation, phone farm, routing — dijalankan AI secara otonom.',
     },
     hero: {
       badge: 'SELF-RUNNING ECOSYSTEM',
       title: 'Setiap departemen perusahaan\ndijalankan AI secara otonom',
       subtitle:
-        'Tidak melepas kontrol, tetapi melepas eksekusi repetitive. Manusia set arah. AI menjalankannya — dari API AI, iklan, affiliate, konten, trading, hingga device farm.',
+        'Tidak melepas kontrol, tetapi melepas eksekusi repetitive. Manusia set arah. AI menjalankannya — dari API AI, iklan, affiliate, konten, automation, hingga device farm.',
     },
     matrix: {
       title: 'Service Matrix',
@@ -69,13 +69,6 @@ export const ecosystemData = {
           href: '/ecosystem#1ai-social',
         },
         {
-          emoji: '📈',
-          name: '1AI-Trade-Bot',
-          tag: 'Revenue Driver',
-          desc: 'CEX auto-trading, signal-based, risk-managed. Forex, crypto, commodities.',
-          href: '/ecosystem#1ai-trade-bot',
-        },
-        {
           emoji: '🔮',
           name: '1AI-Poly-Trader',
           tag: 'Revenue Driver',
@@ -118,7 +111,7 @@ export const ecosystemData = {
       layers: [
         { title: 'Human Principal', desc: 'Vision, ethics, partnerships, repair.' },
         { title: 'Hermes GM', desc: 'Goal decomposition + agent scheduling + escalation routing.' },
-        { title: 'Domain Agents', desc: 'Trade, ads, content, social, infra — masing-masing punya logic sendiri.' },
+        { title: 'Domain Agents', desc: 'Ads, content, social, automation, infra — masing-masing punya logic sendiri.' },
         { title: 'OmniRoute', desc: 'Cost control + provider abstraction. Hemat tanpa ubah output.' },
         { title: 'CF-Router', desc: 'Stabilkan akses internet dan delivery ke downstream.' },
         { title: 'Waha', desc: 'Satu interface manusia: notification, approval, chat.' },
@@ -147,13 +140,13 @@ export const ecosystemData = {
     meta: {
       title: 'BerkahKarya Ecosystem — 13 Services, 1 AI Company',
       description:
-        'Every company department — API, ads, affiliate, content, trading, phone farm, routing — handled by autonomous AI.',
+        'Every company department — API, ads, affiliate, content, automation, phone farm, routing — handled by autonomous AI.',
     },
     hero: {
       badge: 'SELF-RUNNING ECOSYSTEM',
       title: 'Every company department\nrun by AI autonomously',
       subtitle:
-        'We are not removing human control — we are delegating repetitive execution. Human sets direction. AI executes it — from API, ads, affiliate, content, trading, to device farm.',
+        'We are not removing human control — we are delegating repetitive execution. Human sets direction. AI executes it — from API, ads, affiliate, content, workflow automation, to device farm.',
     },
     matrix: {
       title: 'Service Matrix',
@@ -213,13 +206,6 @@ export const ecosystemData = {
           href: '/ecosystem#1ai-social',
         },
         {
-          emoji: '📈',
-          name: '1AI-Trade-Bot',
-          tag: 'Revenue Driver',
-          desc: 'CEX auto-trading, signal-based, risk-managed. Forex, crypto, commodities.',
-          href: '/ecosystem#1ai-trade-bot',
-        },
-        {
           emoji: '🔮',
           name: '1AI-Poly-Trader',
           tag: 'Revenue Driver',
@@ -262,7 +248,7 @@ export const ecosystemData = {
       layers: [
         { title: 'Human Principal', desc: 'Vision, ethics, partnerships, repair.' },
         { title: 'Hermes GM', desc: 'Goal decomposition + agent scheduling + escalation routing.' },
-        { title: 'Domain Agents', desc: 'Trade, ads, content, social, infra — each with own decision logic.' },
+        { title: 'Domain Agents', desc: 'Ads, content, social, automation, infra — each with own decision logic.' },
         { title: 'OmniRoute', desc: 'Cost control + provider abstraction. Efficiency without output changes.' },
         { title: 'CF-Router', desc: 'Stabilize internet access and downstream delivery.' },
         { title: 'Waha', desc: 'Single human interface: notification, approval, chat.' },

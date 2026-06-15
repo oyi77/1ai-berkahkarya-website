@@ -84,22 +84,6 @@ const products: Record<'id' | 'en', Product[]> = {
       badge: { label: '⭐ PRO', type: 'pro' },
     },
     {
-      emoji: '📈',
-      name: 'Algorithmic Trading',
-      tagline: 'Trading XAUUSD Tanpa Emosi, 24/5',
-      desc: 'Sistem trading otomatis untuk XAUUSD. Eksekusi berbasis algoritma yang sudah dibacktest 5+ tahun. Win rate 58–65%.',
-      benefits: [
-        '58–65% win rate, 1:2+ risk:reward',
-        'Backtested 5+ tahun data historis',
-        'Asia session strategy (15:00 UTC+7)',
-      ],
-      price: 'Rp 499K',
-      priceSub: '/bulan',
-      priceLabel: 'Mulai dari',
-      cta: 'Lihat Sistem →',
-      href: '/id/algorithmic-trading',
-    },
-    {
       emoji: '🌐',
       name: '1Ai',
       tagline: '398 AI Models — Rp 75K/Bulan Flat',
@@ -318,22 +302,6 @@ const products: Record<'id' | 'en', Product[]> = {
       cta: 'See Details →',
       href: '/en/ai-agent-pro',
       badge: { label: '⭐ PRO', type: 'pro' },
-    },
-    {
-      emoji: '📈',
-      name: 'Algorithmic Trading',
-      tagline: 'Emotionless XAUUSD Trading, 24/5',
-      desc: 'Automated trading system for XAUUSD. Algorithm-based execution backtested over 5+ years. Win rate 58–65%.',
-      benefits: [
-        '58–65% win rate, 1:2+ risk:reward',
-        'Backtested 5+ years of historical data',
-        'Asia session strategy (15:00 UTC+7)',
-      ],
-      price: 'Rp 499K',
-      priceSub: '/month',
-      priceLabel: 'Starting from',
-      cta: 'See System →',
-      href: '/en/algorithmic-trading',
     },
     {
       emoji: '🌐',
@@ -569,7 +537,7 @@ export default function ProductShowcase({ locale }: Props) {
       <div className={styles.container}>
         <div className={styles.header}>
           <span className={styles.eyebrow}>
-            {locale === 'id' ? '🚀 14 Solusi AI & Jasa Digital · Siap Pakai Hari Ini' : '🚀 14 AI Solutions & Digital Services · Ready Today'}
+            {locale === 'id' ? '🚀 13 Solusi AI & Jasa Digital · Siap Pakai Hari Ini' : '🚀 13 AI Solutions & Digital Services · Ready Today'}
           </span>
           <h2>
             {locale === 'id'

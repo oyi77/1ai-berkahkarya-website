@@ -27,14 +27,6 @@ const posts: Post[] = [
     date: '14 Mar 2026',
     href: '/id/ai-agent-pro',
   },
-  {
-    emoji: '📈',
-    tag: 'Trading',
-    title: '7-Candle Breakout Protocol C: Strategi XAUUSD yang Bisa Dijalankan Sambil Kerja',
-    excerpt: 'Entry jam 15:00 WIB, 5 menit setup, sisanya sistem yang kerja. Kenapa Asia session adalah window terbaik untuk trader Indonesia yang punya day job.',
-    date: '10 Mar 2026',
-    href: '/id/algorithmic-trading',
-  },
 ];
 
 export default function RecentPosts({ locale = 'id' }: { locale?: string }) {

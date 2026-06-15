@@ -1,96 +1,188 @@
-// storyData.ts — The BerkahKarya Origin Story (bilingual content for story page)
-
-export const storyData: Record<string, {
-  meta: { title: string; description: string };
-  hero: { eyebrow: string; title: string; description: string; buttons: { text: string; href: string; primary?: boolean }[] };
-  sections: { title: string; content: string }[];
-  stats: { value: string; label: string }[];
-  cta: { title: string; description: string; button: { text: string; href: string } };
-}> = {
+export const storyData = {
   id: {
     meta: {
-      title: 'Cerita BerkahKarya — Perusahaan AI yang Menjalankan Dirinya Sendiri',
-      description: 'Kisah di balik BerkahKarya: perusahaan AI 1 orang yang berjalan secara otonom. Dari Jombang, tanpa VC, hanya kode dan visi.',
+      title: 'Kisah Kami — Perusahaan AI yang Dibuktikan, Bukan Dijanjikan',
+      description:
+        'BerkahKarya bukan startup AI dengan pitch deck manis. 1 orang, 13 layanan otonom, langsung live in production — tanpa dana VC, tanpa team besar.',
     },
     hero: {
-      eyebrow: 'THE STORY',
-      title: 'Bukan Startup AI Biasa.\nKami Buktikan, Bukan Janji.',
-      description: 'BerkahKarya adalah perusahaan AI 1 orang yang berjalan secara otonom — dari trading, iklan, konten, hingga layanan pelanggan. Semua dijalankan oleh AI. Tanpa tim. Tanpa kantor. Tanpa VC.',
-      buttons: [
-        { text: 'Mulai dari 1AI', href: '/id/one-ai', primary: true },
+      badge: 'THE REALITY BEHIND THE TECH',
+      title: 'Satu manusia.\n13 layanan otonom.\n0 dana VC.',
+      subtitle:
+        'Ini bukan cerita “bangun startup jadi unicorn”. Ini eksperimen nyata: bisa satu orang menjalankan perusahaan AI yang menghasilkan revenue dan berjalan 24/7 tanpa team besar? Jawabannya sekarang live.',
+    },
+    philosophy: {
+      title: 'Budaya yang Membedakan BerkahKarya dari Startup AI Lainnya',
+      items: [
+        {
+          title: 'Angka Nyata, Bukan Pitch Deck',
+          desc: 'Kami membangun untuk customer, bukan investor. Setiap fitur dibangun karena ada permintaan pasar, bukan untuk demo fundraising. Revenue tracking terbuka; tidak disebutkan project yang gagal, tetapi culture-nya honest.',
+        },
+        {
+          title: 'Autonomy Sebagai Design Principle',
+          desc: 'Target awal: 15-30 menit per hari dari stakeholder. Semua repetitive labor dihandalkan agent. Keep human di atas (vision, ethics, partnerships), AI bawah (eksekusi). Bukan “AI menggantikan manusia” — manusia memilih pekerjaan mana yang tetap dia pegang.',
+        },
+        {
+          title: 'Open Source oleh Ketertarikan, Bukan Marketing',
+          desc: 'OmniRoute open source bukan strategi branding. Kami menggunakannya dalam ekosistem sendiri. Open source = tekanan agar quality manten, bukan narasi “we love community”. Value untuk diri sendiri, yang lain bonus.',
+        },
       ],
     },
-    sections: [
-      {
-        title: 'Awal Mula',
-        content: 'Berawal dari 1 orang — Andik Veris — seorang developer di Jombang, Jawa Timur. Bukan Silicon Valley. Bukan startup gedongan. Hanya 1 laptop, koneksi internet, dan visi: membuat perusahaan yang tidak perlu dioperasikan.',
-      },
-      {
-        title: 'Filosofi',
-        content: 'BerkahKarya dibangun di atas 3 pilar: (1) Revenue > Funding — kami tidak ambil VC, kami hidup dari pendapatan. (2) Automation-first — apa pun yang bisa diotomatisasi, harus diotomatisasi. (3) Transparency — kami publish roadmap, revenue, dan kegagalan kami secara publik.',
-      },
-      {
-        title: 'Sekarang',
-        content: 'Hari ini, BerkahKarya menjalankan 5 layanan otonom: 1ai-hub (otak), OmniRoute (gateway AI), 1ai (storefront), 1ai-ads (iklan otomatis), dan 1ai-trade-bot (trading otomatis). Semua berjalan 24/7, dikelola oleh 1 orang.',
-      },
-      {
-        title: 'Masa Depan',
-        content: 'Visi kami: Veris AI — AI executive pertama di dunia yang bisa coding, trading, beriklan, bernegosiasi, dan menjalankan seluruh perusahaan secara otonom. Bukan tools. Tapi CEO AI.',
-      },
-    ],
-    stats: [
-      { value: '1', label: 'Founder' },
-      { value: '5', label: 'Layanan Aktif' },
-      { value: '24/7', label: 'Otonom' },
-      { value: '0', label: 'VC Funding' },
-    ],
+    daily: {
+      title: 'Satu Hari dalam Kehidupan 1-Man AI Company',
+      subtitle: 'Stakeholder tidak lagi menjalankan pelayanan — dia memastikan arahnya benar.',
+      timeline: [
+        {
+          period: 'Pagi',
+          duration: '15-30 menit',
+          desc: 'Review laporan harian dari Hermes GM: revenue, anomalies, unhandled tickets. Telegram briefing. Take decision pada hal yang perlu.',
+        },
+        {
+          period: 'Siang',
+          duration: '0-30 menit',
+          desc: 'Jika ada escalation: approve partnership atau klarifikasi konten. Setelah itu — coding new feature atau maintenance tergantung kebutuhan prioritas.',
+        },
+        {
+          period: 'Malam',
+          duration: '10-15 menit',
+          desc: 'Quick check: operasional lancar tanpa gangguan. Jika tidak ada red flag, selesai. Work-life balance memang tetap manusia.',
+        },
+      ],
+    },
+    hierarchy: {
+      title: 'Like Managerial Hierarchy, Tapi Otomatis',
+      subtitle: 'Setiap level menjaga scope dan outputnya.',
+      levels: [
+        {
+          role: 'Human Principal',
+          desc: 'Vision, ethics, partnerships, final authority. Tidak terlibat operasi harian kecuali escalation.',
+        },
+        {
+          role: 'Hermes GM',
+          desc: 'Orchestrator — memecah goal ke task, assign ke agents, memantau outcome. Failure detection dan escalation.',
+        },
+        {
+          role: 'Agent Leaders',
+          desc: 'Domain head — masing-masing service punya agent leader untuk decision rutin.',
+        },
+        {
+          role: 'Worker Agents',
+          desc: 'Eksekutor spesifik — coding, posting, automation, targeting. Tidak punya authority di luar scope.',
+        },
+        {
+          role: 'Infrastructure',
+          desc: 'CF-Router + Waha + Paperclip — instrumentasi operasional.',
+        },
+      ],
+    },
+    stats: {
+      title: 'Angka yang Bisa Diverifikasi',
+      items: [
+        { value: '13', label: 'Layanan live' },
+        { value: '6', label: 'Revenue streams' },
+        { value: '$0', label: 'VC funding' },
+        { value: '1', label: 'Human stakeholder' },
+      ],
+    },
     cta: {
-      title: 'Mulai Perjalanan Anda',
-      description: 'BerkahKarya membuktikan bahwa AI bisa menjalankan bisnis nyata. Ingin bagian dari perjalanan ini? Mulai dengan 1AI dan rasakan sendiri.',
-      button: { text: 'Mulai dengan 1AI →', href: '/id/one-ai' },
+      title: 'Eksperimen ini bukan fiksi',
+      desc:
+        'Kami membangun ini sendiri, tanpa dana investor, dan membuktikan bahwa perusahaan AI yang berjalan sendiri bukanlah mitos.',
+      button: 'Lihat Ecosystem →',
+      href: '/ecosystem',
     },
   },
   en: {
     meta: {
-      title: 'The BerkahKarya Story — The AI Company That Runs Itself',
-      description: 'The story behind BerkahKarya: a 1-man AI company that runs autonomously. From Jombang, no VC, just code and vision.',
+      title: 'Our Story — AI Company Proven, Not Promised',
+      description:
+        'BerkahKarya is not a pitch-deck AI startup. 1 person, 13 autonomous services, live in production — $0 VC funding, no large team.',
     },
     hero: {
-      eyebrow: 'THE STORY',
-      title: 'Not Another AI Startup.\nWe Prove, Not Promise.',
-      description: 'BerkahKarya is a 1-man AI company that runs autonomously — from trading, ads, content, to customer service. All run by AI. No team. No office. No VC.',
-      buttons: [
-        { text: 'Start with 1AI', href: '/en/one-ai', primary: true },
+      badge: 'THE REALITY BEHIND THE TECH',
+      title: 'One human.\n13 autonomous services.\n$0 VC funding.',
+      subtitle:
+        'This isn’t a “build a unicorn” story. This is a real experiment: can one person run an AI company that earns revenue and operates 24/7 without a big team? The answer is now live.',
+    },
+    philosophy: {
+      title: 'What Makes BerkahKarya Different from Other AI Startups',
+      items: [
+        {
+          title: 'Real Numbers, Not Pitch Decks',
+          desc: 'We build for customers, not investors. Every feature is built because there is market demand, not for fundraising demos. Revenue tracking is open. We do not fake; we just keep the culture honest.',
+        },
+        {
+          title: 'Autonomy as Design Principle',
+          desc: 'Initial target: 15-30 minutes per day from the stakeholder. All repetitive labor is delegated to agents. Human stays strategic. “AI replaces human” is not the thesis — human chooses which work to keep.',
+        },
+        {
+          title: 'Open Source from Curiosity, Not Marketing',
+          desc: 'OmniRoute is open source because we use it ourselves, not for brand value. Open source = quality pressure, not “we love community” narrative.',
+        },
       ],
     },
-    sections: [
-      {
-        title: 'The Beginning',
-        content: 'Started by 1 person — Andik Veris — a developer in Jombang, East Java. Not Silicon Valley. Not a funded startup. Just 1 laptop, an internet connection, and a vision: to build a company that doesn\'t need to be operated.',
-      },
-      {
-        title: 'The Philosophy',
-        content: 'BerkahKarya is built on 3 pillars: (1) Revenue > Funding — no VC money, we live on revenue. (2) Automation-first — anything that can be automated, must be automated. (3) Transparency — we publish our roadmap, revenue, and failures publicly.',
-      },
-      {
-        title: 'Today',
-        content: 'Today, BerkahKarya runs 5 autonomous services: 1ai-hub (the brain), OmniRoute (AI gateway), 1ai (storefront), 1ai-ads (automated ads), and 1ai-trade-bot (automated trading). All running 24/7, managed by 1 person.',
-      },
-      {
-        title: 'The Future',
-        content: 'Our vision: Veris AI — the world\'s first AI executive that can code, trade, advertise, negotiate, and run an entire company autonomously. Not tools. But an AI CEO.',
-      },
-    ],
-    stats: [
-      { value: '1', label: 'Founder' },
-      { value: '5', label: 'Live Services' },
-      { value: '24/7', label: 'Autonomous' },
-      { value: '0', label: 'VC Funding' },
-    ],
+    daily: {
+      title: 'A Day in the Life of a 1-Man AI Company',
+      subtitle: 'The stakeholder no longer runs the service — they ensure it runs in the right direction.',
+      timeline: [
+        {
+          period: 'Morning',
+          duration: '15-30 min',
+          desc: 'Review daily GM report: revenue, anomalies, unhandled tickets. Telegram briefing. Decide on escalations only.',
+        },
+        {
+          period: 'Afternoon',
+          duration: '0-30 min',
+          desc: 'Approve partnerships or content clarifications if needed. Otherwise, code new features or maintenance per priority.',
+        },
+        {
+          period: 'Night',
+          duration: '10-15 min',
+          desc: 'Quick operational check: no red flags. If smooth — done. Work-life balance is still human.',
+        },
+      ],
+    },
+    hierarchy: {
+      title: 'Like Managerial Hierarchy, But Automated',
+      subtitle: 'Each level protects its scope and output.',
+      levels: [
+        {
+          role: 'Human Principal',
+          desc: 'Vision, ethics, partnerships, final authority. Not involved in daily ops unless escalation.',
+        },
+        {
+          role: 'Hermes GM',
+          desc: 'Orchestrator — breaks goals into tasks, assigns to agents, monitors outcomes. Failure detection + escalation.',
+        },
+        {
+          role: 'Agent Leaders',
+          desc: 'Domain-specific — each service has a leader for routine decisions.',
+        },
+        {
+          role: 'Worker Agents',
+          desc: 'Specific executors — coding, posting, automation, targeting. No authority beyond scope.',
+        },
+        {
+          role: 'Infrastructure',
+          desc: 'CF-Router + Waha + Paperclip — operational instrumentation.',
+        },
+      ],
+    },
+    stats: {
+      title: 'Verifiable Numbers',
+      items: [
+        { value: '13', label: 'Live services' },
+        { value: '6', label: 'Revenue streams' },
+        { value: '$0', label: 'VC funding' },
+        { value: '1', label: 'Human stakeholder' },
+      ],
+    },
     cta: {
-      title: 'Start Your Journey',
-      description: 'BerkahKarya proves that AI can run a real business. Want to be part of this journey? Start with 1AI and experience it yourself.',
-      button: { text: 'Start with 1AI →', href: '/en/one-ai' },
+      title: 'This experiment is real',
+      desc:
+        'We built this ourselves, without investor capital, and proved that a self-running AI company is not mythology.',
+      button: 'See Ecosystem →',
+      href: '/ecosystem',
     },
   },
-};
+} as const;

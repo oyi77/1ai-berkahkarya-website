@@ -67,7 +67,7 @@ export const storyData = {
         },
         {
           role: 'Worker Agents',
-          desc: 'Eksekutor spesifik — coding, posting, trading, targeting. Tidak punya authority di luar scope.',
+          desc: 'Eksekutor spesifik — coding, posting, automation, targeting. Tidak punya authority di luar scope.',
         },
         {
           role: 'Infrastructure',
@@ -160,7 +160,7 @@ export const storyData = {
         },
         {
           role: 'Worker Agents',
-          desc: 'Specific executors — coding, posting, trading, targeting. No authority beyond scope.',
+          desc: 'Specific executors — coding, posting, automation, targeting. No authority beyond scope.',
         },
         {
           role: 'Infrastructure',

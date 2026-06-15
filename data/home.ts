@@ -3,13 +3,13 @@ export const homeData = {
     meta: {
       title: 'BerkahKarya — Perusahaan AI yang Menjalankan Dirinya Sendiri',
       description:
-        'Bukan startup AI biasa. 1 orang, 13 layanan otonom, 0 VC funding. Perusahaan AI live in production — API, trading, iklan, konten berjalan 24/7 tanpa tim.',
+        'Bukan startup AI biasa. 1 orang, 13 layanan otonom, 0 VC funding. Perusahaan AI live in production — API, iklan, konten, automation berjalan 24/7 tanpa tim.',
     },
     hero: {
       eyebrow: 'THE 1-MAN AI COMPANY',
       title: 'What if a company could run itself?\nBukan janji. Bukan pitch deck.\nLive in production.',
       description:
-        'BerkahKarya dibuktikan, bukan dijanjikan. Satu manusia sebagai stakeholder. 13 layanan otonom — API AI, iklan, konten, trading — berjalan 24/7. Tanpa team besar. Tanpa dana VC. Cuma code + AI.',
+        'BerkahKarya dibuktikan, bukan dijanjikan. Satu manusia sebagai stakeholder. 13 layanan otonom — API AI, iklan, konten, automation — berjalan 24/7. Tanpa team besar. Tanpa dana VC. Cuma code + AI.',
       buttons: [
         { text: 'Mulai dengan 1AI →', href: '/one-ai', primary: true },
         { text: 'Baca Cerita Kami →', href: '/story', primary: false },
@@ -32,12 +32,12 @@ export const homeData = {
         {
           icon: '⚡',
           title: '1 Orang. Full Autonomy.',
-          desc: 'Satu manusia sebagai stakeholder. Semua operasional — trading, iklan, konten, infrastructure — dijalankan AI. 30-60 menit per hari. Output perusahaan penuh.',
+          desc: 'Satu manusia sebagai stakeholder. Semua operasional — automation, iklan, konten, infrastructure — dijalankan AI. 30-60 menit per hari. Output perusahaan penuh.',
         },
         {
           icon: '🧠',
           title: 'Ecosystem, Bukan Single Tool',
-          desc: '13 layanan terintegrasi: API AI, iklan, social media, content, affiliate, trading, phone farm. Setiap service otonom, koordinasi lewat hub central.',
+          desc: '13 layanan terintegrasi: API AI, iklan, social media, content, affiliate, automation, phone farm. Setiap service otonom, koordinasi lewat hub central.',
         },
       ],
     },
@@ -88,15 +88,15 @@ export const homeData = {
           href: '/ecosystem#1ai-social',
         },
         {
-          emoji: '📈',
-          name: '1AI-Trade-Bot',
-          desc: 'Forex, commodities, crypto — CEX auto-trading dengan risk management.',
-          href: '/ecosystem#1ai-trade-bot',
+          emoji: '⚡',
+          name: '1AI-Workflow',
+          desc: 'Business automation engine — end-to-end workflow orchestration.',
+          href: '/ecosystem#1ai-workflow',
         },
         {
           emoji: '🔮',
           name: '1AI-Poly-Trader',
-          desc: 'DEX + prediction markets. Arbitrage engine across platforms.',
+          desc: 'DEX + prediction markets.',
           href: '/ecosystem#1ai-poly-trader',
         },
         {
@@ -136,7 +136,7 @@ export const homeData = {
         {
           num: '2',
           title: 'AI Agents Operate',
-          desc: '13 layanan otonom — Hermes GM koordinasi semua agents. Trading, ads, content, sales, infra berjalan tanpa henti.',
+          desc: '13 layanan otonom — Hermes GM koordinasi semua agents. Ads, content, sales, automation berjalan tanpa henti.',
         },
         {
           num: '3',
@@ -156,13 +156,13 @@ export const homeData = {
     meta: {
       title: 'BerkahKarya — The AI Company That Runs Itself',
       description:
-        'Not your typical AI startup. 1 person, 13 autonomous services, $0 VC funding. AI company live in production — API, trading, ads, content running 24/7 without a team.',
+        'Not your typical AI startup. 1 person, 13 autonomous services, $0 VC funding. AI company live in production — API, automation, ads, content running 24/7 without a team.',
     },
     hero: {
       eyebrow: 'THE 1-MAN AI COMPANY',
       title: 'What if a company could run itself?\nNot promises. Not pitch decks.\nLive in production.',
       description:
-        'BerkahKarya is proven, not promised. One human as stakeholder. 13 autonomous services — AI API, ads, content, trading — running 24/7. No big team. No VC. Just code + AI.',
+        'BerkahKarya is proven, not promised. One human as stakeholder. 13 autonomous services — AI API, ads, content, automation — running 24/7. No big team. No VC. Just code + AI.',
       buttons: [
         { text: 'Start with 1AI →', href: '/one-ai', primary: true },
         { text: 'Read Our Story →', href: '/story', primary: false },
@@ -185,12 +185,12 @@ export const homeData = {
         {
           icon: '⚡',
           title: '1 Human. Full Autonomy.',
-          desc: 'One stakeholder. All operations — trading, ads, content, infra — run by AI. 30-60 minutes/day. Full company output.',
+          desc: 'One stakeholder. All operations — automation, ads, content, infra — run by AI. 30-60 minutes/day. Full company output.',
         },
         {
           icon: '🧠',
           title: 'Ecosystem, Not a Single Tool',
-          desc: '13 integrated services: AI API, ads, social, content, affiliate, trading, phone farm. Each autonomous, coordinated via central hub.',
+          desc: '13 integrated services: AI API, ads, social, content, affiliate, automation, phone farm. Each autonomous, coordinated via central hub.',
         },
       ],
     },
@@ -241,15 +241,9 @@ export const homeData = {
           href: '/ecosystem#1ai-social',
         },
         {
-          emoji: '📈',
-          name: '1AI-Trade-Bot',
-          desc: 'Forex, commodities, crypto — CEX auto-trading with strict risk management.',
-          href: '/ecosystem#1ai-trade-bot',
-        },
-        {
           emoji: '🔮',
           name: '1AI-Poly-Trader',
-          desc: 'DEX + prediction markets. Arbitrage engine across platforms.',
+          desc: 'DEX + prediction markets.',
           href: '/ecosystem#1ai-poly-trader',
         },
         {
@@ -289,7 +283,7 @@ export const homeData = {
         {
           num: '2',
           title: 'AI Agents Operate',
-          desc: '13 autonomous services — Hermes GM coordinates all agents. Trading, ads, content, sales, infra run continuously.',
+          desc: '13 autonomous services — Hermes GM coordinates all agents. Ads, content, sales, automation run continuously.',
         },
         {
           num: '3',

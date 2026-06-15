@@ -34,9 +34,9 @@ export default function Layout({
     : 'BerkahKarya — AI Ecosystem untuk Bisnis Indonesia';
   
   const fullDescription = description 
-    || 'Solusi AI lengkap untuk bisnis Indonesia. Video AI, chatbot, automation, trading algoritmik. Hemat 90% biaya, 10x lebih cepat.';
+    || 'Solusi AI lengkap untuk bisnis Indonesia. Video AI, chatbot, automation, sistem otonom. Hemat 90% biaya, 10x lebih cepat.';
 
-  const defaultKeywords = 'AI Indonesia, jasa AI, video AI, chatbot AI, automation bisnis, trading algoritmik, digital agency, BerkahKarya';
+  const defaultKeywords = 'AI Indonesia, jasa AI, video AI, chatbot AI, automation bisnis, sistem otonom, digital agency, BerkahKarya';
   const fullKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords;
 
   const canonicalUrl = `${SITE_URL}${path}`;

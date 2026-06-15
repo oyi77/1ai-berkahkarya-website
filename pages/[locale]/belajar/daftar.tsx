@@ -26,8 +26,8 @@ export default function DaftarPage({ locale }: { locale: Locale }) {
     backHref: `/${locale}/belajar/kurikulum`,
     ctaTitle: isId ? 'Chat Paijo di Telegram 💬' : '💬 Chat Paijo on Telegram',
     ctaDesc: isId
-      ? 'Masih ragu? Diskusi dulu gratis. Paijo senang ngobrolin AI, trading, atau affiliate marketing.'
-      : 'Still unsure? Free consultation. Paijo loves discussing AI, trading, or affiliate marketing.',
+      ? 'Masih ragu? Diskusi dulu gratis. Paijo senang ngobrolin AI, bisnis, atau automation.'
+      : 'Still unsure? Free consultation. Paijo loves discussing AI, business, or automation.',
   };
 
   return (

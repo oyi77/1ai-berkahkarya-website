@@ -63,9 +63,9 @@ const portfolioData = {
         ],
       },
       {
-        title: '📈 Trading & Fintech',
-        items: [
-          { name: 'Trading Bot', desc: 'Algorithmic trading XAUUSD', client: 'Hedge Fund' },
+        title: '📈 SaaS & Automation',
+          items: [
+          { name: 'AI Agent Platform', desc: 'Autonomous AI agents for business automation', client: 'Enterprise' },
           { name: 'API Integration', desc: 'OmniRoute multi-LLM gateway', client: 'AI Startup' },
           { name: 'Payment System', desc: 'Custom payment gateway integration', client: 'Marketplace' },
         ],
@@ -139,10 +139,9 @@ const portfolioData = {
         ],
       },
       {
-        title: '📈 Trading & Fintech',
+        title: '📈 SaaS & Automation',
         items: [
-          { name: 'Trading Bot', desc: 'XAUUSD algorithmic trading', client: 'Hedge Fund' },
-          { name: 'API Integration', desc: 'OmniRoute multi-LLM gateway', client: 'AI Startup' },
+          { name: 'AI Agent Platform', desc: 'OmniRoute multi-LLM gateway', client: 'AI Startup' },
           { name: 'Payment System', desc: 'Custom payment gateway integration', client: 'Marketplace' },
         ],
       },
