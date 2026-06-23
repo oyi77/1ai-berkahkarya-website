@@ -63,6 +63,8 @@ export default function Footer() {
           <div className={styles.pages}>
             <a href={`/${locale}/team`}>{locale === 'id' ? 'Tim Kami' : 'Our Team'}</a>
             <a href={`/${locale}/contact`}>{locale === 'id' ? 'Hubungi Kami' : 'Contact Us'}</a>
+            <a href={`/${locale}/privacy-policy`}>{locale === 'id' ? 'Kebijakan Privasi' : 'Privacy Policy'}</a>
+            <a href={`/${locale}/terms-of-service`}>{locale === 'id' ? 'Ketentuan Layanan' : 'Terms of Service'}</a>
           </div>
         </div>
 
