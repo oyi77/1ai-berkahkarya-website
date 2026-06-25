@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VilonaFX — AI Trading Signal Platform</title>
+    <meta name="description" content="Platform sinyal trading AI terdepan. Multi-market, multi-engine, dengan analisa profesional untuk Forex, Crypto, dan Komoditas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #22223a;
+            --accent-green: #00ff88;
+            --accent-blue: #00d4ff;
+            --accent-purple: #a855f7;
+            --accent-gold: #ffd700;
+            --accent-red: #ff4444;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #666680;
+            --border: #2a2a3e;
+            --glow-green: rgba(0, 255, 136, 0.3);
+            --glow-blue: rgba(0, 212, 255, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent-green), #00cc6a);
+            color: #000 !important;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--glow-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--accent-green);
+            margin-bottom: 32px;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-green), #00cc6a);
+            color: #000;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px var(--glow-green);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-green);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 80px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--accent-green);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 212, 255, 0.2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Markets Section */
+        .markets {
+            padding: 120px 0;
+            background: var(--bg-secondary);
+        }
+
+        .markets-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .market-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .market-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-4px);
+        }
+
+        .market-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .market-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .market-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .market-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        .status-live {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-green);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .status-coming {
+            background: rgba(168, 85, 247, 0.1);
+            color: var(--accent-purple);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        /* Engines Section */
+        .engines {
+            padding: 120px 0;
+        }
+
+        .engines-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .engine-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            display: flex;
+            gap: 20px;
+            transition: all 0.3s;
+        }
+
+        .engine-card:hover {
+            border-color: var(--accent-purple);
+        }
+
+        .engine-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(0, 212, 255, 0.2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .engine-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .engine-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 120px 0;
+            background: var(--bg-secondary);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .price-card.popular {
+            border-color: var(--accent-green);
+            transform: scale(1.05);
+        }
+
+        .price-card.popular::before {
+            content: 'PALING POPULER';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent-green), #00cc6a);
+            color: #000;
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .price-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .price-amount {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--accent-green);
+            margin: 16px 0;
+        }
+
+        .price-amount span {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .price-features {
+            list-style: none;
+            margin: 24px 0;
+            text-align: left;
+        }
+
+        .price-features li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .price-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .price-btn-primary {
+            background: linear-gradient(135deg, var(--accent-green), #00cc6a);
+            color: #000;
+        }
+
+        .price-btn-secondary {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 24px;
+            padding: 64px;
+        }
+
+        .cta-box h2 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .cta-box p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .features-grid { grid-template-columns: 1fr; }
+            .markets-grid { grid-template-columns: repeat(2, 1fr); }
+            .engines-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .price-card.popular { transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">VilonaFX</div>
+            <ul class="nav-links">
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="#markets">Market</a></li>
+                <li><a href="#engines">Mesin AI</a></li>
+                <li><a href="#pricing">Harga</a></li>
+                <li><a href="/vilonabot/login" class="nav-cta">Dashboard →</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    <span>Live — AI Trading Signal Platform</span>
+                </div>
+                <h1>
+                    Trading dengan<br>
+                    <span class="gradient">Kecerdasan Buatan</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Platform sinyal trading AI terdepan dengan 11+ mesin analisa, 
+                    multi-market coverage, dan Meta Intelligence Layer.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://t.me/berkahkaryaforexbotbot" class="btn-primary">
+                        🤖 Mulai di Telegram
+                    </a>
+                    <a href="/vilonabot/login" class="btn-secondary">
+                        📊 Dashboard Login
+                    </a>
+                </div>
+
+                <div class="stats-bar">
+                    <div class="stat-card">
+                        <div class="stat-value">11+</div>
+                        <div class="stat-label">Mesin AI</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">6</div>
+                        <div class="stat-label">Market</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">760+</div>
+                        <div class="stat-label">Tests Passing</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">Monitoring</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kenapa VilonaFX?</h2>
+                <p>Bukan sekadar sinyal — ini ekosistem trading AI lengkap</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Multi-Engine Consensus</h3>
+                    <p>11+ mesin analisa berjalan paralel. Sinyal hanya dikirim kalau 2+ mesin setuju arah yang sama.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Meta Intelligence</h3>
+                    <p>Layer tambahan: Regime Detection, Bayesian Confidence, Execution Quality. Filter sinyal berkualitas tinggi.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Multi-Market</h3>
+                    <p>Forex, Crypto, Komoditas, IDX — semua dalam satu platform. Tidak perlu ganti-ganti tools.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Telegram Native</h3>
+                    <p>Sinyal langsung di HP. Tidak perlu buka website. Command sederhana, output mudah dipahami.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Mode Pemula & Pro</h3>
+                    <p>Mode Simple: bahasa sehari-hari. Mode Pro: analisa teknikal lengkap. Pilih sesuai levelmu.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Risk Management</h3>
+                    <p>Setiap sinyal dilengkapi manajemen risiko. Lot size advice, SL/TP otomatis, dan peringatan session.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Markets -->
+    <section class="markets" id="markets">
+        <div class="container">
+            <div class="section-header">
+                <h2>Market Coverage</h2>
+                <p>Satu platform untuk semua market</p>
+            </div>
+            <div class="markets-grid">
+                <div class="market-card">
+                    <div class="market-icon">🥇</div>
+                    <h3>XAUUSD</h3>
+                    <p>Gold / Emas</p>
+                    <span class="market-status status-live">● LIVE</span>
+                </div>
+                <div class="market-card">
+                    <div class="market-icon">₿</div>
+                    <h3>BTCUSD</h3>
+                    <p>Bitcoin</p>
+                    <span class="market-status status-live">● LIVE</span>
+                </div>
+                <div class="market-card">
+                    <div class="market-icon">Ξ</div>
+                    <h3>ETHUSD</h3>
+                    <p>Ethereum</p>
+                    <span class="market-status status-live">● LIVE</span>
+                </div>
+                <div class="market-card">
+                    <div class="market-icon">💱</div>
+                    <h3>Forex</h3>
+                    <p>EUR/USD, GBP/USD, USD/JPY</p>
+                    <span class="market-status status-live">● LIVE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engines -->
+    <section class="engines" id="engines">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mesin Analisa AI</h2>
+                <p>11+ engine berjalan paralel untuk akurasi maksimal</p>
+            </div>
+            <div class="engines-grid">
+                <div class="engine-card">
+                    <div class="engine-icon">💀</div>
+                    <div>
+                        <h3>S-TIER Zone</h3>
+                        <p>High-probability zone detection dengan Fibonacci dan Order Block confluence.</p>
+                    </div>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-icon">🏦</div>
+                    <div>
+                        <h3>SMC Scalper</h3>
+                        <p>Smart Money Concepts: CHoCH, BOS, IDM, False Break, Trendline Break.</p>
+                    </div>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-icon">🏯</div>
+                    <div>
+                        <h3>CRT/TBS</h3>
+                        <p>Candle Range Theory — deteksi Asian range, sweep, dan rejection.</p>
+                    </div>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-icon">📐</div>
+                    <div>
+                        <h3>FVG Detector</h3>
+                        <p>Fair Value Gap detection — celah harga untuk entry optimal.</p>
+                    </div>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-icon">🤖</div>
+                    <div>
+                        <h3>AI Consensus</h3>
+                        <p>3 AI models (DeepSeek + GPT-4o + Claude) voting untuk akurasi tinggi.</p>
+                    </div>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-icon">⚡</div>
+                    <div>
+                        <h3>Meta Intelligence</h3>
+                        <p>Regime, Bayesian, Execution Quality, TQI — filter sinyal terbaik.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Paket Berlangganan</h2>
+                <p>Mulai gratis, upgrade kapan saja</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Free</h3>
+                    <div class="price-amount">$0</div>
+                    <ul class="price-features">
+                        <li>3 analisa/hari</li>
+                        <li>1 AI model</li>
+                        <li>Mode Simple</li>
+                        <li>Basic signals</li>
+                    </ul>
+                    <a href="https://t.me/berkahkaryaforexbotbot" class="price-btn price-btn-secondary">Mulai Gratis</a>
+                </div>
+                <div class="price-card">
+                    <h3>Pro</h3>
+                    <div class="price-amount">$8<span>/bulan</span></div>
+                    <ul class="price-features">
+                        <li>Unlimited analisa</li>
+                        <li>2 AI models</li>
+                        <li>Mode Simple + Pro</li>
+                        <li>SL/TP otomatis</li>
+                        <li>Grid/DCA bots</li>
+                    </ul>
+                    <a href="https://t.me/berkahkaryaforexbotbot" class="price-btn price-btn-secondary">Pilih Pro</a>
+                </div>
+                <div class="price-card popular">
+                    <h3>Elite</h3>
+                    <div class="price-amount">$15<span>/bulan</span></div>
+                    <ul class="price-features">
+                        <li>Semua fitur Pro</li>
+                        <li>3 AI models</li>
+                        <li>S-TIER signals</li>
+                        <li>Trailing stop</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="https://t.me/berkahkaryaforexbotbot" class="price-btn price-btn-primary">Pilih Elite</a>
+                </div>
+                <div class="price-card">
+                    <h3>Lifetime</h3>
+                    <div class="price-amount">$200</div>
+                    <ul class="price-features">
+                        <li>Semua fitur Elite</li>
+                        <li>Sekali bayar</li>
+                        <li>Akses selamanya</li>
+                        <li>Free updates</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="https://t.me/berkahkaryaforexbotbot" class="price-btn price-btn-secondary">Pilih Lifetime</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Siap Trading dengan AI?</h2>
+                <p>Mulai sekarang di Telegram. Gratis, tanpa kartu kredit.</p>
+                <a href="https://t.me/berkahkaryaforexbotbot" class="btn-primary">
+                    🚀 Mulai Sekarang
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 VilonaFX — BerkahKarya. All rights reserved.</p>
+            <p style="margin-top: 8px; font-size: 12px;">⚠️ Trading involves risk. This is not financial advice.</p>
+        </div>
+    </footer>
+</body>
+</html>
