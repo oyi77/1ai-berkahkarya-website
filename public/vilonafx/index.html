@@ -294,6 +294,43 @@ header .container{display:flex;justify-content:space-between;align-items:center}
 @keyframes profitGlow{0%,100%{text-shadow:0 0 10px rgba(16,185,129,0.3)}50%{text-shadow:0 0 20px rgba(16,185,129,0.6)}}
 
 /* ═══════════════════════════════════════════════════════
+   BROKER PARTNERS
+   ═══════════════════════════════════════════════════════ */
+.broker-section{padding:100px 0;position:relative;overflow:hidden}
+.broker-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(16,185,129,0.04),transparent 70%);pointer-events:none}
+.broker-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:860px;margin:0 auto}
+@media(max-width:768px){.broker-grid{grid-template-columns:1fr}}
+.broker-card{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:36px 28px;position:relative;overflow:hidden;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.broker-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:0;transition:opacity 0.3s}
+.broker-card:hover{border-color:rgba(16,185,129,0.3);transform:translateY(-6px);box-shadow:0 24px 48px -12px rgba(0,0,0,0.6)}
+.broker-card:hover::before{opacity:1}
+.broker-card .broker-logo{font-size:2rem;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.broker-card .broker-name{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:4px}
+.broker-card .broker-type{font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:16px}
+.broker-card .broker-desc{font-size:0.9rem;color:var(--text-muted);line-height:1.6;margin-bottom:20px}
+.broker-card .broker-features{list-style:none;margin-bottom:24px}
+.broker-card .broker-features li{font-size:0.85rem;color:var(--text-muted);padding:6px 0;display:flex;align-items:center;gap:8px}
+.broker-card .broker-features li::before{content:'✓';color:var(--green);font-weight:700;font-size:0.9rem}
+.broker-card .broker-highlight{
+  background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);
+  border-radius:var(--radius-md);padding:12px 16px;margin-bottom:20px;
+  font-size:0.82rem;color:var(--green);font-weight:600;text-align:center;
+}
+.broker-card .broker-btn{
+  display:block;width:100%;text-align:center;padding:14px 24px;
+  border-radius:var(--radius-md);font-weight:700;font-size:0.95rem;
+  text-decoration:none;transition:all 0.3s;cursor:pointer;border:none;
+}
+.broker-btn-exness{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000}
+.broker-btn-exness:hover{box-shadow:0 8px 24px rgba(245,158,11,0.3);transform:translateY(-2px)}
+.broker-btn-icm{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff}
+.broker-btn-icm:hover{box-shadow:0 8px 24px rgba(59,130,246,0.3);transform:translateY(-2px)}
+.broker-trust{display:flex;gap:20px;justify-content:center;margin-top:12px;font-size:0.72rem;color:var(--text-dim);flex-wrap:wrap}
+.broker-trust span{display:flex;align-items:center;gap:4px}
+/* ═══════════════════════════════════════════════════════
    PRICING
    ═══════════════════════════════════════════════════════ */
 .price-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
@@ -654,6 +691,67 @@ footer a:hover{color:#fff}
     </div>
   </div>
 </section>
+<!-- ═══════════════════════════════════════════════════════
+     BROKER PARTNERS — RECOMMENDED BY VILONAFX
+     ═══════════════════════════════════════════════════════ -->
+<section class="broker-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Buka Akun di Broker Terpercaya</h2>
+      <p>Eksekusi sinyal VilonaFX langsung di broker berlisensi global. Deposit rendah, spread ketat, eksekusi milidetik.</p>
+    </div>
+
+    <div class="broker-grid">
+      <!-- EXNESS -->
+      <div class="broker-card reveal stagger-1">
+        <div class="broker-logo">🏆 <span class="broker-name">Exness</span></div>
+        <div class="broker-type">Broker Forex & CFD — Global</div>
+        <div class="broker-highlight">🔥 Deposit mulai $10 • Spread dari 0.0 pip • Leverage sampai 1:Unlimited</div>
+        <p class="broker-desc">
+          Broker #1 pilihan trader Indonesia. Eksekusi order <strong style="color:#fff;">kurang dari 25 milidetik</strong>, zero commission di akun Standard, dan withdrawal instant ke bank lokal. Sudah teregulasi FCA, CySEC, dan FSCA.
+        </p>
+        <ul class="broker-features">
+          <li>Deposit & Withdraw bank lokal (BCA, BRI, Mandiri)</li>
+          <li>Akun Cent mulai $1 — cocok untuk pemula</li>
+          <li>Spread ketat di sesi London & New York</li>
+          <li>Support MT4, MT5, dan Exness Terminal</li>
+          <li>Tidak ada swap untuk akun Islamic</li>
+        </ul>
+        <a href="https://one.exnessonelink.com/a/l9jwml125i" target="_blank" rel="noopener" class="broker-btn broker-btn-exness" onclick="fbq('track','Lead',{content_name:'broker_exness',value:0,currency:'USD'},{eventID:'broker_exness_'+Date.now()})">
+          Buka Akun Exness Gratis →
+        </a>
+      </div>
+
+      <!-- IC MARKETS -->
+      <div class="broker-card reveal stagger-2">
+        <div class="broker-logo">⚡ <span class="broker-name">IC Markets</span></div>
+        <div class="broker-type">ECN Broker — Institutional Grade</div>
+        <div class="broker-highlight">🔥 Spread dari 0.0 pip • Komisi $3.5/lot • Liquiditas Tier-1</div>
+        <p class="broker-desc">
+          Broker ECN terbesar di dunia dengan volume trading <strong style="color:#fff;">$29+ miliar per hari</strong>. Akses langsung ke liquiditas bank-bank besar (JP Morgan, Goldman Sachs, UBS). Eksekusi rata-rata 40 milidetik tanpa requote.
+        </p>
+        <ul class="broker-features">
+          <li>Raw Spread account — 0.0 pip + komisi $3.5/lot</li>
+          <li>110+ instrumen: Forex, Crypto, Komoditas, Indeks</li>
+          <li>cTrader, MT4, MT5 — semua platform tersedia</li>
+          <li>Teregulasi ASIC, CySEC, SCB</li>
+          <li>VPS gratis untuk trading otomatis 24/7</li>
+        </ul>
+        <a href="https://www.icmarkets.com/?camp=REPLACE_YOUR_AFFILIATE_ID" target="_blank" rel="noopener" class="broker-btn broker-btn-icm" onclick="fbq('track','Lead',{content_name:'broker_icmarkets',value:0,currency:'USD'},{eventID:'broker_icm_'+Date.now()})">
+          Buka Akun IC Markets Gratis →
+        </a>
+      </div>
+    </div>
+
+    <div class="broker-trust reveal" style="margin-top:32px;">
+      <span>🔒 Teregulasi Internasional</span>
+      <span>💰 Deposit mulai $10</span>
+      <span>⚡ Withdrawal Instant</span>
+      <span>🏦 Bank Lokal Indonesia</span>
+    </div>
+  </div>
+</section>
+
 
 <!-- ═══════════════════════════════════════════════════════
      PRICING
