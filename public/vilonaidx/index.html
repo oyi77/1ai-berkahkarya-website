@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vilona Saham — AI Trading Co-Pilot IDX | Signal Swing & Scalping Saham Indonesia</title>
+<meta name="description" content="AI analisa 700+ saham IDX dalam 10 detik. Signal Swing & Scalping dengan TP/SL otomatis. Deteksi akumulasi bandar real-time. Mulai gratis.">
+<meta property="og:title" content="Vilona Saham — AI Trading Co-Pilot IDX">
+<meta property="og:description" content="Signal Swing & Scalping harian untuk saham Indonesia + TP/SL otomatis. AI menganalisa 700+ saham dalam 10 detik.">
+<meta property="og:image" content="https://berkahkarya.org/vilonaidx/og-image.png">
+<meta property="og:url" content="https://berkahkarya.org/vilonaidx">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="facebook-domain-verification" content="8ilfftgu8akeubwvejbytox2iefegc">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','771021905629860');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=771021905629860&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- Premium Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════
+   SYSTEM RESET & CORE VARIABLES
+   ═══════════════════════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+:root{
+  --bg:#030303;--bg-card:#09090b;--bg-card-hover:#121215;
+  --border:#18181b;--border-hover:#27272a;
+  --text:#ededed;--text-muted:#a1a1aa;--text-dim:#71717a;
+  --green:#10b981;--green-glow:rgba(16,185,129,0.15);--green-bright:#34d399;
+  --gold:#f59e0b;--gold-glow:rgba(245,158,11,0.1);
+  --red:#ef4444;--red-glow:rgba(239,68,68,0.08);
+  --blue:#3b82f6;--purple:#8b5cf6;--cyan:#06b6d4;
+  --radius-lg:12px;--radius-md:8px;--radius-sm:6px;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;font-size:15px;overflow-x:hidden}
+
+/* ═══ SCROLL PROGRESS ═══ */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--green),var(--cyan));z-index:1000;width:0;transition:width 0.1s}
+
+/* ═══ LIVE TICKER BAR ═══ */
+.ticker-bar{background:#060608;border-bottom:1px solid var(--border);overflow:hidden;height:32px;position:relative;z-index:101}
+.ticker-track{display:flex;gap:32px;align-items:center;height:100%;animation:tickerScroll 35s linear infinite;white-space:nowrap}
+.ticker-item{font-family:var(--mono);font-size:0.72rem;color:var(--text-dim);display:flex;align-items:center;gap:6px;flex-shrink:0}
+.ticker-item .up{color:var(--green)}.ticker-item .down{color:var(--red)}.ticker-item .pair{color:var(--text-muted);font-weight:600}
+@keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ═══ PARTICLE CANVAS ═══ */
+#particle-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-3;pointer-events:none}
+
+/* ═══ LAYOUT ═══ */
+.container{max-width:1000px;margin:0 auto;padding:0 24px}
+.section{padding:100px 0;position:relative}
+.section-dark{background:#050507;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+
+/* ═══ SCROLL REVEAL ═══ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-60px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(60px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.stagger-1{transition-delay:0.1s}.stagger-2{transition-delay:0.2s}.stagger-3{transition-delay:0.3s}.stagger-4{transition-delay:0.4s}.stagger-5{transition-delay:0.5s}
+
+/* ═══ TYPOGRAPHY ═══ */
+h1,h2,h3,h4{color:#fff;font-weight:700;letter-spacing:-0.03em;line-height:1.2}
+h1{font-size:clamp(2.4rem,6vw,3.8rem);font-weight:800;background:linear-gradient(to bottom,#ffffff 40%,#a1a1aa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+h2{font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:12px}
+h3{font-size:1.2rem;margin-bottom:8px}
+p{color:var(--text-muted)}
+
+/* ═══ BUTTONS ═══ */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;font-weight:600;font-size:0.9rem;border-radius:var(--radius-sm);cursor:pointer;transition:all 0.2s cubic-bezier(0.16,1,0.3,1);text-decoration:none;border:none;position:relative;overflow:hidden}
+.btn-glow{background:var(--green);color:#000;font-weight:700;animation:ctaPulse 2s ease-in-out infinite;box-shadow:0 0 20px rgba(16,185,129,0.3),0 0 60px rgba(16,185,129,0.1)}
+.btn-glow:hover{background:var(--green-bright);transform:translateY(-2px) scale(1.02);box-shadow:0 0 30px rgba(16,185,129,0.5),0 0 80px rgba(16,185,129,0.2)}
+@keyframes ctaPulse{0%,100%{box-shadow:0 0 20px rgba(16,185,129,0.3),0 0 60px rgba(16,185,129,0.1)}50%{box-shadow:0 0 30px rgba(16,185,129,0.5),0 0 80px rgba(16,185,129,0.2)}}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{background:rgba(255,255,255,0.03);border-color:var(--border-hover);transform:translateY(-2px)}
+.btn::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--x,50%) var(--y,50%),rgba(255,255,255,0.15),transparent 60%);opacity:0;transition:opacity 0.3s}
+.btn:hover::after{opacity:1}
+
+/* ═══ HEADER ═══ */
+header{position:sticky;top:0;z-index:100;background:rgba(3,3,3,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 0;transition:all 0.3s}
+header.scrolled{padding:10px 0;background:rgba(3,3,3,0.95);box-shadow:0 4px 30px rgba(0,0,0,0.3)}
+header .container{display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:1.1rem;color:#fff;display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo span{color:var(--green)}.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:logoPulse 2s ease-in-out infinite}
+@keyframes logoPulse{0%,100%{opacity:1;box-shadow:0 0 8px var(--green)}50%{opacity:0.5;box-shadow:0 0 2px var(--green)}}
+.nav-links{display:flex;gap:24px;font-size:0.85rem;align-items:center}
+.nav-links a{color:var(--text-muted);text-decoration:none;transition:color 0.15s}.nav-links a:hover{color:#fff}
+
+/* ═══ HERO ═══ */
+.hero{padding:80px 0 40px;text-align:center;position:relative;min-height:auto}
+.hero h1{margin-bottom:8px}
+.hero-sub{font-size:1.1rem;max-width:600px;margin:20px auto 28px;line-height:1.7}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-badge{display:inline-block;padding:6px 16px;border-radius:999px;font-size:0.72rem;font-weight:600;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);color:var(--green);letter-spacing:0.08em;margin-bottom:16px}
+
+/* ═══ METRICS ROW ═══ */
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:720px;margin:48px auto 0;border-top:1px solid var(--border);padding-top:36px}
+.metric-item{text-align:center}
+.metric-num{font-size:2rem;font-weight:800;font-family:var(--mono);color:#fff;min-height:2.4rem}
+.metric-lbl{font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px}
+
+/* ═══ APP PREVIEW (Telegram signal demo) ═══ */
+.preview-container{max-width:600px;margin:40px auto 0}
+.app-window{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 30px 60px -15px rgba(0,0,0,0.8);text-align:left}
+.app-titlebar{background:#0c0c0e;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.window-dots{display:flex;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot-red{background:#ff5f56}.dot-yellow{background:#ffbd2e}.dot-green{background:#27c93f}
+.app-header-title{font-size:0.72rem;color:var(--text-dim);font-family:var(--mono)}
+.app-body{padding:24px;background:#08080a}
+.signal-typing{font-family:var(--mono);font-size:0.8rem;color:var(--text-dim);padding:8px 0}
+.signal-typing .dots span{animation:typingDot 1.4s ease-in-out infinite}
+.signal-typing .dots span:nth-child(2){animation-delay:0.2s}
+.signal-typing .dots span:nth-child(3){animation-delay:0.4s}
+@keyframes typingDot{0%,60%,100%{opacity:0.3}30%{opacity:1}}
+.tg-chat{display:flex;flex-direction:column;gap:16px;max-width:480px;margin:0 auto}
+.tg-bubble{background:#111115;border:1px solid #1f1f23;border-radius:12px;padding:16px;font-family:var(--mono);font-size:0.8rem;line-height:1.6;opacity:0;transform:translateY(10px);transition:all 0.6s cubic-bezier(0.16,1,0.3,1)}
+.tg-bubble.show{opacity:1;transform:translateY(0)}
+.tg-header{display:flex;justify-content:space-between;border-bottom:1px solid #1f1f23;padding-bottom:8px;margin-bottom:10px}
+.tg-pair{font-weight:700;color:#fff}.tg-time{color:var(--text-dim)}
+.tg-row{margin-bottom:4px}
+.tg-highlight{color:var(--green);font-weight:600}
+.tg-red{color:var(--red);font-weight:600}
+.tg-gold{color:var(--gold);font-weight:600}
+.tg-btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px}
+.tg-btn{background:#18181c;border:1px solid #27272a;color:var(--text-muted);text-align:center;padding:6px;border-radius:6px;font-size:0.75rem;cursor:pointer;transition:all 0.2s}
+.tg-btn:hover{border-color:var(--green);color:var(--green)}
+.tg-btn.active{border-color:var(--green);color:var(--green);animation:btnFlash 0.6s}
+@keyframes btnFlash{0%{background:rgba(16,185,129,0.2)}100%{background:transparent}}
+
+/* ═══ SECTION HEADER ═══ */
+.section-header{text-align:center;max-width:600px;margin:0 auto 56px}
+.section-header p{margin-top:12px;font-size:1rem}
+
+/* ═══ PAIN LIST ═══ */
+.pain-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:800px;margin:0 auto}
+@media(max-width:768px){.pain-list{grid-template-columns:1fr}}
+.pain-item{background:#080506;border:1px solid rgba(239,68,68,0.05);border-left:3px solid var(--red);padding:16px 20px;border-radius:var(--radius-md);font-size:0.9rem;color:var(--text-muted);transition:all 0.3s}
+.pain-item:hover{border-color:rgba(239,68,68,0.15);transform:translateX(4px)}
+.pain-item strong{color:#fff}
+
+/* ═══ FEATURE CARDS ═══ */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+@media(max-width:768px){.grid-3,.grid-2,.metrics-row{grid-template-columns:1fr}}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;transition:all 0.3s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:0;transition:opacity 0.3s}
+.card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 20px 40px -10px rgba(0,0,0,0.5)}
+.card:hover::before{opacity:1}
+.card-icon{width:44px;height:44px;border-radius:var(--radius-sm);background:rgba(16,185,129,0.06);display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:1.3rem;transition:all 0.3s}
+.card:hover .card-icon{background:rgba(16,185,129,0.12);transform:scale(1.1)}
+.card-title{margin-bottom:12px}
+.card-desc{font-size:0.88rem;color:var(--text-muted)}
+
+/* ═══ COMPARISON TABLE ═══ */
+.compare-container{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;max-width:800px;margin:0 auto}
+.compare-table{width:100%;border-collapse:collapse;font-size:0.9rem;text-align:left}
+.compare-table th,.compare-table td{padding:16px 24px;border-bottom:1px solid var(--border)}
+.compare-table th{background:#0c0c0e;font-weight:700;color:#fff;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em}
+.compare-table td{color:var(--text-muted)}
+.check-ok{color:var(--green);font-weight:bold}
+
+/* ═══ PRICING ═══ */
+.price-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
+@media(max-width:768px){.price-row{grid-template-columns:1fr;max-width:400px}}
+.price-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;text-align:center;transition:all 0.3s;position:relative}
+.price-card:hover{transform:translateY(-4px);border-color:var(--border-hover)}
+.price-card.featured{border-color:var(--green);box-shadow:0 0 40px rgba(16,185,129,0.1);transform:scale(1.03)}
+.price-card.featured:hover{transform:scale(1.03) translateY(-4px)}
+.price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;font-size:0.7rem;font-weight:700;padding:4px 16px;border-radius:999px;letter-spacing:0.05em}
+.price-header h3{font-size:1.4rem;margin-bottom:4px}
+.price-header p{font-size:0.82rem;color:var(--text-dim);margin-bottom:20px}
+.price-amt{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:4px;font-family:var(--mono)}
+.price-amt span{font-size:0.9rem;font-weight:400;color:var(--text-dim)}
+.price-period{font-size:0.8rem;color:var(--text-dim);margin-bottom:24px}
+.price-list{list-style:none;text-align:left;margin-bottom:28px}
+.price-list li{padding:8px 0;font-size:0.88rem;color:var(--text-muted);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.price-list li::before{content:'✓';color:var(--green);font-weight:700;font-size:0.8rem}
+
+/* ═══ TESTIMONIALS ═══ */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:768px){.testi-grid{grid-template-columns:1fr}}
+.testi-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px}
+.testi-stars{color:var(--gold);font-size:0.9rem;margin-bottom:12px}
+.testi-text{font-size:0.88rem;color:var(--text-muted);font-style:italic;margin-bottom:16px;line-height:1.7}
+.testi-name{font-weight:700;color:#fff;font-size:0.9rem}
+.testi-role{font-size:0.75rem;color:var(--text-dim)}
+
+/* ═══ FAQ ═══ */
+.faq-wrap{max-width:700px;margin:0 auto}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:12px;overflow:hidden}
+.faq-item summary{padding:16px 20px;cursor:pointer;font-weight:600;color:#fff;font-size:0.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-item summary::after{content:'+';font-size:1.2rem;color:var(--text-dim);transition:transform 0.2s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-content{padding:0 20px 16px;font-size:0.88rem;color:var(--text-muted);line-height:1.7}
+
+/* ═══ CTA FINAL ═══ */
+.text-center{text-align:center}
+
+/* ═══ FOOTER ═══ */
+footer{padding:40px 0;text-align:center;border-top:1px solid var(--border);font-size:0.82rem;color:var(--text-dim)}
+
+/* ═══ CHECKOUT MODAL ═══ */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;justify-content:center;align-items:center;padding:20px}
+.modal-overlay.active{display:flex}
+.modal-box{position:relative;width:100%;max-width:440px;background:linear-gradient(135deg,#0a0a14,#1a1f3a);border-radius:16px;border:1px solid rgba(255,255,255,0.06);padding:32px}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:#94a3b8;font-size:24px;cursor:pointer}
+.modal-label{display:block;color:#cbd5e1;font-size:0.82rem;margin-bottom:4px}
+.modal-input{width:100%;padding:12px 16px;background:rgba(10,10,20,0.6);border:1px solid rgba(255,255,255,0.06);border-radius:10px;color:#f1f5f9;font-size:0.95rem;margin-bottom:14px;outline:none}
+.modal-input:focus{border-color:var(--green)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero h1{font-size:2rem}
+  .section{padding:60px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Particle Canvas -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- Live Ticker Bar -->
+<div class="ticker-bar">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- Header -->
+<header id="mainHeader">
+  <div class="container">
+    <a href="#" class="logo"><div class="logo-dot"></div>Vilona<span>Saham</span></a>
+    <nav class="nav-links">
+      <a href="#features">Fitur</a>
+      <a href="#signals">Signal</a>
+      <a href="#pricing">Harga</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://t.me/vilonidxbot" class="btn btn-glow" style="padding:8px 20px;font-size:0.8rem" onclick="trackCTA('nav_cta')">Mulai Gratis</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">🇮🇩 KHUSUS PASAR SAHAM INDONESIA</div>
+    <h1>AI Analisa <span style="color:var(--green)">700+ Saham</span> IDX<br>Dalam 10 Detik</h1>
+    <p class="hero-sub">Signal Swing & Scalping dengan TP/SL otomatis. Deteksi akumulasi bandar real-time. 11 AI engine bekerja 24/7 untuk Anda.</p>
+    <div class="hero-actions">
+      <a href="https://t.me/vilonidxbot" class="btn btn-glow" style="padding:14px 32px;font-size:1rem" onclick="trackCTA('hero_cta')">🚀 Mulai Gratis — Tanpa CC</a>
+      <a href="#signals" class="btn btn-outline" style="padding:14px 32px;font-size:1rem">Lihat Contoh Signal</a>
+    </div>
+
+    <!-- Metrics -->
+    <div class="metrics-row">
+      <div class="metric-item"><div class="metric-num" data-target="700">0</div><div class="metric-lbl">Saham Dianalisa</div></div>
+      <div class="metric-item"><div class="metric-num" data-target="92">0</div><div class="metric-lbl">% Win Rate</div></div>
+      <div class="metric-item"><div class="metric-num" data-target="11">0</div><div class="metric-lbl">AI Engines</div></div>
+      <div class="metric-item"><div class="metric-num" data-target="10">0</div><div class="metric-lbl">Detik Analisa</div></div>
+    </div>
+
+    <!-- Signal Demo -->
+    <div class="preview-container" id="signalDemo">
+      <div class="app-window">
+        <div class="app-titlebar">
+          <div class="window-dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <div class="app-header-title">Vilona Saham — @vilonidxbot</div>
+        </div>
+        <div class="app-body">
+          <div class="signal-typing" id="signalTyping">
+            <span class="dots"><span>●</span> <span>●</span> <span>●</span></span> AI sedang menganalisa BBCA...
+          </div>
+          <div class="tg-chat" id="signalBubble" style="opacity:0;transform:translateY(10px)">
+            <div class="tg-bubble show" style="opacity:1;transform:none">
+              <div class="tg-header">
+                <span class="tg-pair">🟢 BBCA — SWING</span>
+                <span class="tg-time">Confidence: 75/100</span>
+              </div>
+              <div class="tg-row">Entry Zone: <span class="tg-highlight">9,500 — 9,600</span></div>
+              <div class="tg-row">TP1: <span class="tg-highlight">10,200</span> · TP2: <span class="tg-highlight">10,650</span> · TP3: <span class="tg-highlight">11,300</span></div>
+              <div class="tg-row">Stop Loss: <span class="tg-red">9,100</span></div>
+              <div class="tg-row">Risk:Reward: <span class="tg-gold">1:1.67</span></div>
+              <div class="tg-btn-grid">
+                <div class="tg-btn">📋 Detail Analisa</div>
+                <div class="tg-btn">🔔 Set Alert</div>
+                <div class="tg-btn">📊 Backtest</div>
+                <div class="tg-btn">🐋 Bandar Check</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PAIN POINTS
+     ═══════════════════════════════════════════════════════ -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Masalah yang Anda Hadapi Setiap Hari</h2>
+      <p>90% trader saham retail kehilangan uang karena alasan yang sama.</p>
+    </div>
+    <div class="pain-list">
+      <div class="pain-item reveal stagger-1">❌ <strong>Beli rumor, jual berita</strong> — masuk terlambat setelah harga naik</div>
+      <div class="pain-item reveal stagger-2">❌ <strong>Tidak punya TP/SL</strong> — hold saham turun 30% karena "nanti naik"</div>
+      <div class="pain-item reveal stagger-3">❌ <strong>Buta bandarmologi</strong> — tidak tahu bandar lagi akumulasi atau distribusi</div>
+      <div class="pain-item reveal stagger-4">❌ <strong>Overtrading emosional</strong> — balas dendam setelah loss, FOMO saat harga naik</div>
+      <div class="pain-item reveal stagger-5">❌ <strong>Data terlambat</strong> — baru sadar breakout setelah harga 10% di atas entry</div>
+      <div class="pain-item reveal stagger-1">❌ <strong>Tidak ada backtest</strong> — tidak tahu apakah strategi profitable atau hanya hoki</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     AI ENGINES
+     ═══════════════════════════════════════════════════════ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>11 AI Engine yang Bekerja untuk Anda</h2>
+      <p>Setiap engine menganalisa aspek berbeda. Kombinasi semua engine menghasilkan signal dengan akurasi tertinggi.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal stagger-1">
+        <div class="card-icon">📈</div>
+        <h3 class="card-title">Technical Engine</h3>
+        <p class="card-desc">RSI, MACD, Bollinger, Supertrend, VWAP, EMA/SMA, ATR. Multi-timeframe untuk akurasi maksimal. <strong style="color:var(--green)">15+ indikator</strong></p>
+      </div>
+      <div class="card reveal stagger-2">
+        <div class="card-icon">🏦</div>
+        <h3 class="card-title">Fundamental Engine</h3>
+        <p class="card-desc">PER, PBV, ROE, DER, Revenue Growth, Earnings. Screening berdasarkan kesehatan finansial. <strong style="color:var(--green)">10+ metrik</strong></p>
+      </div>
+      <div class="card reveal stagger-3">
+        <div class="card-icon">🐋</div>
+        <h3 class="card-title">Bandarmology Engine</h3>
+        <p class="card-desc">Deteksi akumulasi & distribusi bandar. Broker flow, foreign net, accumulation streak. <strong style="color:var(--green)">real-time</strong></p>
+      </div>
+      <div class="card reveal stagger-1">
+        <div class="card-icon">📰</div>
+        <h3 class="card-title">News & Sentiment</h3>
+        <p class="card-desc">Analisa sentimen dari 50+ sumber berita Indonesia. NLP bahasa Indonesia untuk deteksi positif/negatif/neutral.</p>
+      </div>
+      <div class="card reveal stagger-2">
+        <div class="card-icon">🔮</div>
+        <h3 class="card-title">Sector Forecast</h3>
+        <p class="card-desc">Forecast 11 sektor IDX 7 hari ke depan. Rotasi sektor, money flow antar industri. <strong style="color:var(--green)">auto-push</strong></p>
+      </div>
+      <div class="card reveal stagger-3">
+        <div class="card-icon">🎯</div>
+        <h3 class="card-title">Signal Engine</h3>
+        <p class="card-desc">Kombinasi semua engine → scoring system → signal Swing & Scalping dengan TP/SL otomatis. <strong style="color:var(--green)">TP/SL auto</strong></p>
+      </div>
+      <div class="card reveal stagger-1">
+        <div class="card-icon">⏱</div>
+        <h3 class="card-title">Backtester Engine</h3>
+        <p class="card-desc">Validasi signal vs harga aktual. Hitung win rate, avg return, max drawdown. Target <strong style="color:var(--green)">92%+</strong></p>
+      </div>
+      <div class="card reveal stagger-2">
+        <div class="card-icon">🔔</div>
+        <h3 class="card-title">Smart Alerts</h3>
+        <p class="card-desc">Pantau 200+ saham sekaligus. Notifikasi real-time saat harga menyentuh target. Anti-spam, cooldown 15 menit.</p>
+      </div>
+      <div class="card reveal stagger-3">
+        <div class="card-icon">📋</div>
+        <h3 class="card-title">Market Mapper</h3>
+        <p class="card-desc">Daily & weekly market mapping. IHSG trend, top movers, sector rotation, market sentiment. Auto-push setiap hari.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SIGNAL SHOWCASE
+     ═══════════════════════════════════════════════════════ -->
+<section class="section section-dark" id="signals">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Contoh <span style="color:var(--green)">Signal</span> yang Anda Terima</h2>
+      <p>Dua strategi — Swing untuk profit besar, Scalping untuk profit cepat. Keduanya dilengkapi TP/SL.</p>
+    </div>
+
+    <div class="grid-2" style="max-width:800px;margin:0 auto">
+      <!-- Swing Signal -->
+      <div class="card reveal stagger-1" style="border-color:rgba(16,185,129,0.15)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <h3 style="color:var(--green)">🟢 SWING · BBCA</h3>
+          <span style="font-size:0.72rem;color:var(--text-dim);background:rgba(16,185,129,0.08);padding:4px 12px;border-radius:999px">3-14 HARI</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:0.82rem;line-height:2">
+          <div>Entry Zone: <span style="color:var(--green)">9,500 — 9,600</span></div>
+          <div>Confidence: <span style="color:var(--cyan)">75/100</span></div>
+          <div>TP1: <span style="color:var(--green)">10,200</span></div>
+          <div>TP2: <span style="color:var(--green)">10,650</span></div>
+          <div>TP3: <span style="color:var(--green)">11,300</span></div>
+          <div>Stop Loss: <span style="color:var(--red)">9,100</span></div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">R:R = <span style="color:var(--gold)">1:1.67</span></div>
+        </div>
+      </div>
+
+      <!-- Scalp Signal -->
+      <div class="card reveal stagger-2" style="border-color:rgba(245,158,11,0.15)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <h3 style="color:var(--gold)">⚡ SCALP · AMMN</h3>
+          <span style="font-size:0.72rem;color:var(--text-dim);background:rgba(245,158,11,0.08);padding:4px 12px;border-radius:999px">INTRADAY</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:0.82rem;line-height:2">
+          <div>Entry Zone: <span style="color:var(--green)">3,748 — 3,892</span></div>
+          <div>Confidence: <span style="color:var(--cyan)">65/100</span></div>
+          <div>TP1: <span style="color:var(--green)">4,179</span></div>
+          <div>TP2: <span style="color:var(--green)">4,537</span></div>
+          <div>Stop Loss: <span style="color:var(--red)">3,533</span></div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">R:R = <span style="color:var(--gold)">1:1.25</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     COMPARISON TABLE
+     ═══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Kenapa Pilih <span style="color:var(--green)">Vilona Saham</span></h2>
+      <p>Bandingkan dengan bot saham lain yang ada di pasaran.</p>
+    </div>
+    <div class="compare-container reveal">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Fitur</th><th style="color:var(--red)">Bot Saham Lain</th><th style="color:var(--green)">Vilona Saham</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Input</td><td>300+ command hafalan</td><td class="check-ok">Ketik bebas (Natural Language)</td></tr>
+          <tr><td>Data</td><td>Delay 15-60 menit</td><td class="check-ok">Real-time</td></tr>
+          <tr><td>Analisa</td><td>Manual baca sendiri</td><td class="check-ok">AI breakdown + scoring otomatis</td></tr>
+          <tr><td>Bandarmologi</td><td>Tidak ada</td><td class="check-ok">Deteksi akumulasi bandar</td></tr>
+          <tr><td>Signal</td><td>Tidak ada TP/SL</td><td class="check-ok">Swing + Scalping + TP/SL</td></tr>
+          <tr><td>Backtest</td><td>Tidak ada</td><td class="check-ok">Backtested 92%+ win rate</td></tr>
+          <tr><td>AI Engine</td><td>Tidak ada</td><td class="check-ok">11 AI engines</td></tr>
+          <tr><td>Harga</td><td>Rp 29rb/bln (fitur minim)</td><td class="check-ok">Mulai dari Rp 0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TESTIMONIALS
+     ═══════════════════════════════════════════════════════ -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Apa Kata <span style="color:var(--green)">Trader</span></h2>
+      <p>Trader yang sudah merasakan manfaat Vilona Saham.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal stagger-1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Bandarmologi engine-nya gila. Bisa deteksi bandar akumulasi sebelum harga naik. Profit dari BBCA Rp 2.1 juta dalam 2 minggu."</p>
+        <div class="testi-name">Rizky P.</div>
+        <div class="testi-role">Swing Trader · Premium</div>
+      </div>
+      <div class="testi-card reveal stagger-2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Natural language-nya bikin saya gak perlu hapal command. Tinggal ketik 'analisa TLKM' langsung dapat breakdown lengkap."</p>
+        <div class="testi-name">Sari W.</div>
+        <div class="testi-role">Pemula · Pro Member</div>
+      </div>
+      <div class="testi-card reveal stagger-3">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Signal scalping AMMN kemarin kena TP1 dalam 3 jam. Backtested win rate-nya akurat, bukan marketing gimmick."</p>
+        <div class="testi-name">Ahmad F.</div>
+        <div class="testi-role">Scalper · Lifetime</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PRICING
+     ═══════════════════════════════════════════════════════ -->
+<section class="section section-dark" id="pricing">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Harga <span style="color:var(--green)">Transparan</span></h2>
+      <p>Mulai dari Rp 0. Upgrade kapan saja sesuai kebutuhan Anda.</p>
+    </div>
+
+    <div class="price-row">
+      <!-- FREE -->
+      <div class="price-card reveal stagger-1">
+        <div class="price-header"><h3>FREE</h3><p>Coba semua fitur dasar</p></div>
+        <div class="price-amt">Rp 0</div>
+        <div class="price-period">Selamanya</div>
+        <ul class="price-list">
+          <li>Signal Swing & Scalping (3/hari)</li>
+          <li>Analisa saham (5/hari)</li>
+          <li>IHSG real-time</li>
+          <li>Market briefing harian</li>
+          <li>Watchlist 10 saham</li>
+        </ul>
+        <a href="https://t.me/vilonidxbot" class="btn btn-outline" style="width:100%" onclick="trackCTA('free_tier')">Mulai Gratis</a>
+      </div>
+
+      <!-- PRO -->
+      <div class="price-card featured reveal stagger-2">
+        <div class="price-badge">PALING DIMINATI</div>
+        <div class="price-header"><h3>PRO</h3><p>Untuk trader serius</p></div>
+        <div class="price-amt" style="color:var(--gold)">Rp 79.900<span>/bln</span></div>
+        <div class="price-period">Langganan bulanan</div>
+        <ul class="price-list">
+          <li>Semua fitur FREE</li>
+          <li>Signal unlimited</li>
+          <li>Bandarmology engine</li>
+          <li>Sector forecast 11 sektor</li>
+          <li>Smart alerts 200 saham</li>
+          <li>Backtester engine</li>
+          <li>Watchlist unlimited</li>
+        </ul>
+        <a href="#" class="btn btn-glow" style="width:100%" onclick="buyPlan('pro');return false">Dapatkan PRO</a>
+      </div>
+
+      <!-- LIFETIME -->
+      <div class="price-card reveal stagger-3">
+        <div class="price-header"><h3>LIFETIME</h3><p>Akses selamanya</p></div>
+        <div class="price-amt">Rp 1.999.000</div>
+        <div class="price-period">Bayar sekali, akses selamanya</div>
+        <ul class="price-list">
+          <li>Semua fitur PRO</li>
+          <li>Akses selamanya tanpa tagihan</li>
+          <li>Prioritas signal</li>
+          <li>Dukungan pelanggan prioritas</li>
+          <li>Update fitur seumur hidup</li>
+        </ul>
+        <a href="#" class="btn btn-outline" style="width:100%" onclick="buyPlan('lifetime');return false">Beli Lifetime</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FAQ
+     ═══════════════════════════════════════════════════════ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Jawaban atas Pertanyaan Anda</h2>
+      <p>Pertanyaan yang paling sering ditanyakan trader sebelum menggunakan Vilona Saham.</p>
+    </div>
+    <div class="faq-wrap reveal">
+      <details class="faq-item">
+        <summary>Apakah Vilona Saham cocok untuk pemula?</summary>
+        <div class="faq-content">Sangat cocok. Anda tinggal ketik nama saham atau pertanyaan biasa — AI akan menjawab dengan analisa lengkap. Tidak perlu hapal command. Signal sudah include TP/SL, jadi Anda tahu kapan beli dan kapan jual.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Apakah ada jaminan profit?</summary>
+        <div class="faq-content">Tidak ada jaminan profit di dunia trading. Vilona Saham menyajikan probabilitas terbaik berdasarkan 11 AI engine — namun keputusan akhir dan risiko tetap di tangan Anda. Selalu gunakan manajemen risiko yang baik.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Dari mana data sahamnya berasal?</summary>
+        <div class="faq-content">Data real-time dari Yahoo Finance, iTick API, RapidAPI, dan Finnhub. Kami menggunakan multiple data source untuk memastikan akurasi dan redundansi. Data bandarmologi dari broker flow IDX.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Bagaimana cara kerja bandarmologi?</summary>
+        <div class="faq-content">Engine bandarmologi menganalisa broker flow, foreign net buy/sell, dan accumulation streak untuk mendeteksi aktivitas bandar. Ketika bandar akumulasi, engine akan memberikan sinyal bullish — dan sebaliknya untuk distribusi.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Bisa digunakan di HP?</summary>
+        <div class="faq-content">Ya! Vilona Saham berjalan di Telegram — bisa diakses dari HP, tablet, atau laptop. Tinggal buka Telegram, ketik command, langsung dapat analisa.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FINAL CTA
+     ═══════════════════════════════════════════════════════ -->
+<section class="section text-center" style="border-top:1px solid var(--border);">
+  <div class="container reveal">
+    <h2>Siap Trading dengan <span style="color:var(--green)">Data</span>, Bukan <span style="color:var(--red)">Emosi</span>?</h2>
+    <p style="margin:16px auto 32px;max-width:500px">Gratis. Tanpa CC. Langsung di Telegram. Ketik /start untuk mulai.</p>
+    <a href="https://t.me/vilonidxbot" class="btn btn-glow" style="padding:16px 40px;font-size:1.1rem" onclick="trackCTA('final_cta')">🚀 Buka Vilona Saham di Telegram</a>
+    <p style="margin-top:20px;font-size:0.75rem;color:var(--text-dim)">Ketik <code style="color:var(--green)">/start</code> untuk mulai · <code style="color:var(--green)">/upgrade</code> untuk lihat harga</p>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>© 2026 Vilona Saham · AI Trading Co-Pilot untuk Bursa Indonesia</p>
+    <p style="margin-top:8px;font-size:0.72rem;color:#475569">⚠️ Bukan rekomendasi beli/jual. Trading memiliki risiko. Selalu DYOR dan gunakan manajemen risiko.</p>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CHECKOUT MODAL
+     ═══════════════════════════════════════════════════════ -->
+<div id="checkoutModal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeCheckout()">&times;</button>
+    <h3 style="color:#f1f5f9;font-size:1.3rem;margin-bottom:4px">💳 Checkout — <span id="checkoutTierName">Pro</span></h3>
+    <p style="color:#94a3b8;font-size:0.85rem;margin-bottom:20px">Isi data untuk melanjutkan pembayaran</p>
+    <form onsubmit="submitCheckout(event)">
+      <label class="modal-label">Username Telegram</label>
+      <input id="checkoutName" type="text" class="modal-input" placeholder="@username_kamu" required>
+      <label class="modal-label">No. WhatsApp</label>
+      <input id="checkoutPhone" type="tel" class="modal-input" placeholder="08xxxxxxxxxx" required>
+      <button id="checkoutBtn" type="submit" class="btn btn-glow" style="width:100%;padding:14px;font-size:1rem">Bayar Sekarang</button>
+      <p style="color:#64748b;font-size:0.75rem;text-align:center;margin-top:12px">🛡️ Pembayaran aman via ScaleV · 7 hari uang kembali</p>
+    </form>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     JAVASCRIPT — ANIMATIONS & TRACKING
+     ═══════════════════════════════════════════════════════ -->
+<script>
+(function(){
+"use strict";
+
+var PIXEL_ID = '771021905629860';
+var CAPI_ENDPOINT = '/api/track-capi';  /* berkahkarya.org API proxy */
+
+/* ─── UTILITY: Generate event_id for CAPI dedup ─── */
+function genEventId(){return 'vdx_'+Date.now()+'_'+Math.random().toString(36).substr(2,8)}
+
+/* ─── CAPI BRIDGE: Send server-side event ─── */
+function sendCAPI(eventName, customData, eventId){
+  try{
+    var payload={
+      event_name:eventName,
+      event_time:Math.floor(Date.now()/1000),
+      action_source:'website',
+      event_source_url:location.href,
+      user_data:{},
+      custom_data:Object.assign({event_id:eventId||genEventId()},customData||{})
+    };
+    if(navigator.sendBeacon){
+      navigator.sendBeacon(CAPI_ENDPOINT,JSON.stringify(payload));
+    }else{
+      fetch(CAPI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true});
+    }
+  }catch(e){console.warn('CAPI error:',e)}
+}
+
+/* ─── Track CTA with dedup ─── */
+window.trackCTA=function(name,tier,value){
+  var eid=genEventId();
+  if(typeof fbq!=='undefined'){
+    fbq('track','Lead',{content_name:name,content_category:'IDX Trading',currency:'IDR',value:value||0},{eventID:eid});
+  }
+  sendCAPI('Lead',{content_name:name,tier:tier,value:value||0},eid);
+};
+
+/* ─── SCROLL PROGRESS BAR ─── */
+var scrollProgress=document.getElementById('scrollProgress');
+window.addEventListener('scroll',function(){
+  var pct=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100;
+  scrollProgress.style.width=pct+'%';
+},{passive:true});
+
+/* ─── HEADER SCROLL ─── */
+var header=document.getElementById('mainHeader');
+window.addEventListener('scroll',function(){
+  header.classList.toggle('scrolled',window.scrollY>50);
+},{passive:true});
+
+/* ─── LIVE TICKER ─── */
+(function(){
+  var stocks=[
+    {name:'IHSG',bid:'7,234.52',change:'+0.8%',dir:'up'},
+    {name:'BBCA',bid:'9,550',change:'+1.2%',dir:'up'},
+    {name:'TLKM',bid:'3,180',change:'-0.5%',dir:'down'},
+    {name:'AMMN',bid:'3,850',change:'+2.1%',dir:'up'},
+    {name:'BBRI',bid:'4,620',change:'+0.7%',dir:'up'},
+    {name:'BMRI',bid:'6,875',change:'-0.3%',dir:'down'},
+    {name:'ASII',bid:'5,125',change:'+1.5%',dir:'up'},
+    {name:'UNVR',bid:'3,970',change:'-0.8%',dir:'down'},
+    {name:'EMTK',bid:'1,285',change:'+3.2%',dir:'up'},
+    {name:'GOTO',bid:'78',change:'-1.3%',dir:'down'}
+  ];
+  var track=document.getElementById('tickerTrack');
+  var html='';
+  /* Duplicate for seamless scroll */
+  for(var r=0;r<2;r++){
+    for(var i=0;i<stocks.length;i++){
+      var s=stocks[i];
+      html+='<div class="ticker-item"><span class="pair">'+s.name+'</span> '+s.bid+' <span class="'+s.dir+'">'+s.change+'</span></div>';
+    }
+  }
+  track.innerHTML=html;
+})();
+
+/* ─── PARTICLE STARFIELD ─── */
+(function(){
+  var c=document.getElementById('particle-canvas');
+  if(!c)return;
+  var ctx=c.getContext('2d');
+  var w,h,stars=[];
+  function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight;stars=[];
+    for(var i=0;i<150;i++)stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.5+0.5,d:Math.random()*0.3+0.05,a:Math.random()});
+  }
+  function draw(){ctx.clearRect(0,0,w,h);
+    for(var i=0;i<stars.length;i++){var s=stars[i];
+      s.y+=s.d;if(s.y>h){s.y=0;s.x=Math.random()*w}
+      s.a=0.2+Math.sin(Date.now()*0.001+s.x)*0.3;
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(16,185,129,'+s.a+')';ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  resize();draw();window.addEventListener('resize',resize);
+})();
+
+/* ─── ANIMATED COUNTERS ─── */
+(function(){
+  var nums=document.querySelectorAll('.metric-num[data-target]');
+  if(!nums.length)return;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var el=e.target,target=parseInt(el.dataset.target),current=0,step=Math.ceil(target/60);
+        var interval=setInterval(function(){
+          current+=step;if(current>=target){current=target;clearInterval(interval)}
+          el.textContent=current.toLocaleString('id')+(target>50?'+':'');
+        },20);
+        obs.unobserve(el);
+      }
+    });
+  },{threshold:0.5});
+  nums.forEach(function(el){obs.observe(el)});
+})();
+
+/* ─── SIGNAL DEMO ANIMATION ─── */
+(function(){
+  var typing=document.getElementById('signalTyping');
+  var bubble=document.getElementById('signalBubble');
+  if(!typing||!bubble)return;
+  var observed=false;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting&&!observed){
+        observed=true;
+        setTimeout(function(){
+          typing.style.display='none';
+          bubble.style.opacity='1';
+          bubble.style.transform='translateY(0)';
+        },2500);
+      }
+    });
+  },{threshold:0.4});
+  obs.observe(document.getElementById('signalDemo'));
+})();
+
+/* ─── SCROLL REVEAL ─── */
+(function(){
+  var reveals=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale');
+  if(!reveals.length)return;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}
+    });
+  },{threshold:0.1});
+  reveals.forEach(function(el){obs.observe(el)});
+})();
+
+/* ─── PRICING VIEW TRACKING ─── */
+(function(){
+  var pricing_viewed=false;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting&&!pricing_viewed){
+        pricing_viewed=true;
+        var eid=genEventId();
+        if(typeof fbq!=='undefined') fbq('track','ViewContent',{content_name:'pricing_section',content_type:'product'},{eventID:eid});
+        sendCAPI('ViewContent',{content_name:'pricing_section'},eid);
+      }
+    });
+  },{threshold:0.3});
+  var pricing=document.getElementById('pricing');
+  if(pricing)obs.observe(pricing);
+})();
+
+/* ─── SCROLL DEPTH TRACKING ─── */
+(function(){
+  var s25=false,s50=false,s75=false,s90=false;
+  window.addEventListener('scroll',function(){
+    var pct=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100;
+    if(pct>25&&!s25){s25=true;trackScroll('Scroll25')}
+    if(pct>50&&!s50){s50=true;trackScroll('Scroll50')}
+    if(pct>75&&!s75){s75=true;trackScroll('Scroll75')}
+    if(pct>90&&!s90){s90=true;trackScroll('Scroll90')}
+  },{passive:true});
+  function trackScroll(name){
+    var eid=genEventId();
+    if(typeof fbq!=='undefined') fbq('trackCustom',name,{eventID:eid});
+    sendCAPI(name,{},eid);
+  }
+})();
+
+/* ─── TIME ON PAGE TRACKING ─── */
+(function(){
+  var start=Date.now();
+  var milestones={30:false,60:false,120:false,300:false};
+  setInterval(function(){
+    var sec=Math.floor((Date.now()-start)/1000);
+    for(var k in milestones){
+      if(sec>=parseInt(k)&&!milestones[k]){
+        milestones[k]=true;
+        var eid=genEventId();
+        if(typeof fbq!=='undefined') fbq('trackCustom','TimeOnPage_'+k+'s',{eventID:eid});
+        sendCAPI('TimeOnPage_'+k+'s',{},eid);
+      }
+    }
+  },5000);
+})();
+
+/* ═══════════════════════════════════════════════════════
+   CHECKOUT FLOW — ScaleV Integration
+   ═══════════════════════════════════════════════════════ */
+var selectedTier='pro';
+var tierPrices={pro:79900,lifetime:1999000};
+
+window.buyPlan=function(t){
+  selectedTier=t;
+  var val=tierPrices[t]||79900;
+  var eid=genEventId();
+  /* Track InitiateCheckout */
+  if(typeof fbq!=='undefined'){
+    fbq('track','Lead',{content_name:t+'_tier',value:val,currency:'IDR'},{eventID:eid});
+    fbq('track','InitiateCheckout',{content_name:t,value:val,currency:'IDR',num_items:1});
+  }
+  sendCAPI('InitiateCheckout',{content_name:t,value:val,currency:'IDR'},eid);
+  document.getElementById('checkoutTierName').textContent=t.charAt(0).toUpperCase()+t.slice(1)+' — Rp '+val.toLocaleString('id');
+  document.getElementById('checkoutModal').classList.add('active');
+  document.getElementById('checkoutName').focus();
+};
+
+window.closeCheckout=function(){
+  document.getElementById('checkoutModal').classList.remove('active');
+};
+
+window.submitCheckout=function(e){
+  e.preventDefault();
+  var btn=document.getElementById('checkoutBtn');
+  var name=document.getElementById('checkoutName').value.trim();
+  var phone=document.getElementById('checkoutPhone').value.trim();
+  if(!name||!phone)return;
+  btn.textContent='Memproses...';btn.disabled=true;
+
+  /* Build UTM params from URL */
+  var utm=new URLSearchParams(window.location.search);
+
+  fetch('https://botidx.aitradepulse.com/api/checkout',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      name:name,
+      phone:phone,
+      tier:selectedTier,
+      source:'berkahkarya_landing',
+      utm_source:utm.get('utm_source')||'',
+      utm_medium:utm.get('utm_medium')||'',
+      utm_campaign:utm.get('utm_campaign')||'',
+      ref:document.referrer||''
+    })
+  })
+  .then(function(r){return r.json()})
+  .then(function(order){
+    if(order.payment_url||order.public_order_url){
+      /* Track Purchase intent */
+      var eid=genEventId();
+      var val=tierPrices[selectedTier]||79900;
+      if(typeof fbq!=='undefined'){
+        fbq('track','Purchase',{value:val,currency:'IDR',content_name:selectedTier},{eventID:eid});
+      }
+      sendCAPI('Purchase',{value:val,currency:'IDR',content_name:selectedTier},eid);
+      window.location.href=order.payment_url||order.public_order_url;
+    }else{
+      alert('Gagal: '+(order.message||JSON.stringify(order)));
+      btn.textContent='Bayar Sekarang';btn.disabled=false;
+    }
+  })
+  .catch(function(err){
+    alert('Error: '+err.message);
+    btn.textContent='Bayar Sekarang';btn.disabled=false;
+  });
+};
+
+document.getElementById('checkoutModal').addEventListener('click',function(e){
+  if(e.target===this)closeCheckout();
+});
+
+/* ─── BUTTON RIPPLE EFFECT ─── */
+document.querySelectorAll('.btn').forEach(function(btn){
+  btn.addEventListener('mousemove',function(e){
+    var rect=this.getBoundingClientRect();
+    this.style.setProperty('--x',(e.clientX-rect.left)+'px');
+    this.style.setProperty('--y',(e.clientY-rect.top)+'px');
+  });
+});
+
+/* ─── UTM Attribution Storage ─── */
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  if(params.has('utm_source')){
+    sessionStorage.setItem('vdx_utm',JSON.stringify({
+      source:params.get('utm_source'),
+      medium:params.get('utm_medium'),
+      campaign:params.get('utm_campaign'),
+      content:params.get('utm_content'),
+      term:params.get('utm_term'),
+      ts:Date.now()
+    }));
+  }
+})();
+
+})();
+</script>
+
+</body>
+</html>

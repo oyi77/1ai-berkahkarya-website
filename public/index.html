@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BerkahKarya - Digital Solutions</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #1a1a1a;
+            --spacing: 2rem;
+        }
+        
+        body { font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6; color: var(--dark); background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { font-size: 2rem; font-weight: 700; color: var(--primary); }
+        
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--secondary); }
+        
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: var(--spacing);
+        }
+        
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; font-weight: 300; }
+        .hero p { font-size: 1.25rem; opacity: 0.9; margin-bottom: 2rem; }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(52,152,219,0.4); }
+        
+        .features {
+            background: white;
+            padding: var(--spacing) 0;
+            position: relative;
+            z-index: 50;
+        }
+        
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        
+        .feature-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">BerkahKarya</div>
+                <div class="nav-links">
+                    <a href="/id/home">Beranda</a>
+                    <a href="/id/services">Layanan</a>
+                    <a href="/id/about">Tentang Kami</a>
+                    <a href="/id/contact">Kontak</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Digital Solutions for Modern Business</h1>
+            <p>Transform your ideas into powerful web applications with professional development</p>
+            <a href="/id/services" class="btn">Mulai Sekarang</a>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 3rem;">Our Services</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 style="color: var(--secondary); margin-bottom: 1rem;">Web Development</h3>
+                    <p>Modern, responsive websites with Next.js & React</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: var(--secondary); margin-bottom: 1rem;">UI/UX Design</h3>
+                    <p>Professional design following modern standards</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: var(--secondary); margin-bottom: 1rem;">Performance</h3>
+                    <p>Optimized for speed and SEO</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: var(--secondary); margin-bottom: 1rem;">Support</h3>
+                    <p>24/7 technical support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 BerkahKarya. All rights reserved.</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">Powered by Vilona Engine</p>
+        </div>
+    </footer>
+</body>
+</html>
