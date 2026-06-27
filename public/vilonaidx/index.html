@@ -537,8 +537,7 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--border);font-
       </div>
 
       <!-- PRO -->
-      <div class="price-card featured reveal stagger-2">
-        <div class="price-badge">PALING DIMINATI</div>
+      <div class="price-card reveal stagger-2">
         <div class="price-header"><h3>PRO</h3><p>Untuk trader serius</p></div>
         <div class="price-amt" style="color:var(--gold)">Rp 79.900<span>/bln</span></div>
         <div class="price-period">Langganan bulanan</div>
@@ -554,13 +553,30 @@ footer{padding:40px 0;text-align:center;border-top:1px solid var(--border);font-
         <a href="#" class="btn btn-glow" style="width:100%" onclick="buyPlan('pro');return false">Dapatkan PRO</a>
       </div>
 
+      <!-- ELITE -->
+      <div class="price-card featured reveal stagger-3">
+        <div class="price-badge">PALING DIMINATI</div>
+        <div class="price-header"><h3>ELITE</h3><p>Otomatisasi & bisnis sinyal</p></div>
+        <div class="price-amt" style="color:var(--gold)">Rp 149.900<span>/bln</span></div>
+        <div class="price-period">Langganan bulanan</div>
+        <ul class="price-list">
+          <li>Semua fitur PRO</li>
+          <li>Bandarmology advanced</li>
+          <li>1 Bot Whitelabel sendiri</li>
+          <li>Hak akses sistem komisi</li>
+          <li>Multi-asset (Saham + Crypto)</li>
+          <li>Prioritas signal</li>
+        </ul>
+        <a href="#" class="btn btn-glow" style="width:100%" onclick="buyPlan('elite');return false">Dapatkan ELITE</a>
+      </div>
+
       <!-- LIFETIME -->
-      <div class="price-card reveal stagger-3">
+      <div class="price-card reveal stagger-4">
         <div class="price-header"><h3>LIFETIME</h3><p>Akses selamanya</p></div>
         <div class="price-amt">Rp 1.999.000</div>
         <div class="price-period">Bayar sekali, akses selamanya</div>
         <ul class="price-list">
-          <li>Semua fitur PRO</li>
+          <li>Semua fitur ELITE</li>
           <li>Akses selamanya tanpa tagihan</li>
           <li>Prioritas signal</li>
           <li>Dukungan pelanggan prioritas</li>
@@ -858,7 +874,7 @@ window.addEventListener('scroll',function(){
    CHECKOUT FLOW — ScaleV Integration
    ═══════════════════════════════════════════════════════ */
 var selectedTier='pro';
-var tierPrices={pro:79900,lifetime:1999000};
+var tierPrices={pro:79900,elite:149900,lifetime:1999000};
 
 window.buyPlan=function(t){
   selectedTier=t;
