@@ -4,7 +4,7 @@ const DEFAULT_LOCALE = 'id';
 const SUPPORTED = new Set(['id', 'en']);
 
 // Paths that should NOT be locale-prefixed
-const BYPASS_PATHS = ['/admin-panel'];
+const BYPASS_PATHS = ['/admin-panel', '/vilonaidx', '/vilonafx', '/vilonabot'];
 
 export function middleware(request: NextRequest) {
  const { pathname } = request.nextUrl;
