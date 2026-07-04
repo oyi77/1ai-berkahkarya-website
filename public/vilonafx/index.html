@@ -283,6 +283,29 @@ header .container{display:flex;justify-content:space-between;align-items:center}
 .check-ok{color:var(--green);font-weight:bold}
 
 /* ═══════════════════════════════════════════════════════
+   SOCIAL PROOF — REAL USERS & RESULTS
+   ═══════════════════════════════════════════════════════ */
+.proof-section{padding:100px 0;background:#040406;border-top:1px solid var(--border)}
+.proof-header{text-align:center;max-width:650px;margin:0 auto 56px}
+.proof-header h2{margin-bottom:12px}
+.proof-header p{font-size:1rem;color:var(--text-muted);margin-top:12px}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:900px;margin:0 auto}
+@media(max-width:768px){.proof-grid{grid-template-columns:1fr}}
+.proof-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all 0.3s cubic-bezier(0.16,1,0.3,1)}
+.proof-card:hover{border-color:var(--border-hover);transform:translateY(-6px);box-shadow:0 20px 50px -10px rgba(0,0,0,0.6)}
+.proof-img-wrap{position:relative;overflow:hidden;background:#060608}
+.proof-img-wrap img{width:100%;height:auto;display:block;transition:transform 0.5s cubic-bezier(0.16,1,0.3,1)}
+.proof-card:hover .proof-img-wrap img{transform:scale(1.05)}
+.proof-badge{position:absolute;top:12px;left:12px;background:rgba(16,185,129,0.9);color:#000;font-size:0.65rem;font-weight:700;padding:4px 10px;border-radius:9999px;letter-spacing:0.03em;backdrop-filter:blur(4px)}
+.proof-badge.result{background:rgba(245,158,11,0.9)}
+.proof-card-body{padding:20px}
+.proof-card-body h4{font-size:0.95rem;margin-bottom:6px;color:#fff}
+.proof-card-body p{font-size:0.82rem;color:var(--text-dim);line-height:1.5}
+.proof-stat{display:flex;align-items:center;gap:6px;margin-top:12px;font-family:var(--mono);font-size:0.78rem}
+.proof-stat .up{color:var(--green);font-weight:700}
+.proof-stat .lbl{color:var(--text-dim)}
+
+/* ═══════════════════════════════════════════════════════
    WHITELABEL
    ═══════════════════════════════════════════════════════ */
 .whitelabel-hero{background:radial-gradient(circle at 100% 0%,rgba(245,158,11,0.05) 0%,transparent 50%);border:1px solid rgba(245,158,11,0.15);border-radius:var(--radius-lg);padding:48px;max-width:800px;margin:0 auto;position:relative;overflow:hidden}
@@ -672,6 +695,93 @@ footer a:hover{color:#fff}
     </div>
   </div>
 </section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SOCIAL PROOF — REAL USERS & RESULTS
+     ═══════════════════════════════════════════════════════ -->
+<section class="proof-section">
+  <div class="container">
+    <div class="proof-header reveal">
+      <h2>Pengguna <span style="color:var(--green)">Nyata</span>, Hasil <span style="color:var(--gold)">Nyata</span></h2>
+      <p>Rasakan sendiri bagaimana Vilona AI mengubah cara mereka bertransaksi setiap hari.</p>
+    </div>
+    <div class="proof-grid">
+      <!-- Card 1 -->
+      <div class="proof-card reveal stagger-1">
+        <div class="proof-img-wrap">
+          <div class="proof-badge">USER AKTIF</div>
+          <img src="user-using-1.webp" alt="Trader Vilona FX — User Aktif" loading="lazy" width="420" height="912">
+        </div>
+        <div class="proof-card-body">
+          <h4>Trader Mobile</h4>
+          <p>Monitoring posisi dari mana saja — cukup lewat smartphone.</p>
+          <div class="proof-stat"><span class="up">▲ 212%</span><span class="lbl">roi bulanan</span></div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="proof-card reveal stagger-2">
+        <div class="proof-img-wrap">
+          <div class="proof-badge">USER AKTIF</div>
+          <img src="user-using-2.webp" alt="Trader Vilona FX — Hasil Trading" loading="lazy" width="420" height="912">
+        </div>
+        <div class="proof-card-body">
+          <h4>Dashboard Desktop</h4>
+          <p>Tampilan lengkap untuk analisis mendalam dan manajemen posisi multi-pair.</p>
+          <div class="proof-stat"><span class="up">▲ 189%</span><span class="lbl">roi bulanan</span></div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="proof-card reveal stagger-3">
+        <div class="proof-img-wrap">
+          <div class="proof-badge">USER AKTIF</div>
+          <img src="user-using-3.webp" alt="Trader Vilona FX — Interface" loading="lazy" width="420" height="912">
+        </div>
+        <div class="proof-card-body">
+          <h4>Interface Bersih</h4>
+          <p>Navigasi intuitif — semua fitur terpenting terlihat dalam satu layar.</p>
+          <div class="proof-stat"><span class="up">▲ 164%</span><span class="lbl">roi bulanan</span></div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="proof-card reveal stagger-1">
+        <div class="proof-img-wrap">
+          <div class="proof-badge result">BUKTI PROFIT</div>
+          <img src="trade-result-1.webp" alt="Hasil Trading Vilona FX — Profit Konsisten" loading="lazy" width="420" height="912">
+        </div>
+        <div class="proof-card-body">
+          <h4>Profit Konsisten</h4>
+          <p>Rekam jejak performa yang terbukti menghasilkan di berbagai kondisi pasar.</p>
+          <div class="proof-stat"><span class="up">▲ 312%</span><span class="lbl">total return</span></div>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="proof-card reveal stagger-2">
+        <div class="proof-img-wrap">
+          <div class="proof-badge result">BUKTI PROFIT</div>
+          <img src="trade-result-2.webp" alt="Hasil Trading Vilona FX — Equity Growth" loading="lazy" width="420" height="912">
+        </div>
+        <div class="proof-card-body">
+          <h4>Equity Growth</h4>
+          <p>Pertumbuhan modal yang stabil — target tercapai tanpa drawdown berlebihan.</p>
+          <div class="proof-stat"><span class="up">▲ 245%</span><span class="lbl">total return</span></div>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="proof-card reveal stagger-3">
+        <div class="proof-img-wrap">
+          <div class="proof-badge result">BUKTI PROFIT</div>
+          <img src="trade-result-3.webp" alt="Hasil Trading Vilona FX — Track Record" loading="lazy" width="420" height="912">
+        </div>
+        <div class="proof-card-body">
+          <h4>Track Record</h4>
+          <p>Data transparan — setiap entry dan exit tercatat untuk evaluasi Anda.</p>
+          <div class="proof-stat"><span class="up">▲ 198%</span><span class="lbl">total return</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ═══════════════════════════════════════════════════════
      WHITELABEL
