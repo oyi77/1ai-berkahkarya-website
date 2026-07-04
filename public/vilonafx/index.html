@@ -151,7 +151,7 @@ header .container{display:flex;justify-content:space-between;align-items:center}
    ═══════════════════════════════════════════════════════ */
 .hero{padding:80px 0 40px;text-align:center;position:relative;min-height:auto}
 .hero h1{margin-bottom:8px}
-.hero-sub{font-size:1.1rem;max-width:600px;margin:20px auto 28px;line-height:1.7}
+.hero-sub{font-size:1.1rem;max-width:650px;margin:20px auto 28px;line-height:1.7}
 .hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
 /* Live chart canvas in hero */
@@ -249,7 +249,7 @@ header .container{display:flex;justify-content:space-between;align-items:center}
 /* ═══════════════════════════════════════════════════════
    SOLUTION CARDS
    ═══════════════════════════════════════════════════════ */
-.section-header{text-align:center;max-width:600px;margin:0 auto 56px}
+.section-header{text-align:center;max-width:650px;margin:0 auto 56px}
 .section-header p{margin-top:12px;font-size:1rem}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
@@ -398,11 +398,24 @@ footer a:hover{color:#fff}
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- Particle Background -->
-<canvas id="particle-canvas"></canvas>
+<canvas id="particle-canvas" width="1920" height="911"></canvas>
 
 <!-- ═══ LIVE TICKER BAR ═══ -->
 <div class="ticker-bar">
-  <div class="ticker-track" id="tickerTrack"></div>
+  <div class="ticker-track" id="tickerTrack">
+    <div class="ticker-item"><span class="pair">XAUUSD</span> 3,247.85 <span class="up">+1.2%</span></div>
+    <div class="ticker-item"><span class="pair">EURUSD</span> 1.0842 <span class="down">-0.3%</span></div>
+    <div class="ticker-item"><span class="pair">GBPUSD</span> 1.2715 <span class="up">+0.5%</span></div>
+    <div class="ticker-item"><span class="pair">BTCUSD</span> 108,420 <span class="up">+2.8%</span></div>
+    <div class="ticker-item"><span class="pair">ETHUSD</span> 2,547 <span class="up">+1.1%</span></div>
+    <div class="ticker-item"><span class="pair">USDJPY</span> 148.32 <span class="down">-0.4%</span></div>
+    <div class="ticker-item"><span class="pair">XAUUSD</span> 3,247.85 <span class="up">+1.2%</span></div>
+    <div class="ticker-item"><span class="pair">EURUSD</span> 1.0842 <span class="down">-0.3%</span></div>
+    <div class="ticker-item"><span class="pair">GBPUSD</span> 1.2715 <span class="up">+0.5%</span></div>
+    <div class="ticker-item"><span class="pair">BTCUSD</span> 108,420 <span class="up">+2.8%</span></div>
+    <div class="ticker-item"><span class="pair">ETHUSD</span> 2,547 <span class="up">+1.1%</span></div>
+    <div class="ticker-item"><span class="pair">USDJPY</span> 148.32 <span class="down">-0.4%</span></div>
+  </div>
 </div>
 
 <!-- ═══ HEADER ═══ -->
@@ -425,13 +438,13 @@ footer a:hover{color:#fff}
      ═══════════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="container">
-    <h1>Trading dengan Data,<br>Bukan Emosi</h1>
+    <h1>Bukan Belajar Trading,<br>Ini Kendaraan Profit Anda</h1>
     <p class="hero-sub">
-      3 model AI menganalisis pergerakan market bersamaan, menyaring peluang dengan presisi tinggi, dan mengirimkannya ke akun Telegram Anda lengkap dengan target Entry, Stop Loss, dan Take Profit.
+      Anda ingin kebebasan finansial, bukan kelelahan menatap layar. Biarkan 3 AI canggih kami yang bekerja 24/7 sebagai mesin pencetak profit Anda, sementara Anda fokus pada keluarga dan pekerjaan utama.
     </p>
     <div class="hero-actions">
-      <a href="https://t.me/berkahkaryaforexbotbot" class="btn btn-glow" style="padding:14px 32px;font-size:1rem;" onclick="fbq('track','Lead',{content_name:'hero_cta',value:0,currency:'IDR'},{eventID:'lead_hero_'+Date.now()})">🚀 Coba Gratis Sekarang</a>
-      <a href="#live-demo" class="btn btn-outline" style="padding:14px 32px;">Lihat Contoh Signal</a>
+      <a href="https://t.me/berkahkaryaforexbotbot" class="btn btn-glow" style="padding:14px 32px;font-size:1rem;" onclick="fbq('track','Lead',{content_name:'hero_cta',value:0,currency:'IDR'},{eventID:'lead_hero_'+Date.now()})">🚀 Ambil Kendali Waktu Anda</a>
+      <a href="#live-demo" class="btn btn-outline" style="padding:14px 32px;">Lihat Bagaimana Mesin Bekerja</a>
     </div>
 
     <!-- LIVE CHART -->
@@ -439,11 +452,11 @@ footer a:hover{color:#fff}
       <div class="hero-chart-header">
         <div class="hero-chart-pair"><div class="live-dot"></div> XAUUSD — M15</div>
         <div class="hero-chart-price">
-          <span class="bid" id="chartBid">$3,247.85</span>
-          <span class="ask" id="chartAsk">$3,248.12</span>
+          <span class="bid" id="chartBid">$3253.26</span>
+          <span class="ask" id="chartAsk">$3253.53</span>
         </div>
       </div>
-      <canvas id="hero-chart"></canvas>
+      <canvas id="hero-chart" width="900" height="320"></canvas>
     </div>
 
     <!-- ANIMATED METRICS -->
@@ -474,8 +487,8 @@ footer a:hover{color:#fff}
 <section class="section section-dark" id="live-demo">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Lihat Sinyal Real-Time Anda</h2>
-      <p>Sinyal dikirim langsung oleh asisten AI kami ke Telegram lengkap dengan parameter rasio risiko yang jelas.</p>
+      <h2>Lihat Bagaimana Mesin Ini Bekerja Untuk Anda</h2>
+      <p>Kami mengubah algoritma rumit menjadi panduan instan yang dikirim langsung ke Telegram Anda. Anda cukup menerimanya tanpa perlu pusing mikir.</p>
     </div>
 
     <div class="preview-container reveal-scale">
@@ -535,22 +548,22 @@ footer a:hover{color:#fff}
 <section class="section">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Mengapa Trader Retail Sering Rugi?</h2>
-      <p>Masalah terbesar dalam industri trading bukanlah strategi, melainkan ketahanan emosional dan manajemen waktu.</p>
+      <h2>Apa yang Membuat Anda Frustrasi Selama Ini?</h2>
+      <p>Bukan karena Anda kurang pintar, tapi karena Anda melakukan pekerjaan menguras mental yang seharusnya dikerjakan oleh mesin.</p>
     </div>
 
     <div class="pain-list">
       <div class="pain-item reveal stagger-1">
-        <strong>Overtrading & Emosi:</strong> Memaksa transaksi berulang karena ingin balas dendam setelah kalah beruntun.
+        <strong>Waktu Habis Tersita:</strong> Begadang menatap pergerakan harga hingga mengorbankan waktu tidur, kesehatan, dan keluarga Anda.
       </div>
       <div class="pain-item reveal stagger-2">
-        <strong>Ketidakhadiran Analisa:</strong> Terlambat membuka posisi karena sedang sibuk dengan rutinitas harian.
+        <strong>Stres & Trauma Mental:</strong> Jantung berdebar saat floating minus, berujung pada keputusan emosional balas dendam yang merusak saldo.
       </div>
       <div class="pain-item reveal stagger-3">
-        <strong>Penentuan SL/TP Buruk:</strong> Menaruh batas resiko tanpa perhitungan matematis rasionya.
+        <strong>Terjebak Rutinitas:</strong> Selalu ketinggalan momen emas di market karena Anda sedang sibuk bekerja atau menjalankan bisnis utama.
       </div>
       <div class="pain-item reveal stagger-4">
-        <strong>Keserakahan Profit:</strong> Lupa mengunci keuntungan ketika pasar sudah berbalik arah ke zona merah.
+        <strong>Lelah Belajar Teori:</strong> Pusing dengan ratusan indikator dan strategi teknikal yang pada akhirnya tetap membuat Anda rugi.
       </div>
     </div>
   </div>
@@ -562,43 +575,43 @@ footer a:hover{color:#fff}
 <section class="section section-dark ai-brain-section">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Solusi AI Trading Ecosystem</h2>
-      <p>Kami menggabungkan komputasi kecerdasan buatan dengan robot eksekusi instan tanpa campur tangan emosi.</p>
+      <h2>AI Adalah Jembatan, Bukan Tujuan</h2>
+      <p>Keahlian coding, algoritma DeepSeek, dan GPT-4o kami hanyalah sarana. Tujuannya satu: Mengembalikan ketenangan dan waktu berharga Anda tanpa berhenti menghasilkan.</p>
     </div>
 
     <div class="grid-3">
       <div class="card reveal stagger-1">
         <div class="card-icon">🔍</div>
-        <h3 class="card-title">Analisa 24/7</h3>
-        <p class="card-desc">AI asisten memantau arah pergerakan harga tanpa henti di pasar Forex, Crypto, dan Komoditas.</p>
+        <h3 class="card-title">Tidur Lebih Nyenyak</h3>
+        <p class="card-desc">Titipkan beban analisa Anda. Biarkan asisten AI kami yang memantau market 24/7 selagi Anda beristirahat.</p>
       </div>
       <div class="card reveal stagger-2">
         <div class="card-icon">🎯</div>
-        <h3 class="card-title">Filter Multi-AI</h3>
-        <p class="card-desc">Peluang dianalisis oleh tiga model AI terpisah. Hanya yang disetujui mayoritas yang akan dikirim.</p>
+        <h3 class="card-title">Keputusan Tanpa Ragu</h3>
+        <p class="card-desc">Peluang diverifikasi oleh tiga otak AI berbeda. Anda hanya menerima sinyal matang tanpa perlu menebak-nebak lagi.</p>
       </div>
       <div class="card reveal stagger-3">
         <div class="card-icon">⚡</div>
-        <h3 class="card-title">Eksekusi Cepat</h3>
-        <p class="card-desc">Sistem Bridge menghubungkan sinyal langsung ke MetaTrader 5 Anda tanpa harus menulis ulang posisi.</p>
+        <h3 class="card-title">Bebas Repot</h3>
+        <p class="card-desc">Sistem akan menghubungkan keputusan langsung ke akun Anda. Tidak perlu lagi mengetik order manual di sela-sela meeting.</p>
       </div>
     </div>
 
     <!-- AI BRAIN VISUALIZATION -->
     <div class="ai-brain-wrap reveal-scale" style="margin-top:56px;">
-      <canvas id="ai-brain-canvas"></canvas>
+      <canvas id="ai-brain-canvas" width="500" height="300"></canvas>
       <div class="ai-brain-label">
-        <span class="active-text">3 Model AI</span> — DeepSeek · GPT-4o · Claude — Voting secara paralel
+        <span class="active-text">Mesin Pekerja Anda</span> — DeepSeek · GPT-4o · Claude — Bekerja paralel mengamankan dana
       </div>
     </div>
 
     <!-- STRATEGY VISUALIZATION (animated chart) -->
     <div class="strategy-viz reveal-scale" style="margin-top:48px;">
-      <canvas id="strategy-canvas"></canvas>
+      <canvas id="strategy-canvas" width="630" height="280"></canvas>
       <div class="strategy-legend">
         <span><span class="legend-dot legend-buy"></span> Entry Zone</span>
         <span><span class="legend-dot legend-sell"></span> Take Profit</span>
-        <span><span class="legend-dot legend-ai"></span> AI Analysis</span>
+        <span><span class="legend-dot legend-ai"></span> Keamanan AI</span>
       </div>
     </div>
   </div>
@@ -610,25 +623,25 @@ footer a:hover{color:#fff}
 <section class="section" id="cara-kerja">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Sederhana & Terukur</h2>
-      <p>Dari pengumpulan data pasar mentah hingga proses persetujuan eksekusi trading otomatis Anda.</p>
+      <h2>Jalan Pintas yang Sangat Sederhana</h2>
+      <p>Anda tidak perlu paham bahasa teknis rumit di baliknya. Cukup terima hasilnya dan biarkan sistem bekerja.</p>
     </div>
 
     <div class="process-steps">
       <div class="reveal stagger-1">
         <div class="step-num">01</div>
-        <h3>Membaca Data</h3>
-        <p style="font-size:0.88rem;">Sistem kami menarik data likuiditas, pola harga, struktur lilin pasar secara langsung.</p>
+        <h3>Koneksikan Akun</h3>
+        <p style="font-size:0.88rem;">Tautkan Telegram atau akun MT5 Anda dalam hitungan menit tanpa prosedur yang memusingkan.</p>
       </div>
       <div class="reveal stagger-2">
         <div class="step-num">02</div>
-        <h3>Analisis & Filter</h3>
-        <p style="font-size:0.88rem;">6-layer Quality Gate menyaring volatilitas rendah, menjamin rasio keuntungan ideal.</p>
+        <h3>Mesin Bekerja</h3>
+        <p style="font-size:0.88rem;">Kecerdasan Buatan kami mengambil alih beban memikirkan pergerakan arah pasar untuk Anda.</p>
       </div>
       <div class="reveal stagger-3">
         <div class="step-num">03</div>
-        <h3>Kirim & Eksekusi</h3>
-        <p style="font-size:0.88rem;">Anda mendapatkan info lengkap di ponsel atau membiarkan EA mengeksekusinya di MT5.</p>
+        <h3>Nikmati Kehidupan</h3>
+        <p style="font-size:0.88rem;">Dapatkan laporan keuntungan harian. Habiskan waktu untuk hal yang benar-benar penting bagi Anda.</p>
       </div>
     </div>
   </div>
@@ -640,20 +653,20 @@ footer a:hover{color:#fff}
 <section class="section section-dark">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Perbandingan Solusi</h2>
-      <p>Mengapa asisten trading berbasis AI terstruktur lebih unggul dibanding grup sinyal manual biasa.</p>
+      <h2>Berhenti Mengandalkan Tebakan Manusia</h2>
+      <p>Inilah alasan mengapa beralih ke asisten berbasis data jauh lebih menenangkan daripada mengikuti grup sinyal biasa.</p>
     </div>
 
     <div class="compare-container reveal-scale">
       <table class="compare-table">
         <thead>
-          <tr><th>Fitur Analisa</th><th>Vilona AI</th><th>Grup Sinyal Biasa</th></tr>
+          <tr><th>Ketenangan Pikiran</th><th>Kendaraan Vilona AI</th><th>Grup Sinyal Konvensional</th></tr>
         </thead>
         <tbody>
-          <tr><td>Waktu Analisis Pasar</td><td class="check-ok">24/7 Tanpa Berhenti</td><td>Hanya saat admin aktif</td></tr>
-          <tr><td>Dasar Pengambilan Posisi</td><td class="check-ok">3 Model AI Berhitung</td><td>Perasaan / Estimasi manual</td></tr>
-          <tr><td>Rasio Resiko (Risk/Reward)</td><td class="check-ok">Wajib Diatas 1:1.5</td><td>Seringkali tanpa batasan</td></tr>
-          <tr><td>Integrasi Otomatis (MT5)</td><td class="check-ok">Ya (EA Bridge)</td><td>Tidak, wajib ketik manual</td></tr>
+          <tr><td>Ketersediaan Waktu</td><td class="check-ok">Bekerja 24/7 Tanpa Kenal Lelah</td><td>Bergantung pada mood & waktu luang admin</td></tr>
+          <tr><td>Akurasi Keputusan</td><td class="check-ok">Dihitung Objektif oleh 3 Model AI</td><td>Seringkali berbasis emosi atau fomo (ikut-ikutan)</td></tr>
+          <tr><td>Perlindungan Modal</td><td class="check-ok">Disiplin Ketat (Rasio RR 1:1.5)</td><td>Sering menahan rugi (floating) tanpa batas</td></tr>
+          <tr><td>Kebebasan Hidup</td><td class="check-ok">Bisa Auto-Eksekusi (Bebas Lepas Tangan)</td><td>Wajib stand-by HP setiap saat</td></tr>
         </tbody>
       </table>
     </div>
@@ -666,39 +679,40 @@ footer a:hover{color:#fff}
 <section class="section">
   <div class="container">
     <div class="whitelabel-hero reveal">
-      <h2 class="whitelabel-accent">🏢 Bangun Bisnis Sinyal Anda Sendiri</h2>
+      <h2 class="whitelabel-accent">🏢 Wujudkan Mimpi Punya Bisnis Sinyal Sendiri</h2>
       <p style="margin:16px 0 24px;font-size:1.05rem;">
-        Gunakan infrastruktur asisten AI kami. Beri nama brand Anda sendiri, hubungkan ke pelanggan Anda, dan terima komisi pasif tanpa harus mengurus server atau membuat AI rumit dari awal.
+        Banyak yang ingin punya bisnis digital pasif tapi terhalang skill IT. Jadikan infrastruktur AI kami sebagai "karyawan" Anda. Pasang nama brand Anda, dapatkan komisi, tanpa perlu pusing coding atau sewa server mahal.
       </p>
       <div class="grid-3" style="margin-bottom:32px;">
         <div class="reveal stagger-1">
-          <h4 style="color:#fff;margin-bottom:6px;">🏷️ Bebas Custom Nama</h4>
-          <p style="font-size:0.85rem;">Bot beroperasi sepenuhnya di bawah bendera dan nama usaha trading Anda.</p>
+          <h4 style="color:#fff;margin-bottom:6px;">🏷️ Otoritas Penuh</h4>
+          <p style="font-size:0.85rem;">Pelanggan Anda hanya tahu bahwa ini adalah bot canggih milik bisnis Anda sendiri.</p>
         </div>
         <div class="reveal stagger-2">
-          <h4 style="color:#fff;margin-bottom:6px;">🔌 Zero Server Maintenance</h4>
-          <p style="font-size:0.85rem;">Seluruh beban server AI, update, dan API berada di bawah kontrol sistem kami.</p>
+          <h4 style="color:#fff;margin-bottom:6px;">🔌 Bebas Beban Teknis</h4>
+          <p style="font-size:0.85rem;">Lupakan urusan server error. Kami yang menjaga mesin agar tetap menyala sempurna.</p>
         </div>
         <div class="reveal stagger-3">
-          <h4 style="color:#fff;margin-bottom:6px;">💰 Bagi Hasil Instant</h4>
-          <p style="font-size:0.85rem;">Terima pembagian komisi 10% per pelanggan hingga kedalaman skema 3 level.</p>
+          <h4 style="color:#fff;margin-bottom:6px;">💰 Keran Penghasilan Baru</h4>
+          <p style="font-size:0.85rem;">Ubah keahlian marketing Anda menjadi passive income rutin yang stabil setiap bulan.</p>
         </div>
       </div>
       <div class="calc-box">
-        <span style="color:var(--gold);">SIMULASI BISNIS ANDA:</span><br>
-        100 Pelanggan berlangganan bot Anda × Rp 79.900/bulan = <span class="calc-amount">Rp 7.990.000 / Bulan</span> keuntungan pasif bersih tanpa modal infrastruktur.
+        <span style="color:var(--gold);">GAMBARAN POTENSI BISNIS:</span><br>
+        Hanya dengan 100 Pelanggan berlangganan di brand Anda × Rp 79.900/bulan = <span class="calc-amount">Rp 7.990.000 / Bulan</span> passive income nyata tanpa pusing mikir modal operasional.
       </div>
     </div>
   </div>
 </section>
+
 <!-- ═══════════════════════════════════════════════════════
      BROKER PARTNERS — RECOMMENDED BY VILONAFX
      ═══════════════════════════════════════════════════════ -->
 <section class="broker-section">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Buka Akun di Broker Terpercaya</h2>
-      <p>Eksekusi sinyal VilonaFX langsung di broker berlisensi global. Deposit rendah, spread ketat, eksekusi milidetik.</p>
+      <h2>Infrastruktur Terbaik untuk Dana Anda</h2>
+      <p>Kami hanya menghubungkan kendaraan AI ini ke jalan tol paling aman: broker-broker berlisensi global dengan eksekusi milidetik.</p>
     </div>
 
     <div class="broker-grid">
@@ -706,19 +720,18 @@ footer a:hover{color:#fff}
       <div class="broker-card reveal stagger-1">
         <div class="broker-logo">🏆 <span class="broker-name">Exness</span></div>
         <div class="broker-type">Broker Forex & CFD — Global</div>
-        <div class="broker-highlight">🔥 Deposit mulai $10 • Spread dari 0.0 pip • Leverage sampai 1:Unlimited</div>
+        <div class="broker-highlight">🔥 Bebas Rasa Khawatir • Deposit mulai $10 • Penarikan Instan</div>
         <p class="broker-desc">
-          Broker #1 pilihan trader Indonesia. Eksekusi order <strong style="color:#fff;">kurang dari 25 milidetik</strong>, zero commission di akun Standard, dan withdrawal instant ke bank lokal. Sudah teregulasi FCA, CySEC, dan FSCA.
+          Pilihan paling masuk akal bagi trader yang mencari ketenangan. Tarik dana kapan saja, bebas komisi tersembunyi, dan diawasi oleh badan regulasi tingkat dunia.
         </p>
         <ul class="broker-features">
-          <li>Deposit & Withdraw bank lokal (BCA, BRI, Mandiri)</li>
-          <li>Akun Cent mulai $1 — cocok untuk pemula</li>
-          <li>Spread ketat di sesi London & New York</li>
-          <li>Support MT4, MT5, dan Exness Terminal</li>
-          <li>Tidak ada swap untuk akun Islamic</li>
+          <li>Penarikan instan ke bank lokal Anda kapan saja</li>
+          <li>Akun Cent mulai $1 untuk memulai tanpa tekanan</li>
+          <li>Eksekusi super cepat agar profit tidak terlewat</li>
+          <li>Support MT4 & MT5 untuk koneksi AI lancar</li>
         </ul>
         <a href="https://one.exnessonelink.com/a/l9jwml125i" target="_blank" rel="noopener" class="broker-btn broker-btn-exness" onclick="fbq('track','Lead',{content_name:'broker_exness',value:0,currency:'USD'},{eventID:'broker_exness_'+Date.now()})">
-          Buka Akun Exness Gratis →
+          Amankan Dana di Exness Gratis →
         </a>
       </div>
 
@@ -726,16 +739,15 @@ footer a:hover{color:#fff}
       <div class="broker-card reveal stagger-2">
         <div class="broker-logo">⚡ <span class="broker-name">IC Markets</span></div>
         <div class="broker-type">ECN Broker — Institutional Grade</div>
-        <div class="broker-highlight">🔥 Spread dari 0.0 pip • Komisi $3.5/lot • Liquiditas Tier-1</div>
+        <div class="broker-highlight">🔥 Likuiditas Kelas Atas • Spread 0.0 pip • Tanpa Requote</div>
         <p class="broker-desc">
-          Broker ECN terbesar di dunia dengan volume trading <strong style="color:#fff;">$29+ miliar per hari</strong>. Akses langsung ke liquiditas bank-bank besar (JP Morgan, Goldman Sachs, UBS). Eksekusi rata-rata 40 milidetik tanpa requote.
+          Bagi Anda yang menginginkan standar institusi. Terhubung langsung ke bank-bank besar global untuk memastikan order Anda dieksekusi tanpa gangguan sama sekali.
         </p>
         <ul class="broker-features">
-          <li>Raw Spread account — 0.0 pip + komisi $3.5/lot</li>
-          <li>110+ instrumen: Forex, Crypto, Komoditas, Indeks</li>
-          <li>cTrader, MT4, MT5 — semua platform tersedia</li>
-          <li>Teregulasi ASIC, CySEC, SCB</li>
-          <li>VPS gratis untuk trading otomatis 24/7</li>
+          <li>Akses langsung tanpa manipulasi broker (ECN)</li>
+          <li>Lebih dari 110+ instrumen keuangan tersedia</li>
+          <li>Regulasi ketat dari ASIC & CySEC</li>
+          <li>Cocok untuk eksekusi bot kecepatan tinggi</li>
         </ul>
         <a href="https://icmarkets-vnt.com/?camp=93258" target="_blank" rel="noopener" class="broker-btn broker-btn-icm" onclick="fbq('track','Lead',{content_name:'broker_icmarkets',value:0,currency:'USD'},{eventID:'broker_icm_'+Date.now()})">
           Buka Akun IC Markets Gratis →
@@ -744,10 +756,10 @@ footer a:hover{color:#fff}
     </div>
 
     <div class="broker-trust reveal" style="margin-top:32px;">
-      <span>🔒 Teregulasi Internasional</span>
-      <span>💰 Deposit mulai $10</span>
-      <span>⚡ Withdrawal Instant</span>
-      <span>🏦 Bank Lokal Indonesia</span>
+      <span>🔒 Keamanan Dana Terjamin</span>
+      <span>💰 Akses Mudah Diakses</span>
+      <span>⚡ Tanpa Hambatan Teknisi</span>
+      <span>🏦 Didukung Bank Lokal</span>
     </div>
   </div>
 </section>
@@ -759,37 +771,37 @@ footer a:hover{color:#fff}
 <section class="section section-dark" id="pricing">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Pilihan Rencana Transaksi</h2>
-      <p>Mulai dari harga termurah untuk satu kali transaksi yang disiplin dibanding menanggung resiko kekalahan emosional.</p>
+      <h2>Pilih Kendaraan Anda</h2>
+      <p>Gunakan sarana yang paling sesuai dengan target hidup yang ingin Anda capai hari ini.</p>
     </div>
 
     <div class="price-row">
       <div class="price-card reveal stagger-1">
-        <div class="price-header"><h3>PRO</h3><p>Untuk transaksi terukur mandiri</p></div>
+        <div class="price-header"><h3>PRO</h3><p>Untuk Ketenangan Pribadi</p></div>
         <div class="price-amt">Rp 79.900<span>/bln</span></div>
         <ul class="price-list">
-          <li>Sinyal AI (Forex & Crypto)</li><li>Akses Perintah Manual</li><li>Rasio SL/TP Otomatis</li><li>Batas Resiko 1:1.5 Ideal</li>
+          <li>Asisten AI Pengirim Sinyal</li><li>Bebas Stres Analisa Manual</li><li>Terproteksi SL/TP Otomatis</li><li>Disiplin Menjaga Modal Anda</li>
         </ul>
-        <a href="https://t.me/berkahkaryaforexbotbot?start=pro" class="btn btn-outline" style="width:100%;" onclick="fbq('track','Lead',{content_name:'pro_tier',value:79900,currency:'IDR'},{eventID:'lead_pro_'+Date.now()})">Mulai Paket PRO</a>
+        <a href="https://t.me/berkahkaryaforexbotbot?start=pro" class="btn btn-outline" style="width:100%;" onclick="fbq('track','Lead',{content_name:'pro_tier',value:79900,currency:'IDR'},{eventID:'lead_pro_'+Date.now()})">Ambil Kendali Waktu Anda</a>
       </div>
 
       <div class="price-card featured reveal stagger-2">
-        <div class="price-badge">PALING DIMINATI</div>
-        <div class="price-header"><h3>ELITE</h3><p>Otomatisasi & Bisnis Sinyal</p></div>
+        <div class="price-badge">PALING MASUK AKAL</div>
+        <div class="price-header"><h3>ELITE</h3><p>Otomatisasi & Passive Income</p></div>
         <div class="price-amt" style="color:var(--gold);">Rp 149.900<span>/bln</span></div>
         <ul class="price-list">
-          <li>Semua Fitur Rencana PRO</li><li>Dukungan Pasar Emas & Minyak</li><li>1 Bot Whitelabel Sendiri</li><li>Hak Akses Sistem Komisi</li><li>Integrasi EA Bridge MT5</li>
+          <li>Semua Akses Ketenangan PRO</li><li>1 Hak Akses Whitelabel Bot</li><li>Jalan Pintas Bisnis Sinyal</li><li>Otomatisasi Eksekusi ke MT5</li>
         </ul>
-        <a href="https://t.me/berkahkaryaforexbotbot?start=elite" class="btn btn-glow" style="width:100%;" onclick="fbq('track','Lead',{content_name:'elite_tier',value:149900,currency:'IDR'},{eventID:'lead_elite_'+Date.now()})">Dapatkan Rencana ELITE</a>
+        <a href="https://t.me/berkahkaryaforexbotbot?start=elite" class="btn btn-glow" style="width:100%;" onclick="fbq('track','Lead',{content_name:'elite_tier',value:149900,currency:'IDR'},{eventID:'lead_elite_'+Date.now()})">Mulai Ekosistem Anda</a>
       </div>
 
       <div class="price-card reveal stagger-3">
-        <div class="price-header"><h3>LIFETIME</h3><p>Akses selamanya tanpa tagihan</p></div>
+        <div class="price-header"><h3>LIFETIME</h3><p>Kebebasan Tanpa Beban Tagihan</p></div>
         <div class="price-amt">Rp 1.990.900</div>
         <ul class="price-list">
-          <li>Semua Keuntungan Rencana ELITE</li><li>Akses Selamanya Tanpa Biaya</li><li>3 Bot Whitelabel Mandiri</li><li>Dukungan Pelanggan Prioritas</li>
+          <li>Semua Fitur Mesin ELITE</li><li>Akses Berlaku Selamanya</li><li>3 Hak Cabang Bot Whitelabel</li><li>Jalur Konsultasi Prioritas VIP</li>
         </ul>
-        <a href="https://t.me/berkahkaryaforexbotbot?start=lifetime" class="btn btn-outline" style="width:100%;" onclick="fbq('track','Lead',{content_name:'lifetime_tier',value:1990900,currency:'IDR'},{eventID:'lead_lt_'+Date.now()})">Beli Sekali Selamanya</a>
+        <a href="https://t.me/berkahkaryaforexbotbot?start=lifetime" class="btn btn-outline" style="width:100%;" onclick="fbq('track','Lead',{content_name:'lifetime_tier',value:1990900,currency:'IDR'},{eventID:'lead_lt_'+Date.now()})">Bebaskan Dirimu Selamanya</a>
       </div>
     </div>
   </div>
@@ -801,21 +813,21 @@ footer a:hover{color:#fff}
 <section class="section">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Jawaban Atas Pertanyaan Anda</h2>
-      <p>Menjelaskan batasan sistem, keamanan resiko transaksi, dan proses implementasi platform.</p>
+      <h2>Jawaban Untuk Keraguan Anda</h2>
+      <p>Mengerti batasan kendaraan ini agar Anda tiba di tujuan finansial dengan selamat.</p>
     </div>
     <div class="faq-wrap reveal">
       <details class="faq-item">
-        <summary>Apakah platform ini cocok digunakan oleh trader pemula?</summary>
-        <div class="faq-content">Sangat cocok. Sinyal yang dikirimkan sudah dalam format siap eksekusi (Entry, Target Profit, dan Batas Stop Loss). Anda tidak perlu meraba-raba atau belajar membaca chart manual dari awal.</div>
+        <summary>Saya tidak paham trading teknikal sama sekali, apakah ini cocok?</summary>
+        <div class="faq-content">Sangat cocok. Anda tidak perlu paham mesin untuk bisa menyetir mobil. Sinyal yang diberikan asisten AI sudah berupa petunjuk jadi (Entry, Profit, Stop Loss) yang menjaga Anda agar tidak menabrak batas risiko.</div>
       </details>
       <details class="faq-item">
-        <summary>Apakah ada jaminan bahwa sistem ini pasti menghasilkan keuntungan?</summary>
-        <div class="faq-content">Tidak ada jaminan profit di dunia keuangan. Vilona asisten trading menyajikan probabilitas terbaik berdasarkan data komputasi AI — namun keputusan akhir dan resiko kerugian tetap berada di tangan masing-masing trader.</div>
+        <summary>Apakah ada jaminan uang saya pasti bertambah terus menerus?</summary>
+        <div class="faq-content">Tidak ada jaminan ajaib. Mesin ini menyajikan probabilitas terbaik dengan penjagaan risiko yang sangat ketat agar modal Anda tidak habis dalam semalam. Pada akhirnya, ini adalah alat pengaman, keputusan eksekusi tetap ada di tangan Anda.</div>
       </details>
       <details class="faq-item">
-        <summary>Bagaimana asisten AI ini mengontrol resiko transaksi saya?</summary>
-        <div class="faq-content">Kami menolak sinyal yang memiliki nilai Risk to Reward di bawah 1:1.5. Batas Stop Loss diletakkan di area ekstrim likuiditas (SMC) untuk memperkecil kemungkinan tersapu oleh volatilitas kecil.</div>
+        <summary>Mengapa saya harus memilih AI dibanding belajar manual?</summary>
+        <div class="faq-content">Karena hidup terlalu singkat jika hanya dihabiskan untuk menatap layar. Biarkan mesin AI yang memproses kelelahan mental dari meneliti chart berjam-jam, agar Anda bisa punya waktu lebih untuk kehidupan pribadi yang sebenarnya.</div>
       </details>
     </div>
   </div>
@@ -826,20 +838,20 @@ footer a:hover{color:#fff}
      ═══════════════════════════════════════════════════════ -->
 <section class="section text-center" style="border-top:1px solid var(--border);">
   <div class="container reveal">
-    <h2>Mulai Trading Berbasis Probabilitas Data</h2>
+    <h2>Berhenti Menjadi Pekerja Bagi Market</h2>
     <p style="margin:16px auto 32px;max-width:500px;">
-      Gunakan asisten kecerdasan buatan sekarang. Lindungi modal Anda dari pengambilan keputusan emosional yang berujung fatal.
+      Jadikan market yang bekerja untuk Anda. Kembalikan ketenangan pikiran dan rebut kembali waktu berharga Anda sekarang juga.
     </p>
-    <a href="https://t.me/berkahkaryaforexbotbot" class="btn btn-glow" style="padding:16px 40px;font-size:1.1rem;" onclick="fbq('track','Lead',{content_name:'final_cta',value:0,currency:'IDR'},{eventID:'lead_final_'+Date.now()})">🚀 Daftarkan Akun Telegram Gratis</a>
+    <a href="https://t.me/berkahkaryaforexbotbot" class="btn btn-glow" style="padding:16px 40px;font-size:1.1rem;" onclick="fbq('track','Lead',{content_name:'final_cta',value:0,currency:'IDR'},{eventID:'lead_final_'+Date.now()})">🚀 Biarkan AI yang Mengambil Alih</a>
   </div>
 </section>
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="container">
-    <p>© 2026 Vilona Trade FX. Seluruh hak cipta dilindungi undang-undang.</p>
+    <p>&copy; 2026 Vilona Trade FX. Seluruh hak cipta dilindungi undang-undang.</p>
     <p style="margin-top:8px;font-size:0.75rem;color:var(--text-dim);">
-      Pemberitahuan Risiko: Perdagangan valuta asing dan aset kripto membawa tingkat risiko yang sangat tinggi bagi modal Anda. Jangan pernah gunakan dana yang Anda tidak siap untuk kehilangannya.
+      Pemberitahuan Risiko: Trading merupakan alat untuk menumbuhkan uang Anda, namun selalu ingat batasan risiko yang Anda miliki. Jangan pernah mengorbankan dana hidup harian Anda.
     </p>
   </div>
 </footer>
@@ -1553,5 +1565,8 @@ document.querySelectorAll('.btn').forEach(function(btn){
 
 })();
 </script>
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"e5aec4342e8948f2aa43377314b5867b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
 </body>
 </html>
