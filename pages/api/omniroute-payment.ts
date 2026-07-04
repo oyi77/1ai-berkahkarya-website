@@ -1,11 +1,24 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { createPaymentViaAggregator } from '../../lib/payment-wrapper';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+interface ResponseData {
+  success: boolean;
+  paymentUrl?: string;
+  plan?: string;
+  amount?: { idr: number; usd: number };
+  error?: string;
+}
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Method not allowed' });
   }
 
-  const { plan, email, name } = req.body;
+  const { plan, email, name } = req.body as {
+    plan?: string;
+    email?: string;
+    name?: string;
+  };
 
   // Pricing mapping
   const prices: Record<string, { idr: number; usd: number }> = {
@@ -13,19 +26,47 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     pro: { idr: 285000, usd: 19 },
   };
 
-  if (!prices[plan]) {
-    return res.status(400).json({ error: 'Invalid plan' });
+  if (!plan || typeof plan !== 'string' || !prices[plan]) {
+    return res.status(400).json({ success: false, error: 'Invalid plan' });
   }
 
   const { idr, usd } = prices[plan];
-  
-  // Generate payment link (placeholder - integrate with actual payment gateway)
-  const paymentUrl = `https://wa.me/6285732740006?text=Halo%2C%20saya%20mau%20bayar%20OmniRoute%20${plan.toUpperCase()}%20-%20Rp%20${idr.toLocaleString('id-ID')}%20%2F%20%24${usd}%0A%0ANama%3A%20${encodeURIComponent(name)}%0AEmail%3A%20${encodeURIComponent(email)}`;
 
-  return res.status(200).json({
-    success: true,
-    paymentUrl,
-    plan,
-    amount: { idr, usd },
-  });
+  try {
+    const result = await createPaymentViaAggregator({
+      gateway: 'tripay',
+      amount: idr,
+      currency: 'IDR',
+      payment_method: 'QRIS',
+      customer: {
+        name: name || 'Customer',
+        email: email || '',
+      },
+      metadata: {
+        plan,
+        usd_equivalent: usd,
+      },
+    });
+
+    if (!result.success || !result.data?.payment_url) {
+      return res.status(400).json({
+        success: false,
+        error: result.error?.message || 'Payment creation failed',
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      paymentUrl: result.data.payment_url,
+      plan,
+      amount: { idr, usd },
+    });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Payment gateway error';
+    console.error('OmniRoute payment creation failed:', error);
+    return res.status(500).json({
+      success: false,
+      error: message,
+    });
+  }
 }
