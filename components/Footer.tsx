@@ -86,6 +86,17 @@ export default function Footer() {
 
       <div className={styles.bottom}>
         <p>© {new Date().getFullYear()} BerkahKarya · Berkah Karya Digital Agency · Jombang, Jawa Timur</p>
+        <p className={styles.network}>
+          {locale === 'id' ? (
+            <>
+              Mitra Pendidikan &amp; Sosial: <a href="https://ypsma.org" target="_blank" rel="noopener noreferrer">YPSMA Jombang</a> (Yayasan Pendidikan dan Sosial Ma'arif)
+            </>
+          ) : (
+            <>
+              Education &amp; Social Partner: <a href="https://ypsma.org" target="_blank" rel="noopener noreferrer">YPSMA Jombang</a> (Ma'arif Educational &amp; Social Foundation)
+            </>
+          )}
+        </p>
       </div>
     </footer>
   );

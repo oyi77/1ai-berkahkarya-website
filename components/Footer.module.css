@@ -58,7 +58,18 @@
   border-top: 1px solid rgba(255,255,255,0.08);
   text-align: center;
 }
+/* Bottom bar styling */
 .bottom p { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
+.network {
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.6) !important;
+}
+.network a {
+  color: var(--teal-primary) !important;
+  text-decoration: underline !important;
+  font-weight: 600;
+}
 /* Responsive */
 @media (max-width: 1024px) { .container { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .container { grid-template-columns: 1fr; gap: 1.75rem; } }
