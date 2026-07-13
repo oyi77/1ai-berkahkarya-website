@@ -6,7 +6,7 @@ interface PersonaData {
   description: string;
   cta: { text: string; href: string };
   visualPlaceholder: string;
-  accent: 'primary' | 'secondary';
+  accent?: 'primary' | 'secondary';
 }
 
 interface Props {
@@ -18,8 +18,8 @@ interface Props {
 
 export default function PersonaSwitcher({ title, subtitle, personal, bisnis }: Props) {
   const personas = [
-    { ...personal, id: 'personal', accent: 'primary' },
-    { ...bisnis, id: 'bisnis', accent: 'secondary' },
+    { ...personal, id: 'personal', accent: personal.accent || 'primary' },
+    { ...bisnis, id: 'bisnis', accent: bisnis.accent || 'secondary' },
   ];
 
   return (
