@@ -17,17 +17,16 @@ export default function CTASection({
 }: CTASectionProps) {
   return (
     <section
+      className="dark-section"
       style={{
         position: 'relative',
         padding: '5rem 1.5rem',
         textAlign: 'center',
-        background: dark
-          ? 'linear-gradient(135deg, rgba(220,38,38,0.15) 0%, rgba(10,10,10,1) 50%, rgba(20,184,166,0.1) 100%)'
-          : 'var(--light-50)',
         overflow: 'hidden',
       }}
     >
       <div
+        className="card card--elevated"
         style={{
           maxWidth: 700,
           margin: '0 auto',

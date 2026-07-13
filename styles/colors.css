@@ -20,25 +20,29 @@
   --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);
   --text-5xl: clamp(3rem, 2rem + 5vw, 5rem);
 
-  /* ─── Brand Palette (Refined) ─── */
+  /* ─── Brand Palette ─── */
+  /* Primary: Cyan/teal for AI/tech authority */
   --brand-teal: #00D9FF;
   --brand-teal-dim: #00B8D4;
   --brand-teal-glow: rgba(0, 217, 255, 0.35);
   --brand-teal-glow-strong: rgba(0, 217, 255, 0.55);
 
+  /* Secondary: Violet for creativity & autonomy */
   --brand-violet: #7C3AED;
   --brand-violet-bright: #9D5FFF;
   --brand-violet-glow: rgba(124, 58, 237, 0.35);
   --brand-violet-glow-strong: rgba(124, 58, 237, 0.55);
 
-  --brand-gold: #F59E0B;
-  --brand-gold-glow: rgba(245, 158, 11, 0.35);
+  /* Warm accent — reserved for testimonials, awards, highlight */
+  --brand-warm: #F59E0B;
+  --brand-warm-glow: rgba(245, 158, 11, 0.3);
 
+  /* Utility — success only, not accent */
   --brand-emerald: #10B981;
   --brand-emerald-glow: rgba(16, 185, 129, 0.35);
 
-  --brand-coral: #F97316;
-  --brand-coral-glow: rgba(249, 115, 22, 0.35);
+  --color-error: #EF4444;
+  --color-error-glow: rgba(239, 68, 68, 0.35);
 
   /* ─── Semantic Color Tokens ─── */
   --color-primary: var(--brand-teal);
@@ -51,23 +55,22 @@
   --color-secondary-glow: var(--brand-violet-glow);
   --color-secondary-strong: var(--brand-violet-glow-strong);
 
-  --color-accent: var(--brand-gold);
-  --color-accent-glow: var(--brand-gold-glow);
+  --color-accent: var(--brand-violet);       /* was gold */
+  --color-accent-glow: var(--brand-violet-glow);
 
   --color-success: var(--brand-emerald);
   --color-success-glow: var(--brand-emerald-glow);
 
-  --color-warning: var(--brand-coral);
-  --color-warning-glow: var(--brand-coral-glow);
+  --color-warning: var(--brand-warm);
+  --color-warning-glow: var(--brand-warm-glow);
 
   --color-error: #EF4444;
   --color-error-glow: rgba(239, 68, 68, 0.35);
-
   /* ─── Surface System (Dark) ─── */
   --surface-0: #05080D;       /* Deepest - page background */
   --surface-1: #080C14;       /* Hero/sections */
-  --surface-2: #0D1526;       /* Cards, elevated */
-  --surface-3: #111A2E;       /* Hover states */
+  --surface-2: #111933;       /* Cards, elevated — was #0D1526, now brighter for contrast */
+  --surface-3: #172143;       /* Hover states */
   --surface-4: #1A253A;       /* Active/selected */
 
   /* ─── Surface System (Light) ─── */
@@ -109,7 +112,7 @@
   --gradient-hero: linear-gradient(145deg, rgba(0,217,255,0.12) 0%, rgba(124,58,237,0.12) 50%, transparent 100%);
   --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
   --gradient-card-hover: linear-gradient(145deg, rgba(0,217,255,0.08) 0%, rgba(124,58,237,0.06) 100%);
-  --gradient-gold: linear-gradient(135deg, var(--brand-gold) 0%, #FBBF24 100%);
+  --gradient-gold: linear-gradient(135deg, var(--brand-warm) 0%, #FBBF24 100%);
   --gradient-emerald: linear-gradient(135deg, var(--brand-emerald) 0%, #34D399 100%);
 
   /* ─── Shadow System ─── */
@@ -199,7 +202,7 @@
   --violet: var(--brand-violet);
   --violet-light: var(--brand-violet-bright);
   --violet-glow: var(--brand-violet-glow);
-  --gold: var(--brand-gold);
+  --gold: var(--brand-warm);
   --success: var(--brand-emerald);
   --error: var(--color-error);
   --dark-hero: var(--surface-0);

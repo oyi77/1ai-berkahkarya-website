@@ -1,6 +1,6 @@
-.wrap { background: var(--light-bg); }
+.wrap { background: var(--surface-1); }
 .container { max-width: 860px; margin: 0 auto; padding: 5.5rem 1.5rem; text-align: center; }
-.label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal-primary); margin-bottom: 0.6rem; }
+.label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-primary); margin-bottom: 0.6rem; }
 .container h2 { color: var(--text-primary); margin-bottom: 3.5rem; }
 .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
 .steps::before {
@@ -12,7 +12,7 @@
   width: 2px;
   background: linear-gradient(180deg, var(--teal-primary), rgba(0,217,255,0.1));
 }
-.step { display: flex; align-items: flex-start; gap: 1.5rem; padding: 1.5rem 0; text-align: left; }
+.step { display: flex; align-items: flex-start; gap: 1.5rem; padding: 1.5rem; text-align: left; background: var(--surface-2); border: var(--border-default); border-radius: var(--radius-lg); }
 .num {
   width: 56px;
   height: 56px;

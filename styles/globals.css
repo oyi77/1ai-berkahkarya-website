@@ -166,23 +166,47 @@ button:focus-visible,
   color: var(--text-inverse);
 }
 
-/* Cards */
+/* Cards (dark surface) */
 .card {
   background: var(--surface-2);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   transition: all var(--duration-base) var(--ease-out);
 }
-
 .card:hover {
   border-color: var(--border-strong);
   box-shadow: var(--shadow-lg);
   transform: translateY(-4px);
 }
-
 .card--elevated {
   background: var(--surface-1);
   box-shadow: var(--shadow-md);
+}
+
+/* Glass card — translucent, blurred for overlay use */
+.card--glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.card--glass:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+/* Light theme cards */
+.card-light {
+  background: var(--surface-light-1);
+  border: 1px solid var(--border-light-default);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-base) var(--ease-out);
+}
+.card-light:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
 }
 
 /* Dividers */
@@ -224,4 +248,32 @@ button:focus-visible,
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ─── Section Backgrounds ─── */
+.dark-bg {
+  background: var(--surface-0);
+}
+.dark-section {
+  background: var(--surface-1);
+}
+.light-bg {
+  background: var(--surface-light-0);
+}
+.light-section {
+  background: var(--surface-light-1);
+}
+
+/* ─── Gradient Text (redefined with new tokens) ─── */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
