@@ -26,7 +26,7 @@ export default function CertificateDesign({ locale }: { locale: Locale }) {
   if (!d) return <div>Certificate design service not found</div>;
   return (
     <Layout title={d.meta.title} description={d.meta.description}>
-      <HeroSection eyebrow={d.hero.eyebrow} title={d.hero.title} description={d.hero.description} buttons={d.hero.buttons} dark />
+      <HeroSection eyebrow={d.hero.eyebrow} title={d.hero.title} description={d.hero.description} buttons={d.hero.buttons} />
       <ProblemSection hook={d.problem.hook} pains={d.problem.pains} bridge={d.problem.bridge} />
       <FeatureGrid items={d.features} />
       <HowItWorks title={d.howItWorks.title} steps={d.howItWorks.steps} />

@@ -179,7 +179,7 @@ export default function Portfolio({ locale }: { locale: Locale }) {
         title={d.hero.title}
         description={d.hero.description}
         buttons={d.hero.buttons}
-        dark
+       
       />
 
       {/* Stats */}

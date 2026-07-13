@@ -1,0 +1,304 @@
+/* ─── PricingPreview Section ─── */
+.section {
+  background: var(--surface-light-0);
+  padding: var(--section-py) var(--section-px);
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 40%, rgba(0, 217, 255, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 60%, rgba(124, 58, 237, 0.04) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: var(--container-lg);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Header ─── */
+.header {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.header h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  color: var(--text-light-default);
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  margin-bottom: var(--space-4);
+}
+
+.subtitle {
+  font-family: var(--font-ui);
+  font-size: var(--text-lg);
+  color: var(--text-light-muted);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ─── Grid ─── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+/* ─── Cards ─── */
+.card {
+  background: var(--surface-light-1);
+  border: 1px solid var(--border-light-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--duration-slow) var(--ease-out);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-light-strong);
+  transform: translateY(-2px);
+}
+
+/* Card entrance animation */
+.cardHidden {
+  opacity: 0;
+  transform: translateY(32px);
+}
+
+.cardVisible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--duration-editorial) var(--ease-out-expo),
+              transform var(--duration-editorial) var(--ease-out-expo);
+}
+
+/* Featured card */
+.featured {
+  border-color: var(--brand-teal);
+  box-shadow: 0 0 30px var(--brand-teal-glow);
+}
+
+@media (min-width: 1024px) {
+  .featured {
+    transform: scale(1.05);
+    z-index: 2;
+  }
+  .featured:hover {
+    box-shadow: 0 0 50px var(--brand-teal-glow-strong);
+    transform: scale(1.05) translateY(-4px);
+  }
+}
+
+/* Popular badge */
+.popularBadge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gradient-primary);
+  color: var(--text-inverse);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 1.2rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+/* Card header */
+.cardHeader {
+  text-align: center;
+}
+
+.tierName {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light-subtle);
+  margin-bottom: var(--space-3);
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  color: var(--text-light-default);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.period {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--text-light-subtle);
+}
+
+.description {
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  color: var(--text-light-muted);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--border-light-default);
+  margin: 0;
+}
+
+/* Feature list */
+.features {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--text-light-default);
+  line-height: 1.5;
+}
+
+.checkIcon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 0.15rem;
+}
+
+.checkIcon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.85rem 2rem;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--gradient-primary);
+  color: var(--text-inverse);
+  border: none;
+  box-shadow: 0 0 20px var(--color-primary-glow);
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px var(--color-primary-strong);
+}
+
+.btnPrimary:active {
+  transform: translateY(0);
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.85rem 2rem;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-light-muted);
+  border: 1.5px solid var(--border-light-default);
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.btnSecondary:hover {
+  border-color: var(--text-light-muted);
+  color: var(--text-light-default);
+  transform: translateY(-2px);
+}
+
+.btnSecondary:active {
+  transform: translateY(0);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .card {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .featured {
+    box-shadow: 0 0 30px var(--brand-teal-glow);
+  }
+
+  .header h2 {
+    font-size: var(--text-3xl);
+  }
+
+  .subtitle {
+    font-size: var(--text-base);
+  }
+}

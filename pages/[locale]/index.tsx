@@ -1,16 +1,18 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Layout from '@/components/Layout';
 import HeroSection from '@/components/HeroSection';
-import StatsRow from '@/components/StatsRow';
-import FeatureGrid from '@/components/FeatureGrid';
-import ServiceGrid from '@/components/ServiceGrid';
-import HowItWorks from '@/components/HowItWorks';
-import CTASection from '@/components/CTASection';
-import TestimonialSection from '@/components/TestimonialSection';
-import PersonaSwitcher from '@/components/PersonaSwitcher';
-import BisnisShowcase from '@/components/BisnisShowcase';
-import EcosystemDiagram from '@/components/EcosystemDiagram';
+import ProofBar from '@/components/ProofBar';
 import VideoShowcase from '@/components/VideoShowcase';
+import PersonaSwitcher from '@/components/PersonaSwitcher';
+import FeatureGrid from '@/components/FeatureGrid';
+import BisnisShowcase from '@/components/BisnisShowcase';
+import PricingPreview from '@/components/PricingPreview';
+import EcosystemTiered from '@/components/EcosystemTiered';
+import HowItWorks from '@/components/HowItWorks';
+import SocialProof from '@/components/SocialProof';
+import TestimonialSection from '@/components/TestimonialSection';
+import InvestorSection from '@/components/InvestorSection';
+import CTASection from '@/components/CTASection';
 import { homeData } from '@/data/home';
 
 type Locale = 'id' | 'en';
@@ -25,33 +27,32 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
 });
 
 export default function HomePage({ locale }: { locale: Locale }) {
-  const d = homeData[locale];
+  const d = JSON.parse(JSON.stringify(homeData[locale]));
 
   const withLocale = (href: string) => `/${locale}${href}`;
-
-  const ecosystemItems = d.ecosystem.items.map((item) => ({
-    ...item,
-    href: withLocale(item.href),
-  }));
 
   const testimonialItems = d.testimonials.items.map((t) => ({ ...t }));
   const bisnisCases = d.bisnisShowcase.cases.map((c) => ({ ...c }));
 
   return (
     <Layout title={d.meta.title} description={d.meta.description}>
-      {/* Hero */}
+      {/* Hero — dual CTA, live indicator, metric */}
       <HeroSection
         eyebrow={d.hero.eyebrow}
         title={d.hero.title}
         description={d.hero.description}
-        buttons={[]}
-        dark
+        ctaPrimary={d.hero.ctaPrimary}
+        ctaSecondary={d.hero.ctaSecondary}
+        metricHighlight={d.hero.metricHighlight}
+        liveIndicator={d.hero.liveIndicator}
       />
 
-      {/* Stats */}
-      <StatsRow
-        items={[...d.stats]}
-        cta={d.statsCta ? { ...d.statsCta, href: withLocale(d.statsCta.href) } : undefined}
+      {/* Proof Bar — key metrics, growth, tech badges */}
+      <ProofBar
+        title={d.proofBar.title}
+        stats={d.proofBar.stats}
+        growthMetric={d.proofBar.growthMetric}
+        techBadges={d.proofBar.techBadges}
       />
 
       {/* Intro Video */}
@@ -80,60 +81,52 @@ export default function HomePage({ locale }: { locale: Locale }) {
         cta={d.bisnisShowcase.cta}
       />
 
+      {/* Pricing Preview — Free / Pro tier cards */}
+      <PricingPreview
+        title={d.pricingPreview.title}
+        subtitle={d.pricingPreview.subtitle}
+        tiers={d.pricingPreview.tiers}
+      />
+
+      {/* Ecosystem — 3 visual tiers */}
+      <EcosystemTiered
+        revenue={d.ecosystem.revenue}
+        infrastructure={d.ecosystem.infrastructure}
+        experimental={d.ecosystem.experimental}
+      />
+
+      {/* How It Works — evidence-based steps */}
+      <HowItWorks
+        title={d.howItWorks.title}
+        subtitle={d.howItWorks.subtitle}
+        steps={[...d.howItWorks.steps]}
+      />
+
+      {/* Social Proof — testimonials + user count + CTA */}
+      <SocialProof
+        title={d.socialProof.title}
+        subtitle={d.socialProof.subtitle}
+        testimonials={testimonialItems}
+        userCount={d.socialProof.userCount}
+        userCountLabel={d.socialProof.userCountLabel}
+        cta={d.socialProof.cta}
+      />
+
       {/* Testimonials */}
       <TestimonialSection title={d.testimonials.title} items={testimonialItems} />
 
-      {/* Ecosystem Diagram */}
-      <EcosystemDiagram
-        title={d.ecosystemDiagram.title}
-        subtitle={d.ecosystemDiagram.subtitle}
-        visualPlaceholder={d.ecosystemDiagram.visualPlaceholder}
+      {/* Investor Section */}
+      <InvestorSection
+        title={d.investor.title}
+        subtitle={d.investor.subtitle}
+        traction={d.investor.traction}
+        businessModel={d.investor.businessModel}
+        architecture={d.investor.architecture}
+        trackRecord={d.investor.trackRecord}
+        cta={d.investor.cta}
       />
 
-      {/* Ecosystem / Services */}
-      <ServiceGrid
-        title={d.ecosystem.title}
-        subtitle={d.ecosystem.subtitle}
-        items={ecosystemItems}
-      />
-
-      {/* How It Works */}
-      <HowItWorks title={d.howItWorks.title} steps={[...d.howItWorks.steps]} />
-
-      {/* Developer Section */}
-      <section id="developer" className="section" style={{ background: 'var(--surface-0)' }}>
-        <div className="container" style={{ maxWidth: 'var(--container-lg)', textAlign: 'center' }}>
-          <span className="eyebrow">👨‍💻 Developers</span>
-          <h2 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'var(--text-4xl)',
-            fontWeight: 800,
-            lineHeight: 1.1,
-            color: 'var(--text-inverse)',
-            marginBottom: 'var(--space-4)',
-          }}>
-            {d.developerSection.title}
-          </h2>
-          <p style={{
-            fontSize: 'var(--text-lg)',
-            color: 'var(--text-inverse-muted)',
-            marginBottom: 'var(--space-6)',
-            maxWidth: '600px',
-            margin: '0 auto var(--space-6)',
-            lineHeight: 1.7,
-          }}>
-            {d.developerSection.description}
-          </p>
-          <a
-            href={withLocale(d.developerSection.cta.href)}
-            className="btn btn--primary"
-          >
-            {d.developerSection.cta.text}
-          </a>
-        </div>
-      </section>
-
-      {/* CTA */}
+      {/* Final CTA */}
       <CTASection
         title={d.cta.title}
         description={d.cta.description}

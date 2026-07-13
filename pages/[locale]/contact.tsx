@@ -20,7 +20,7 @@ export default function ContactPage({ locale }: { locale: Locale }) {
   const d = contactData[locale];
   return (
     <Layout title={d.meta.title} description={d.meta.description}>
-      <HeroSection eyebrow={d.hero.eyebrow} title={d.hero.title} description={d.hero.description} dark character={characters.contact} />
+      <HeroSection eyebrow={d.hero.eyebrow} title={d.hero.title} description={d.hero.description} character={characters.contact} />
       <section className="light-bg">
         <div className={styles.container}>
           <div className={styles.grid}>

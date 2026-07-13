@@ -22,7 +22,7 @@ export default function DigitalProducts({ locale }: { locale: Locale }) {
   const catalogTitle = locale === 'id' ? '7 Produk Digital AI yang Tersedia' : '7 Available AI Digital Products';
   return (
     <Layout title={d.meta.title} description={d.meta.description}>
-      <HeroSection eyebrow={d.hero.eyebrow} title={d.hero.title} description={d.hero.description} buttons={[...d.hero.buttons]} dark character={characters['digital-products']} />
+      <HeroSection eyebrow={d.hero.eyebrow} title={d.hero.title} description={d.hero.description} buttons={[...d.hero.buttons]} character={characters['digital-products']} />
       <ProblemSection hook={d.problem.hook} pains={[...d.problem.pains]} bridge={d.problem.bridge} />
       <ProductCatalog title={catalogTitle} items={dpCatalog} />
       <FeatureGrid items={[...d.features]} />

@@ -27,7 +27,7 @@ export default function OmniRoutePage({ locale }: { locale: Locale }) {
   const d = omnirouteData[locale];
   return (
     <Layout title={d.meta.title} description={d.meta.description}>
-      <HeroSection eyebrow={d.hero.eyebrow} title={d.hero.title} description={d.hero.description} buttons={[...d.hero.buttons]} dark character={{ src: '/characters/vilona-side.jpg', alt: 'Vilona — API Architect' }} />
+      <HeroSection eyebrow={d.hero.eyebrow} title={d.hero.title} description={d.hero.description} buttons={[...d.hero.buttons]} character={{ src: '/characters/vilona-side.jpg', alt: 'Vilona — API Architect' }} />
       <ProblemSection hook={d.problem.hook} pains={[...d.problem.pains]} bridge={d.problem.bridge} />
       <FeatureGrid items={[...d.features]} />
       <ProvidersGrid title={d.providers.title} items={[...d.providers.items]} />

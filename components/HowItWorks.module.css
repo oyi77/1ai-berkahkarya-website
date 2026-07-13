@@ -1,5 +1,13 @@
 .wrap {
   background: var(--surface-1);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.wrap.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .container {
@@ -9,7 +17,7 @@
   text-align: center;
 }
 
-.eyebrow {
+.label {
   display: inline-flex;
   align-items: center;
   padding: var(--space-1) var(--space-3);
@@ -24,86 +32,134 @@
   margin-bottom: var(--space-3);
 }
 
-.container h2 {
-  color: var(--text-default);
-  margin-bottom: var(--space-8);
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--text-inverse);
+  margin-bottom: var(--space-2);
+}
+
+.subtitle {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--text-white-60);
+  max-width: 600px;
+  margin: 0 auto var(--space-10);
+  line-height: 1.6;
 }
 
 .steps {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: var(--space-6);
   position: relative;
 }
 
 .steps::before {
   content: '';
   position: absolute;
-  left: 28px;
-  top: 28px;
-  bottom: 28px;
+  left: 14px;
+  top: 12px;
+  bottom: 12px;
   width: 2px;
-  background: linear-gradient(180deg, var(--brand-teal), transparent);
+  background: linear-gradient(to bottom, var(--brand-teal), var(--brand-violet), var(--brand-gold));
+  opacity: 0.4;
 }
 
 .step {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-5);
-  padding: var(--space-5) 0;
-  text-align: left;
-}
-
-.stepCard {
-  flex: 1;
-  padding: var(--space-6);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: var(--surface-2);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(var(--glass-blur));
+  padding: var(--space-6);
+  text-align: left;
+  position: relative;
+  margin-left: 32px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.num {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-violet) 100%);
-  color: var(--text-inverse);
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 900;
+.step:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.stepHeader {
   display: flex;
   align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.stepNum {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 4px 16px rgba(0, 217, 255, 0.35);
-  position: relative;
-  z-index: 1;
-}
-
-.stepCard h3 {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--brand-teal), var(--brand-violet));
+  color: #000;
   font-family: var(--font-display);
-  font-size: var(--text-lg);
+  font-size: var(--text-xs);
   font-weight: 800;
-  color: var(--text-default);
-  margin-bottom: var(--space-2);
+  flex-shrink: 0;
 }
 
-.stepCard p {
+.stepHeader h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-inverse);
+  margin: 0;
+}
+
+.stepContent {
+  padding-left: calc(32px + var(--space-3));
+}
+
+.stepDesc {
   font-family: var(--font-ui);
   font-size: var(--text-sm);
-  color: var(--text-muted);
-  line-height: 1.65;
+  color: var(--text-white-80);
+  line-height: 1.7;
+  margin-bottom: var(--space-3);
+}
+
+.stepEvidence {
+  display: flex;
+  gap: var(--space-2);
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+.evidenceLabel {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--brand-emerald);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.evidenceText {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--text-white-70);
+  line-height: 1.6;
+}
+
+.connector {
+  display: none;
 }
 
 @media (max-width: 600px) {
-  .steps::before {
-    left: 24px;
-  }
-
-  .num {
-    width: 48px;
-    height: 48px;
-    font-size: 1rem;
-  }
+  .container { padding: var(--section-py-mobile) var(--section-px-mobile); }
+  .title { font-size: var(--text-2xl); }
+  .step { margin-left: 20px; padding: var(--space-4); }
+  .steps::before { left: 10px; }
+  .stepContent { padding-left: calc(20px + var(--space-2)); }
+  .stepEvidence { flex-direction: column; gap: var(--space-1); }
 }

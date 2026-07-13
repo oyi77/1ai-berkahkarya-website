@@ -20,7 +20,7 @@ export default function AIAgentPro({ locale }: { locale: Locale }) {
   const pr = d.pricing.map(t => ({ ...t, features: [...t.features], cta: { ...t.cta } }));
   return (
     <Layout title={d.meta.title} description={d.meta.description}>
-      <HeroSection eyebrow={d.hero.eyebrow} title={d.hero.title} description={d.hero.description} buttons={[...d.hero.buttons]} dark character={characters['ai-agent-pro']} />
+      <HeroSection eyebrow={d.hero.eyebrow} title={d.hero.title} description={d.hero.description} buttons={[...d.hero.buttons]} character={characters['ai-agent-pro']} />
       <ProblemSection hook={d.problem.hook} pains={[...d.problem.pains]} bridge={d.problem.bridge} />
       <FeatureGrid items={[...d.features]} />
       <HowItWorks title={d.howItWorks.title} steps={[...d.howItWorks.steps]} />
