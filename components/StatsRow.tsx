@@ -1,7 +1,16 @@
 import styles from './StatsRow.module.css';
-interface Stat { value: string; label: string }
 
-export default function StatsRow({ items }: { items: Stat[] }) {
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  items: Stat[];
+  cta?: { text: string; href: string };
+}
+
+export default function StatsRow({ items, cta }: Props) {
   return (
     <div className={styles.wrap}>
       <div className={styles.row}>
@@ -12,6 +21,13 @@ export default function StatsRow({ items }: { items: Stat[] }) {
           </div>
         ))}
       </div>
+      {cta && (
+        <div className={styles.ctaWrap}>
+          <a href={cta.href} className={styles.ctaLink}>
+            {cta.text}
+          </a>
+        </div>
+      )}
     </div>
   );
 }

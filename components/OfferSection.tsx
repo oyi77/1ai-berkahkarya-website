@@ -1,6 +1,5 @@
 import styles from './OfferSection.module.css';
 import { trackCTAClick } from '@/lib/tracking';
-import { useEffect, useState } from 'react';
 
 interface OfferSectionProps {
   locale: 'id' | 'en';
@@ -105,34 +104,7 @@ const copy = {
 
 export default function OfferSection({ locale }: OfferSectionProps) {
   const c = copy[locale];
-  const [saasUrl, setSaasUrl] = useState(SAAS_BASE_URL);
-
-  useEffect(() => {
-    // Build SaaS URL with UTM parameters from sessionStorage
-    const utmSource = sessionStorage.getItem('utm_source') || 'berkahkarya.org';
-    const utmCampaign = sessionStorage.getItem('utm_campaign') || '';
-    const utmMedium = sessionStorage.getItem('utm_medium') || 'landing_page';
-    const utmContent = sessionStorage.getItem('utm_content') || 'offer_section_cta';
-    const lpVariant = sessionStorage.getItem('lp_variant') || 'default';
-    const fbc = sessionStorage.getItem('fbc') || '';
-    const fbp = sessionStorage.getItem('fbp') || '';
-    const ttclid = sessionStorage.getItem('ttclid') || '';
-
-    const params = new URLSearchParams();
-    params.append('utm_source', utmSource);
-    params.append('utm_medium', utmMedium);
-    if (utmCampaign) params.append('utm_campaign', utmCampaign);
-    if (utmContent) params.append('utm_content', utmContent);
-    if (lpVariant) params.append('lp_variant', lpVariant);
-    if (fbc) params.append('fbc', fbc);
-    if (fbp) params.append('fbp', fbp);
-    if (ttclid) params.append('ttclid', ttclid);
-
-    const finalUrl = `${SAAS_BASE_URL}?${params.toString()}`;
-    setSaasUrl(finalUrl);
-
-    console.log('SaaS URL with UTM:', finalUrl);
-  }, []);
+  const saasUrl = SAAS_BASE_URL;
 
   return (
     <section className={styles.section} id="offer">

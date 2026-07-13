@@ -7,13 +7,10 @@ export const homeData = {
     },
     hero: {
       eyebrow: 'THE 1-MAN AI COMPANY',
-      title: 'What if a company could run itself?\nBukan janji. Bukan pitch deck.\nLive in production.',
+      title: 'Satu Manusia. 13 Layanan Otonom.\nLive in Production. $0 VC.',
       description:
         'BerkahKarya dibuktikan, bukan dijanjikan. Satu manusia sebagai stakeholder. 13 layanan otonom — API AI, iklan, konten, automation — berjalan 24/7. Tanpa team besar. Tanpa dana VC. Cuma code + AI.',
-      buttons: [
-        { text: 'Mulai dengan 1AI →', href: '/one-ai', primary: true },
-        { text: 'Baca Cerita Kami →', href: '/story', primary: false },
-      ],
+      buttons: [],
     },
     stats: [
       { value: '13', label: 'Layanan Produksi' },
@@ -21,6 +18,28 @@ export const homeData = {
       { value: '24/7', label: 'Operasional Otomatis' },
       { value: '$0', label: 'VC Funding' },
     ],
+    statsCta: {
+      text: 'Lihat Transparansi Penuh →',
+      href: '/transparency',
+    },
+    personaSwitcher: {
+      title: 'Pilih Jalur Anda',
+      subtitle: 'BerkahKarya melayani dua audiens berbeda. Pilih yang cocok untuk Anda:',
+      personal: {
+        icon: '👤',
+        title: 'Untuk Personal',
+        description: 'Akses AI premium 70-90% lebih murah, generate konten otomatis, kelola media sosial, dan bangun side hustle dengan AI — semua dari satu dashboard.',
+        cta: { text: 'Mulai Gratis →', href: '/one-ai' },
+        visualPlaceholder: '/images/1ai-dashboard-personal.png',
+      },
+      bisnis: {
+        icon: '🏢',
+        title: 'Untuk Bisnis',
+        description: 'Sistem revenue otomatis via R.E.V System™ — ads, content, funnel, dan affiliate berjalan 24/7. 17K+ konversi, ROAS 3.4+, Rp 97.6M revenue terbukti.',
+        cta: { text: 'Dapatkan Audit Gratis →', href: '/rev-system' },
+        visualPlaceholder: '/images/rev-system-dashboard.png',
+      },
+    },
     valueProps: {
       title: 'Mengapa Kami Berbeda',
       items: [
@@ -38,6 +57,40 @@ export const homeData = {
           icon: '🧠',
           title: 'Ecosystem, Bukan Single Tool',
           desc: '13 layanan terintegrasi: API AI, iklan, social media, content, affiliate, automation, phone farm. Setiap service otonom, koordinasi lewat hub central.',
+        },
+      ],
+    },
+    // "Untuk Bisnis" showcase — menggunakan case study dari rev-system.ts
+    bisnisShowcase: {
+      title: 'Bukti Nyata untuk Bisnis',
+      subtitle: 'R.E.V System™ — Revenue Generating System yang sudah terbukti',
+      cases: [
+        { title: 'Case 1', metric1: '17.000+ Conversions', metric2: 'CPA Rp 1.095' },
+        { title: 'Case 2', metric1: 'ROAS 3.41', metric2: 'Revenue Rp 97.6M' },
+        { title: 'Case 3', metric1: '1.000+ Conversions', metric2: 'Meta Scaling Success' },
+      ],
+      cta: { text: 'Lihat Detail R.E.V System →', href: '/rev-system' },
+    },
+    testimonials: {
+      title: 'Apa Kata Mereka',
+      items: [
+        {
+          quote: 'BerkahKarya mengubah cara saya mengelola bisnis digital. Otomasi penuh tanpa perlu tim besar.',
+          name: 'Budi Santoso',
+          role: 'Founder, E-commerce Startup',
+          avatar: 'BS',
+        },
+        {
+          quote: 'ROAS 3.4 dalam 30 hari pertama. Sistem ads mereka benar-benar jalan otomatis 24/7.',
+          name: 'Sari Dewi',
+          role: 'Marketing Director, Fashion Brand',
+          avatar: 'SD',
+        },
+        {
+          quote: '1AI hub menghemat biaya API 80%. Semua model AI dalam satu key — game changer untuk developer.',
+          name: 'Rizki Pratama',
+          role: 'Senior Developer, SaaS Company',
+          avatar: 'RP',
         },
       ],
     },
@@ -125,6 +178,12 @@ export const homeData = {
         },
       ],
     },
+    ecosystemDiagram: {
+      title: 'Arsitektur Ekosistem',
+      subtitle: 'Bagaimana 13 layanan terhubung via 1ai-hub central',
+      // SVG placeholder - will be replaced with actual diagram component
+      visualPlaceholder: '[DIAGRAM: 1ai-hub di tengah, 6 layer keluar (API, Ads, Content, Social, Affiliate, Automation), OmniRoute sebagai gateway, Phonefarm/Waha/CF-Router/Poly-Trader/Paperclip sebagai supporting services]',
+    },
     howItWorks: {
       title: 'Cara Kerja — 1 Man, 1 Arah',
       steps: [
@@ -145,10 +204,15 @@ export const homeData = {
         },
       ],
     },
+    developerSection: {
+      title: 'Developer?',
+      description: 'Akses 398+ model AI dalam 1 API Key. Semantic caching. Compression. 70-90% lebih murah.',
+      cta: { text: 'Dapatkan API Key →', href: '/one-ai' },
+    },
     cta: {
       title: 'Siap Bergabung dengan Masa Depan Perusahaan Otonom?',
       description:
-        'Mulai dari 1AI — 398+ model AI dalam 1 API key. Atau kami terbuka untuk partnership dan investor yang ingin.join eksperimen ini.',
+        'Mulai dari 1AI — 398+ model AI dalam 1 API key. Atau kami terbuka untuk partnership dan investor yang ingin join eksperimen ini.',
       button: { text: 'Jadi Partner →', href: '/contact' },
     },
   },
@@ -160,13 +224,10 @@ export const homeData = {
     },
     hero: {
       eyebrow: 'THE 1-MAN AI COMPANY',
-      title: 'What if a company could run itself?\nNot promises. Not pitch decks.\nLive in production.',
+      title: 'One Human. 13 Autonomous Services.\nLive in Production. $0 VC.',
       description:
         'BerkahKarya is proven, not promised. One human as stakeholder. 13 autonomous services — AI API, ads, content, automation — running 24/7. No big team. No VC. Just code + AI.',
-      buttons: [
-        { text: 'Start with 1AI →', href: '/one-ai', primary: true },
-        { text: 'Read Our Story →', href: '/story', primary: false },
-      ],
+      buttons: [],
     },
     stats: [
       { value: '13', label: 'Production Services' },
@@ -174,8 +235,30 @@ export const homeData = {
       { value: '24/7', label: 'Autonomous Ops' },
       { value: '$0', label: 'VC Funding' },
     ],
+    statsCta: {
+      text: 'View Full Transparency →',
+      href: '/transparency',
+    },
+    personaSwitcher: {
+      title: 'Choose Your Path',
+      subtitle: 'BerkahKarya serves two distinct audiences. Pick the one that fits you:',
+      personal: {
+        icon: '👤',
+        title: 'For Personal',
+        description: 'Access premium AI 70-90% cheaper, auto-generate content, manage social media, and build AI side hustles — all from one dashboard.',
+        cta: { text: 'Start Free →', href: '/one-ai' },
+        visualPlaceholder: '/images/1ai-dashboard-personal.png',
+      },
+      bisnis: {
+        icon: '🏢',
+        title: 'For Business',
+        description: 'Automated revenue systems via R.E.V System™ — ads, content, funnel, and affiliate running 24/7. 17K+ conversions, ROAS 3.4+, Rp 97.6M proven revenue.',
+        cta: { text: 'Get Free Audit →', href: '/rev-system' },
+        visualPlaceholder: '/images/rev-system-dashboard.png',
+      },
+    },
     valueProps: {
-      title: 'Why We’re Different',
+      title: 'Why We\'re Different',
       items: [
         {
           icon: '💰',
@@ -191,6 +274,39 @@ export const homeData = {
           icon: '🧠',
           title: 'Ecosystem, Not a Single Tool',
           desc: '13 integrated services: AI API, ads, social, content, affiliate, automation, phone farm. Each autonomous, coordinated via central hub.',
+        },
+      ],
+    },
+    bisnisShowcase: {
+      title: 'Real Proof for Business',
+      subtitle: 'R.E.V System™ — Proven Revenue Generating System',
+      cases: [
+        { title: 'Case 1', metric1: '17,000+ Conversions', metric2: 'CPA Rp 1,095' },
+        { title: 'Case 2', metric1: 'ROAS 3.41', metric2: 'Revenue Rp 97.6M' },
+        { title: 'Case 3', metric1: '1,000+ Conversions', metric2: 'Meta Scaling Success' },
+      ],
+      cta: { text: 'View R.E.V System Details →', href: '/rev-system' },
+    },
+    testimonials: {
+      title: 'What They Say',
+      items: [
+        {
+          quote: 'BerkahKarya changed how I run my digital business. Full automation without needing a large team.',
+          name: 'Budi Santoso',
+          role: 'Founder, E-commerce Startup',
+          avatar: 'BS',
+        },
+        {
+          quote: 'ROAS 3.4 in first 30 days. Their ad system truly runs autonomously 24/7.',
+          name: 'Sari Dewi',
+          role: 'Marketing Director, Fashion Brand',
+          avatar: 'SD',
+        },
+        {
+          quote: '1AI hub saves 80% on API costs. All AI models in one key — game changer for developers.',
+          name: 'Rizki Pratama',
+          role: 'Senior Developer, SaaS Company',
+          avatar: 'RP',
         },
       ],
     },
@@ -241,6 +357,12 @@ export const homeData = {
           href: '/ecosystem#1ai-social',
         },
         {
+          emoji: '⚡',
+          name: '1AI-Workflow',
+          desc: 'Business automation engine — end-to-end workflow orchestration.',
+          href: '/ecosystem#1ai-workflow',
+        },
+        {
           emoji: '🔮',
           name: '1AI-Poly-Trader',
           desc: 'DEX + prediction markets.',
@@ -272,6 +394,11 @@ export const homeData = {
         },
       ],
     },
+    ecosystemDiagram: {
+      title: 'Ecosystem Architecture',
+      subtitle: 'How 13 services connect via central 1ai-hub',
+      visualPlaceholder: '[DIAGRAM: 1ai-hub center, 6 layers out (API, Ads, Content, Social, Affiliate, Automation), OmniRoute as gateway, Phonefarm/Waha/CF-Router/Poly-Trader/Paperclip as supporting services]',
+    },
     howItWorks: {
       title: 'How It Works — 1 Human, 1 Direction',
       steps: [
@@ -291,6 +418,11 @@ export const homeData = {
           desc: '6 revenue streams. 70-90% cost efficiency via OmniRoute. Human freed from repetitive labor.',
         },
       ],
+    },
+    developerSection: {
+      title: 'Developer?',
+      description: 'Access 398+ AI models in 1 API Key. Semantic caching. Compression. 70-90% cheaper.',
+      cta: { text: 'Get API Key →', href: '/one-ai' },
     },
     cta: {
       title: 'Ready to Join the Future of Autonomous Companies?',

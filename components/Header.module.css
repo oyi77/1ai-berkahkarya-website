@@ -172,6 +172,17 @@
   color: var(--teal-primary); 
   border-color: var(--teal-primary); 
 }
+.transparencyLink {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-white-50);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.transparencyLink:hover {
+  color: var(--teal-primary);
+}
 .ctaBtn {
   font-size: 0.8rem;
   font-weight: 800;

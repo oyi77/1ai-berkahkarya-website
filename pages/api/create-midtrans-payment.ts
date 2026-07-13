@@ -1,13 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createPaymentViaAggregator } from '../../lib/payment-wrapper';
-
-const PRICING: Record<string, { name: string; price: number }> = {
-  'video-course': { name: '📹 Video Course Belajar AI', price: 299000 },
-  'online-live': { name: '💻 Online Live Belajar AI', price: 799000 },
-  'offline-workshop': { name: '🏫 Offline Workshop Belajar AI', price: 2500000 },
-  'monthly-sub': { name: '🔄 Monthly Subscription Belajar AI', price: 199000 },
-  'platinum-pass': { name: '👑 Platinum Pass Belajar AI', price: 9000000 },
-};
+import { PRICING } from '../../lib/pricing-products';
+import { requireMethod } from '../../lib/api-middleware';
 
 interface ResponseData {
   success: boolean;
@@ -21,10 +15,7 @@ interface ResponseData {
   message?: string;
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
-  }
+const postHandler = async (req: NextApiRequest, res: NextApiResponse<ResponseData>) => {
 
   const { plan, customer_name, customer_email, customer_phone } = req.body as {
     plan?: string;
@@ -85,4 +76,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       message,
     });
   }
-}
+};
+export default requireMethod('POST', postHandler);

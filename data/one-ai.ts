@@ -1,7 +1,7 @@
 const WA = 'https://wa.me/6285732740006';
 const APP_URL = 'https://1ai.aitradepulse.com/';
 
-export const omnirouteData = {
+export const oneAIData = {
   id: {
     meta: { title: '1AI — 398 Model AI, Rp 75K/bulan Flat. Alternatif OpenRouter | BerkahKarya', description: '398 model AI cuma Rp 75K/bulan. GPT-4, Claude, Gemini, DeepSeek, Llama, Qwen. Auto-failover. Bayar GoPay/OVO/DANA. Support Telegram 24/7.' },
     hero: {

@@ -13,9 +13,9 @@ interface NavItem {
 
 const navLinks: NavItem[] = [
   { slug: '', id: 'Beranda', en: 'Home' },
-  { slug: 'story', id: 'Cerita', en: 'Story' },
+  { slug: 'personal', id: 'Untuk Personal', en: 'For Personal' },
+  { slug: 'bisnis', id: 'Untuk Bisnis', en: 'For Business' },
   { slug: 'ecosystem', id: 'Ekosistem', en: 'Ecosystem' },
-  { slug: 'one-ai', id: '1ai', en: '1ai' },
   { slug: 'pricing', id: 'Harga', en: 'Pricing' },
   { slug: 'roadmap', id: 'Roadmap', en: 'Roadmap' },
 ];
@@ -134,11 +134,18 @@ export default function Header() {
             🌐 {locale === 'id' ? 'EN' : 'ID'}
           </button>
           <a
-            href={`/${locale}/one-ai`}
-            className={styles.ctaBtn}
-            onClick={() => trackAddToCart({content_name:'Header CTA Get API Key',content_id:'header-cta-api',content_type:'cta_api',destination:'/one-ai',destination_url:`/${locale}/one-ai`})}
+            href={`/${locale}/transparency`}
+            className={styles.transparencyLink}
+            onClick={() => trackAddToCart({content_name:'Header Transparency',content_id:'header-transparency',content_type:'transparency',destination:'/transparency',destination_url:`/${locale}/transparency`})}
           >
-            🔑 {locale === 'id' ? 'Dapatkan API Key' : 'Get API Key'}
+            {locale === 'id' ? 'Transparansi' : 'Transparency'}
+          </a>
+          <a
+            href={`/${locale}#persona-switcher`}
+            className={styles.ctaBtn}
+            onClick={() => trackAddToCart({content_name:'Header CTA Mulai',content_id:'header-cta-mulai',content_type:'cta_mulai',destination:'/#persona-switcher',destination_url:`/${locale}#persona-switcher`})}
+          >
+            {locale === 'id' ? 'Mulai Sekarang' : 'Get Started'}
           </a>
           <button
             className={`${styles.menuBtn} ${mobileOpen ? styles.menuOpen : ''}`}
@@ -161,11 +168,18 @@ export default function Header() {
             🌐 {locale === 'id' ? 'English' : 'Indonesia'}
           </button>
           <a
-            href={`/${locale}/one-ai`}
-            className={styles.ctaBtn}
-            onClick={() => trackAddToCart({content_name:'Header Mobile CTA API Key',content_id:'header-mobile-cta-api',content_type:'cta_api',destination:'/one-ai',destination_url:`/${locale}/one-ai`})}
+            href={`/${locale}/transparency`}
+            className={styles.transparencyLink}
+            onClick={() => trackAddToCart({content_name:'Mobile Transparency',content_id:'mobile-transparency',content_type:'transparency',destination:'/transparency',destination_url:`/${locale}/transparency`})}
           >
-            🔑 {locale === 'id' ? 'Dapatkan API Key' : 'Get API Key'}
+            {locale === 'id' ? 'Transparansi' : 'Transparency'}
+          </a>
+          <a
+            href={`/${locale}#persona-switcher`}
+            className={styles.ctaBtn}
+            onClick={() => trackAddToCart({content_name:'Mobile CTA Mulai',content_id:'mobile-cta-mulai',content_type:'cta_mulai',destination:'/#persona-switcher',destination_url:`/${locale}#persona-switcher`})}
+          >
+            {locale === 'id' ? 'Mulai Sekarang' : 'Get Started'}
           </a>
         </div>
       </div>
