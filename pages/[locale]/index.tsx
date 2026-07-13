@@ -10,6 +10,7 @@ import TestimonialSection from '@/components/TestimonialSection';
 import PersonaSwitcher from '@/components/PersonaSwitcher';
 import BisnisShowcase from '@/components/BisnisShowcase';
 import EcosystemDiagram from '@/components/EcosystemDiagram';
+import VideoShowcase from '@/components/VideoShowcase';
 import { homeData } from '@/data/home';
 
 type Locale = 'id' | 'en';
@@ -51,6 +52,13 @@ export default function HomePage({ locale }: { locale: Locale }) {
       <StatsRow
         items={[...d.stats]}
         cta={d.statsCta ? { ...d.statsCta, href: withLocale(d.statsCta.href) } : undefined}
+      />
+
+      {/* Intro Video */}
+      <VideoShowcase
+        title="BerkahKarya in 25 Seconds"
+        subtitle="See how we help businesses grow with AI-powered content automation"
+        src="/videos/berkahkarya-intro.mp4"
       />
 
       {/* Persona Switcher */}
