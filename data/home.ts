@@ -7,7 +7,7 @@ export const homeData = {
     },
     hero: {
       eyebrow: 'THE 1-MAN AI COMPANY',
-      title: 'Satu Manusia. 13 Layanan Otonom.\nLive in Production. $0 VC.',
+      title: 'Satu Manusia. 13 Layanan Otonom.\n<span class="accent">Live in Production.</span> $0 VC.',
       description:
         'BerkahKarya dibuktikan, bukan dijanjikan. Satu manusia sebagai stakeholder. 13 layanan otonom — API AI, iklan, konten, automation — berjalan 24/7. Tanpa team besar. Tanpa dana VC. Cuma code + AI.',
       buttons: [],
@@ -31,6 +31,7 @@ export const homeData = {
         description: 'Akses AI premium 70-90% lebih murah, generate konten otomatis, kelola media sosial, dan bangun side hustle dengan AI — semua dari satu dashboard.',
         cta: { text: 'Mulai Gratis →', href: '/one-ai' },
         visualPlaceholder: '/images/1ai-dashboard-personal.png',
+        accent: 'primary',
       },
       bisnis: {
         icon: '🏢',
@@ -38,6 +39,7 @@ export const homeData = {
         description: 'Sistem revenue otomatis via R.E.V System™ — ads, content, funnel, dan affiliate berjalan 24/7. 17K+ konversi, ROAS 3.4+, Rp 97.6M revenue terbukti.',
         cta: { text: 'Dapatkan Audit Gratis →', href: '/rev-system' },
         visualPlaceholder: '/images/rev-system-dashboard.png',
+        accent: 'secondary',
       },
     },
     valueProps: {
@@ -248,6 +250,7 @@ export const homeData = {
         description: 'Access premium AI 70-90% cheaper, auto-generate content, manage social media, and build AI side hustles — all from one dashboard.',
         cta: { text: 'Start Free →', href: '/one-ai' },
         visualPlaceholder: '/images/1ai-dashboard-personal.png',
+        accent: 'primary',
       },
       bisnis: {
         icon: '🏢',
@@ -255,6 +258,7 @@ export const homeData = {
         description: 'Automated revenue systems via R.E.V System™ — ads, content, funnel, and affiliate running 24/7. 17K+ conversions, ROAS 3.4+, Rp 97.6M proven revenue.',
         cta: { text: 'Get Free Audit →', href: '/rev-system' },
         visualPlaceholder: '/images/rev-system-dashboard.png',
+        accent: 'secondary',
       },
     },
     valueProps: {

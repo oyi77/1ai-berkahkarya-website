@@ -1,106 +1,263 @@
+/* ─── Fonts: Distinctive Editorial Pairing ─── */
+/* Display: Sora - geometric, modern, distinctive */
+/* UI/Body: DM Sans - clean, readable, technical */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap');
+
 :root {
-  --font-heading: 'Poppins', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  /* Typography Scale */
+  --font-display: 'Sora', sans-serif;
+  --font-ui: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Brand palette */
-  --teal-primary: #00D9FF;
-  --teal-hover: #00B8D4;
-  --teal-glow: rgba(0, 217, 255, 0.25);
-  --violet: #7C3AED;
-  --violet-light: #9D5FFF;
-  --violet-glow: rgba(124, 58, 237, 0.25);
-  --gold: #F59E0B;
-  --success: #10B981;
-  --error: #EF4444;
+  /* Fluid Type Scale (clamp-based) */
+  --text-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.75rem);
+  --text-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
+  --text-base: clamp(0.9375rem, 0.875rem + 0.3125vw, 1rem);
+  --text-lg: clamp(1.0625rem, 1rem + 0.3125vw, 1.125rem);
+  --text-xl: clamp(1.25rem, 1.125rem + 0.625vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.75rem);
+  --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);
+  --text-5xl: clamp(3rem, 2rem + 5vw, 5rem);
 
-  /* Dark surfaces */
-  --dark-hero: #080C14;
-  --dark-secondary: #0D1526;
-  --dark-card: rgba(255,255,255,0.04);
-  --dark-card-hover: rgba(255,255,255,0.07);
-  --dark-border: rgba(0,217,255,0.12);
-  --dark-border-hover: rgba(0,217,255,0.35);
+  /* ─── Brand Palette (Refined) ─── */
+  --brand-teal: #00D9FF;
+  --brand-teal-dim: #00B8D4;
+  --brand-teal-glow: rgba(0, 217, 255, 0.35);
+  --brand-teal-glow-strong: rgba(0, 217, 255, 0.55);
 
-  /* Light surfaces */
-  --light-bg: #F4F6FA;
-  --white: #FFFFFF;
-  --border-light: #E2E8F0;
-  --card-shadow: 0 4px 24px rgba(0,0,0,0.06);
-  --card-shadow-hover: 0 12px 40px rgba(0,0,0,0.12);
+  --brand-violet: #7C3AED;
+  --brand-violet-bright: #9D5FFF;
+  --brand-violet-glow: rgba(124, 58, 237, 0.35);
+  --brand-violet-glow-strong: rgba(124, 58, 237, 0.55);
 
-  /* Text */
-  --text-primary: #0F172A;
-  --text-secondary: #334155;
-  --text-muted: #64748B;
-  --text-light: #94A3B8;
-  --text-white: #FFFFFF;
+  --brand-gold: #F59E0B;
+  --brand-gold-glow: rgba(245, 158, 11, 0.35);
+
+  --brand-emerald: #10B981;
+  --brand-emerald-glow: rgba(16, 185, 129, 0.35);
+
+  --brand-coral: #F97316;
+  --brand-coral-glow: rgba(249, 115, 22, 0.35);
+
+  /* ─── Semantic Color Tokens ─── */
+  --color-primary: var(--brand-teal);
+  --color-primary-hover: var(--brand-teal-dim);
+  --color-primary-glow: var(--brand-teal-glow);
+  --color-primary-strong: var(--brand-teal-glow-strong);
+
+  --color-secondary: var(--brand-violet);
+  --color-secondary-hover: var(--brand-violet-bright);
+  --color-secondary-glow: var(--brand-violet-glow);
+  --color-secondary-strong: var(--brand-violet-glow-strong);
+
+  --color-accent: var(--brand-gold);
+  --color-accent-glow: var(--brand-gold-glow);
+
+  --color-success: var(--brand-emerald);
+  --color-success-glow: var(--brand-emerald-glow);
+
+  --color-warning: var(--brand-coral);
+  --color-warning-glow: var(--brand-coral-glow);
+
+  --color-error: #EF4444;
+  --color-error-glow: rgba(239, 68, 68, 0.35);
+
+  /* ─── Surface System (Dark) ─── */
+  --surface-0: #05080D;       /* Deepest - page background */
+  --surface-1: #080C14;       /* Hero/sections */
+  --surface-2: #0D1526;       /* Cards, elevated */
+  --surface-3: #111A2E;       /* Hover states */
+  --surface-4: #1A253A;       /* Active/selected */
+
+  /* ─── Surface System (Light) ─── */
+  --surface-light-0: #F8FAFC;
+  --surface-light-1: #FFFFFF;
+  --surface-light-2: #F1F5F9;
+  --surface-light-3: #E2E8F0;
+  --surface-light-4: #CBD5E1;
+
+  /* ─── Border System ─── */
+  --border-subtle: rgba(0, 217, 255, 0.08);
+  --border-default: rgba(0, 217, 255, 0.15);
+  --border-strong: rgba(0, 217, 255, 0.3);
+  --border-focus: var(--brand-teal);
+
+  --border-light-subtle: rgba(148, 163, 184, 0.12);
+  --border-light-default: rgba(148, 163, 184, 0.2);
+  --border-light-strong: rgba(148, 163, 184, 0.4);
+
+  /* ─── Text System ─── */
+  --text-inverse: #FFFFFF;
+  --text-inverse-muted: rgba(255, 255, 255, 0.65);
+  --text-inverse-subtle: rgba(255, 255, 255, 0.45);
+  --text-inverse-ghost: rgba(255, 255, 255, 0.25);
+
+  --text-default: #F1F5F9;
+  --text-muted: #94A3B8;
+  --text-subtle: #64748B;
+  --text-ghost: #475569;
+
+  --text-light-default: #0F172A;
+  --text-light-muted: #64748B;
+  --text-light-subtle: #94A3B8;
+  --text-light-ghost: #CBD5E1;
+
+  /* ─── Gradient Presets ─── */
+  --gradient-primary: linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-violet) 100%);
+  --gradient-primary-reverse: linear-gradient(135deg, var(--brand-violet) 0%, var(--brand-teal) 100%);
+  --gradient-hero: linear-gradient(145deg, rgba(0,217,255,0.12) 0%, rgba(124,58,237,0.12) 50%, transparent 100%);
+  --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+  --gradient-card-hover: linear-gradient(145deg, rgba(0,217,255,0.08) 0%, rgba(124,58,237,0.06) 100%);
+  --gradient-gold: linear-gradient(135deg, var(--brand-gold) 0%, #FBBF24 100%);
+  --gradient-emerald: linear-gradient(135deg, var(--brand-emerald) 0%, #34D399 100%);
+
+  /* ─── Shadow System ─── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 40px var(--color-primary-glow);
+  --shadow-glow-secondary: 0 0 40px var(--color-secondary-glow);
+
+  /* ─── Radius System ─── */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ─── Spacing Scale (Editorial) ─── */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-7: 2rem;      /* 32px */
+  --space-8: 2.5rem;    /* 40px */
+  --space-9: 3rem;      /* 48px */
+  --space-10: 4rem;     /* 64px */
+  --space-11: 5rem;     /* 80px */
+  --space-12: 6rem;     /* 96px */
+  --space-13: 8rem;     /* 128px */
+  --space-14: 10rem;    /* 160px */
+
+  /* Section Padding - responsive */
+  --section-py: clamp(4rem, 8vw, 8rem);
+  --section-px: clamp(1.5rem, 4vw, 3rem);
+
+  /* Container */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1440px;
+
+  /* ─── Motion System ─── */
+  --duration-instant: 0ms;
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+  --duration-slower: 480ms;
+  --duration-editorial: 700ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ─── Z-Index Scale ─── */
+  --z-bg: -1;
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+  --z-toast: 800;
+
+  /* ─── Breakpoints ─── */
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1536px;
+}
+
+/* ─── Legacy aliases for backward compatibility ─── */
+:root {
+  --font-heading: var(--font-display);
+  --font-body: var(--font-ui);
+  --teal-primary: var(--brand-teal);
+  --teal-hover: var(--brand-teal-dim);
+  --teal-glow: var(--brand-teal-glow);
+  --violet: var(--brand-violet);
+  --violet-light: var(--brand-violet-bright);
+  --violet-glow: var(--brand-violet-glow);
+  --gold: var(--brand-gold);
+  --success: var(--brand-emerald);
+  --error: var(--color-error);
+  --dark-hero: var(--surface-0);
+  --dark-secondary: var(--surface-1);
+  --dark-card: var(--surface-2);
+  --dark-card-hover: var(--surface-3);
+  --dark-border: var(--border-default);
+  --dark-border-hover: var(--border-strong);
+  --light-bg: var(--surface-light-0);
+  --white: var(--surface-light-1);
+  --border-light: var(--border-light-default);
+  --card-shadow: var(--shadow-md);
+  --card-shadow-hover: var(--shadow-lg);
+  --text-primary: var(--text-light-default);
+  --text-secondary: var(--text-light-muted);
+  --text-muted: var(--text-light-subtle);
+  --text-light: var(--text-light-subtle);
+  --text-white: var(--text-inverse);
   --text-white-85: rgba(255,255,255,0.85);
-  --text-white-70: rgba(255,255,255,0.70);
-  --text-white-50: rgba(255,255,255,0.50);
-  --text-white-60: rgba(255,255,255,0.60);
+  --text-white-70: rgba(255,255,255,0.7);
+  --text-white-60: rgba(255,255,255,0.6);
+  --text-white-50: rgba(255,255,255,0.5);
 }
 
-/* ─── Section helpers ─── */
-.dark-bg {
-  background: var(--dark-hero);
-  color: var(--text-white);
-  position: relative;
-  overflow: hidden;
+/* ─── Focus Ring Utility ─── */
+.focus-ring {
+  outline: none;
+  ring: 2px;
+  ring-offset: 2px;
+  ring-offset-color: var(--surface-0);
 }
-.dark-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(0,217,255,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 70% at 80% 20%, rgba(124,58,237,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 80% at 60% 80%, rgba(0,217,255,0.04) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-.dark-bg > * { position: relative; z-index: 1; }
-
-.light-bg {
-  background: var(--light-bg);
-  color: var(--text-primary);
-}
-.white-bg {
-  background: var(--white);
-  color: var(--text-primary);
+.focus-ring:focus-visible {
+  ring-color: var(--color-primary);
 }
 
-/* ─── Card styles ─── */
-.card-dark {
-  background: var(--dark-card);
-  border: 1px solid var(--dark-border);
-  border-radius: 16px;
-  backdrop-filter: blur(12px);
-  transition: background 0.25s, border-color 0.25s, transform 0.2s, box-shadow 0.2s;
-}
-.card-dark:hover {
-  background: var(--dark-card-hover);
-  border-color: var(--dark-border-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 16px 48px rgba(0,217,255,0.08);
-}
-
-.card-light {
-  background: var(--white);
-  border: 1.5px solid var(--border-light);
-  border-radius: 16px;
-  box-shadow: var(--card-shadow);
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-}
-.card-light:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--card-shadow-hover);
-  border-color: rgba(0,217,255,0.3);
-}
-
-/* ─── Gradient text ─── */
+/* ─── Gradient Text Utility ─── */
 .gradient-text {
-  background: linear-gradient(135deg, var(--teal-primary) 0%, var(--violet-light) 100%);
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.gradient-text-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--surface-0); }
+::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+
+/* ─── Selection ─── */
+::selection {
+  background: var(--color-primary-glow);
+  color: var(--text-inverse);
 }
