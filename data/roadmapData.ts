@@ -24,7 +24,7 @@ export const roadmapData: Record<string, {
     },
     hero: {
       eyebrow: '🗺️ ROADMAP BERKAHKARYA',
-      title: 'Perjalanan Menuju\\nPerusahaan AI Otonom',
+      title: 'Perjalanan Menuju<br>Perusahaan AI Otonom',
       description: 'Roadmap publik ini menunjukkan apa yang sudah kami bangun, apa yang sedang kami kerjakan, dan visi besar yang kami kejar. Semua layanan BerkahKarya dibangun oleh satu founder — dan AI.',
       buttons: [
         { text: 'Gabung Sekarang →', href: 'https://wa.me/6285732740006?text=Halo%20BerkahKarya%2C%20saya%20mau%20gabung', primary: true },
@@ -130,7 +130,7 @@ export const roadmapData: Record<string, {
     },
     hero: {
       eyebrow: '🗺️ BERKAHKARYA ROADMAP',
-      title: 'The Journey to an\\nAutonomous AI Company',
+      title: 'The Journey to an<br>Autonomous AI Company',
       description: 'This public roadmap shows what we have built, what we are working on, and the big vision we are chasing. Every BerkahKarya service is built by one founder — and AI.',
       buttons: [
         { text: 'Join Now →', href: 'https://wa.me/6285732740006?text=Hello%20BerkahKarya%2C%20I%20want%20to%20join', primary: true },
