@@ -143,6 +143,8 @@
   --space-12: 6rem;     /* 96px */
   --space-13: 8rem;     /* 128px */
   --space-14: 10rem;    /* 160px */
+  --space-15: 12rem;     /* 192px */
+  --space-16: 16rem;     /* 256px */
 
   /* Section Padding - responsive */
   --section-py: clamp(4rem, 8vw, 8rem);
@@ -204,7 +206,9 @@
   --error: var(--color-error);
   --dark-hero: var(--surface-0);
   --dark-secondary: var(--surface-1);
+  --dark-body: var(--surface-1);
   --dark-card: var(--surface-2);
+  --dark-surface: var(--surface-2);
   --dark-card-hover: var(--surface-3);
   --dark-border: var(--border-default);
   --dark-border-hover: var(--border-strong);
@@ -219,9 +223,11 @@
   --text-light: var(--text-light-subtle);
   --text-white: var(--text-inverse);
   --text-white-85: rgba(255,255,255,0.85);
+  --text-white-80: rgba(255,255,255,0.80);
   --text-white-70: rgba(255,255,255,0.7);
   --text-white-60: rgba(255,255,255,0.6);
   --text-white-50: rgba(255,255,255,0.5);
+  --text-white-40: rgba(255,255,255,0.40);
 }
 
 /* ─── Focus Ring Utility ─── */

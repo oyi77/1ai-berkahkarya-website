@@ -193,6 +193,19 @@ button:focus-visible,
   transform: translateY(-4px);
 }
 
+.card-dark {
+  background: var(--surface-2);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.card-dark:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
 .card--elevated {
   background: var(--surface-1);
   box-shadow: var(--shadow-md);
@@ -228,6 +241,23 @@ button:focus-visible,
 .stagger-4 { transition-delay: 320ms; }
 .stagger-5 { transition-delay: 400ms; }
 .stagger-6 { transition-delay: 480ms; }
+
+/* Section Background Utilities */
+.light-bg {
+  background: var(--surface-light-0);
+}
+
+.dark-bg {
+  background: var(--surface-0);
+}
+
+.light-section {
+  background: var(--surface-light-0);
+}
+
+.dark-section {
+  background: var(--surface-0);
+}
 
 /* Motion Reduce */
 @media (prefers-reduced-motion: reduce) {
