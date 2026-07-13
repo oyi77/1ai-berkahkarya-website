@@ -1,19 +1,68 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { useState } from 'react';
 import Layout from '@/components/Layout';
 import HeroSection from '@/components/HeroSection';
 import StatsRow from '@/components/StatsRow';
 import ProblemSection from '@/components/ProblemSection';
-import FeatureGrid from '@/components/FeatureGrid';
 import HowItWorks from '@/components/HowItWorks';
 import PricingTable from '@/components/PricingTable';
 import FAQSection from '@/components/FAQSection';
 import CTASection from '@/components/CTASection';
 import TestimonialSection from '@/components/TestimonialSection';
-import { belajaraiData } from '@/data/belajarai';
-
+import {
+  belajaraiData,
+  learningTracks,
+  instructorData,
+  siteStats,
+  testimonials,
+  pricingPlans,
+  faqItems,
+} from '@/data/belajarai';
 type Locale = 'id' | 'en';
+
+/* ─── Types ─── */
+
+interface Plan {
+  id: string;
+  name: string;
+  icon: string;
+  price: string;
+  period: string;
+  highlight: boolean;
+  tagline: string;
+  features: string[];
+  cta: { text: string; href: string; data_plan?: string };
+}
+
+interface Course {
+  id: string;
+  icon: string;
+  badge: string | null;
+  badgeColor: string | null;
+  title: string;
+  desc: string;
+  duration: string;
+  lessons: number;
+  level: string;
+  tools: string[];
+  outcomes: string[];
+}
+
+interface Track {
+  id: string;
+  icon: string;
+  color: string;
+  colorBg: string;
+  badge: string;
+  title: string;
+  subtitle: string;
+  desc: string;
+  courseCount: number;
+  level: string;
+  courses: Course[];
+}
+
+/* ─── Static paths / props ─── */
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: [{ params: { locale: 'id' } }, { params: { locale: 'en' } }],
@@ -24,13 +73,54 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
   props: { locale: (params?.locale as Locale) || 'id' },
 });
 
+/* ─── Inline styles (no React.CSSProperties casts needed) ─── */
+
+const overlayStyle: Record<string, string> = {
+  position: 'fixed', inset: '0', zIndex: '9999',
+  background: 'rgba(0,0,0,0.75)', display: 'flex',
+  alignItems: 'center', justifyContent: 'center', padding: '1rem',
+};
+
+const modalStyle: Record<string, string> = {
+  background: '#1a1a2e', borderRadius: '1.25rem', padding: '2rem',
+  maxWidth: '520px', width: '100%', maxHeight: '90vh', overflowY: 'auto',
+  border: '1px solid rgba(0,217,255,0.2)',
+};
+
+const inputStyle: Record<string, string> = {
+  width: '100%', padding: '0.75rem 1rem', borderRadius: '0.75rem',
+  border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.06)',
+  color: '#fff', fontSize: '0.95rem', outline: 'none', marginTop: '0.35rem',
+  boxSizing: 'border-box',
+};
+
+const btnStyle: Record<string, string> = {
+  width: '100%', padding: '0.85rem', borderRadius: '0.75rem', border: 'none',
+  fontWeight: '700', fontSize: '1rem', cursor: 'pointer',
+  color: '#0a0a1a', marginTop: '1rem',
+};
+
+const closeBtnStyle: Record<string, string> = {
+  background: 'none', border: 'none', color: 'var(--text-white-60)',
+  fontSize: '1.5rem', cursor: 'pointer', padding: '0.25rem',
+};
+
 /* ─── Tripay Checkout Modal ─── */
-function TripayModal({ plan, locale, onClose }: { plan: any; locale: 'id' | 'en'; onClose: () => void }) {
+
+function TripayModal({
+  plan,
+  locale,
+  onClose,
+}: {
+  plan: Plan;
+  locale: Locale;
+  onClose: () => void;
+}) {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<Record<string, unknown> | null>(null);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState('');
   const isId = locale === 'id';
@@ -42,153 +132,156 @@ function TripayModal({ plan, locale, onClose }: { plan: any; locale: 'id' | 'en'
       const res = await fetch('/api/create-tripay-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plan: plan.data_plan, customer_name: name, customer_email: email, customer_phone: phone, method: 'QRIS' }),
+        body: JSON.stringify({
+          plan: plan.cta.data_plan,
+          customer_name: name,
+          customer_email: email,
+          customer_phone: phone,
+        }),
       });
-      const data = await res.json();
-      if (!data.success) {
-        setError(data.error || 'Transaction failed');
-        setLoading(false);
-        return;
-      }
+      const data: Record<string, unknown> = await res.json();
+      if (!res.ok) throw new Error((data.message as string) || 'Gagal');
       setResult(data);
-      setLoading(false);
-    } catch (e: any) {
-      setError(e.message || 'Network error');
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'Terjadi kesalahan');
+    } finally {
       setLoading(false);
     }
   };
 
-  const handleCopy = (text: string, label: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(label);
-    setTimeout(() => setCopied(''), 2000);
-  };
-
-  if (!plan) return null;
-
   return (
-    <div style={{
-      position: 'fixed', inset: 0, zIndex: 9999,
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      background: 'rgba(0,0,0,0.8)', padding: '1rem',
-    }} onClick={onClose}>
-      <div style={{
-        background: 'var(--dark-secondary)', borderRadius: '1rem',
-        maxWidth: 440, width: '100%', padding: '2rem',
-        border: '1px solid rgba(124,58,237,0.3)', position: 'relative',
-        maxHeight: '90vh', overflowY: 'auto',
-      }} onClick={e => e.stopPropagation()}>
-        <button onClick={onClose} style={{
-          position: 'absolute', top: '1rem', right: '1rem',
-          background: 'none', border: 'none', color: 'var(--text-white-60)',
-          fontSize: '1.5rem', cursor: 'pointer',
-        }}>✕</button>
-
-        <h3 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '0.25rem' }}>{plan.name}</h3>
-        <p style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--teal-primary)', marginBottom: '1.5rem' }}>
-          {plan.price} <span style={{ fontSize: '0.9rem', color: 'var(--text-white-60)', fontWeight: 400 }}>{plan.period}</span>
-        </p>
+    <div
+      style={overlayStyle}
+      onClick={(e: React.MouseEvent) => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div style={modalStyle}>
+        {/* Header */}
+        <div
+          style={{
+            display: 'flex', justifyContent: 'space-between',
+            alignItems: 'center', marginBottom: '1.5rem',
+          }}
+        >
+          <div>
+            <span style={{ fontSize: '1.5rem' }}>{plan.icon}</span>
+            <h3 style={{ margin: '0.25rem 0 0', color: '#fff', fontSize: '1.35rem' }}>{plan.name}</h3>
+            <p style={{ margin: 0, color: 'var(--text-white-60)', fontSize: '0.85rem' }}>
+              {plan.price} — {plan.tagline}
+            </p>
+          </div>
+          <button onClick={onClose} style={closeBtnStyle}>✕</button>
+        </div>
 
         {!result ? (
           <>
             <div style={{ marginBottom: '1rem' }}>
-              <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-white-60)', marginBottom: '0.3rem' }}>
-                {isId ? 'Nama *' : 'Name *'}
+              <label style={{ color: 'var(--text-white-80)', fontSize: '0.85rem', fontWeight: 600 }}>
+                {isId ? 'Nama Lengkap' : 'Full Name'}
               </label>
-              <input value={name} onChange={e => setName(e.target.value)} placeholder={isId ? 'Nama lengkap' : 'Full name'}
-                style={inputStyle} />
+              <input
+                style={inputStyle}
+                value={name}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+                placeholder={isId ? 'Budi Santoso' : 'John Doe'}
+              />
             </div>
             <div style={{ marginBottom: '1rem' }}>
-              <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-white-60)', marginBottom: '0.3rem' }}>
-                Email *
+              <label style={{ color: 'var(--text-white-80)', fontSize: '0.85rem', fontWeight: 600 }}>Email</label>
+              <input
+                style={inputStyle} type="email" value={email}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                placeholder="budi@email.com"
+              />
+            </div>
+            <div style={{ marginBottom: '1rem' }}>
+              <label style={{ color: 'var(--text-white-80)', fontSize: '0.85rem', fontWeight: 600 }}>
+                {isId ? 'No. WhatsApp (opsional)' : 'Phone Number (optional)'}
               </label>
-              <input value={email} onChange={e => setEmail(e.target.value)} placeholder="email@example.com" type="email"
-                style={inputStyle} />
-            </div>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-white-60)', marginBottom: '0.3rem' }}>
-                {isId ? 'No. WhatsApp (opsional)' : 'WhatsApp (optional)'}
-              </label>
-              <input value={phone} onChange={e => setPhone(e.target.value)} placeholder="08xxxxxxxxxx"
-                style={inputStyle} />
+              <input
+                style={inputStyle}
+                value={phone}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}
+                placeholder="0812xxxx"
+              />
             </div>
 
-            <div style={{
-              background: 'rgba(29,158,117,0.1)', borderRadius: '0.75rem',
-              padding: '0.75rem 1rem', marginBottom: '1.5rem',
-              fontSize: '0.8rem', color: 'var(--teal-primary)',
-              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-            }}>
-              <span>💳 {isId ? 'Pembayaran via QRIS' : 'Pay via QRIS'}</span>
-              <span style={{ color: 'var(--text-white-70)' }}>{plan.price}</span>
-            </div>
+            {error && <p style={{ color: '#EF4444', fontSize: '0.875rem', margin: '0.5rem 0' }}>❌ {error}</p>}
 
-            {error && (
-              <div style={{
-                background: 'rgba(239,68,68,0.1)', color: '#ef4444',
-                padding: '0.75rem', borderRadius: '0.5rem', fontSize: '0.85rem',
-                marginBottom: '1rem',
-              }}>{error}</div>
-            )}
-
-            <button onClick={handleSubmit} disabled={loading || !name || !email} style={{
-              width: '100%', padding: '0.9rem', borderRadius: '0.75rem',
-              border: 'none', background: loading ? 'var(--text-white-30)' : 'linear-gradient(135deg, var(--teal-primary), var(--violet-light))',
-              color: loading ? '#888' : '#fff', fontSize: '1rem', fontWeight: 700,
-              cursor: loading ? 'not-allowed' : 'pointer',
-            }}>
-              {loading ? (isId ? 'Memproses...' : 'Processing...') : (isId ? `Bayar ${plan.price} via QRIS` : `Pay ${plan.price} via QRIS`)}
+            <button
+              style={{ ...btnStyle, opacity: loading ? 0.6 : 1, background: 'linear-gradient(135deg, #00D9FF, #0d9488)' }}
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? (isId ? 'Memproses...' : 'Processing...') : `${isId ? 'Bayar ' : 'Pay '}${plan.price}`}
             </button>
-
-            <p style={{ fontSize: '0.75rem', color: 'var(--text-white-50)', textAlign: 'center', marginTop: '1rem' }}>
+            <p style={{ color: 'var(--text-white-40)', fontSize: '0.75rem', textAlign: 'center', marginTop: '0.75rem' }}>
               {isId
-                ? 'Atau chat Paijo di Telegram @codergaboets untuk metode bayar lain'
-                : 'Or chat Paijo on Telegram @codergaboets for other payment methods'}
+                ? 'Pembayaran diproses via Tripay (QRIS / VA / E-Wallet). Data kamu aman.'
+                : 'Payment via Tripay (QRIS / VA / E-Wallet). Your data is secure.'}
             </p>
           </>
         ) : (
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✅</div>
-            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem' }}>
-              {isId ? 'Pesanan Dibuat!' : 'Order Created!'}
-            </h4>
-            <p style={{ color: 'var(--text-white-70)', fontSize: '0.85rem', marginBottom: '1.5rem' }}>
-              {isId ? 'Scan QRIS atau klik link di bawah untuk bayar:' : 'Scan QRIS or click the link below to pay:'}
+          <div style={{ textAlign: 'center', padding: '1rem 0' }}>
+            <span style={{ fontSize: '3rem' }}>✅</span>
+            <h3 style={{ color: '#34D399', margin: '0.75rem 0 0.5rem' }}>
+              {isId ? 'Pembayaran Dibuat!' : 'Payment Created!'}
+            </h3>
+            <p style={{ color: 'var(--text-white-60)', fontSize: '0.875rem', marginBottom: '1.25rem' }}>
+              {isId ? 'Silakan selesaikan pembayaran:' : 'Please complete payment:'}
             </p>
 
-            {result.checkout_url ? (
-              <a href={result.checkout_url} target="_blank" rel="noopener noreferrer" style={{
-                display: 'block', padding: '0.9rem', borderRadius: '0.75rem',
-                background: 'linear-gradient(135deg, var(--teal-primary), var(--violet-light))',
-                color: '#fff', fontWeight: 700, textDecoration: 'none',
-                marginBottom: '1rem', fontSize: '0.95rem',
-              }}>
-                🔗 {isId ? 'Buka Halaman Pembayaran' : 'Open Payment Page'}
+            {(typeof result.payment_url === 'string') && (
+              <a
+                href={result.payment_url}
+                target="_blank" rel="noopener noreferrer"
+                style={{
+                  display: 'inline-block', padding: '0.85rem 2rem', borderRadius: '0.75rem',
+                  background: 'linear-gradient(135deg, #00D9FF, #0d9488)', color: '#0a0a1a',
+                  fontWeight: 700, textDecoration: 'none', marginBottom: '1rem',
+                }}
+              >
+                {isId ? '🔗 Bayar Sekarang' : '🔗 Pay Now'}
               </a>
-            ) : null}
+            )}
 
-            {result.pay_code && (
-              <div style={{
-                background: 'rgba(255,255,255,0.05)', borderRadius: '0.75rem',
-                padding: '1rem', marginBottom: '1rem',
-              }}>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-white-60)', marginBottom: '0.3rem' }}>
-                  {isId ? 'Kode Bayar / VA:' : 'Payment Code / VA:'}
+            {(typeof result.reference === 'string') && (
+              <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '0.75rem', padding: '0.75rem', marginTop: '0.75rem' }}>
+                <p style={{ color: 'var(--text-white-60)', fontSize: '0.8rem', marginBottom: '0.25rem' }}>
+                  {isId ? 'Kode Referensi:' : 'Reference:'}
                 </p>
-                <p style={{ fontSize: '1.3rem', fontWeight: 800, letterSpacing: '0.1em' }}>{result.pay_code}</p>
-                <button onClick={() => handleCopy(result.pay_code, 'pay_code')} style={{
-                  background: 'rgba(29,158,117,0.2)', border: 'none', color: 'var(--teal-primary)',
-                  padding: '0.4rem 1rem', borderRadius: '0.5rem', cursor: 'pointer',
-                  marginTop: '0.5rem', fontSize: '0.85rem',
-                }}>
-                  {copied === 'pay_code' ? '✅ Copied!' : '📋 Copy'}
-                </button>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                  <code style={{ color: '#00D9FF', fontSize: '1.1rem', fontWeight: 700 }}>
+                    {result.reference as string}
+                  </code>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(result.reference as string);
+                      setCopied(result.reference as string);
+                      setTimeout(() => setCopied(''), 2000);
+                    }}
+                    style={{
+                      background: 'none', border: '1px solid rgba(255,255,255,0.15)',
+                      borderRadius: '0.5rem', color: '#fff', cursor: 'pointer',
+                      padding: '0.25rem 0.5rem', fontSize: '0.75rem',
+                    }}
+                  >
+                    {copied === result.reference ? '✅' : '📋'}
+                  </button>
+                </div>
               </div>
             )}
 
-            <p style={{ fontSize: '0.75rem', color: 'var(--text-white-50)' }}>
-              {isId ? 'Setelah bayar, chat Paijo di @codergaboets untuk akses materi.' : 'After payment, DM Paijo on @codergaboets for material access.'}
-            </p>
+            <button
+              onClick={onClose}
+              style={{
+                display: 'block', margin: '1.25rem auto 0', background: 'none',
+                border: '1px solid rgba(255,255,255,0.15)', borderRadius: '0.5rem',
+                color: 'var(--text-white-60)', cursor: 'pointer', padding: '0.5rem 1.5rem',
+                fontSize: '0.875rem',
+              }}
+            >
+              {isId ? 'Tutup' : 'Close'}
+            </button>
           </div>
         )}
       </div>
@@ -196,497 +289,460 @@ function TripayModal({ plan, locale, onClose }: { plan: any; locale: 'id' | 'en'
   );
 }
 
-const inputStyle: React.CSSProperties = {
-  width: '100%', padding: '0.7rem 0.9rem', borderRadius: '0.5rem',
-  border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.3)',
-  color: '#fff', fontSize: '0.95rem', outline: 'none',
-  boxSizing: 'border-box',
-};
+/* ─── Track Detail Modal ─── */
 
-/* ─── Founder Section ─── */
-function FounderSection({ d, isId }: { d: any; isId: boolean }) {
+function TrackModal({
+  track,
+  onClose,
+}: {
+  track: Track;
+  onClose: () => void;
+}) {
+  const [openCourse, setOpenCourse] = useState<string | null>(null);
+
   return (
-    <section style={{
-      padding: '6rem 0',
-      background: 'linear-gradient(180deg, var(--dark-primary) 0%, rgba(124,58,237,0.03) 50%, var(--dark-secondary) 100%)',
-      borderTop: '1px solid rgba(124,58,237,0.1)',
-      borderBottom: '1px solid rgba(124,58,237,0.1)',
-    }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
-        <p className="eyebrow" style={{ textAlign: 'center', width: '100%', marginBottom: '0.75rem' }}>
-          🧑‍💻 TENTANG MENTOR
+    <div
+      style={overlayStyle}
+      onClick={(e: React.MouseEvent) => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div style={{ ...modalStyle, border: '1px solid rgba(255,255,255,0.08)', maxWidth: '680px' }}>
+        {/* Header */}
+        <div
+          style={{
+            display: 'flex', justifyContent: 'space-between',
+            alignItems: 'flex-start', marginBottom: '1.5rem',
+          }}
+        >
+          <div>
+            <span style={{ fontSize: '2rem' }}>{track.icon}</span>
+            <h3 style={{ margin: '0.5rem 0 0.25rem', color: '#fff', fontSize: '1.5rem' }}>{track.title}</h3>
+            <p style={{ margin: 0, color: 'var(--text-white-60)', fontSize: '0.9rem' }}>{track.subtitle}</p>
+            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
+              <span style={{
+                fontSize: '0.75rem', color: 'var(--text-white-50)',
+                background: 'rgba(255,255,255,0.06)', padding: '0.2rem 0.6rem',
+                borderRadius: '999px',
+              }}>{track.courseCount} kursus</span>
+              <span style={{
+                fontSize: '0.75rem', color: 'var(--text-white-50)',
+                background: 'rgba(255,255,255,0.06)', padding: '0.2rem 0.6rem',
+                borderRadius: '999px',
+              }}>{track.level}</span>
+            </div>
+          </div>
+          <button onClick={onClose} style={closeBtnStyle}>✕</button>
+        </div>
+
+        <p style={{ color: 'var(--text-white-70)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+          {track.desc}
         </p>
-        <h2 style={{
-          textAlign: 'center', fontSize: '2.5rem', fontWeight: 800,
-          fontFamily: 'var(--font-heading)', marginBottom: '0.5rem',
-        }}>
-          Belajar Langsung dari <span style={{ background: 'linear-gradient(135deg, var(--teal-primary), #7C3AED)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Praktisi</span>
-        </h2>
-        <p style={{
-          textAlign: 'center', color: 'var(--text-white-60)', fontSize: '1rem',
-          marginBottom: '3rem',
-        }}>{d.tagline}</p>
 
-        {/* Stats Grid */}
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-          gap: '1rem', marginBottom: '3rem',
-        }}>
-          {d.stats.map((s: any) => (
-            <div key={s.label} style={{
-              background: 'rgba(255,255,255,0.03)', borderRadius: '1rem',
-              padding: '1.5rem', textAlign: 'center',
-              border: '1px solid rgba(255,255,255,0.06)',
-            }}>
-              <div style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--teal-primary)' }}>{s.value}</div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-white-60)', marginTop: '0.25rem' }}>{s.label}</div>
-            </div>
-          ))}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          {track.courses.map((course) => {
+            const isOpen = openCourse === course.id;
+            return (
+              <div
+                key={course.id}
+                style={{
+                  background: 'rgba(255,255,255,0.03)', borderRadius: '0.75rem',
+                  border: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden',
+                }}
+              >
+                <button
+                  onClick={() => setOpenCourse(isOpen ? null : course.id)}
+                  style={{
+                    width: '100%', padding: '1rem', background: 'none', border: 'none',
+                    cursor: 'pointer', display: 'flex', alignItems: 'center',
+                    justifyContent: 'space-between', color: '#fff', textAlign: 'left',
+                    fontSize: '0.95rem', fontWeight: 600, gap: '0.75rem',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flex: 1 }}>
+                    <span style={{ fontSize: '1.25rem' }}>{course.icon}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                        <span>{course.title}</span>
+                        {course.badge && (
+                          <span style={{
+                            fontSize: '0.65rem', color: '#fff',
+                            padding: '0.15rem 0.45rem', borderRadius: '999px',
+                            background: course.badgeColor ?? '#6B7280',
+                          }}>
+                            {course.badge}
+                          </span>
+                        )}
+                      </div>
+                      <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.25rem' }}>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--text-white-50)' }}>⏱ {course.duration}</span>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--text-white-50)' }}>📚 {course.lessons} pelajaran</span>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--text-white-50)' }}>📊 {course.level}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <span style={{
+                    fontSize: '0.85rem', color: 'var(--text-white-50)',
+                    transform: isOpen ? 'rotate(180deg)' : 'none',
+                    transition: 'transform 0.2s',
+                  }}>▼</span>
+                </button>
+
+                {isOpen && (
+                  <div style={{ padding: '0 1rem 1rem' }}>
+                    <p style={{ color: 'var(--text-white-70)', fontSize: '0.85rem', lineHeight: 1.5, marginBottom: '0.75rem' }}>
+                      {course.desc}
+                    </p>
+                    <div style={{ marginBottom: '0.75rem' }}>
+                      <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-white-50)', marginBottom: '0.35rem' }}>
+                        Tools:
+                      </p>
+                      <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
+                        {course.tools.map((tool) => (
+                          <span key={tool} style={{
+                            fontSize: '0.7rem', background: 'rgba(0,217,255,0.1)',
+                            color: '#00D9FF', padding: '0.2rem 0.5rem', borderRadius: '999px',
+                          }}>
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-white-50)', marginBottom: '0.35rem' }}>
+                        Kamu akan bisa:
+                      </p>
+                      <ul style={{ margin: 0, paddingLeft: '1rem', fontSize: '0.8rem', color: 'var(--text-white-60)', lineHeight: 1.6 }}>
+                        {course.outcomes.map((o) => <li key={o}>{o}</li>)}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
-        {/* Bio */}
-        <div style={{
-          maxWidth: 800, margin: '0 auto 3rem',
-          background: 'rgba(124,58,237,0.05)', borderRadius: '1rem',
-          padding: '2rem',
-          border: '1px solid rgba(124,58,237,0.15)',
-        }}>
-          <p style={{ color: 'var(--text-white-80)', lineHeight: 1.8, fontSize: '0.95rem' }}>
-            {d.bio}
-          </p>
-        </div>
-
-        {/* OSS Achievements */}
-        <h3 style={{
-          textAlign: 'center', fontSize: '1.1rem', fontWeight: 700,
-          marginBottom: '1.25rem', color: 'var(--text-white-70)',
-        }}>
-          ⭐ Kontribusi Open Source
-        </h3>
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '0.75rem',
-        }}>
-          {d.achievements.map((a: any) => (
-            <div key={a.text} style={{
-              display: 'flex', alignItems: 'center', gap: '0.75rem',
-              background: 'rgba(255,255,255,0.03)', borderRadius: '0.75rem',
-              padding: '0.85rem 1.15rem',
-              border: '1px solid rgba(255,255,255,0.06)',
-            }}>
-              <span style={{ fontSize: '1.3rem', flexShrink: 0 }}>{a.icon}</span>
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-white-80)', lineHeight: 1.4 }}>{a.text}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Telegram CTA */}
-        <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
-          <a href={`https://t.me/codergaboets`} target="_blank" rel="noopener noreferrer" style={{
-            display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-            padding: '0.85rem 2rem', borderRadius: '999px',
-            background: 'var(--accent-gradient)',
-            color: '#000', fontWeight: 700, textDecoration: 'none',
-            fontSize: '0.95rem',
-          }}>
-            💬 Chat @codergaboets — Konsultasi Gratis
+        <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
+          <a
+            href="#pricing"
+            onClick={(e: React.MouseEvent) => {
+              e.preventDefault();
+              onClose();
+              setTimeout(() => {
+                document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+              }, 300);
+            }}
+            style={{
+              display: 'inline-block', padding: '0.75rem 2rem', borderRadius: '0.75rem',
+              background: 'linear-gradient(135deg, #00D9FF, #0d9488)',
+              color: '#0a0a1a', fontWeight: 700, textDecoration: 'none', fontSize: '0.95rem',
+            }}
+          >
+            Ambil Paket Ini →
           </a>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
-/* ─── Payment Info Section ─── */
-function PaymentInfoSection({ d, isId }: { d: any; isId: boolean }) {
+/* ─── Founder Section ─── */
+
+function FounderSection({ isId }: { isId: boolean }) {
+  const { name, alias, role, bio, stats, contributions, tg, wa } = instructorData;
+
   return (
-    <section style={{ padding: '4rem 0', background: 'var(--dark-secondary)' }}>
-      <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 1.5rem', textAlign: 'center' }}>
-        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem' }}>
-          {d.paymentInfo.title}
-        </h3>
-        <div style={{
-          display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.75rem',
-          marginBottom: '1.5rem',
-        }}>
-          {d.paymentInfo.methods.map((m: string) => (
-            <span key={m} style={{
-              background: 'rgba(29,158,117,0.1)', borderRadius: '999px',
-              padding: '0.5rem 1rem', fontSize: '0.85rem',
-              color: 'var(--teal-primary)', border: '1px solid rgba(29,158,117,0.2)',
-            }}>{m}</span>
-          ))}
+    <section id="founder" style={{ padding: '5rem 1.5rem', background: 'var(--dark-hero)' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '3rem', alignItems: 'start' }}>
+          {/* Avatar */}
+          <div>
+            <div style={{
+              width: '100%', aspectRatio: '1', borderRadius: '1.25rem',
+              background: 'linear-gradient(135deg, #00D9FF20, #7C3AED20)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '6rem', fontWeight: 700,
+            }}>
+              {alias[0].toUpperCase()}
+            </div>
+          </div>
+
+          {/* Info */}
+          <div>
+            <p style={{
+              fontSize: '0.8rem', fontWeight: 600, color: '#00D9FF',
+              letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.5rem',
+            }}>
+              {isId ? 'TENTANG PEMBIMBING' : 'ABOUT THE INSTRUCTOR'}
+            </p>
+            <h2 style={{ fontSize: '2rem', fontWeight: 700, margin: '0 0 0.25rem', color: '#fff' }}>
+              {name}
+            </h2>
+            <p style={{ color: 'var(--text-white-50)', fontSize: '0.9rem', marginBottom: '1rem' }}>{role}</p>
+            <p style={{ color: 'var(--text-white-70)', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+              {bio}
+            </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem', marginBottom: '1.5rem' }}>
+              {stats.map((s: { value: string; label: string }) => (
+                <div key={s.label} style={{
+                  textAlign: 'center', background: 'rgba(255,255,255,0.03)',
+                  borderRadius: '0.75rem', padding: '0.75rem',
+                }}>
+                  <div style={{ fontSize: '1.25rem', fontWeight: 700, color: '#00D9FF' }}>{s.value}</div>
+                  <div style={{ fontSize: '0.65rem', color: 'var(--text-white-50)', marginTop: '0.15rem' }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <p style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-white-50)', marginBottom: '0.5rem' }}>
+              {isId ? 'Kontribusi Open Source:' : 'Open Source Contributions'}
+            </p>
+            <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+              {contributions.map((c: { icon: string; name: string; stars: string; desc: string }) => (
+                <span key={c.name} style={{
+                  fontSize: '0.7rem', color: '#00D9FF', background: 'rgba(0,217,255,0.1)',
+                  padding: '0.25rem 0.6rem', borderRadius: '999px',
+                }}>
+                  {c.icon} {c.name} ⭐{c.stars}
+                </span>
+              ))}
+            </div>
+
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
+              <a href={tg} target="_blank" rel="noopener noreferrer" style={{
+                padding: '0.65rem 1.5rem', borderRadius: '0.75rem',
+                background: 'linear-gradient(135deg, #0088cc, #00a8e8)',
+                color: '#fff', fontWeight: 600, textDecoration: 'none', fontSize: '0.85rem',
+              }}>
+                💬 Telegram
+              </a>
+              <a href={wa} target="_blank" rel="noopener noreferrer" style={{
+                padding: '0.65rem 1.5rem', borderRadius: '0.75rem',
+                border: '1px solid rgba(255,255,255,0.15)',
+                color: '#fff', fontWeight: 600, textDecoration: 'none', fontSize: '0.85rem',
+              }}>
+                📱 WhatsApp
+              </a>
+            </div>
+          </div>
         </div>
-        <p style={{ color: 'var(--text-white-60)', fontSize: '0.85rem', marginBottom: '1.5rem' }}>
-          {d.paymentInfo.note}
-        </p>
-        <a href={d.paymentInfo.telegram} target="_blank" rel="noopener noreferrer" style={{
-          display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-          color: 'var(--teal-primary)', textDecoration: 'none',
-          fontSize: '0.9rem', fontWeight: 600,
-        }}>
-          💬 {isId ? 'Ada kendala bayar? Chat Paijo' : 'Payment issue? Chat Paijo'}
-        </a>
       </div>
     </section>
   );
 }
 
 /* ─── Main Page ─── */
+
 export default function BelajarAIPage({ locale }: { locale: Locale }) {
-  const d = belajaraiData[locale];
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
+  const [selectedTrack, setSelectedTrack] = useState<Track | null>(null);
   const isId = locale === 'id';
-  const [selectedPlan, setSelectedPlan] = useState<any>(null);
+  const d = belajaraiData[locale];
+  const latestTracks = learningTracks;
+
+  const pains = [
+    { icon: '⏰', title: isId ? 'Buang Waktu' : 'Wasting Time', desc: isId ? 'Berjam-jam ngurusin tugas repetitif yang seharusnya bisa otomatis.' : 'Hours lost on repetitive tasks that should be automated.' },
+    { icon: '📉', title: isId ? 'Ketinggalan Zaman' : 'Falling Behind', desc: isId ? 'Bisnis dan karir semakin AI-driven. Tanpa skill AI, kamu tertinggal.' : 'Business and careers are increasingly AI-driven. Without AI skills, you fall behind.' },
+    { icon: '💸', title: isId ? 'Biaya Mahal' : 'High Costs', desc: isId ? 'Kursus AI luar negeri mahal dan tidak relevan dengan konteks Indonesia.' : 'Overseas AI courses are expensive and irrelevant to the Indonesian context.' },
+    { icon: '🤯', title: isId ? 'Kebingungan Mulai' : 'Confused Where to Start', desc: isId ? 'Informasi AI berserakan, bingung mana yang penting dan mana yang hype.' : 'AI information is scattered. Hard to tell what matters vs hype.' },
+  ];
+  const bridge = isId
+    ? 'Kami bikin jalan belajar yang jelas, praktis, dan langsung bisa dipake — tanpa pusing mikir "mulai dari mana".'
+    : 'We built a clear, practical learning path — no more wondering "where do I start?"';
+
+  const howSteps = [
+    { num: '1', title: isId ? 'Pilih Track' : 'Pick Your Track', desc: isId ? 'Pilih dari 4 track sesuai kebutuhan: UMKM, Konten, Pelajar, atau Guru.' : 'Choose from 4 tracks for your needs: UMKM, Content, Student, or Teacher.' },
+    { num: '2', title: isId ? 'Kursus Siap Pakai' : 'Ready Courses', desc: isId ? 'Akses langsung semua kursus dalam track pilihanmu. Belajar step-by-step.' : 'Access all courses in your chosen track. Learn step-by-step.' },
+    { num: '3', title: isId ? 'Praktik Langsung' : 'Practice Immediately', desc: isId ? 'Setiap materi ada proyek nyata. Langsung praktek, bukan cuma teori.' : 'Every module has real projects. Hands-on, not just theory.' },
+    { num: '4', title: isId ? 'Dapat Sertifikat' : 'Get Certified', desc: isId ? 'Selesaikan kursus dan dapatkan sertifikat kelulusan. Bukti skill AI-mu.' : 'Complete courses and earn certificates. Proof of your AI skills.' },
+  ];
 
   const handlePay = (planId: string) => {
-    const plan = d.pricing.find((p: any) => p.id === planId);
+    const plan = pricingPlans.find((p) => p.id === planId || p.cta.data_plan === planId);
     if (plan) setSelectedPlan(plan);
   };
 
-  // ─── Structured Data (JSON-LD) ───
-  const courseJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": isId ? "Belajar AI Academy — Kuasai AI dari Nol sampai Cuan" : "AI Academy — Master AI from Zero to Revenue",
-    "description": isId
-      ? "Kursus AI Indonesia dari kontributor Next.js, trpc, Prisma, Vue.js. 6 modul praktis: prompt engineering, content AI, automation, monetization."
-      : "AI course from contributor to Next.js, trpc, Prisma, Vue.js. 6 practical modules: prompt engineering, content AI, automation, monetization.",
-    "provider": {
-      "@type": "Organization",
-      "name": "BerkahKarya",
-      "url": "https://berkahkarya.org"
-    },
-    "instructor": {
-      "@type": "Person",
-      "name": "Fikri Izzuddin",
-      "alternateName": "Paijo oyi77",
-      "url": "https://oyi77.is-a.dev",
-      "sameAs": [
-        "https://github.com/oyi77",
-        "https://linkedin.com/in/fikriizzuddin",
-        "https://oyi77.is-a.dev"
-      ],
-      "jobTitle": "Technical Lead & Founder",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "BerkahKarya"
-      }
-    },
-    "offers": d.pricing?.map((p: any) => ({
-      "@type": "Offer",
-      "name": p.name,
-      "price": p.priceRaw || 0,
-      "priceCurrency": "IDR",
-      "availability": "https://schema.org/InStock"
-    })),
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "online",
-      "courseWorkload": "PT30H"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "50",
-      "bestRating": "5"
-    }
-  };
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": d.faq?.items?.map((f: any) => ({
-      "@type": "Question",
-      "name": f.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": f.answer
-      }
-    })) || []
-  };
   return (
     <Layout
       title={d.meta.title}
       description={d.meta.description}
-      keywords={d.meta.keywords}
-      jsonLd={[courseJsonLd, faqJsonLd]}
     >
       {/* Hero */}
       <HeroSection
-        eyebrow={d.hero.eyebrow}
-        title={d.hero.title}
-        description={d.hero.description}
+        eyebrow={isId ? '🎓 Platform Belajar AI #1 Indonesia' : '🎓 #1 AI Learning Platform'}
+        title={isId
+          ? 'Kuasai AI Sesuai Kebutuhanmu.'
+          : 'Master AI Your Way.'}
+        description={isId
+          ? 'Dari UMKM sampai ruang kelas — kami punya jalur belajar yang tepat.'
+          : 'From SMEs to classrooms — we have the right learning path for you.'}
         buttons={[
-          { ...d.hero.buttons[0], href: `/${locale}/belajar/kurikulum` },
-          ...d.hero.buttons.slice(1),
+          { text: isId ? 'Lihat Track →' : 'View Tracks →', href: '#tracks', primary: true },
+          { text: isId ? 'Konsultasi Gratis' : 'Free Consult', href: 'https://t.me/codergaboets', primary: false },
         ]}
-        dark
-        badges={d.hero.badges}
-        character={{ src: '/characters/vilona-side.jpg', alt: 'Belajar AI' }}
+        badges={[
+          `✅ ${latestTracks.reduce((a, t) => a + t.courses.length, 0).toString()}+ Kursus`,
+          isId ? '✅ Dibimbing Praktisi' : '✅ Guided by Practitioner',
+          isId ? '✅ Garansi 7 Hari' : '✅ 7-Day Guarantee',
+        ]}
       />
 
-      {/* ━━ P = PAIN (Hero subtitle + Amplify) ━━ */}
-      {d.hero.subtitle && (
-        <section style={{ padding: '0 1.5rem 3rem', maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
-          <p style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--teal-primary)', marginBottom: '0.75rem' }}>
-            {d.hero.subtitle}
+      {/* Stats Row */}
+      <StatsRow items={siteStats} />
+
+      {/* Problem Section */}
+      <ProblemSection
+        hook={isId ? 'Kenapa belajar AI itu penting sekarang?' : 'Why learn AI right now?'}
+        pains={pains}
+        bridge={bridge}
+      />
+
+      {/* Learning Tracks */}
+      <section id="tracks" style={{ padding: '5rem 1.5rem', background: 'var(--dark-body)' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <p style={{
+            fontSize: '0.8rem', fontWeight: 600, color: '#00D9FF',
+            letterSpacing: '0.1em', textTransform: 'uppercase',
+            textAlign: 'center', marginBottom: '0.5rem',
+          }}>
+            {isId ? 'PILIH JALAN BELAJAR' : 'CHOOSE YOUR PATH'}
           </p>
-          {d.hero.painAmplify && (
-            <p style={{ fontSize: '0.95rem', color: 'var(--text-white-70)', lineHeight: 1.7, maxWidth: 650, margin: '0 auto', fontStyle: 'italic' }}>
-              {d.hero.painAmplify}
-            </p>
-          )}
-        </section>
-      )}
+          <h2 style={{
+            fontSize: '2.25rem', fontWeight: 700, textAlign: 'center',
+            margin: '0 0 0.5rem', color: '#fff',
+          }}>
+            {isId ? '4 Track yang Cocok Buat Kamu' : '4 Tracks Made for You'}
+          </h2>
+          <p style={{
+            color: 'var(--text-white-50)', textAlign: 'center', fontSize: '1rem',
+            marginBottom: '3rem', maxWidth: 600, marginLeft: 'auto',
+            marginRight: 'auto',
+          }}>
+            {isId
+              ? 'Dari pemula sampai mahir. Pilih track lalu akses semua kursusnya.'
+              : 'From beginner to advanced. Pick a track and access all courses.'}
+          </p>
 
-      {/* ━━ A = AGITATE LEVEL 1 ━━ */}
-      {d.problem && (
-        <ProblemSection
-          hook={d.problem.hook}
-          pains={[...d.problem.pains]}
-          bridge={d.problem.bridge}
-        />
-      )}
-
-      {/* ━━ A = AGITATE LEVEL 2 — Consequences ━━ */}
-      {d.pains && d.pains.length > 0 && (
-        <section style={{ padding: '4rem 0', background: 'rgba(239,68,68,0.03)', borderTop: '1px solid rgba(239,68,68,0.1)', borderBottom: '1px solid rgba(239,68,68,0.1)' }}>
-          <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 1.5rem' }}>
-            <p className="eyebrow" style={{ textAlign: 'center', width: '100%', marginBottom: '0.5rem' }}>⏰ REALITAS</p>
-            <h2 style={{ textAlign: 'center', fontSize: '1.6rem', fontWeight: 800, fontFamily: 'var(--font-heading)', marginBottom: '2.5rem' }}>
-              {isId ? 'Ini Yang Terjadi Kalo Lo Gak Gerak Sekarang:' : 'This Is What Happens If You Don\'t Act Now:'}
-            </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-              {d.pains.map((p: any, i: number) => (
-                <div key={i} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '1rem', padding: '1.5rem', border: '1px solid rgba(239,68,68,0.15)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{p.icon}</div>
-                  <h3 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.35rem' }}>{p.title}</h3>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--text-white-60)', lineHeight: 1.5 }}>{p.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ━━ A = ASPIRE — Vision / Transformation ━━ */}
-      {d.vision && (
-        <section style={{ padding: '5rem 0', background: 'linear-gradient(180deg, rgba(29,158,117,0.03), var(--dark-primary), rgba(124,58,237,0.03))' }}>
-          <div style={{ maxWidth: 1000, margin: '0 auto', padding: '0 1.5rem' }}>
-            <p className="eyebrow" style={{ textAlign: 'center', width: '100%', marginBottom: '0.5rem' }}>✨ {d.vision.headline}</p>
-            <h2 style={{ textAlign: 'center', fontSize: '1.8rem', fontWeight: 800, fontFamily: 'var(--font-heading)', marginBottom: '2.5rem' }}>
-              {d.vision.title}
-            </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
-              {d.vision.items.map((v: any, i: number) => (
-                <div key={i} style={{ background: 'rgba(29,158,117,0.05)', borderRadius: '1rem', padding: '1.5rem', border: '1px solid rgba(29,158,117,0.15)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '2.2rem', marginBottom: '0.75rem' }}>{v.icon}</div>
-                  <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.4rem' }}>{v.title}</h3>
-                  <p style={{ fontSize: '0.83rem', color: 'var(--text-white-70)', lineHeight: 1.6 }}>{v.desc}</p>
-                </div>
-              ))}
-            </div>
-            <p style={{ textAlign: 'center', marginTop: '2rem', fontSize: '1.05rem', fontWeight: 600, color: 'var(--teal-primary)' }}>
-              {d.vision.hook}
-            </p>
-          </div>
-        </section>
-      )}
-
-      {/* ━━ S = SOLUTION — Credibility ━━ */}
-      {d.founder && <FounderSection d={d.founder} isId={isId} />}
-      <StatsRow items={[...d.stats]} />
-
-      {/* For Whom */}
-      {d.forWhom && (
-        <section className="dark-bg" style={{ padding: '6rem 0' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
-            <p className="eyebrow" style={{ textAlign: 'center', width: '100%' }}>🎯 TARGET AUDIENCE</p>
-            <h2 style={{
-              textAlign: 'center', fontSize: '2.5rem', fontWeight: 800,
-              fontFamily: 'var(--font-heading)', marginBottom: '0.75rem'
-            }}>{d.forWhom.title}</h2>
-            <div style={{
-              display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '1.5rem', marginTop: '3rem'
-            }}>
-              {d.forWhom.items.map((item: { icon: string; title: string; desc: string; pct: string }) => (
-                <div key={item.title} className="card-dark" style={{ padding: '2rem', textAlign: 'center' }}>
-                  <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{item.icon}</div>
-                  <span style={{
-                    display: 'inline-block', background: 'linear-gradient(135deg, var(--teal-primary), var(--violet-light))',
-                    color: '#000', borderRadius: '999px', padding: '0.25rem 0.75rem', fontSize: '0.8rem',
-                    fontWeight: 700, marginBottom: '0.75rem'
-                  }}>{item.pct}</span>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>{item.title}</h3>
-                  <p style={{ color: 'var(--text-white-70)', fontSize: '0.9rem', lineHeight: 1.6 }}>{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Curriculum */}
-      {d.curriculum && (
-        <section className="dark-bg" id="kurikulum" style={{ padding: '6rem 0' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
-            <p className="eyebrow" style={{ textAlign: 'center', width: '100%' }}>📚 KURIKULUM</p>
-            <h2 style={{
-              textAlign: 'center', fontSize: '2.5rem', fontWeight: 800,
-              fontFamily: 'var(--font-heading)', marginBottom: '0.75rem'
-            }}>{d.curriculum.title}</h2>
-            <p style={{
-              textAlign: 'center', color: 'var(--text-white-60)', fontSize: '1rem',
-              maxWidth: 600, margin: '0 auto 3rem'
-            }}>{d.curriculum.subtitle}</p>
-            <div style={{
-              display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '1.25rem'
-            }}>
-              {d.curriculum.modules.map((m: { icon: string; title: string; desc: string }) => (
-                <div key={m.title} className="card-dark" style={{ padding: '1.75rem', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                  <div style={{ fontSize: '2rem', flexShrink: 0, marginTop: '0.15rem' }}>{m.icon}</div>
-                  <div>
-                    <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.4rem' }}>{m.title}</h3>
-                    <p style={{ color: 'var(--text-white-70)', fontSize: '0.85rem', lineHeight: 1.6 }}>{m.desc}</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+            {latestTracks.map((track) => (
+              <div
+                key={track.id}
+                style={{
+                  background: 'rgba(255,255,255,0.03)', borderRadius: '1rem',
+                  border: `1px solid ${track.color}20`, overflow: 'hidden',
+                  display: 'flex', flexDirection: 'column',
+                }}
+              >
+                <div style={{ padding: '1.5rem 1.5rem 1rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                    <span style={{ fontSize: '2rem' }}>{track.icon}</span>
+                    <span style={{
+                      fontSize: '0.65rem', fontWeight: 600,
+                      background: track.colorBg, color: track.color,
+                      padding: '0.2rem 0.6rem', borderRadius: '999px',
+                    }}>
+                      {track.badge}
+                    </span>
+                  </div>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: 700, margin: '0 0 0.25rem', color: '#fff' }}>
+                    {track.title}
+                  </h3>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-white-50)', marginBottom: '0.5rem' }}>
+                    {track.subtitle}
+                  </p>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-white-70)', lineHeight: 1.5, marginBottom: '0.75rem' }}>
+                    {track.desc}
+                  </p>
+                  <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                    <span style={{
+                      fontSize: '0.7rem', color: 'var(--text-white-50)',
+                      background: 'rgba(255,255,255,0.06)', padding: '0.2rem 0.5rem',
+                      borderRadius: '999px',
+                    }}>
+                      📚 {track.courseCount} kursus
+                    </span>
+                    <span style={{
+                      fontSize: '0.7rem', color: 'var(--text-white-50)',
+                      background: 'rgba(255,255,255,0.06)', padding: '0.2rem 0.5rem',
+                      borderRadius: '999px',
+                    }}>
+                      📊 {track.level}
+                    </span>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Technical Track */}
-      {d.technicalTrack && (
-        <section className="dark-bg" style={{ padding: '6rem 0', background: 'var(--dark-secondary)' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
-            <p className="eyebrow" style={{ textAlign: 'center', width: '100%' }}>⚡ TECHNICAL TRACK</p>
-            <h2 style={{
-              textAlign: 'center', fontSize: '2.5rem', fontWeight: 800,
-              fontFamily: 'var(--font-heading)', marginBottom: '0.75rem'
-            }}>{d.technicalTrack.title}</h2>
-            <p style={{
-              textAlign: 'center', color: 'var(--text-white-60)', fontSize: '1rem',
-              maxWidth: 700, margin: '0 auto 3rem'
-            }}>{d.technicalTrack.subtitle}</p>
-            <div style={{
-              display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '1.25rem'
-            }}>
-              {d.technicalTrack.items.map((item: { icon: string; title: string; desc: string }) => (
-                <div key={item.title} className="card-dark" style={{ padding: '1.75rem' }}>
-                  <div style={{ fontSize: '2.2rem', marginBottom: '0.75rem' }}>{item.icon}</div>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.4rem' }}>{item.title}</h3>
-                  <p style={{ color: 'var(--text-white-70)', fontSize: '0.85rem', lineHeight: 1.6 }}>{item.desc}</p>
+                <div style={{ marginTop: 'auto', padding: '0 1.5rem 1.25rem' }}>
+                  <button
+                    onClick={() => setSelectedTrack(track)}
+                    style={{
+                      width: '100%', padding: '0.7rem', borderRadius: '0.75rem', border: 'none',
+                      background: `linear-gradient(135deg, ${track.color}, ${track.color}88)`,
+                      color: '#fff', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer',
+                    }}
+                  >
+                    {isId ? 'Lihat Kursus →' : 'View Courses →'}
+                  </button>
                 </div>
-              ))}
-            </div>
-            <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
-              <span style={{
-                display: 'inline-block', padding: '0.75rem 2rem',
-                background: 'linear-gradient(135deg, #7C3AED, #00D9FF)',
-                color: '#fff', borderRadius: '10px', fontWeight: 700,
-                fontSize: '0.95rem'
-              }}>
-                👑 Tersedia Eksklusif di Platinum Pass
-              </span>
-            </div>
+              </div>
+            ))}
           </div>
-        </section>
-      )}
-
-      {/* Specializations */}
-      {d.specializations && (
-        <section className="dark-bg" style={{ padding: '6rem 0' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
-            <p className="eyebrow" style={{ textAlign: 'center', width: '100%' }}>🚀 SPESIALISASI</p>
-            <h2 style={{
-              textAlign: 'center', fontSize: '2.5rem', fontWeight: 800,
-              fontFamily: 'var(--font-heading)', marginBottom: '0.75rem'
-            }}>{d.specializations.title}</h2>
-            <p style={{
-              textAlign: 'center', color: 'var(--text-white-60)', fontSize: '1rem',
-              maxWidth: 600, margin: '0 auto 3rem'
-            }}>{d.specializations.subtitle}</p>
-            <div style={{
-              display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-              gap: '1.5rem'
-            }}>
-              {d.specializations.items.map((item: { icon: string; title: string; desc: string; badge: string }) => (
-                <div key={item.title} className="card-dark" style={{
-                  padding: '2rem', position: 'relative', overflow: 'hidden',
-                  border: '1px solid rgba(124,58,237,0.25)'
-                }}>
-                  <span style={{
-                    position: 'absolute', top: '1rem', right: '1rem',
-                    background: 'linear-gradient(135deg, var(--gold), #F97316)',
-                    color: '#000', borderRadius: '999px', padding: '0.3rem 0.75rem',
-                    fontSize: '0.75rem', fontWeight: 700
-                  }}>{item.badge}</span>
-                  <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{item.icon}</div>
-                  <h3 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '0.5rem' }}>{item.title}</h3>
-                  <p style={{ color: 'var(--text-white-70)', fontSize: '0.9rem', lineHeight: 1.7 }}>{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* How It Works */}
-      <HowItWorks title={d.howItWorks.title} steps={[...d.howItWorks.steps]} />
-
-      {/* Pricing with Tripay */}
-      <section id="pricing">
-        <PricingTable
-          tiers={d.pricing.map((t: any) => ({
-            ...t,
-            features: [...t.features],
-            cta: { ...t.cta },
-          }))}
-          onPay={handlePay}
-        />
+        </div>
       </section>
 
-      {/* Payment Info */}
-      {d.paymentInfo && <PaymentInfoSection d={d} isId={isId} />}
+      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)' }} />
+
+      {/* How It Works */}
+      <HowItWorks
+        title={isId ? 'Belajar semudah 1-2-3-4' : 'Learning as easy as 1-2-3-4'}
+        steps={howSteps}
+      />
+
+      {/* Founder Section */}
+      <FounderSection isId={isId} />
+
+      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)' }} />
 
       {/* Testimonials */}
-      {d.testimonials && (
-        <TestimonialSection title={d.testimonials.title} items={[...d.testimonials.items]} />
-      )}
+      <TestimonialSection
+        title={isId ? 'Apa Kata Mereka yang Sudah Belajar?' : 'What Our Learners Say'}
+        items={testimonials}
+      />
+
+      {/* Pricing */}
+      <PricingTable tiers={pricingPlans} onPay={handlePay} />
 
       {/* FAQ */}
-      <FAQSection title={d.faq.title} items={[...d.faq.items]} />
+      <FAQSection
+        title={isId ? 'Pertanyaan yang Sering Ditanyakan' : 'Frequently Asked Questions'}
+        items={faqItems}
+      />
 
-      {/* Contact CTA */}
-      {d.contact && (
-        <section style={{
-          padding: '5rem 0',
-          background: 'linear-gradient(135deg, rgba(29,158,117,0.05), rgba(124,58,237,0.05))',
-          textAlign: 'center',
-        }}>
-          <div style={{ maxWidth: 600, margin: '0 auto', padding: '0 1.5rem' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>💬</div>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem' }}>
-              {d.contact.telegram_text}
-            </h2>
-            <p style={{ color: 'var(--text-white-60)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
-              {d.contact.telegram_sub}
-            </p>
-            <a href={d.contact.telegram} target="_blank" rel="noopener noreferrer" style={{
+      {/* Contact */}
+      <section style={{ padding: '5rem 1.5rem', background: 'var(--dark-hero)', textAlign: 'center' }}>
+        <div style={{ maxWidth: 600, margin: '0 auto' }}>
+          <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>💬</span>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem', color: '#fff' }}>
+            {isId ? 'Masih Ragu?' : 'Still Unsure?'}
+          </h2>
+          <p style={{ color: 'var(--text-white-60)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
+            {isId
+              ? 'Diskusi gratis, tidak ada tekanan. Tanya apa saja soal AI — Paijo siap bantu.'
+              : 'Free chat, no pressure. Ask anything about AI — Paijo is here to help.'}
+          </p>
+          <a
+            href="https://t.me/codergaboets"
+            target="_blank" rel="noopener noreferrer"
+            style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
               padding: '0.85rem 2rem', borderRadius: '999px',
               background: 'linear-gradient(135deg, #0088cc, #00a8e8)',
-              color: '#fff', fontWeight: 700, textDecoration: 'none',
-              fontSize: '1rem',
-            }}>
-              💬 @codergaboets
-            </a>
-          </div>
-        </section>
-      )}
+              color: '#fff', fontWeight: 700, textDecoration: 'none', fontSize: '1rem',
+            }}
+          >
+            💬 Chat Paijo di Telegram
+          </a>
+        </div>
+      </section>
 
       {/* CTA */}
       <CTASection
@@ -696,7 +752,14 @@ export default function BelajarAIPage({ locale }: { locale: Locale }) {
       />
 
       {/* Tripay Modal */}
-      {selectedPlan && <TripayModal plan={selectedPlan} locale={locale} onClose={() => setSelectedPlan(null)} />}
+      {selectedPlan && (
+        <TripayModal plan={selectedPlan} locale={locale} onClose={() => setSelectedPlan(null)} />
+      )}
+
+      {/* Track Detail Modal */}
+      {selectedTrack && (
+        <TrackModal track={selectedTrack} onClose={() => setSelectedTrack(null)} />
+      )}
     </Layout>
   );
 }

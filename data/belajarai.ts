@@ -1,459 +1,532 @@
 const TG = 'https://t.me/codergaboets';
 const WA = 'https://wa.me/6285732740006';
 
+// ─── Learning Track Categories ───────────────────────────────────────────────
+export const learningTracks = [
+  {
+    id: 'umkm',
+    icon: '🏪',
+    color: '#F59E0B',
+    colorBg: 'rgba(245,158,11,0.12)',
+    badge: 'Paling Populer',
+    title: 'AI Agent untuk UMKM',
+    subtitle: 'Otomasi bisnis kecil-menengah dengan AI',
+    desc: 'Buat AI Agent yang kerja 24/7 untuk bisnis kamu — CS otomatis, laporan keuangan, stok, accounting. Hemat 80% waktu operasional.',
+    courseCount: 12,
+    level: 'Pemula → Mahir',
+    courses: [
+      {
+        id: 'cs-agent',
+        icon: '🤖',
+        badge: 'Terlaris',
+        badgeColor: '#EF4444',
+        title: 'Buat AI Agent Customer Service Otomatis',
+        desc: 'WhatsApp & Telegram bot yang jawab pertanyaan pelanggan 24/7, handle komplain, proses order — tanpa karyawan CS.',
+        duration: '6 jam',
+        lessons: 18,
+        level: 'Pemula',
+        tools: ['WhatsApp API', 'Telegram Bot', 'n8n', 'Claude/GPT'],
+        outcomes: [
+          'Bot CS yang jawab 200+ FAQ otomatis',
+          'Integrasi katalog produk & harga real-time',
+          'Auto-eskalasi ke manusia kalau perlu',
+          'Deploy ke WA Business gratis',
+        ],
+      },
+      {
+        id: 'lapkeu',
+        icon: '📊',
+        badge: 'Baru',
+        badgeColor: '#10B981',
+        title: 'Laporan Keuangan Otomatis dengan AI',
+        desc: 'Upload struk/nota → AI langsung bikin laporan laba-rugi, arus kas, neraca. Cocok UMKM tanpa akuntan.',
+        duration: '4 jam',
+        lessons: 12,
+        level: 'Pemula',
+        tools: ['Google Sheets', 'Make.com', 'GPT-4o', 'PDF Parser'],
+        outcomes: [
+          'Laporan keuangan harian/bulanan otomatis',
+          'Analisis pengeluaran & pemasukan dengan AI',
+          'Export ke Excel/PDF siap kirim',
+          'Alert kalau cashflow minus',
+        ],
+      },
+      {
+        id: 'stok',
+        icon: '📦',
+        badge: null,
+        badgeColor: null,
+        title: 'Laporan Stok & Inventory Otomatis',
+        desc: 'Sistem stok real-time — scan barcode/foto produk, AI update otomatis, alert kalau stok mau habis.',
+        duration: '5 jam',
+        lessons: 15,
+        level: 'Pemula',
+        tools: ['Google Sheets', 'Telegram Bot', 'Zapier', 'OCR AI'],
+        outcomes: [
+          'Tracking stok real-time tanpa input manual',
+          'Alert otomatis kalau stok < minimum',
+          'Laporan penjualan harian ke WA kamu',
+          'Integrasi dengan Tokopedia/Shopee',
+        ],
+      },
+      {
+        id: 'accounting',
+        icon: '🧾',
+        badge: null,
+        badgeColor: null,
+        title: 'Accounting & Pembukuan Otomatis',
+        desc: 'AI baca nota, kategori pengeluaran, rekonsiliasi bank, dan buat laporan pajak bulanan secara otomatis.',
+        duration: '7 jam',
+        lessons: 20,
+        level: 'Menengah',
+        tools: ['n8n', 'OCR', 'Google Drive', 'Spreadsheet AI'],
+        outcomes: [
+          'Buku besar otomatis dari foto nota',
+          'Rekonsiliasi mutasi bank otomatis',
+          'Laporan PPh 21/25 bulanan',
+          'Dashboard keuangan real-time',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'konten',
+    icon: '🎬',
+    color: '#7C3AED',
+    colorBg: 'rgba(124,58,237,0.12)',
+    badge: 'Hot',
+    title: 'AI untuk Pembuatan Konten',
+    subtitle: 'Produksi konten 10× lebih cepat dengan AI',
+    desc: 'Dari riset, skrip, voice-over, thumbnail, sampai jadwal posting — semua otomatis. Satu orang bisa kelola 10 akun sekaligus.',
+    courseCount: 10,
+    level: 'Pemula → Expert',
+    courses: [
+      {
+        id: 'tiktok-agent',
+        icon: '📱',
+        badge: 'Viral',
+        badgeColor: '#EF4444',
+        title: 'AI Agent Konten TikTok & Reels Otomatis',
+        desc: 'Riset trending → skrip → generate video dengan AI avatar → auto-post ke TikTok/Reels/Shorts. Tanpa syuting.',
+        duration: '8 jam',
+        lessons: 24,
+        level: 'Pemula',
+        tools: ['CapCut AI', 'HeyGen', 'ElevenLabs', 'PostBridge'],
+        outcomes: [
+          'Produksi 30 video/bulan tanpa kamera',
+          'AI avatar bicara dengan voice clone kamu',
+          'Auto-riset trending topic harian',
+          'Jadwal posting otomatis multi-platform',
+        ],
+      },
+      {
+        id: 'copywriting',
+        icon: '✍️',
+        badge: null,
+        badgeColor: null,
+        title: 'AI Copywriting & Content Marketing',
+        desc: 'Caption IG, iklan FB/Google, artikel blog, email marketing — semua ditulis AI dalam hitungan detik.',
+        duration: '5 jam',
+        lessons: 16,
+        level: 'Pemula',
+        tools: ['Claude', 'ChatGPT', 'Notion AI', 'Canva AI'],
+        outcomes: [
+          '100 caption/post dalam 1 jam',
+          'Iklan FB/Google dengan CTR tinggi',
+          'Artikel SEO 2000 kata dalam 10 menit',
+          'Email sequence nurturing otomatis',
+        ],
+      },
+      {
+        id: 'youtube-auto',
+        icon: '▶️',
+        badge: 'Baru',
+        badgeColor: '#10B981',
+        title: 'YouTube Automation dengan AI',
+        desc: 'Channel YouTube faceless yang produksi konten otomatis — skrip, narasi, visual, thumbnail, SEO, upload.',
+        duration: '10 jam',
+        lessons: 28,
+        level: 'Menengah',
+        tools: ['ElevenLabs', 'D-ID', 'Remotion', 'YouTube API'],
+        outcomes: [
+          'Upload 3-5 video/minggu tanpa editing manual',
+          'Monetisasi channel dalam 3-6 bulan',
+          'Thumbnail otomatis dengan A/B test',
+          'SEO optimasi judul & deskripsi otomatis',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'pelajar',
+    icon: '🎒',
+    color: '#00D9FF',
+    colorBg: 'rgba(0,217,255,0.12)',
+    badge: 'Untuk Pelajar',
+    title: 'Belajar AI untuk Anak Sekolah',
+    subtitle: 'AI literacy untuk generasi pelajar Indonesia',
+    desc: 'Kurikulum AI yang dirancang khusus untuk pelajar SD-SMA. Belajar AI dengan cara yang menyenangkan, praktis, dan langsung bisa dipraktikkan.',
+    courseCount: 8,
+    level: 'SD · SMP · SMA',
+    courses: [
+      {
+        id: 'ai-sekolah',
+        icon: '📚',
+        badge: 'Cocok SD-SMA',
+        badgeColor: '#00D9FF',
+        title: 'AI untuk Belajar Lebih Pintar',
+        desc: 'Gunakan AI untuk bantu PR, riset tugas, rangkum buku pelajaran, dan latihan soal. Belajar jadi lebih mudah dan menyenangkan.',
+        duration: '4 jam',
+        lessons: 14,
+        level: 'SD-SMA',
+        tools: ['ChatGPT', 'Gemini', 'NotebookLM', 'Quizlet AI'],
+        outcomes: [
+          'Rangkum buku pelajaran dalam 2 menit',
+          'Latihan soal adaptif sesuai kemampuan',
+          'Tulis esai & karangan dengan AI',
+          'Riset tugas 10× lebih cepat',
+        ],
+      },
+      {
+        id: 'coding-ai',
+        icon: '💻',
+        badge: 'SMP-SMA',
+        badgeColor: '#7C3AED',
+        title: 'Belajar Coding dengan AI — Dari Nol',
+        desc: 'AI jadi tutor coding personal kamu. Belajar Python, web, atau game dengan bantuan AI yang sabar dan tidak pernah bosan menjelaskan.',
+        duration: '12 jam',
+        lessons: 36,
+        level: 'SMP-SMA',
+        tools: ['Python', 'GitHub Copilot', 'Replit', 'Claude'],
+        outcomes: [
+          'Bisa coding Python dari nol',
+          'Bikin website sederhana dalam seminggu',
+          'Portofolio GitHub yang keren',
+          'Siap lomba coding tingkat nasional',
+        ],
+      },
+      {
+        id: 'creative-ai',
+        icon: '🎨',
+        badge: null,
+        badgeColor: null,
+        title: 'Kreativitas dengan AI — Seni & Desain',
+        desc: 'Bikin gambar, komik, musik, dan video dengan AI. Ekspresikan kreativitas tanpa batas dengan tools AI terbaru.',
+        duration: '6 jam',
+        lessons: 18,
+        level: 'SD-SMA',
+        tools: ['Midjourney', 'DALL-E', 'Suno AI', 'CapCut'],
+        outcomes: [
+          'Generate gambar dari deskripsi teks',
+          'Bikin musik original dengan AI',
+          'Video animasi sederhana dalam 1 hari',
+          'Portfolio karya seni digital AI',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'guru',
+    icon: '👩🏫',
+    color: '#10B981',
+    colorBg: 'rgba(16,185,129,0.12)',
+    badge: 'Untuk Pendidik',
+    title: 'AI untuk Guru & Pendidik',
+    subtitle: 'Revolusi cara mengajar dengan kecerdasan buatan',
+    desc: 'Kurangi beban administrasi 70%, bikin materi ajar interaktif, dan personalisasi pembelajaran setiap murid dengan bantuan AI.',
+    courseCount: 9,
+    level: 'Semua Level Guru',
+    courses: [
+      {
+        id: 'materi-ai',
+        icon: '📋',
+        badge: 'Terlaris',
+        badgeColor: '#10B981',
+        title: 'Buat Materi Ajar & RPP dengan AI',
+        desc: 'RPP lengkap, modul ajar, soal ulangan, presentasi PowerPoint — semua dibuat AI dalam hitungan menit, bukan jam.',
+        duration: '5 jam',
+        lessons: 16,
+        level: 'Semua Guru',
+        tools: ['ChatGPT', 'Gamma.app', 'Canva AI', 'Google Slides AI'],
+        outcomes: [
+          'RPP 1 semester selesai dalam 1 hari',
+          'Modul ajar interaktif siap print/digital',
+          'Bank soal 100+ pertanyaan per mata pelajaran',
+          'Presentasi menarik tanpa desainer',
+        ],
+      },
+      {
+        id: 'admin-guru',
+        icon: '📝',
+        badge: null,
+        badgeColor: null,
+        title: 'Otomasi Administrasi Guru dengan AI',
+        desc: 'Absensi otomatis, rekap nilai, rapor, surat keterangan — semua dokumen administrasi dihandle AI supaya guru fokus mengajar.',
+        duration: '4 jam',
+        lessons: 12,
+        level: 'Semua Guru',
+        tools: ['Google Forms', 'Make.com', 'Spreadsheet AI', 'Drive AI'],
+        outcomes: [
+          'Rekap nilai & rapor otomatis dari spreadsheet',
+          'Absensi digital dengan notif ke orang tua',
+          'Surat keterangan & SK dalam 30 detik',
+          'Laporan kelas bulanan otomatis',
+        ],
+      },
+      {
+        id: 'personalisasi',
+        icon: '🎯',
+        badge: 'Inovatif',
+        badgeColor: '#7C3AED',
+        title: 'Pembelajaran Personal dengan AI Tutor',
+        desc: 'Rancang sistem pembelajaran adaptif di kelas — AI kenali kelemahan tiap siswa dan rekomendasikan latihan yang sesuai.',
+        duration: '6 jam',
+        lessons: 18,
+        level: 'Guru Inovatif',
+        tools: ['Khan Academy AI', 'NotebookLM', 'Claude', 'Quizlet'],
+        outcomes: [
+          'Identifikasi kelemahan siswa per kompetensi',
+          'Latihan adaptif yang naik level otomatis',
+          'Laporan perkembangan siswa real-time',
+          'Kelas lebih aktif & siswa lebih engaged',
+        ],
+      },
+    ],
+  },
+];
+
+// ─── Instructor / Founder data ────────────────────────────────────────────────
+export const instructorData = {
+  name: 'Fikri Izzuddin',
+  alias: 'Paijo / oyi77',
+  role: 'Lead Instructor & Founder BerkahKarya',
+  bio: 'Praktisi AI & Full Stack Engineer dengan 10+ tahun pengalaman produksi. Kontributor aktif open source framework terbesar di dunia. Bukan trainer teori — kode saya dipake ribuan developer global setiap hari.',
+  stats: [
+    { value: '10+', label: 'Tahun Profesional' },
+    { value: '8,464', label: 'Kontribusi GitHub 2025' },
+    { value: '1,282', label: 'AI Agent Skills' },
+    { value: '20+', label: 'Layanan AI Aktif' },
+  ],
+  contributions: [
+    { icon: '▲', name: 'Next.js', stars: '127k', desc: 'Core framework Vercel' },
+    { icon: '⚡', name: 'trpc', stars: '36k', desc: 'Type-safe API framework' },
+    { icon: '🗄️', name: 'Prisma', stars: '41k', desc: 'ORM terbesar dunia' },
+    { icon: '🟩', name: 'Vue.js Core', stars: '48k', desc: 'Core Vue.js framework' },
+    { icon: '🔀', name: 'OmniRoute', stars: '5.7k', desc: '9+ PRs, 353 tests baru' },
+  ],
+  tg: TG,
+  wa: WA,
+};
+
+// ─── Stats bar ────────────────────────────────────────────────────────────────
+export const siteStats = [
+  { value: '4', label: 'Track Pembelajaran' },
+  { value: '39+', label: 'Kursus Tersedia' },
+  { value: '1,000+', label: 'Pelajar Aktif' },
+  { value: '4.9★', label: 'Rating Rata-rata' },
+];
+
+// ─── Testimonials ─────────────────────────────────────────────────────────────
+export const testimonials = [
+  {
+    quote: 'Berkat kursus AI Agent UMKM, warung saya sekarang punya CS WhatsApp otomatis. Omzet naik 40% karena tidak pernah telat balas pesan lagi.',
+    name: 'Budi S.',
+    role: 'Pemilik Warung Sembako, Surabaya',
+    track: 'umkm',
+    avatar: '👨💼',
+  },
+  {
+    quote: 'Satu orang bisa kelola 5 akun TikTok sekarang. Dulu butuh 3 karyawan konten. Sekarang AI yang kerjain, saya tinggal review.',
+    name: 'Dini R.',
+    role: 'Content Creator & UMKM Owner',
+    track: 'konten',
+    avatar: '👩🎤',
+  },
+  {
+    quote: 'Murid-murid saya jadi lebih semangat belajar setelah diajarin pakai AI. Nilai rata-rata kelas naik signifikan dalam 2 bulan.',
+    name: 'Pak Hendra',
+    role: 'Guru Matematika SMA, Bandung',
+    track: 'guru',
+    avatar: '👨🏫',
+  },
+  {
+    quote: 'Saya kelas 10 udah bisa bikin website sendiri dengan bantuan AI. Teman-teman pada heran, padahal baru 3 bulan belajar.',
+    name: 'Alya F.',
+    role: 'Pelajar SMA, Jakarta',
+    track: 'pelajar',
+    avatar: '👩🎓',
+  },
+  {
+    quote: 'RPP satu semester yang biasanya butuh 2 minggu, sekarang selesai dalam 1 hari. Sisa waktu bisa fokus ngajar.',
+    name: 'Bu Sari P.',
+    role: 'Guru SD Negeri, Yogyakarta',
+    track: 'guru',
+    avatar: '👩🏫',
+  },
+  {
+    quote: 'Laporan keuangan yang dulu bikin pusing sekarang otomatis. AI yang baca nota, AI yang buat laporan. Mantap!',
+    name: 'Andre K.',
+    role: 'Pengusaha Kuliner, Medan',
+    track: 'umkm',
+    avatar: '🧑🍳',
+  },
+];
+
+// ─── Pricing ──────────────────────────────────────────────────────────────────
+export const pricingPlans = [
+  {
+    id: 'starter',
+    name: 'Starter',
+    icon: '🌱',
+    price: 'Rp 299K',
+    period: 'sekali bayar',
+    highlight: false,
+    tagline: 'Coba dulu, cocok lanjut',
+    features: [
+      'Akses 1 track pilihan (UMKM / Konten / Pelajar / Guru)',
+      'Semua video kursus dalam track tersebut',
+      'Materi PDF & resource',
+      'Akses grup Telegram komunitas',
+      'Sertifikat kelulusan',
+    ],
+    cta: { text: 'Mulai Belajar →', href: '#', data_plan: 'starter' },
+  },
+  {
+    id: 'pro',
+    name: 'Pro',
+    icon: '🚀',
+    price: 'Rp 799K',
+    period: 'sekali bayar',
+    highlight: true,
+    tagline: 'Paling banyak dipilih',
+    features: [
+      'Akses SEMUA 4 track pembelajaran',
+      'Semua kursus (39+ kursus)',
+      'Live Q&A bulanan dengan Paijo',
+      'Feedback tugas & proyek',
+      'Sertifikat per track',
+      'Grup premium Telegram',
+      'Update materi seumur hidup',
+    ],
+    cta: { text: '🚀 Ambil Pro →', href: '#', data_plan: 'pro' },
+  },
+  {
+    id: 'platinum',
+    name: 'Platinum',
+    icon: '👑',
+    price: 'Rp 2.5jt',
+    period: 'sekali bayar',
+    highlight: false,
+    tagline: 'All-in + mentoring personal',
+    features: [
+      'Semua benefit Pro',
+      '1-on-1 mentoring session (4× bulan)',
+      'Technical Track: AI Agent Development',
+      'Deploy AI agent ke produksi bareng Paijo',
+      'Akses private channel Telegram Platinum',
+      'Prioritas update & fitur baru',
+      'Konsultasi bisnis AI tak terbatas',
+    ],
+    cta: { text: '👑 Ambil Platinum →', href: '#', data_plan: 'platinum' },
+  },
+];
+
+// ─── FAQ ──────────────────────────────────────────────────────────────────────
+export const faqItems = [
+  {
+    q: 'Apakah perlu latar belakang teknis atau coding?',
+    a: 'Tidak perlu. Semua track dirancang dari nol. Track UMKM & Guru bahkan tidak butuh coding sama sekali. Track Pelajar ada jalur tanpa coding juga.',
+  },
+  {
+    q: 'Berapa lama sampai bisa langsung pakai hasilnya?',
+    a: 'Track UMKM: bot CS WA bisa jalan dalam 1 hari belajar. Track Konten: video AI pertama dalam 2 hari. Track Pelajar & Guru: mulai kerasa manfaatnya di minggu pertama.',
+  },
+  {
+    q: 'Apakah materi terus diupdate?',
+    a: 'Ya. Paket Pro & Platinum dapat update seumur hidup. Dunia AI berkembang cepat, kami pastikan materi selalu relevan.',
+  },
+  {
+    q: 'Bagaimana cara akses setelah bayar?',
+    a: 'Setelah pembayaran via Tripay dikonfirmasi (otomatis), kamu langsung dapat link akses ke LMS dan undangan grup Telegram.',
+  },
+  {
+    q: 'Ada garansi uang kembali?',
+    a: '7 hari uang kembali penuh. Tidak cocok dengan gaya belajar kamu? Kami kembalikan 100% tanpa pertanyaan.',
+  },
+  {
+    q: 'Bisa konsultasi sebelum daftar?',
+    a: `Tentu. Chat langsung ke Telegram → ${TG}. Gratis, tidak ada tekanan beli. Kami senang diskusi soal AI dan bagaimana bisa membantu bisnis atau karir kamu.`,
+  },
+];
+
+// ─── Legacy belajaraiData (kept for backward compat) ─────────────────────────
 export const belajaraiData = {
   id: {
     meta: {
-      title: 'Belajar AI Academy — Kuasai AI Bareng Fikri Izzuddin (oyi77) | BerkahKarya',
-      description: 'Kursus AI Indonesia dari kontributor Next.js, trpc, Prisma, Vue.js. 6 modul praktis: prompt engineering, content AI, automation, monetization. 10+ tahun pengalaman profesional. Garansi 7 hari.',
-      keywords: 'belajar AI Indonesia, kursus AI, pelatihan AI, AI academy, belajar ChatGPT, prompt engineering, AI automation, freelance AI, kursus AI online, belajar AI dari nol, Fikri Izzuddin, oyi77, BerkahKarya',
+      title: 'BerkahKarya AI Academy — Belajar AI untuk UMKM, Konten, Pelajar & Guru',
+      description: 'Platform belajar AI Indonesia terlengkap. Kursus AI Agent untuk UMKM, pembuatan konten otomatis, AI untuk pelajar, dan AI untuk guru. Dipandu Fikri Izzuddin — kontributor Next.js, Vue.js, Prisma.',
+      keywords: 'belajar AI Indonesia, kursus AI UMKM, AI agent WhatsApp, laporan keuangan otomatis, AI untuk guru, AI untuk pelajar, content AI otomatis, BerkahKarya AI Academy',
     },
-    // ===== P A A S STRUCTURE =====
-    // P = Pain — Masalah langsung ditunjuk
-    // A = Agitate — Dikulik lebih dalem
-    // A = Aspire — Transformasi yg didambakan
-    // S = Solution — Ini jawabannya
-    // ==============================
-
-    // ━━━ P: PAIN ━━━
-    // Hero langsung tusuk — bukan basa-basi
     hero: {
-      eyebrow: '🎓 KENYATAAN PAHIT: 70% Pekerjaan Akan Digantikan AI dalam 3 Tahun',
-      title: 'Jadi Yang Bayar Gajian, Bukan Yang Terima Gaji.',
-      subtitle: 'Kuasai AI Sekarang — Sebelum Orang Lain Ngambil Posisi Lo.',
-      painAmplify: 'Setiap hari lo tunda, makin banyak orang yg ambil posisi lo. Freelancer yg paham AI udah dibayar 10× lipat. Karyawan yg pake AI naik jabatan 2× lebih cepet. Sementara lo?',
-      description: 'Dibimbing langsung sama Fikri Izzuddin (Paijo / oyi77) — kontributor aktif ke Next.js (⭐127k), trpc (⭐36k), Prisma (⭐41k), Vue.js Core (⭐48k), OmniRoute (⭐5.7k). 10+ tahun pengalaman profesional di BITWYRE, GARUDAMEDIA (3000+ karyawan), VIAPULSA. Founder BerkahKarya — 1-Man Company dengan 20+ layanan AI. 8,464 kontribusi di GitHub tahun 2025. Bukan teori doang — praktik beneran dari orang yg kodenya dipake developer di seluruh dunia.',
+      eyebrow: '🎓 Platform Belajar AI #1 Indonesia',
+      title: 'Kuasai AI Sesuai Kebutuhanmu.',
+      subtitle: 'Dari UMKM sampai ruang kelas — kami punya jalur belajar yang tepat.',
+      description: 'Pilih dari 4 track pembelajaran AI yang dirancang khusus: AI Agent untuk UMKM, Pembuatan Konten Otomatis, AI untuk Pelajar, dan AI untuk Guru. Dipandu Fikri Izzuddin — kontributor aktif Next.js, Vue.js, Prisma, dan founder BerkahKarya.',
       buttons: [
-        { text: '🔴 Ambil Platinum Pass Sekarang →', href: '#pricing', primary: true },
-        { text: '📚 Lihat Dulu Kurikulumnya', href: '#kurikulum', primary: false },
+        { text: 'Lihat Semua Kursus →', href: '#tracks', primary: true },
+        { text: 'Konsultasi Gratis', href: TG, primary: false },
       ],
-      badges: ['✅ 150+ GitHub Repos · 8,464 Contributions di 2025', '✅ Setup Langsung <5 Menit', '✅ Garansi 7 Hari — Gak Cocok? Kembali 100%'],
-    },
-
-    // ━━━ A: AGITATE ━━━
-    // Perparah sakitnya — bikin mereka ngerasa "anjir gue ketinggalan"
-    problem: {
-      hook: 'STOP. Lu Udah Ketinggalan.',
-      // Gambaran konkret — bukan abstrak
-      pains: [
-        { icon: '😰', title: 'Gaji Lo Tetep', desc: '70% pekerjaan bakal pake AI. Rekan lo yg udah kuasai AI naik jabatan. Lo? Masih Excel manual.' },
-        { icon: '🔥', title: 'Freelance Lo Kalah Saing', desc: 'Freelancer AI dibayar 3× lipat. Yg bisa coding + AI? 10× lipat. Client milih mereka, bukan lo.' },
-        { icon: '🤯', title: 'Bingung Mau Mulai Dari Mana', desc: 'ChatGPT, Claude, Midjourney, Gemini — overload. Tutorial YouTube berantakan. Gak ada arah jelas.' },
-        { icon: '⏳', title: 'Udah Coba Belajar Sendiri', desc: 'Beli course murahan, nonton tutorial random. Berhenti di tengah. Gak ada mentor, gak ada yg koreksi.' },
-      ],
-      // Tanya reflektif — bikin mereka sadar
-      bridge: 'Jujur aja: kalo terus begini, 2-3 tahun lagi posisi lo bakal diambil sama orang yg skill AI-nya lebih tajam. Dan lo? Gak bakal bisa protes.',
-    },
-
-    // ━━━ A: AGITATE LEVEL 2 ━━━
-    // Perparah lagi dengan konsekuensi waktu
-    pains: [
-      { icon: '⏰', title: 'Waktu Habis', desc: 'Setiap bulan lo nunda, 1000+ orang Indonesia baru belajar AI. Mereka kompetitor lo.' },
-      { icon: '🔄', title: 'Siklus Gagal', desc: 'Course-abis-nonton-lupa. Mulai lagi dari awal. Udah 3× kayak gini.' },
-      { icon: '🕳️', title: 'Lubang Hitam Informasi', desc: 'Konten AI baru tiap hari. Lo bingung mana yg penting mana yg noise. Akhirnya gak jadi apa-apa.' },
-      { icon: '💔', title: 'Penyesalan', desc: '1 tahun dari sekarang... "Dulu gue sempet mau belajar AI, tapi..." Jangan sampe.' },
-    ],
-
-    // ━━━ A: ASPIRE — TRANSFORMATION ━━━
-    // Tunjuksin kehidupan setelah kuasai AI
-    vision: {
-      headline: 'Bayangin Kalo...',
-      title: '6 Bulan Lagi, Lo Udah Kayak Gini:',
-      items: [
-        { icon: '💼', title: 'Mapan Dari AI', desc: 'Punya skill AI yg dibutuhin pasar. Bisa freelance, bisa naik jabatan, bisa mulai agency sendiri.' },
-        { icon: '⚡', title: 'Kerja 10× Cepet', desc: 'AI ngerjain 80% kerjaan lo. Lo tinggal review dan improve. Kerja 2 jam, hasil 8 jam.' },
-        { icon: '🤖', title: 'Punya AI Agent Sendiri', desc: 'Bikin AI yg kerja 24/7 buat lo — bisnis, marketing, content, semua otomatis.' },
-        { icon: '💰', title: 'Penghasilan Nambah', desc: 'Minimal 3-5× lipat dari sekarang. Itu realistic. Bukan janji manis.' },
-      ],
-      hook: 'Ini Bukan Mimpi. Ini Udah Terjadi Sama Ratusan Orang.' ,
-    },
-
-    // ━━━ S: SOLUTION — THE COURSE ━━━
-    // Sekarang baru tunjukin produknya
-    // TAPI didahului sama credibility dulu
-    founder: {
-      name: 'Fikri Izzuddin (Paijo / oyi77)',
-      role: 'Founder & Lead Instructor',
-      title: 'Fikri Izzuddin',
-      tagline: '10+ Tahun Profesional · 150+ Repos · 8,464 Contributions di 2025',
-      avatar: '🧑‍💻',
-      tg: '@codergaboets',
-      stats: [
-        { value: '10+', label: 'Tahun Profesional' },
-        { value: '8,464', label: 'Contributions 2025' },
-        { value: '20+', label: 'Layanan AI Aktif' },
-        { value: '1,282', label: 'AI Agent Skills' },
-      ],
-      bio: 'Technical Lead & Full Stack Engineer dengan pengalaman di perusahaan besar: GARUDAMEDIA (Engineering Manager, 3000+ karyawan), BITWYRE (Lead Developer, DEX clearing algorithm), VIAPULSA (Technical Lead, migrasi offline→online 18 orang team), LINGUISE (API migration PHP→Node.js). Sekarang founder BerkahKarya — 1-Man Company yang dijalankan AI dengan 20+ layanan produksi.\n\nKontribusi open source ke framework yg dipake jutaan developer: Next.js (⭐127k), trpc (⭐36k), Prisma (⭐41k), Vue.js Core (⭐48k), OmniRoute (⭐5.7k — 9+ PRs merged, 353 test baru, test coverage 60%+). Total 149 repositori publik, 20.4 juta baris kode.\n\nLo belajar bukan dari trainer yg cuma baca slide — tapi dari orang yg setiap hari nulis kode produksi yg dipake ribuan orang.',
-      achievements: [
-        { icon: '🔀', text: 'OmniRoute (⭐5.7k) — 9+ PRs merged, 353 test baru, coverage 60%+' },
-        { icon: '▲', text: 'Next.js (⭐127k) — Kontributor core framework Vercel' },
-        { icon: '⚡', text: 'trpc (⭐36k) — PR merged ke type-safe API framework' },
-        { icon: '🗄️', text: 'Prisma (⭐41k) — Kontributor ORM terbesar di dunia' },
-        { icon: '🟩', text: 'Vue.js Core (⭐48k) — PR merged ke core Vue.js' },
+      badges: [
+        '✅ 39+ Kursus Tersedia',
+        '✅ Dibimbing Praktisi Berpengalaman',
+        '✅ Garansi 7 Hari Uang Kembali',
       ],
     },
-
-    stats: [
-      { value: '6', label: 'Modul Inti' },
-      { value: '30+', label: 'Jam Materi' },
-      { value: '1282', label: 'AI Skills' },
-      { value: '150+', label: 'GitHub Repos' },
-    ],
-
-    curriculum: {
-      title: '6 Modul Inti — Dari Nol Sampe Bisa Cuan',
-      subtitle: 'Struktur belajar yg bikin lo progress tiap minggu. Bukan asal nonton, tapi praktik beneran.',
-      modules: [
-        { icon: '🤖', title: 'Dasar AI & Prompt Engineering', desc: 'Pahami cara kerja LLM. Kuasai prompt engineering buat ChatGPT, Claude, Gemini. Output konsisten dan berkualitas.' },
-        { icon: '✍️', title: 'Content Creation dengan AI', desc: 'Konten SEO, copywriting iklan, script video — 10× lebih cepet dari manual. Plus strategi distribusi.' },
-        { icon: '🎨', title: 'Visual Design & Image Generation', desc: 'Midjourney, DALL·E, Stable Diffusion. Branding, logo, mockup produk dalam hitungan menit.' },
-        { icon: '🎬', title: 'Video & Animasi AI', desc: 'AI avatar, video animasi, konten short-form viral. Gak perlu kamera, talent, atau editor.' },
-        { icon: '⚡', title: 'Automation & AI Agent', desc: 'Zapier, Make.com, n8n. Hubungkan 100+ apps. Bikin AI agent yg kerja tanpa lo pantau.' },
-        { icon: '💰', title: 'Monetization & Agency', desc: 'Cara jual skill AI di Upwork/Fiverr. Bikin agency. Closing klien. Scale income 6-7 digit.' },
-      ],
+    cta: {
+      title: 'Siap Mulai Belajar AI?',
+      description: 'Pilih paket yang sesuai, bayar via Tripay (QRIS / VA / E-Wallet), dan langsung akses semua materi. Atau chat Paijo dulu — gratis.',
+      button: { text: 'Chat Paijo di Telegram 💬', href: TG },
     },
-
-    technicalTrack: {
-      title: '🔥 Technical Track: Hermes Agent & OpenClaw',
-      subtitle: 'Eksklusif di Platinum Pass — materi advanced dari kontributor yg bikin framework-nya sendiri.',
-      items: [
-        { icon: '🖥️', title: 'Setup Local LLM (Ollama)', desc: 'Install & jalankan Llama, Qwen, Mistral di laptop lo. Gratis, tanpa API key, full privacy.' },
-        { icon: '🔧', title: 'Hermes Agent Framework', desc: 'Framework AI agent yg bisa browsing, coding, execute tools. Dipake produksi di BerkahKarya ecosystem.' },
-        { icon: '🏗️', title: 'Arsitektur OpenClaw', desc: 'Bangun asisten cerdas modular yg bisa lo custom sesuai kebutuhan bisnis.' },
-        { icon: '📡', title: 'Production Deployment', desc: 'Deploy AI agent ke VPS/server. Integrasi Telegram, WhatsApp, API eksternal. Monitoring & scaling.' },
-      ],
-    },
-
-    specializations: {
-      title: 'Pilih Jalur Spesialisasi — Langsung Cuan',
-      subtitle: 'Setelah ngerti dasar, fokus ke jalur yg paling cuan di pasar.',
-      items: [
-        {
-          icon: '☁️',
-          title: 'AI for SaaS & Automation',
-          desc: 'Bangun SaaS product pake AI, otomasi workflow bisnis end-to-end. Dari ide sampe production. Dipake real di BerkahKarya ecosystem — 20+ layanan AI.',
-          badge: '🚀 SaaS Builder',
-        },
-        {
-          icon: '📢',
-          title: 'AI for Digital Marketing',
-          desc: 'Otomasi Meta Ads, content massal TikTok/Reels, funneling system. Dipake real di BerkahKarya Ads — pernah 5M+/bulan revenue.',
-          badge: '🔥 5M+/bulan',
-        },
-      ],
-    },
-
-    forWhom: {
-      title: 'Course Ini Cocok Buat Lo Kalo...',
-      items: [
-        { icon: '💻', title: 'Developer yg Mau Upgrade Skill', desc: 'Lo udah bisa coding tapi pengen integrate AI ke workflow. Dari prompt engineering sampai deploy AI agent.', pct: '→ Next Level' },
-        { icon: '🏢', title: 'Karyawan yg Mau Efisien 10×', desc: 'Bosen manual? Otomatisasi kerja lo pake AI. Bikin report, data entry, research — semua selesai dalam menit.', pct: '→ 10× Efisien' },
-        { icon: '🚀', title: 'Entrepreneur yg Mau Scale', desc: 'Tekan biaya operasional, otomasi marketing, bikin konten massal. AI kerja 24/7 buat bisnis lo.', pct: '→ Scale Otomatis' },
-      ],
-    },
-
-    howItWorks: {
-      title: 'Gimana Cara Join-nya?',
-      steps: [
-        { num: '1', title: 'Pilih Paket', desc: 'Pilih paket yg sesuai. Bayar via Tripay — QRIS, Virtual Account, E-Wallet. Semua online & aman.' },
-        { num: '2', title: 'Akses Materi', desc: 'Dapetin akses ke LMS. Video terstruktur, studi kasus, tugas praktik. Belajar dari mana aja, kapan aja.' },
-        { num: '3', title: 'Praktik + Mentoring', desc: 'Terapkan langsung. Feedback dari Paijo via Telegram. Bikin portfolio real. Mulai cari klien atau kerja remote.' },
-      ],
-    },
-
-    testimonials: {
-      title: 'Apa Kata Mereka — Yang Udah Buktikan?',
-      items: [
-        { quote: 'Dulu gue gak ngerti AI sama sekali. Sekarang udah bisa bikin konten, gambar, dan automation workflow sendiri. 2 minggu aja udah balik modal.', name: 'Rudi H.', role: 'Freelancer Content Creator', avatar: '👨‍💻' },
-        { quote: 'Online Live class-nya seru banget. Mentornya praktisi beneran — contributor Next.js. Bukan trainer biasa.', name: 'Sari P.', role: 'Digital Marketing Manager', avatar: '👩‍💼' },
-        { quote: 'Technical Track Hermes & OpenClaw itu game changer. Sekarang gue punya AI agent sendiri yg kerja 24 jam.', name: 'Andre K.', role: 'Tech Entrepreneur', avatar: '🧑‍💻' },
-        { quote: 'Workshop offline-nya mantep. Paijo ngajarin deploy AI agent langsung ke production. Besoknya udah bisa dipake.', name: 'Fajar N.', role: 'Full Stack Developer', avatar: '👨‍🔧' },
-      ],
-    },
-
-    pricing: [
-      {
-        id: 'video-course',
-        name: '📹 Video Course',
-        price: 'Rp 299K',
-        period: '· sekali',
-        features: [
-          'Akses selamanya ke 6 modul inti',
-          'Video pembelajaran self-paced',
-          'Materi PDF tiap modul',
-          'Studi kasus & tugas praktik',
-          'Akses grup komunitas Telegram',
-        ],
-        cta: { text: 'Beli Via Tripay →', href: '#', data_plan: 'video-course' },
-      },
-      {
-        id: 'online-live',
-        name: '💻 Online Live',
-        price: 'Rp 799K',
-        period: '· sekali',
-        highlight: true,
-        features: [
-          'Semua benefit Video Course',
-          '6× sesi Zoom interaktif (2 jam/sesi)',
-          'Q&A langsung dengan Paijo',
-          'Feedback tugas personal',
-          'Rekaman sesi — akses selamanya',
-          'Sertifikat kelulusan',
-        ],
-        cta: { text: 'Daftar Via Tripay →', href: '#', data_plan: 'online-live' },
-      },
-      {
-        id: 'offline-workshop',
-        name: '🏫 Offline Workshop',
-        price: 'Rp 2.5jt',
-        period: '· 2 hari intensif',
-        features: [
-          'Semua benefit Online Live',
-          'Workshop tatap muka 2 hari',
-          'Praktik langsung didampingi mentor',
-          'Networking sesama peserta',
-          'Makan siang + snack',
-          'Bonus kit belajar',
-        ],
-        cta: { text: 'Daftar Via Tripay →', href: '#', data_plan: 'offline-workshop' },
-      },
-      {
-        id: 'monthly-sub',
-        name: '🔄 Monthly Sub',
-        price: 'Rp 199K',
-        period: '/bulan',
-        features: [
-          'Akses semua library Video Course',
-          'Update materi tiap bulan',
-          'Akses grup komunitas premium',
-          'Session Q&A mingguan',
-          'Bisa cancel kapan aja',
-        ],
-        cta: { text: 'Subscribe Via Tripay →', href: '#', data_plan: 'monthly-sub' },
-      },
-      {
-        id: 'platinum-pass',
-        name: '👑 Platinum Pass',
-        price: 'Rp 9jt',
-        period: '· all-access',
-        highlight: true,
-        features: [
-          'Akses SEMUA di atas (ALL-IN)',
-          '🔥 Technical Track: Hermes & OpenClaw',
-          'VIP 1-on-1 mentoring dengan Paijo',
-          'Grup eksklusif Telegram Platinum',
-          'Materi Bisnis & SaaS',
-          'Proyek portfolio real-world',
-          'Prioritas update & fitur baru',
-          'Investasi sekali, akses seumur hidup',
-        ],
-        cta: { text: '👑 Ambil Platinum Pass →', href: '#', data_plan: 'platinum-pass' },
-      },
-    ],
-
-    paymentInfo: {
-      title: '💳 Metode Pembayaran',
-      methods: ['QRIS (semua e-wallet)', 'Virtual Account (BCA, Mandiri, BRI, BNI)', 'Alfamart / Indomaret', 'OVO / DANA / ShopeePay'],
-      note: 'Semua pembayaran diproses oleh Tripay — payment gateway Indonesia terpercaya. Pembayaran otomatis terverifikasi.',
-      telegram: TG,
-    },
-
-    faq: {
-      title: 'Masih Ragu?',
-      items: [
-        { q: 'Gue pemula banget, gak ngerti coding. Bisa?', a: 'Bisa. Modul 1 dimulai dari dasar — bahkan buat yg belum pernah ChatGPT. Platinum Pass-nya juga ada materi advanced buat yg udah expert.' },
-        { q: 'Berapa lama sampe bisa cuan?', a: 'Rata-rata siswa udah bisa bikin konten AI di minggu 1. Full mastery 1-2 bulan dengan 1-2 jam/hari. ROI di minggu pertama.' },
-        { q: 'Siapa Paijo emangnya?', a: 'Bukan trainer biasa. Paijo adalah kontributor OSS yg PR-nya udah merged di Next.js (127k⭐), trpc (36k⭐), Prisma (41k⭐), Vue.js Core (48k⭐), Excalidraw (88k⭐). Founder 1ai-skills — repositori AI agent skill terbesar di dunia dengan 1282 skill. Praktisi yg kodenya dipake ribuan developer global.' },
-        { q: 'Apa bedanya paket?', a: 'Video Course: self-paced. Online Live: 6 sesi Zoom + mentor. Offline: 2 hari tatap muka intensif. Monthly Sub: akses update tiap bulan. Platinum Pass: ALL-IN + Technical Track Hermes & OpenClaw — ini yg bedain dari kursus AI lain.' },
-        { q: 'Apa itu Technical Track?', a: 'Materi eksklusif Platinum Pass. Lo belajar bikin AI agent yg bisa browsing, coding, execute tools — framework produksi yg beneran dipake di BerkahKarya ecosystem. Bukan teori, kode beneran.' },
-        { q: 'Gimana cara bayar?', a: 'Via Tripay — QRIS (GoPay/OVO/DANA/ShopeePay), Virtual Account (BCA/Mandiri/BRI/BNI), atau bayar di Alfamart/Indomaret. Semua otomatis.' },
-        { q: 'Ada garansi?', a: '7 hari uang kembali. Gak cocok? Full refund. Gak pake tanya. Risiko di kami, bukan di lo.' },
-        { q: 'Mau konsultasi dulu?', a: `Chat langsung ke Telegram → ${TG}. Gratis. Gak ada kewajiban beli. Seneng ngobrolin AI, bisnis, atau affiliate.` },
-      ],
-    },
-
     contact: {
       telegram: TG,
       telegram_text: '💬 Chat Langsung Paijo',
-      telegram_sub: 'Masih ragu? Atau mau diskusi teknis? Langsung chat @codergaboets.',
+      telegram_sub: 'Diskusi gratis, tidak ada tekanan. Tanya apa saja soal AI.',
       wa: WA,
       wa_text: '📱 WhatsApp',
-    },
-
-    cta: {
-      title: 'Udah Siap Ambil Alih Masa Depan Lo? 🚀',
-      description: 'Pilih paket di bawah, bayar via Tripay (QRIS/VA/E-Wallet), langsung akses materi. Atau chat Paijo dulu — gratis, gak ada paksaan.',
-      button: { text: 'Chat Paijo di Telegram 💬', href: TG },
     },
   },
-
   en: {
     meta: {
-      title: 'AI Academy — Learn AI from Fikri Izzuddin (oyi77) | BerkahKarya',
-      description: 'AI course from contributor to Next.js, trpc, Prisma, Vue.js. 6 practical modules: prompt engineering, content AI, automation, monetization. 10+ years professional experience. 7-day guarantee.',
-      keywords: 'learn AI, AI course, AI training, AI academy, ChatGPT course, prompt engineering, AI automation, freelance AI, online AI course, AI for beginners, Fikri Izzuddin, oyi77, BerkahKarya',
+      title: 'BerkahKarya AI Academy — Learn AI for SMEs, Content, Students & Teachers',
+      description: 'Indonesia\'s most complete AI learning platform. AI Agent courses for SMEs, automated content creation, AI for students, and AI for teachers. Guided by Fikri Izzuddin — contributor to Next.js, Vue.js, Prisma.',
+      keywords: 'learn AI Indonesia, AI agent SME, WhatsApp AI bot, automated financial reports, AI for teachers, AI for students, content AI automation, BerkahKarya AI Academy',
     },
     hero: {
-      eyebrow: '🎓 HARSH TRUTH: 70% of Jobs Will Be Automated in 3 Years',
-      title: 'Be the One Who Pays Salaries, Not the One Waiting for One.',
-      subtitle: 'Master AI Now — Before Someone Else Takes Your Spot.',
-      painAmplify: 'Every day you delay, someone else takes your spot. Freelancers who know AI earn 3× more. Employees who use AI get promoted 2× faster. Meanwhile you?',
-      description: 'Guided directly by Fikri Izzuddin (Paijo / oyi77) — active contributor to Next.js (⭐127k), trpc (⭐36k), Prisma (⭐41k), Vue.js Core (⭐48k), OmniRoute (⭐5.7k). 10+ years professional experience at BITWYRE, GARUDAMEDIA (3000+ employees), VIAPULSA. Founder of BerkahKarya — a 1-Man Company running 20+ AI services. 8,464 GitHub contributions in 2025. Not theory — real practice from someone whose code is used by developers worldwide.',
+      eyebrow: '🎓 Indonesia\'s #1 AI Learning Platform',
+      title: 'Master AI — Your Way.',
+      subtitle: 'From small businesses to classrooms — we have the right learning path.',
+      description: 'Choose from 4 AI learning tracks designed for your needs: AI Agents for SMEs, Automated Content Creation, AI for Students, and AI for Teachers. Guided by Fikri Izzuddin — contributor to Next.js, Vue.js, Prisma, and founder of BerkahKarya.',
       buttons: [
-        { text: '🔴 Get Platinum Pass Now →', href: '#pricing', primary: true },
-        { text: '📚 View Curriculum First', href: '#kurikulum', primary: false },
+        { text: 'Explore All Courses →', href: '#tracks', primary: true },
+        { text: 'Free Consultation', href: TG, primary: false },
       ],
-      badges: ['✅ 150+ GitHub Repos · 8,464 Contributions in 2025', '✅ Setup <5 Minutes', '✅ 7 Day Money Back Guarantee'],
-    },
-    problem: {
-      hook: 'STOP. You\'re Already Falling Behind.',
-      pains: [
-        { icon: '😰', title: 'Stuck in Place', desc: '70% of jobs will use AI. Your colleagues who mastered AI get promoted. You? Still manual.' },
-        { icon: '🔥', title: 'Losing Freelance Battle', desc: 'AI freelancers earn 3× more. With coding + AI? 10×. Clients choose them, not you.' },
-        { icon: '🤯', title: 'Overwhelmed & Lost', desc: 'ChatGPT, Claude, Midjourney, Gemini — info overload. YouTube tutorials are scattered. No direction.' },
-        { icon: '⏳', title: 'Tried & Quit', desc: 'Bought cheap courses, watched random tutorials. Gave up halfway. No mentor, no feedback.' },
+      badges: [
+        '✅ 39+ Courses Available',
+        '✅ Guided by Real Practitioners',
+        '✅ 7-Day Money Back Guarantee',
       ],
-      bridge: 'Be honest: if this continues, 2-3 years from now your position will be taken by someone with sharper AI skills. And you? Won\'t have a leg to stand on.',
-    },
-    pains: [
-      { icon: '⏰', title: 'Running Out of Time', desc: 'Every month you delay, 10,000+ people start learning AI. They\'re your competition.' },
-      { icon: '🔄', title: 'Fail Cycle', desc: 'Buy course - watch - forget. Start over. You\'ve done this 3× already.' },
-      { icon: '🕳️', title: 'Information Black Hole', desc: 'New AI content daily. You\'re lost in noise. End up doing nothing.' },
-      { icon: '💔', title: 'Regret', desc: '1 year from now... "I was gonna learn AI, but..." Don\'t let it be you.' },
-    ],
-    vision: {
-      headline: 'Imagine If...',
-      title: '6 Months From Now, You\'re Living Like This:',
-      items: [
-        { icon: '💼', title: 'AI-Skilled & In Demand', desc: 'Skills the market desperately needs. Freelance, promotion, or start your own agency.' },
-        { icon: '⚡', title: 'Work 10× Faster', desc: 'AI does 80% of your work. You just review and improve. 2 hours of work, 8 hours of results.' },
-        { icon: '🤖', title: 'Own AI Agents', desc: '24/7 workers — business, marketing, content, all automated.' },
-        { icon: '💰', title: 'Income Multiplied', desc: 'At least 3-5× your current income. Realistic, not empty promises.' },
-      ],
-      hook: 'This Isn\'t a Dream. It\'s Already Happened to Hundreds.' ,
-    },
-    founder: {
-      name: 'Fikri Izzuddin (Paijo / oyi77)',
-      role: 'Founder & Lead Instructor',
-      title: 'Fikri Izzuddin',
-      tagline: '10+ Years Professional · 150+ Repos · 8,464 Contributions in 2025',
-      avatar: '🧑‍💻',
-      tg: '@codergaboets',
-      stats: [
-        { value: '10+', label: 'Years Professional' },
-        { value: '8,464', label: 'Contributions 2025' },
-        { value: '20+', label: 'AI Services Live' },
-        { value: '1,282', label: 'AI Agent Skills' },
-      ],
-      bio: 'Technical Lead & Full Stack Engineer with experience at major companies: GARUDAMEDIA (Engineering Manager, 3000+ employees), BITWYRE (Lead Developer, DEX clearing algorithm), VIAPULSA (Technical Lead, offline→online migration, 18-person team), LINGUISE (API migration PHP→Node.js). Now founder of BerkahKarya — a 1-Man Company operated by AI with 20+ production services.\n\nOpen source contributions to frameworks used by millions: Next.js (⭐127k), trpc (⭐36k), Prisma (⭐41k), Vue.js Core (⭐48k), OmniRoute (⭐5.7k — 9+ PRs merged, 353 new tests, 60%+ test coverage). 149 public repos, 20.4 million lines of code.\n\nYou learn not from a trainer who reads slides — but from someone who writes production code used by thousands every day.',
-      achievements: [
-        { icon: '🔀', text: 'OmniRoute (⭐5.7k) — 9+ PRs merged, 353 new tests, 60%+ coverage' },
-        { icon: '▲', text: 'Next.js (⭐127k) — Contributor to Vercel\'s core framework' },
-        { icon: '⚡', text: 'trpc (⭐36k) — PR merged to type-safe API framework' },
-        { icon: '🗄️', text: 'Prisma (⭐41k) — Contributor to world\'s top ORM' },
-        { icon: '🟩', text: 'Vue.js Core (⭐48k) — PR merged to Vue.js core' },
-      ],
-    },
-    stats: [
-      { value: '6', label: 'Core Modules' },
-      { value: '30+', label: 'Hours of Content' },
-      { value: '1282', label: 'AI Skills' },
-      { value: '150+', label: 'GitHub Repos' },
-    ],
-    curriculum: null,
-    technicalTrack: null,
-    specializations: null,
-    forWhom: null,
-    howItWorks: {
-      title: 'How to Join?',
-      steps: [
-        { num: '1', title: 'Pick a Plan', desc: 'Choose the package that fits you. Pay via Tripay — QRIS, Virtual Account, E-Wallet. All online & secure.' },
-        { num: '2', title: 'Access Materials', desc: 'Get LMS access. Structured videos, case studies, hands-on assignments. Learn anywhere, anytime.' },
-        { num: '3', title: 'Practice + Mentoring', desc: 'Apply immediately. Get feedback from Paijo via Telegram. Build portfolio. Start finding clients or remote work.' },
-      ],
-    },
-    pricing: [
-      {
-        id: 'video-course',
-        name: '📹 Video Course',
-        price: 'Rp 299K',
-        period: '· once',
-        features: ['Lifetime access to 6 core modules', 'Self-paced video learning', 'PDF materials per module', 'Case studies & assignments', 'Telegram community access'],
-        cta: { text: 'Buy via Tripay →', href: '#', data_plan: 'video-course' },
-      },
-      {
-        id: 'online-live',
-        name: '💻 Online Live',
-        price: 'Rp 799K',
-        period: '· once',
-        highlight: true,
-        features: ['All Video Course benefits', '6× interactive Zoom sessions', 'Live Q&A with Paijo', 'Personal assignment feedback', 'Session recordings — lifetime', 'Completion certificate'],
-        cta: { text: 'Register via Tripay →', href: '#', data_plan: 'online-live' },
-      },
-      {
-        id: 'offline-workshop',
-        name: '🏫 Offline Workshop',
-        price: 'Rp 2.5M',
-        period: '· 2 days',
-        features: ['All Online Live benefits', '2-day in-person workshop', 'Hands-on mentor guidance', 'Networking with peers', 'Lunch + snacks included', 'Learning kit bonus'],
-        cta: { text: 'Register via Tripay →', href: '#', data_plan: 'offline-workshop' },
-      },
-      {
-        id: 'monthly-sub',
-        name: '🔄 Monthly Sub',
-        price: 'Rp 199K',
-        period: '/mo',
-        features: ['Access to all Video Course library', 'Monthly content updates', 'Premium community access', 'Weekly Q&A sessions', 'Cancel anytime'],
-        cta: { text: 'Subscribe via Tripay →', href: '#', data_plan: 'monthly-sub' },
-      },
-      {
-        id: 'platinum-pass',
-        name: '👑 Platinum Pass',
-        price: 'Rp 9M',
-        period: '· all-access',
-        highlight: true,
-        features: ['Access to EVERYTHING', '🔥 Technical Track: Hermes & OpenClaw', '1-on-1 VIP mentoring with Paijo', 'Exclusive Platinum Telegram group', 'Business & SaaS materials', 'Real-world portfolio projects', 'Priority feature updates', 'Lifetime investment'],
-        cta: { text: '👑 Get Platinum Pass →', href: '#', data_plan: 'platinum-pass' },
-      },
-    ],
-    paymentInfo: {
-      title: '💳 Payment Methods',
-      methods: ['QRIS (all e-wallets)', 'Virtual Account (BCA, Mandiri, BRI, BNI)', 'Alfamart / Indomaret', 'OVO / DANA / ShopeePay'],
-      note: 'All payments processed by Tripay — trusted Indonesian payment gateway. Auto-verified.',
-      telegram: 'https://t.me/codergaboets',
-    },
-    testimonials: {
-      title: 'What They Say — Who\'ve Already Proved It',
-      items: [
-        { quote: 'I knew nothing about AI before. Now I can create content, images, and automation workflows. ROI in just 2 weeks.', name: 'Rudi H.', role: 'Freelance Content Creator', avatar: '👨‍💻' },
-        { quote: 'The Online Live class is amazing. The mentor is a real practitioner — a Next.js contributor. Not an ordinary trainer.', name: 'Sari P.', role: 'Digital Marketing Manager', avatar: '👩‍💼' },
-        { quote: 'The Hermes & OpenClaw Technical Track is a game changer. Now I have my own AI agent working 24/7.', name: 'Andre K.', role: 'Tech Entrepreneur', avatar: '🧑‍💻' },
-        { quote: 'At the offline workshop, Paijo taught us how to deploy AI agents to production. Literally usable the next day.', name: 'Fajar N.', role: 'Full Stack Developer', avatar: '👨‍🔧' },
-      ],
-    },
-    faq: {
-      title: 'Still Hesitating?',
-      items: [
-        { q: 'Is this suitable for complete beginners?', a: 'Absolutely! Module 1 starts from the basics — even if you\'ve never used ChatGPT. Platinum Pass also has advanced Hermes & OpenClaw for experts.' },
-        { q: 'How long to become proficient?', a: 'Most students produce AI content in week 1. Full mastery 1-2 months with 1-2 hours/day. ROI starts week 1.' },
-        { q: 'Who is Paijo? Why learn from him?', a: 'Paijo (oyi77) is an OSS contributor with merged PRs in Next.js (127k⭐), trpc (36k⭐), Prisma (41k⭐), Vue.js Core (48k⭐), Excalidraw (88k⭐). Creator of 1ai-skills — the world\'s largest AI agent skill repo with 1282 skills. A practitioner whose code is used by thousands.' },
-        { q: 'What payment methods?', a: 'Via Tripay — QRIS (GoPay/OVO/DANA/ShopeePay), Virtual Account (BCA/Mandiri/BRI/BNI), or Alfamart/Indomaret. Auto-verified.' },
-        { q: 'Is there a money-back guarantee?', a: '7-day full refund. Not satisfied? Full refund. No questions asked. Risk is on us, not you.' },
-        { q: 'Can I chat with Paijo first?', a: 'Yes! DM on Telegram → @codergaboets. Free, no obligation. Happy to discuss AI, business, or affiliate marketing.' },
-      ],
-    },
-    contact: {
-      telegram: 'https://t.me/codergaboets',
-      telegram_text: '💬 Chat Paijo Directly',
-      telegram_sub: 'Still unsure? Or want to discuss tech? DM @codergaboets.',
-      wa: WA,
-      wa_text: '📱 WhatsApp',
     },
     cta: {
-      title: 'Ready to Take Control of Your Future? 🚀',
-      description: 'Pick a plan below, pay via Tripay (QRIS/VA/E-Wallet), get instant access. Or chat Paijo first — free, no pressure.',
-      button: { text: '💬 Chat Paijo on Telegram', href: 'https://t.me/codergaboets' },
+      title: 'Ready to Start Learning AI?',
+      description: 'Pick a plan, pay via Tripay (QRIS / VA / E-Wallet), and access all materials instantly. Or chat with Paijo first — it\'s free.',
+      button: { text: 'Chat Paijo on Telegram 💬', href: TG },
+    },
+    contact: {
+      telegram: TG,
+      telegram_text: '💬 Chat Paijo Directly',
+      telegram_sub: 'Free discussion, no pressure. Ask anything about AI.',
+      wa: WA,
+      wa_text: '📱 WhatsApp',
     },
   },
 } as const;
