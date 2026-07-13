@@ -93,7 +93,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
       <HowItWorks title={d.howItWorks.title} steps={[...d.howItWorks.steps]} />
 
       {/* Developer Section */}
-      <section id="developer" className="section dark-section">
+      <section id="developer" className="section" style={{ background: 'var(--surface-0)' }}>
         <div className="container" style={{ maxWidth: 'var(--container-lg)', textAlign: 'center' }}>
           <span className="eyebrow">👨‍💻 Developers</span>
           <h2 style={{
