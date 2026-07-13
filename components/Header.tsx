@@ -13,8 +13,8 @@ interface NavItem {
 
 const navLinks: NavItem[] = [
   { slug: '', id: 'Beranda', en: 'Home' },
-  { slug: 'personal', id: 'Untuk Personal', en: 'For Personal' },
-  { slug: 'bisnis', id: 'Untuk Bisnis', en: 'For Business' },
+  { slug: 'one-ai', id: 'Untuk Personal', en: 'For Personal' },
+  { slug: 'rev-system', id: 'Untuk Bisnis', en: 'For Business' },
   { slug: 'ecosystem', id: 'Ekosistem', en: 'Ecosystem' },
   { slug: 'pricing', id: 'Harga', en: 'Pricing' },
   { slug: 'roadmap', id: 'Roadmap', en: 'Roadmap' },

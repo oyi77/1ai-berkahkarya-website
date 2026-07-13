@@ -1,7 +1,7 @@
-/* ── Ecosystem Diagram: Architecture Visualization ── */
+/* ── Ecosystem Diagram: Premium Dark Hub-and-Spoke ── */
 .wrap {
   padding: var(--space-12) var(--space-6) var(--space-14);
-  background: var(--surface-0);
+  background: var(--surface-1);
   position: relative;
 }
 
@@ -31,8 +31,8 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-primary);
-  background: var(--color-primary-glow);
-  border: 1px solid var(--border-default);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-full);
   margin-bottom: var(--space-3);
@@ -52,7 +52,7 @@
   font-family: var(--font-ui);
   font-size: var(--text-lg);
   line-height: 1.7;
-  color: var(--text-inverse-muted);
+  color: var(--text-muted);
   font-weight: 400;
   max-width: 600px;
   margin-bottom: var(--space-10);
@@ -66,7 +66,7 @@
 .diagram {
   position: relative;
   background: var(--surface-2);
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
   padding: var(--space-8) var(--space-6);
   overflow: visible;
@@ -79,7 +79,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-secondary), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-primary), var(--brand-violet), transparent);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
@@ -124,7 +124,7 @@
   }
 }
 
-/* Hub */
+/* Hub - central glass card */
 .hub {
   display: flex;
   flex-direction: column;
@@ -139,23 +139,23 @@
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-6);
-  background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(124, 58, 237, 0.15));
-  border: 2px solid var(--color-primary);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border-hover);
   border-radius: var(--radius-lg);
-  box-shadow:
-    0 0 30px var(--color-primary-glow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   position: relative;
 }
 
 .hubCore::before {
   content: '';
   position: absolute;
-  inset: -4px;
-  border-radius: calc(var(--radius-lg) + 4px);
-  background: var(--gradient-primary);
-  opacity: 0.3;
-  filter: blur(8px);
+  inset: -2px;
+  border-radius: calc(var(--radius-lg) + 2px);
+  background: linear-gradient(135deg, var(--color-primary), var(--brand-violet));
+  opacity: 0.25;
+  filter: blur(6px);
   z-index: -1;
   animation: hubGlow 3s ease-in-out infinite;
 }
@@ -179,7 +179,7 @@
 
 .hubDesc {
   font-size: var(--text-xs);
-  color: var(--text-inverse-subtle);
+  color: var(--text-subtle);
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -204,8 +204,10 @@
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-full);
   background: transparent;
+  color: var(--text-muted);
 }
 
+/* Service nodes as small glass cards */
 .services {
   display: flex;
   flex-wrap: wrap;
@@ -218,9 +220,11 @@
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
-  background: var(--surface-1);
-  border: 1px solid var(--border-default);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   transition: all var(--duration-base) var(--ease-out);
   position: relative;
 }
@@ -237,7 +241,7 @@
 }
 
 .service:hover {
-  border-color: transparent;
+  border-color: var(--glass-border-hover);
   transform: translateY(-3px);
   box-shadow: var(--shadow-lg);
 }
@@ -258,7 +262,7 @@
   white-space: nowrap;
 }
 
-/* Connector dots - visual indicator of flow */
+/* Connector dots */
 .connectorDots {
   display: flex;
   justify-content: center;
@@ -271,7 +275,8 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  box-shadow: 0 0 12px currentColor;
+  background: var(--color-primary);
+  box-shadow: 0 0 12px var(--color-primary-glow);
   animation: dotPulse 2s ease-in-out infinite;
 }
 
@@ -292,7 +297,7 @@
   font-family: var(--font-ui);
   font-size: var(--text-sm);
   line-height: 1.6;
-  color: var(--text-inverse-ghost);
+  color: var(--text-subtle);
   text-align: center;
   white-space: pre-wrap;
   background: rgba(255, 255, 255, 0.02);

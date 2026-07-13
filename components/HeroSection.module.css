@@ -1,4 +1,4 @@
-/* ── Hero Section: Editorial Layout ── */
+/* ── Hero Section: Premium Dark ── */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -10,28 +10,30 @@
   background: var(--surface-0);
 }
 
-/* Atmospheric Background Layers */
+/* Gradient-hero overlay */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 15% 30%, var(--brand-teal-glow) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 60% at 85% 20%, var(--brand-violet-glow) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 70% at 50% 80%, var(--brand-teal-glow-strong) 0%, transparent 70%);
+    radial-gradient(ellipse 60% 50% at 15% 30%, var(--color-primary-glow) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 85% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 70% at 50% 80%, rgba(0, 217, 255, 0.08) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
 
+/* Decorative grid pattern */
 .hero::after {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0,217,255,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,217,255,0.015) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
   background-size: 80px 80px;
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -76,7 +78,7 @@
 
 .withCharacter { gap: var(--space-12); }
 
-/* Content - Editorial Layout */
+/* Content */
 .content {
   flex: 1;
   min-width: 320px;
@@ -87,7 +89,7 @@
   gap: var(--space-6);
 }
 
-/* Badge - Category Label */
+/* Badge - Eyebrow pill */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -99,16 +101,17 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-primary);
-  background: var(--color-primary-glow);
-  border: 1px solid var(--border-default);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-full);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-/* Title - Editorial Scale */
+/* Title - Editorial Sora Display */
 .title {
   font-family: var(--font-display);
-  font-size: var(--text-5xl);
+  font-size: var(--text-6xl);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -124,13 +127,13 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* Description - Readable & Generous */
+/* Description */
 .description {
   font-family: var(--font-ui);
   font-size: var(--text-lg);
   font-weight: 400;
   line-height: 1.7;
-  color: var(--text-inverse-muted);
+  color: var(--text-muted);
   max-width: 580px;
 }
 
@@ -154,6 +157,7 @@
   text-decoration: none;
   transition: all var(--duration-base) var(--ease-out);
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .btn:focus-visible {
@@ -164,42 +168,43 @@
 .primary {
   background: var(--gradient-primary);
   color: var(--surface-0);
-  box-shadow:
-    0 4px 24px var(--color-primary-glow),
-    0 0 0 1px var(--border-strong);
+  box-shadow: 0 4px 24px rgba(0, 217, 255, 0.3);
 }
 
 .primary:hover {
   transform: translateY(-3px);
-  box-shadow:
-    0 12px 40px var(--color-primary-strong),
-    0 0 0 1px var(--border-strong);
+  box-shadow: 0 12px 40px rgba(0, 217, 255, 0.4);
 }
 
 .primary:active { transform: translateY(-1px); }
 
 .secondary {
-  background: var(--surface-2);
+  background: var(--glass-bg);
   color: var(--text-inverse);
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--glass-border);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .secondary:hover {
-  background: var(--surface-3);
-  border-color: var(--border-strong);
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
   color: var(--color-primary);
   transform: translateY(-2px);
 }
 
-/* Trust Strip */
+/* Stats Row - Glass style at bottom */
 .strip {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-5);
   margin-top: var(--space-4);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--border-subtle);
+  padding: var(--space-5) var(--space-6);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
 }
 
 .stripItem {
@@ -209,7 +214,7 @@
   font-family: var(--font-ui);
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--text-inverse-subtle);
+  color: var(--text-muted);
 }
 
 .stripItem span:first-child {
@@ -232,9 +237,8 @@
   height: auto;
   border-radius: var(--radius-xl);
   box-shadow:
-    0 0 0 1px var(--border-default),
-    0 24px 60px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.03);
+    0 0 0 1px var(--glass-border),
+    0 24px 60px rgba(0, 0, 0, 0.5);
   transition: transform var(--duration-slow) var(--ease-out);
 }
 
@@ -271,7 +275,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
-  color: var(--text-inverse-ghost);
+  color: var(--text-subtle);
   font-size: var(--text-xs);
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -294,9 +298,8 @@
   .content { max-width: 100%; }
   .description { max-width: 100%; }
   .strip { justify-content: center; }
-  .characterWrap { flex-basis: auto; order: -1; }
-  .characterWrap { max-width: 320px; }
-  .title { font-size: var(--text-4xl); }
+  .characterWrap { flex-basis: auto; order: -1; max-width: 320px; }
+  .title { font-size: var(--text-5xl); }
 }
 
 @media (max-width: 640px) {

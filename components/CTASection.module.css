@@ -1,18 +1,19 @@
 .section {
-  background: var(--dark-hero);
+  background: var(--surface-1);
   position: relative;
   overflow: hidden;
 }
+
 .section::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,217,255,0.08) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 60% at 80% 80%, rgba(124,58,237,0.07) 0%, transparent 60%);
+    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0, 217, 255, 0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 60% at 80% 80%, rgba(124, 58, 237, 0.07) 0%, transparent 60%);
   pointer-events: none;
 }
-/* Glowing top border */
+
 .section::after {
   content: '';
   position: absolute;
@@ -21,44 +22,99 @@
   transform: translateX(-50%);
   width: 60%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--teal-primary), transparent);
+  background: linear-gradient(90deg, transparent, var(--brand-teal), transparent);
 }
+
+.decorativeGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 217, 255, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
 .container {
   position: relative;
   z-index: 1;
   max-width: 700px;
   margin: 0 auto;
-  padding: 6rem 1.5rem;
+  padding: var(--section-py) var(--section-px);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 1.25rem;
+  gap: var(--space-5);
 }
+
 .container h2 {
-  color: var(--text-white);
-  background: linear-gradient(160deg, #FFFFFF 40%, rgba(0,217,255,0.8) 100%);
+  color: var(--text-inverse);
+  background: linear-gradient(160deg, var(--text-inverse) 40%, rgba(0, 217, 255, 0.8) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.container p { color: var(--text-white-70); font-size: 1.05rem; max-width: 560px; }
-.btn {
+
+.container p {
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  max-width: 560px;
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btnPrimary {
   display: inline-flex;
   align-items: center;
-  margin-top: 0.75rem;
-  padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, var(--teal-primary) 0%, var(--teal-hover) 100%);
-  color: var(--dark-hero);
-  font-family: var(--font-heading);
+  padding: var(--space-4) var(--space-8);
+  background: linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-violet) 100%);
+  color: var(--text-inverse);
+  font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.05rem;
-  border-radius: 12px;
+  font-size: var(--text-base);
+  border: none;
+  border-radius: var(--radius-lg);
   text-decoration: none;
-  box-shadow: 0 6px 32px rgba(0,217,255,0.4);
-  transition: transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 6px 32px rgba(0, 217, 255, 0.4);
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
 }
-.btn:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0,217,255,0.55); }
-.trust { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
-.trustItem { font-size: 0.75rem; color: var(--text-white-50); display: flex; align-items: center; gap: 0.35rem; }
-.trustItem span:first-child { color: var(--success); }
+
+.btnPrimary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px rgba(0, 217, 255, 0.55);
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-8);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-default);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-base);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  backdrop-filter: blur(var(--glass-blur));
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+
+.btnSecondary:hover {
+  transform: translateY(-3px);
+  border-color: var(--glass-border-hover);
+}

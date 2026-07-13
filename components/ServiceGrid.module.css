@@ -1,35 +1,87 @@
 .container {
-  max-width: 1200px;
+  max-width: var(--container-xl);
   margin: 0 auto;
-  padding: 5rem 1.5rem;
+  padding: var(--section-py) var(--section-px);
   text-align: center;
 }
-.container h2 { margin-bottom: 0.5rem; }
-.subtitle { color: var(--text-muted); margin-bottom: 3rem; font-size: 1.05rem; }
+
+.container h2 {
+  margin-bottom: var(--space-2);
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin-bottom: var(--space-7);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: var(--space-5);
   text-align: left;
 }
+
 .card {
-  padding: 1.75rem;
+  padding: var(--space-7);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--space-3);
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
 }
-.card:hover {
-  border-color: var(--teal-primary);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
-}
-.emoji { font-size: 1.75rem; }
-.name { font-size: 1rem; font-weight: 800; }
-.desc { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6; }
-.link { margin-top: auto; font-size: 0.8rem; font-weight: 700; color: var(--teal-primary); }
 
-@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+.card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.emoji {
+  font-size: 1.75rem;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--text-default);
+}
+
+.desc {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.link {
+  margin-top: auto;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--brand-teal);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

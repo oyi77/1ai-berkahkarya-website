@@ -19,8 +19,10 @@
   --text-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.75rem);
   --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);
   --text-5xl: clamp(3rem, 2rem + 5vw, 5rem);
+  --text-6xl: clamp(3.5rem, 2.5rem + 6vw, 6rem);
+  --text-7xl: clamp(4rem, 3rem + 7vw, 7rem);
 
-  /* ─── Brand Palette (Refined) ─── */
+  /* ─── Brand Palette (Refined Premium) ─── */
   --brand-teal: #00D9FF;
   --brand-teal-dim: #00B8D4;
   --brand-teal-glow: rgba(0, 217, 255, 0.35);
@@ -63,29 +65,42 @@
   --color-error: #EF4444;
   --color-error-glow: rgba(239, 68, 68, 0.35);
 
-  /* ─── Surface System (Dark) ─── */
-  --surface-0: #05080D;       /* Deepest - page background */
-  --surface-1: #080C14;       /* Hero/sections */
-  --surface-2: #0D1526;       /* Cards, elevated */
-  --surface-3: #111A2E;       /* Hover states */
-  --surface-4: #1A253A;       /* Active/selected */
+  /* ─── Surface System (Dark - Ultra Premium) ─── */
+  --surface-0: #05070A;       /* Deepest - page canvas */
+  --surface-1: #080C16;       /* Hero / section backgrounds */
+  --surface-2: #0D1225;       /* Cards, elevated surfaces */
+  --surface-3: #11182E;       /* Card hover states */
+  --surface-4: #19223C;       /* Active/selected */
 
   /* ─── Surface System (Light) ─── */
-  --surface-light-0: #F8FAFC;
+  --surface-light-0: #FAFBFC;
   --surface-light-1: #FFFFFF;
-  --surface-light-2: #F1F5F9;
-  --surface-light-3: #E2E8F0;
-  --surface-light-4: #CBD5E1;
+  --surface-light-2: #F0F2F5;
+  --surface-light-3: #E2E5EB;
+  --surface-light-4: #C8CDD6;
 
-  /* ─── Border System ─── */
-  --border-subtle: rgba(0, 217, 255, 0.08);
-  --border-default: rgba(0, 217, 255, 0.15);
-  --border-strong: rgba(0, 217, 255, 0.3);
+  /* ─── Border System (Neutral - No Teal Tint) ─── */
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
   --border-focus: var(--brand-teal);
 
-  --border-light-subtle: rgba(148, 163, 184, 0.12);
-  --border-light-default: rgba(148, 163, 184, 0.2);
-  --border-light-strong: rgba(148, 163, 184, 0.4);
+  --border-light-subtle: rgba(0, 0, 0, 0.06);
+  --border-light-default: rgba(0, 0, 0, 0.10);
+  --border-light-strong: rgba(0, 0, 0, 0.18);
+
+  /* ─── Glass Card System ─── */
+  --glass-bg: rgba(11, 17, 34, 0.65);
+  --glass-bg-hover: rgba(13, 20, 40, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-border-hover: rgba(255, 255, 255, 0.12);
+  --glass-blur: 16px;
+  --glass-blur-strong: 24px;
+
+  --glass-light-bg: rgba(255, 255, 255, 0.7);
+  --glass-light-bg-hover: rgba(255, 255, 255, 0.85);
+  --glass-light-border: rgba(0, 0, 0, 0.06);
+  --glass-light-blur: 12px;
 
   /* ─── Text System ─── */
   --text-inverse: #FFFFFF;
@@ -99,24 +114,24 @@
   --text-ghost: #475569;
 
   --text-light-default: #0F172A;
-  --text-light-muted: #64748B;
+  --text-light-muted: #475569;
   --text-light-subtle: #94A3B8;
   --text-light-ghost: #CBD5E1;
 
   /* ─── Gradient Presets ─── */
   --gradient-primary: linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-violet) 100%);
   --gradient-primary-reverse: linear-gradient(135deg, var(--brand-violet) 0%, var(--brand-teal) 100%);
-  --gradient-hero: linear-gradient(145deg, rgba(0,217,255,0.12) 0%, rgba(124,58,237,0.12) 50%, transparent 100%);
+  --gradient-hero: linear-gradient(145deg, rgba(0,217,255,0.10) 0%, rgba(124,58,237,0.10) 50%, transparent 100%);
   --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-  --gradient-card-hover: linear-gradient(145deg, rgba(0,217,255,0.08) 0%, rgba(124,58,237,0.06) 100%);
+  --gradient-card-hover: linear-gradient(145deg, rgba(0,217,255,0.06) 0%, rgba(124,58,237,0.04) 100%);
   --gradient-gold: linear-gradient(135deg, var(--brand-gold) 0%, #FBBF24 100%);
   --gradient-emerald: linear-gradient(135deg, var(--brand-emerald) 0%, #34D399 100%);
 
   /* ─── Shadow System ─── */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.55);
   --shadow-glow: 0 0 40px var(--color-primary-glow);
   --shadow-glow-secondary: 0 0 40px var(--color-secondary-glow);
 
@@ -143,8 +158,8 @@
   --space-12: 6rem;     /* 96px */
   --space-13: 8rem;     /* 128px */
   --space-14: 10rem;    /* 160px */
-  --space-15: 12rem;     /* 192px */
-  --space-16: 16rem;     /* 256px */
+  --space-15: 12rem;    /* 192px */
+  --space-16: 16rem;    /* 256px */
 
   /* Section Padding - responsive */
   --section-py: clamp(4rem, 8vw, 8rem);
@@ -162,8 +177,8 @@
   --duration-fast: 120ms;
   --duration-base: 200ms;
   --duration-slow: 320ms;
-  --duration-slower: 480ms;
-  --duration-editorial: 700ms;
+  --duration-slower: 600ms;
+  --duration-editorial: 800ms;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
