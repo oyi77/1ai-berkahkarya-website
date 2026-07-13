@@ -1,63 +1,149 @@
-.wrap { background: var(--dark-hero); padding: 0 1.5rem 4rem; }
+.wrap {
+  background: var(--surface-0);
+  padding: var(--space-6) var(--space-6) var(--space-12);
+}
+
 .row {
-  max-width: 1100px;
+  max-width: var(--container-xl);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: rgba(0,217,255,0.1);
-  border: 1px solid rgba(0,217,255,0.12);
-  border-radius: 20px;
+  background: var(--border-default);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
   overflow: hidden;
 }
+
 .item {
-  background: rgba(255,255,255,0.03);
-  padding: 2.25rem 1.5rem;
+  background: var(--surface-2);
+  padding: var(--space-9) var(--space-6);
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  transition: background 0.2s;
+  gap: var(--space-2);
+  transition:
+    background var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+  opacity: 0;
+  transform: translateY(20px);
 }
-.item:hover { background: rgba(0,217,255,0.06); }
+
+.item.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--duration-editorial) var(--ease-out-expo),
+    transform var(--duration-editorial) var(--ease-out-expo),
+    background var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.item:hover {
+  background: var(--surface-3);
+  transform: translateY(-4px);
+  z-index: 1;
+}
+
 .value {
-  font-family: var(--font-heading);
-  font-size: 2.6rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, var(--teal-primary), var(--violet-light));
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  line-height: 1.1;
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
 }
-.label { font-size: 0.83rem; color: var(--text-white-60); font-weight: 500; }
-@media (max-width: 768px) { .row { grid-template-columns: repeat(2, 1fr); } .value { font-size: 2rem; } }
-@media (max-width: 480px) { .value { font-size: 1.6rem; } }
+
+.label {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-inverse-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .ctaWrap {
-  max-width: 1100px;
-  margin: 1.5rem auto 0;
+  max-width: var(--container-xl);
+  margin: var(--space-8) auto 0;
   text-align: center;
 }
+
 .ctaLink {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
   font-weight: 600;
-  color: var(--teal-primary);
+  color: var(--color-primary);
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--teal-primary);
-  border-radius: 0.5rem;
-  transition: background 0.2s, color 0.2s;
+  padding: var(--space-2) var(--space-5);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  transition:
+    background var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
 }
+
 .ctaLink:hover {
-  background: var(--teal-glow);
-  color: var(--teal-hover);
+  background: var(--color-primary-glow);
+  color: var(--surface-0);
+  box-shadow: var(--shadow-glow);
 }
+
+.ctaLink:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px var(--color-primary-glow),
+    0 0 0 1px var(--color-primary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .value {
+    font-size: var(--text-2xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .value {
+    font-size: var(--text-2xl);
+  }
+  .item {
+    padding: var(--space-7) var(--space-4);
+  }
+}
+
 @media (max-width: 480px) {
+  .value {
+    font-size: var(--text-xl);
+  }
+  .label {
+    font-size: var(--text-xs);
+  }
   .ctaLink {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.75rem;
+    font-size: var(--text-xs);
+    padding: var(--space-1) var(--space-3);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    opacity: 1;
+    transform: none;
+    transition: background var(--duration-base) var(--ease-out);
+  }
+  .item.visible {
+    opacity: 1;
+    transform: none;
   }
 }
