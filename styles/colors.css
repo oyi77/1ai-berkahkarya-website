@@ -77,9 +77,12 @@
   --text-light-muted: var(--ink-muted);
   --text-light-subtle: var(--ink-subtle);
   --text-light-ghost: var(--ink-ghost);
-  --text-inverse: var(--paper);
-  --text-inverse-muted: rgba(234, 228, 214, 0.75);
-  --text-inverse-subtle: rgba(234, 228, 214, 0.55);
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-muted);
+  --text-light: var(--ink-muted);
+  --text-inverse: var(--ink);
+  --text-inverse-muted: var(--ink-muted);
+  --text-inverse-subtle: var(--ink-subtle);
 
   /* ─── Gradient Presets ─── */
   --gradient-primary: linear-gradient(135deg, var(--margin-red), #B84A3F);

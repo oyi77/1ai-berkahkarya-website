@@ -14,6 +14,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
+    const token = process.env.TRACKING_META_CAPI_TOKEN || TRACKING.META_CAPI_TOKEN;
+    if (!token) {
+      console.warn('Meta CAPI: no token configured, skipping event');
+      return res.status(200).json({ success: true, skipped: true });
+    }
+
     const { event_name, event_source_url, user_agent, client_ip, fbc, fbp, custom_data } = req.body;
 
     const event = {
@@ -35,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // test_event_code: 'TEST12345', // Uncomment for testing in Events Manager
     };
 
-    const response = await fetch(`${GRAPH_API}?access_token=${process.env.TRACKING_META_CAPI_TOKEN || TRACKING.META_CAPI_TOKEN}`, {
+    const response = await fetch(`${GRAPH_API}?access_token=${token}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(event),
