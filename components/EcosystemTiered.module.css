@@ -6,6 +6,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-12);
+  border-top: 2px solid var(--rule-strong);
+  border-bottom: 2px solid var(--rule-strong);
 }
 
 /* ─── Section ─── */
@@ -19,70 +21,78 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  font-family: var(--font-ui);
+  font-family: var(--font-mono);
   font-size: var(--text-xs);
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: var(--space-4);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-subtle);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--rule);
   width: fit-content;
+  color: var(--ink-muted);
 }
 
 .labelAccent {
   display: block;
-  width: 8px;
-  height: 8px;
-  border-radius: var(--radius-full);
+  width: 6px;
+  height: 6px;
+  background: var(--margin-red);
   flex-shrink: 0;
 }
 
 .accentTeal .labelAccent,
 .accentTeal {
-  color: var(--brand-teal);
+  color: var(--margin-red);
 }
 .accentTeal .labelAccent {
-  background: var(--brand-teal);
-  box-shadow: 0 0 8px var(--brand-teal-glow);
+  background: var(--margin-red);
 }
 
 .accentViolet .labelAccent,
 .accentViolet {
-  color: var(--brand-violet-bright);
+  color: var(--margin-red-soft);
 }
 .accentViolet .labelAccent {
-  background: var(--brand-violet);
-  box-shadow: 0 0 8px var(--brand-violet-glow);
+  background: var(--margin-red-soft);
 }
 
 .accentGold .labelAccent,
 .accentGold {
-  color: var(--brand-gold);
+  color: var(--margin-red);
 }
 .accentGold .labelAccent {
-  background: var(--brand-gold);
-  box-shadow: 0 0 8px var(--brand-gold-glow);
+  background: var(--margin-red);
 }
+
 
 /* ─── Title & Subtitle ─── */
 .title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--text-3xl);
-  font-weight: 800;
-  color: var(--text-default);
+  font-weight: 700;
+  color: var(--ink);
   margin: 0 0 var(--space-2);
-  letter-spacing: -0.02em;
+  position: relative;
+  padding-bottom: var(--space-4);
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 48px;
+  height: 4px;
+  background: var(--margin-red);
 }
 
 .subtitle {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   font-size: var(--text-base);
-  color: var(--text-muted);
+  color: var(--ink-muted);
   line-height: 1.6;
-  margin: 0 0 var(--space-8);
+  margin: var(--space-4) 0 var(--space-8);
   max-width: 640px;
 }
 
@@ -112,36 +122,59 @@
   gap: var(--space-3);
   text-decoration: none;
   color: inherit;
-  background: var(--surface-2);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
   padding: var(--space-7);
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.3s ease,
-    background 0.3s ease;
+  padding-left: calc(var(--space-7) + 3px);
+  transition: border-color 0.2s ease;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--margin-red);
 }
 
 .card:hover {
-  border-color: var(--card-accent, var(--border-strong));
-  box-shadow: 0 0 30px color-mix(in srgb, var(--card-accent, var(--brand-teal)) 12%, transparent),
-              0 8px 32px rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
-  background: var(--surface-3);
+  border-color: var(--rule-strong);
+  background: var(--paper-2);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--margin-red);
+  outline-offset: 2px;
+}
+
+.card.accentTeal::before {
+  background: var(--margin-red);
+}
+
+.card.accentViolet::before {
+  background: var(--margin-red-soft);
+}
+
+.card.accentGold::before {
+  background: var(--margin-red);
 }
 
 /* Card sizes */
 .card_lg {
   padding: var(--space-8);
+  padding-left: calc(var(--space-8) + 3px);
 }
 
 .card_md {
   padding: var(--space-7);
+  padding-left: calc(var(--space-7) + 3px);
 }
 
 .card_sm {
   padding: var(--space-6);
+  padding-left: calc(var(--space-6) + 3px);
   gap: var(--space-2);
   border-style: dashed;
 }
@@ -151,23 +184,12 @@
   position: absolute;
   top: var(--space-3);
   right: var(--space-3);
-  font-family: var(--font-ui);
+  font-family: var(--font-mono);
   font-size: var(--text-xs);
-  font-weight: 700;
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-default);
-  color: var(--text-muted);
+  font-weight: 600;
+  color: var(--margin-red);
   white-space: nowrap;
   letter-spacing: 0.02em;
-  backdrop-filter: blur(4px);
-}
-
-.card:hover .metric {
-  border-color: var(--card-accent, var(--border-strong));
-  color: var(--text-default);
-  background: color-mix(in srgb, var(--card-accent, var(--brand-teal)) 8%, transparent);
 }
 
 /* ─── Icon ─── */
@@ -183,11 +205,10 @@
 
 /* ─── Name ─── */
 .name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--text-default);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  color: var(--ink);
   margin: 0;
-  letter-spacing: -0.01em;
 }
 
 .card_lg .name {
@@ -204,8 +225,9 @@
 
 /* ─── Description ─── */
 .desc {
-  font-family: var(--font-ui);
-  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
   line-height: 1.6;
   margin: 0;
   flex: 1;
@@ -225,28 +247,22 @@
 
 /* ─── Learn More Link ─── */
 .link {
-  font-family: var(--font-ui);
+  font-family: var(--font-mono);
   font-size: var(--text-sm);
-  font-weight: 700;
-  color: var(--card-accent, var(--brand-teal));
+  color: var(--ink-muted);
   display: flex;
   align-items: center;
   gap: var(--space-1);
   margin-top: auto;
-  transition: gap 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .link::after {
   content: '→';
-  transition: transform 0.2s ease;
 }
 
 .card:hover .link {
-  gap: var(--space-2);
-}
-
-.card:hover .link::after {
-  transform: translateX(2px);
+  color: var(--margin-red);
 }
 
 /* ─── Responsive ─── */
@@ -286,6 +302,7 @@
 
   .card_lg {
     padding: var(--space-6);
+    padding-left: calc(var(--space-6) + 3px);
   }
 }
 
@@ -298,5 +315,6 @@
 
   .card_lg {
     padding: var(--space-5);
+    padding-left: calc(var(--space-5) + 3px);
   }
 }

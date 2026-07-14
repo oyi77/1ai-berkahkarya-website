@@ -136,7 +136,7 @@ export default function Layout({
         <meta httpEquiv="content-language" content={locale} />
 
         {/* Mobile & PWA */}
-        <meta name="theme-color" content="#00D9FF" />
+        <meta name="theme-color" content="#1C2430" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -152,10 +152,6 @@ export default function Layout({
         <link rel="manifest" href="/site.webmanifest" />
 
         {/* Preconnect for performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://connect.facebook.net" />
 
         {/* JSON-LD Structured Data */}
         <script
@@ -175,7 +171,9 @@ export default function Layout({
         ))}
       </Head>
       <Header />
-      <main>{children}</main>
+      <main className="ledger-margin">
+        <div className="ledger-margin-content">{children}</div>
+      </main>
       <Footer />
     </>
   );

@@ -17,39 +17,54 @@ interface HeroProps {
   eyebrow?: string;
   title: string;
   description: string;
-  /** Legacy single-CTA array — use ctaPrimary/ctaSecondary instead for new design */
   buttons?: Array<{ text: string; href: string; primary?: boolean }>;
   character?: { src: string; alt: string };
   badges?: readonly string[];
-  /** New dual CTA */
   ctaPrimary?: CTA;
   ctaSecondary?: CTA;
   metricHighlight?: MetricHighlight;
   liveIndicator?: string;
+  /** Ledger metrics table — key-value rows under hero title */
+  metrics?: Array<{ label: string; value: string; highlight?: boolean }>;
 }
 
 export default function HeroSection({
   eyebrow, title, description, buttons, character, badges,
-  ctaPrimary, ctaSecondary, metricHighlight, liveIndicator,
+  ctaPrimary, ctaSecondary, metricHighlight, liveIndicator, metrics,
 }: HeroProps) {
   const hasDualCTA = ctaPrimary || ctaSecondary;
 
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
-      <div className={`${styles.container} ${character ? styles.withCharacter : ''}`}>
+      {/* Red accent bar at top */}
+      <div className={styles.accentBar} />
+
+      <div className={styles.container}>
         <div className={styles.content}>
-          {eyebrow && <span className={styles.badge}>{eyebrow}</span>}
+          {/* Eyebrow — red ink stamp */}
+          {eyebrow && (
+            <span className={styles.eyebrow}>
+              <span className={styles.bullet} /> {eyebrow}
+            </span>
+          )}
+
+          {/* Title — document heading */}
           <h1 id="hero-title" className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
+          
+          {/* Underline rule */}
+          <div className={styles.titleRule} />
+
+          {/* Description — body text */}
           <p className={styles.description}>{description}</p>
 
-          {/* Dual CTA - new design */}
+          {/* Dual CTA */}
           {hasDualCTA && (
             <div className={styles.buttons} role="group" aria-label="Hero actions">
               {ctaPrimary && (
                 <a
                   href={ctaPrimary.href}
-                  className={`${styles.btn} ${styles.primary}`}
-                  onClick={() => trackCTAClick(`hero_primary`, ctaPrimary.href)}
+                  className={`${styles.btn} ${styles.btnStamp}`}
+                  onClick={() => trackCTAClick('hero_primary', ctaPrimary.href)}
                 >
                   {ctaPrimary.text}
                 </a>
@@ -57,8 +72,8 @@ export default function HeroSection({
               {ctaSecondary && (
                 <a
                   href={ctaSecondary.href}
-                  className={`${styles.btn} ${styles.secondary}`}
-                  onClick={() => trackCTAClick(`hero_secondary`, ctaSecondary.href)}
+                  className={`${styles.btn} ${styles.btnOutline}`}
+                  onClick={() => trackCTAClick('hero_secondary', ctaSecondary.href)}
                 >
                   {ctaSecondary.text}
                 </a>
@@ -73,7 +88,7 @@ export default function HeroSection({
                 <a
                   key={btn.text}
                   href={btn.href}
-                  className={`${styles.btn} ${btn.primary ? styles.primary : styles.secondary}`}
+                  className={`${styles.btn} ${btn.primary ? styles.btnStamp : styles.btnOutline}`}
                   target={btn.href.startsWith('http') ? '_blank' : undefined}
                   rel={btn.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   onClick={() => trackCTAClick(`hero_${btn.text}`, btn.href)}
@@ -84,7 +99,7 @@ export default function HeroSection({
             </div>
           )}
 
-          {/* Metric highlight + live indicator row */}
+          {/* Metric highlight + live indicator */}
           {(metricHighlight || liveIndicator) && (
             <div className={styles.metaRow}>
               {metricHighlight && (
@@ -99,36 +114,46 @@ export default function HeroSection({
             </div>
           )}
 
-          {/* Trust strip — hide when metricRow is shown to avoid clutter */}
-          {!metricHighlight && !liveIndicator && (
+          {/* Ledger metrics table */}
+          {metrics && metrics.length > 0 && (
+            <div className={styles.metricsTable}>
+              <table>
+                <tbody>
+                  {metrics.map((m, i) => (
+                    <tr key={i} className={m.highlight ? styles.metricRowHighlight : styles.metricRow}>
+                      <td className={styles.metricLabelCol}>{m.label}</td>
+                      <td className={styles.metricValueCol}>{m.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {/* Badge strip (only when no metric row to avoid clutter) */}
+          {!metricHighlight && !liveIndicator && badges && badges.length > 0 && (
             <div className={styles.strip} aria-label="Trust indicators">
-              {(badges || ['Setup <5 menit', 'Garansi 7 hari', 'Support via Telegram']).map((b, i) => (
-                <div key={i} className={styles.stripItem}><span aria-hidden="true">✓</span><span>{b}</span></div>
+              {badges.map((b) => (
+                <span key={b} className={styles.stripItem}>{b}</span>
               ))}
             </div>
           )}
         </div>
-        {character && (
+
+        {/* Character illustration area — replaced by metrics when provided */}
+        {character && !metrics && (
           <div className={styles.characterWrap}>
-            <div className={styles.glowOrb} aria-hidden="true" />
-            <picture>
-              <source srcSet={`${character.src}?w=600`} media="(min-width: 768px)" />
-              <img
-                src={character.src}
-                alt={character.alt}
-                className={styles.characterImg}
-                loading="lazy"
-                width={400}
-                height={500}
-              />
-            </picture>
+            <div className={styles.glowOrb} />
+            <img src={character.src} alt={character.alt} className={styles.characterImg} />
           </div>
         )}
       </div>
-      <div className={styles.scrollIndicator} aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 5v14M19 12l-7 7-7-7" />
-        </svg>
+
+      {/* Bottom decorative rule */}
+      <div className={styles.bottomRule}>
+        <span className={styles.bottomRuleDot} />
+        <span className={styles.bottomRuleLine} />
+        <span className={styles.bottomRuleDot} />
       </div>
     </section>
   );

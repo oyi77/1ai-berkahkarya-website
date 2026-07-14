@@ -1,48 +1,14 @@
 .section {
-  background: var(--surface-1);
-  position: relative;
-  overflow: hidden;
-}
-
-.section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0, 217, 255, 0.08) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 60% at 80% 80%, rgba(124, 58, 237, 0.07) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.section::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--brand-teal), transparent);
-}
-
-.decorativeGlow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 480px;
-  height: 480px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 217, 255, 0.06) 0%, transparent 70%);
-  pointer-events: none;
+  background: var(--paper-2);
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+  padding: var(--section-py) 0;
 }
 
 .container {
-  position: relative;
-  z-index: 1;
-  max-width: 700px;
+  max-width: var(--container-md);
   margin: 0 auto;
-  padding: var(--section-py) var(--section-px);
+  padding: 0 var(--section-px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,70 +17,64 @@
 }
 
 .container h2 {
-  color: var(--text-inverse);
-  background: linear-gradient(160deg, var(--text-inverse) 40%, rgba(0, 217, 255, 0.8) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  color: var(--ink);
+  text-align: center;
+  padding-bottom: var(--space-3);
+  border-bottom: 3px solid var(--margin-red);
+  display: inline-block;
 }
 
 .container p {
-  color: var(--text-muted);
-  font-family: var(--font-ui);
-  font-size: var(--text-base);
+  font-family: var(--font-body);
+  color: var(--ink-muted);
+  text-align: center;
   max-width: 560px;
 }
 
-.actions {
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-6);
+  background: var(--margin-red);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border: none;
+  border-radius: 0;
+  transition: background var(--duration-base) var(--ease-out);
+}
+
+.btn:hover {
+  background: var(--margin-red-soft);
+}
+
+.trust {
   display: flex;
-  gap: var(--space-4);
-  margin-top: var(--space-2);
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.btnPrimary {
-  display: inline-flex;
   align-items: center;
-  padding: var(--space-4) var(--space-8);
-  background: linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-violet) 100%);
-  color: var(--text-inverse);
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: var(--text-base);
-  border: none;
-  border-radius: var(--radius-lg);
-  text-decoration: none;
-  box-shadow: 0 6px 32px rgba(0, 217, 255, 0.4);
-  transition:
-    transform var(--duration-base) var(--ease-out),
-    box-shadow var(--duration-base) var(--ease-out);
+  gap: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--rule);
+  width: 100%;
 }
 
-.btnPrimary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 40px rgba(0, 217, 255, 0.55);
-}
-
-.btnSecondary {
-  display: inline-flex;
+.trustItem {
+  display: flex;
   align-items: center;
-  padding: var(--space-4) var(--space-8);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  color: var(--text-default);
-  font-family: var(--font-display);
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}
+
+.trustItem span:first-child {
+  color: var(--margin-red);
   font-weight: 700;
-  font-size: var(--text-base);
-  border-radius: var(--radius-lg);
-  text-decoration: none;
-  backdrop-filter: blur(var(--glass-blur));
-  transition:
-    transform var(--duration-base) var(--ease-out),
-    border-color var(--duration-base) var(--ease-out);
-}
-
-.btnSecondary:hover {
-  transform: translateY(-3px);
-  border-color: var(--glass-border-hover);
 }

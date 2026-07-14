@@ -1,148 +1,108 @@
-/* ─── Fonts: Distinctive Editorial Pairing ─── */
-/* Display: Sora - geometric, modern, distinctive */
-/* UI/Body: DM Sans - clean, readable, technical */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap');
+/* ─── Open Ledger Design System ─── */
+/* Paper: EA E4 D6 | Ink: 1C 24 30 | Margin Red: A3 35 2B */
+/* Fonts: IBM Plex Serif (headings), Sans (body), Mono (data) */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root {
-  /* Typography Scale */
-  --font-display: 'Sora', sans-serif;
-  --font-ui: 'DM Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  /* ─── Typography ─── */
+  --font-display: 'IBM Plex Serif', Georgia, serif;
+  --font-ui: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Fluid Type Scale (clamp-based) */
-  --text-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.75rem);
+  /* ─── Fluid Type Scale ─── */
+  --text-xs: clamp(0.675rem, 0.6rem + 0.375vw, 0.75rem);
   --text-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
   --text-base: clamp(0.9375rem, 0.875rem + 0.3125vw, 1rem);
   --text-lg: clamp(1.0625rem, 1rem + 0.3125vw, 1.125rem);
-  --text-xl: clamp(1.25rem, 1.125rem + 0.625vw, 1.5rem);
-  --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
-  --text-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.75rem);
-  --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);
-  --text-5xl: clamp(3rem, 2rem + 5vw, 5rem);
-  --text-6xl: clamp(3.5rem, 2.5rem + 6vw, 6rem);
-  --text-7xl: clamp(4rem, 3rem + 7vw, 7rem);
+  --text-xl: clamp(1.1875rem, 1.0625rem + 0.625vw, 1.375rem);
+  --text-2xl: clamp(1.375rem, 1.125rem + 1.25vw, 1.875rem);
+  --text-3xl: clamp(1.75rem, 1.375rem + 1.875vw, 2.5rem);
+  --text-4xl: clamp(2.125rem, 1.625rem + 2.5vw, 3.25rem);
+  --text-5xl: clamp(2.75rem, 2rem + 5vw, 4.5rem);
+  --text-6xl: clamp(3.25rem, 2.5rem + 6vw, 5.5rem);
+  --text-7xl: clamp(3.75rem, 3rem + 7vw, 6.5rem);
 
-  /* ─── Brand Palette (Refined Premium) ─── */
-  --brand-teal: #00D9FF;
-  --brand-teal-dim: #00B8D4;
-  --brand-teal-glow: rgba(0, 217, 255, 0.35);
-  --brand-teal-glow-strong: rgba(0, 217, 255, 0.55);
+  /* ─── Ledger Palette ─── */
+  --paper: #EAE4D6;
+  --paper-2: #F2EDE1;
+  --paper-3: #DFD8C7;
+  --paper-4: #D1CAB6;
+  --ink: #1C2430;
+  --ink-soft: #3A3F4B;
+  --ink-muted: #5A5E68;
+  --ink-subtle: #7C7F86;
+  --ink-ghost: #A5A8AD;
+  --margin-red: #A3352B;
+  --margin-red-soft: #B84A3F;
+  --margin-red-subtle: #C96B61;
+  --rule: #C9C1AC;
+  --rule-light: #D8D2C0;
+  --rule-strong: #B0A88F;
+  --indigo: #33456B;
+  --indigo-soft: #4B5E88;
+  --verification: #2D6A2D;
+  --stamp-red: #8B251E;
 
-  --brand-violet: #7C3AED;
-  --brand-violet-bright: #9D5FFF;
-  --brand-violet-glow: rgba(124, 58, 237, 0.35);
-  --brand-violet-glow-strong: rgba(124, 58, 237, 0.55);
+  /* ─── Brand Semantic ─── */
+  --color-primary: var(--margin-red);
+  --color-primary-hover: var(--margin-red-soft);
+  --color-primary-glow: rgba(163, 53, 43, 0.15);
+  --color-primary-strong: var(--margin-red);
+  --color-secondary: var(--indigo);
+  --color-secondary-hover: var(--indigo-soft);
+  --color-success: var(--verification);
+  --color-warning: #B8860B;
+  --color-error: var(--stamp-red);
 
-  --brand-gold: #F59E0B;
-  --brand-gold-glow: rgba(245, 158, 11, 0.35);
+  /* ─── Surface System ─── */
+  --surface-0: var(--paper);
+  --surface-1: var(--paper-2);
+  --surface-2: var(--paper-3);
+  --surface-3: var(--paper-4);
+  --surface-4: #C4BBAA;
 
-  --brand-emerald: #10B981;
-  --brand-emerald-glow: rgba(16, 185, 129, 0.35);
-
-  --brand-coral: #F97316;
-  --brand-coral-glow: rgba(249, 115, 22, 0.35);
-
-  /* ─── Semantic Color Tokens ─── */
-  --color-primary: var(--brand-teal);
-  --color-primary-hover: var(--brand-teal-dim);
-  --color-primary-glow: var(--brand-teal-glow);
-  --color-primary-strong: var(--brand-teal-glow-strong);
-
-  --color-secondary: var(--brand-violet);
-  --color-secondary-hover: var(--brand-violet-bright);
-  --color-secondary-glow: var(--brand-violet-glow);
-  --color-secondary-strong: var(--brand-violet-glow-strong);
-
-  --color-accent: var(--brand-gold);
-  --color-accent-glow: var(--brand-gold-glow);
-
-  --color-success: var(--brand-emerald);
-  --color-success-glow: var(--brand-emerald-glow);
-
-  --color-warning: var(--brand-coral);
-  --color-warning-glow: var(--brand-coral-glow);
-
-  --color-error: #EF4444;
-  --color-error-glow: rgba(239, 68, 68, 0.35);
-
-  /* ─── Surface System (Dark - Ultra Premium) ─── */
-  --surface-0: #05070A;       /* Deepest - page canvas */
-  --surface-1: #080C16;       /* Hero / section backgrounds */
-  --surface-2: #0D1225;       /* Cards, elevated surfaces */
-  --surface-3: #11182E;       /* Card hover states */
-  --surface-4: #19223C;       /* Active/selected */
-
-  /* ─── Surface System (Light) ─── */
-  --surface-light-0: #FAFBFC;
-  --surface-light-1: #FFFFFF;
-  --surface-light-2: #F0F2F5;
-  --surface-light-3: #E2E5EB;
-  --surface-light-4: #C8CDD6;
-
-  /* ─── Border System (Neutral - No Teal Tint) ─── */
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --border-default: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.14);
-  --border-focus: var(--brand-teal);
-
-  --border-light-subtle: rgba(0, 0, 0, 0.06);
-  --border-light-default: rgba(0, 0, 0, 0.10);
-  --border-light-strong: rgba(0, 0, 0, 0.18);
-
-  /* ─── Glass Card System ─── */
-  --glass-bg: rgba(11, 17, 34, 0.65);
-  --glass-bg-hover: rgba(13, 20, 40, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glass-border-hover: rgba(255, 255, 255, 0.12);
-  --glass-blur: 16px;
-  --glass-blur-strong: 24px;
-
-  --glass-light-bg: rgba(255, 255, 255, 0.7);
-  --glass-light-bg-hover: rgba(255, 255, 255, 0.85);
-  --glass-light-border: rgba(0, 0, 0, 0.06);
-  --glass-light-blur: 12px;
+  /* ─── Border System ─── */
+  --border-subtle: var(--rule-light);
+  --border-default: var(--rule);
+  --border-strong: var(--rule-strong);
+  --border-focus: var(--margin-red);
 
   /* ─── Text System ─── */
-  --text-inverse: #FFFFFF;
-  --text-inverse-muted: rgba(255, 255, 255, 0.65);
-  --text-inverse-subtle: rgba(255, 255, 255, 0.45);
-  --text-inverse-ghost: rgba(255, 255, 255, 0.25);
-
-  --text-default: #F1F5F9;
-  --text-muted: #94A3B8;
-  --text-subtle: #64748B;
-  --text-ghost: #475569;
-
-  --text-light-default: #0F172A;
-  --text-light-muted: #475569;
-  --text-light-subtle: #94A3B8;
-  --text-light-ghost: #CBD5E1;
+  --text-default: var(--ink);
+  --text-muted: var(--ink-muted);
+  --text-subtle: var(--ink-subtle);
+  --text-ghost: var(--ink-ghost);
+  --text-light-default: var(--ink);
+  --text-light-muted: var(--ink-muted);
+  --text-light-subtle: var(--ink-subtle);
+  --text-light-ghost: var(--ink-ghost);
+  --text-inverse: var(--paper);
+  --text-inverse-muted: rgba(234, 228, 214, 0.75);
+  --text-inverse-subtle: rgba(234, 228, 214, 0.55);
 
   /* ─── Gradient Presets ─── */
-  --gradient-primary: linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-violet) 100%);
-  --gradient-primary-reverse: linear-gradient(135deg, var(--brand-violet) 0%, var(--brand-teal) 100%);
-  --gradient-hero: linear-gradient(145deg, rgba(0,217,255,0.10) 0%, rgba(124,58,237,0.10) 50%, transparent 100%);
-  --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-  --gradient-card-hover: linear-gradient(145deg, rgba(0,217,255,0.06) 0%, rgba(124,58,237,0.04) 100%);
-  --gradient-gold: linear-gradient(135deg, var(--brand-gold) 0%, #FBBF24 100%);
-  --gradient-emerald: linear-gradient(135deg, var(--brand-emerald) 0%, #34D399 100%);
+  --gradient-primary: linear-gradient(135deg, var(--margin-red), #B84A3F);
+  --gradient-secondary: linear-gradient(135deg, var(--indigo), #4B5E88);
+  --gradient-hero: linear-gradient(180deg, rgba(234,228,214,0) 0%, var(--paper-2) 100%);
+  --gradient-card: linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 100%);
+  --gradient-success: linear-gradient(135deg, #2D6A2D, #3A8A3A);
 
   /* ─── Shadow System ─── */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.55);
-  --shadow-glow: 0 0 40px var(--color-primary-glow);
-  --shadow-glow-secondary: 0 0 40px var(--color-secondary-glow);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 0 20px rgba(163, 53, 43, 0.08);
 
   /* ─── Radius System ─── */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
   --radius-full: 9999px;
 
-  /* ─── Spacing Scale (Editorial) ─── */
+  /* ─── Spacing Scale ─── */
   --space-0: 0;
   --space-1: 0.25rem;   /* 4px */
   --space-2: 0.5rem;    /* 8px */
@@ -161,8 +121,8 @@
   --space-15: 12rem;    /* 192px */
   --space-16: 16rem;    /* 256px */
 
-  /* Section Padding - responsive */
-  --section-py: clamp(4rem, 8vw, 8rem);
+  /* Section Padding */
+  --section-py: clamp(3rem, 6vw, 6rem);
   --section-px: clamp(1.5rem, 4vw, 3rem);
 
   /* Container */
@@ -186,7 +146,7 @@
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* ─── Z-Index Scale ─── */
+  /* ─── Z-Index ─── */
   --z-bg: -1;
   --z-base: 0;
   --z-dropdown: 100;
@@ -198,7 +158,7 @@
   --z-tooltip: 700;
   --z-toast: 800;
 
-  /* ─── Breakpoints ─── */
+  /* Breakpoints */
   --bp-sm: 640px;
   --bp-md: 768px;
   --bp-lg: 1024px;
@@ -206,66 +166,66 @@
   --bp-2xl: 1536px;
 }
 
-/* ─── Legacy aliases for backward compatibility ─── */
+/* ─── Legacy Aliases (for backward compat during transition) ─── */
 :root {
   --font-heading: var(--font-display);
   --font-body: var(--font-ui);
-  --teal-primary: var(--brand-teal);
-  --teal-hover: var(--brand-teal-dim);
-  --teal-glow: var(--brand-teal-glow);
-  --violet: var(--brand-violet);
-  --violet-light: var(--brand-violet-bright);
-  --violet-glow: var(--brand-violet-glow);
-  --gold: var(--brand-gold);
-  --success: var(--brand-emerald);
-  --error: var(--color-error);
-  --dark-hero: var(--surface-0);
-  --dark-secondary: var(--surface-1);
-  --dark-body: var(--surface-1);
-  --dark-card: var(--surface-2);
-  --dark-surface: var(--surface-2);
-  --dark-card-hover: var(--surface-3);
-  --dark-border: var(--border-default);
-  --dark-border-hover: var(--border-strong);
-  --light-bg: var(--surface-light-0);
-  --white: var(--surface-light-1);
-  --border-light: var(--border-light-default);
+  --teal-primary: var(--margin-red);
+  --teal-hover: var(--margin-red-soft);
+  --teal-glow: var(--color-primary-glow);
+  --violet: var(--indigo);
+  --violet-light: var(--indigo-soft);
+  --brand-teal: var(--margin-red);
+  --brand-teal-dim: var(--margin-red-soft);
+  --brand-teal-glow: var(--color-primary-glow);
+  --brand-violet: var(--indigo);
+  --brand-violet-bright: var(--indigo-soft);
+  --brand-gold: #B8860B;
+  --brand-emerald: #2D6A2D;
+  --brand-coral: var(--margin-red-soft);
+  --shadow-glow-secondary: 0 0 20px rgba(51, 69, 107, 0.08);
+  --teal-glow-strong: rgba(163, 53, 43, 0.25);
+  --glass-bg: rgba(242, 237, 225, 0.8);
+  --glass-bg-hover: rgba(223, 216, 199, 0.85);
+  --glass-border: var(--rule-light);
+  --glass-border-hover: var(--rule);
+  --glass-blur: 8px;
+  --surface-light-0: var(--paper);
+  --surface-light-1: var(--paper-2);
+  --surface-light-2: var(--paper-3);
+  --surface-light-3: var(--paper-4);
+  --dark-hero: var(--paper-2);
+  --dark-secondary: var(--paper-2);
+  --dark-body: var(--paper-2);
+  --dark-card: var(--paper-3);
+  --dark-surface: var(--paper-3);
+  --dark-card-hover: var(--paper-4);
+  --dark-border: var(--rule);
+  --dark-border-hover: var(--rule-strong);
+  --light-bg: var(--paper);
+  --white: var(--paper-2);
+  --border-light: var(--rule-light);
   --card-shadow: var(--shadow-md);
   --card-shadow-hover: var(--shadow-lg);
-  --text-primary: var(--text-light-default);
-  --text-secondary: var(--text-light-muted);
-  --text-muted: var(--text-light-subtle);
-  --text-light: var(--text-light-subtle);
-  --text-white: var(--text-inverse);
-  --text-white-85: rgba(255,255,255,0.85);
-  --text-white-80: rgba(255,255,255,0.80);
-  --text-white-70: rgba(255,255,255,0.7);
-  --text-white-60: rgba(255,255,255,0.6);
-  --text-white-50: rgba(255,255,255,0.5);
-  --text-white-40: rgba(255,255,255,0.40);
+  --text-white: var(--ink);
+  --text-white-85: rgba(28, 36, 48, 0.85);
+  --text-white-80: rgba(28, 36, 48, 0.80);
+  --text-white-70: rgba(28, 36, 48, 0.7);
+  --text-white-60: rgba(28, 36, 48, 0.6);
+  --text-white-50: rgba(28, 36, 48, 0.5);
+  --text-white-40: rgba(28, 36, 48, 0.40);
 }
 
-/* ─── Focus Ring Utility ─── */
-.focus-ring {
-  outline: none;
-  ring: 2px;
-  ring-offset: 2px;
-  ring-offset-color: var(--surface-0);
-}
-.focus-ring:focus-visible {
-  ring-color: var(--color-primary);
-}
-
-/* ─── Gradient Text Utility ─── */
+/* ─── Gradient Text ─── */
 .gradient-text {
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, var(--ink) 0%, var(--indigo) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-gold {
-  background: var(--gradient-gold);
+  background: linear-gradient(135deg, var(--margin-red) 0%, #B8860B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -273,12 +233,12 @@
 
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--surface-0); }
-::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+::-webkit-scrollbar-track { background: var(--paper-2); }
+::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--rule-strong); }
 
 /* ─── Selection ─── */
 ::selection {
-  background: var(--color-primary-glow);
-  color: var(--text-inverse);
+  background: var(--margin-red);
+  color: var(--paper);
 }

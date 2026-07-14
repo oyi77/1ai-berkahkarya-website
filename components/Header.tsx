@@ -131,7 +131,7 @@ export default function Header() {
 
         <div className={styles.actions}>
           <button onClick={switchLocale} className={styles.langBtn}>
-            🌐 {locale === 'id' ? 'EN' : 'ID'}
+            {locale === 'id' ? 'EN' : 'ID'}
           </button>
           <a
             href={`/${locale}/transparency`}
@@ -165,7 +165,7 @@ export default function Header() {
         </ul>
         <div className={styles.mobileActions}>
           <button onClick={switchLocale} className={styles.langBtn}>
-            🌐 {locale === 'id' ? 'English' : 'Indonesia'}
+            {locale === 'id' ? 'English' : 'Indonesia'}
           </button>
           <a
             href={`/${locale}/transparency`}
@@ -176,7 +176,7 @@ export default function Header() {
           </a>
           <a
             href={`/${locale}#persona-switcher`}
-            className={styles.ctaBtn}
+            className={styles.mobileCtaBtn}
             onClick={() => trackAddToCart({content_name:'Mobile CTA Mulai',content_id:'mobile-cta-mulai',content_type:'cta_mulai',destination:'/#persona-switcher',destination_url:`/${locale}#persona-switcher`})}
           >
             {locale === 'id' ? 'Mulai Sekarang' : 'Get Started'}

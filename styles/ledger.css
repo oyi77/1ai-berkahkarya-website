@@ -1,0 +1,269 @@
+/* ─── Open Ledger Utilities ─── */
+/* Red margin rule, dot leaders, ink stamp, ledger tables */
+
+/* ─── Red Margin Rule ─── */
+.ledger-margin {
+  position: relative;
+}
+
+.ledger-margin::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 72px;
+  width: 2px;
+  height: 100%;
+  background: var(--margin-red);
+  opacity: 0.6;
+}
+
+.ledger-margin-content {
+  padding-left: calc(72px + 2rem);
+}
+
+@media (max-width: 768px) {
+  .ledger-margin::before {
+    left: 24px;
+  }
+  .ledger-margin-content {
+    padding-left: calc(24px + 1.25rem);
+  }
+}
+
+/* ─── Dot Leader Row ─── */
+.ledger-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  padding: 0.375rem 0;
+  border-bottom: 1px solid var(--rule-light);
+}
+
+.ledger-row:last-child {
+  border-bottom: none;
+}
+
+.ledger-row-label {
+  flex-shrink: 0;
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+}
+
+.ledger-row-dots {
+  flex: 1;
+  min-width: 1rem;
+  overflow: hidden;
+  color: var(--rule-strong);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+
+.ledger-row-value {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  color: var(--ink);
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ─── Ink Stamp ─── */
+.ledger-stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.2rem 0.6rem;
+  border: 1.5px solid var(--margin-red);
+  color: var(--margin-red);
+  background: transparent;
+  transform: rotate(-2deg);
+  opacity: 0.85;
+  user-select: none;
+}
+
+.ledger-stamp-success {
+  border-color: var(--verification);
+  color: var(--verification);
+}
+
+/* ─── Ledger Header Strip ─── */
+.ledger-header {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  background: var(--paper-2);
+  border-bottom: 2px solid var(--rule-strong);
+  padding: 0.375rem 1rem;
+  gap: 2rem;
+}
+
+.ledger-header-field {
+  flex-shrink: 0;
+}
+
+.ledger-header-value {
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+/* ─── Ledger Table ─── */
+.ledger-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
+
+.ledger-table th {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid var(--rule-strong);
+}
+
+.ledger-table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--rule-light);
+  color: var(--ink-soft);
+}
+
+.ledger-table td:last-child {
+  font-family: var(--font-mono);
+  text-align: right;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.ledger-table tr:hover td {
+  background: var(--paper-2);
+}
+
+/* ─── Ledger Card ─── */
+.ledger-card {
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  position: relative;
+}
+
+.ledger-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--margin-red);
+  opacity: 0.5;
+}
+
+.ledger-card-body {
+  padding: 1.5rem;
+}
+
+/* ─── Ruled Line (horizontal) ─── */
+.ledger-rule {
+  height: 1px;
+  background: var(--rule);
+  border: none;
+  margin: 0;
+}
+
+/* ─── Section Eyebrow ─── */
+.ledger-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--margin-red);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+/* ─── Ink Button ─── */
+.ledger-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 0.625rem 1.5rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.ledger-btn:hover {
+  background: var(--ink-soft);
+}
+
+.ledger-btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--rule-strong);
+}
+
+.ledger-btn-secondary:hover {
+  background: var(--paper-2);
+}
+
+.ledger-btn-stamp {
+  background: var(--margin-red);
+  color: var(--paper);
+}
+
+.ledger-btn-stamp:hover {
+  background: var(--margin-red-soft);
+}
+
+/* ─── Verified Badge ─── */
+.ledger-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--verification);
+}
+
+.ledger-verified::before {
+  content: '◆';
+  font-size: 0.5rem;
+}
+
+/* ─── Stat Number ─── */
+.ledger-stat {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.ledger-stat-label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
