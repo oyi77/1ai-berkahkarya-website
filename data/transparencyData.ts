@@ -105,7 +105,7 @@ export const transparencyData = {
       ],
     },
     founder: {
-      title: 'Founder: Coder $String$',
+      title: 'Founder: Coder & Builder',
       subtitle: 'Proof of work, bukan title',
       bio: 'Software engineer yang membangun BerkahKarya dari nol menjadi ekosistem 13 layanan otonom — tanpa VC, tanpa co-founder, tanpa team besar. 30-60 menit per hari. Output: perusahaan yang jalan sendiri.',
       proof: [
@@ -301,7 +301,7 @@ export const transparencyData = {
       ],
     },
     founder: {
-      title: 'Founder: Coder $String$',
+      title: 'Founder: Coder & Builder',
       subtitle: 'Proof of work, not titles',
       bio: 'Software engineer who built BerkahKarya from zero into a 13-service autonomous ecosystem — no VC, no co-founder, no large team. 30-60 minutes/day. Output: a company that runs itself.',
       proof: [

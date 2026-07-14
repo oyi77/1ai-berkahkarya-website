@@ -24,9 +24,9 @@ export const homeData = {
           detail: '1AI, 1AI-Ads, 1AI-Content, 1AI-Affiliate, 1AI-Social, 1AI-Scheduler, 1AI-Email, 1AI-Phone, 1AI-Fax, 1AI-Search, 1AI-Monitor, 1AI-Saas, Gateway Autoheal',
         },
         {
-          value: '6',
-          label: 'Sumber Pendapatan',
-          detail: 'API AI-as-a-Service, Performance Ads, Affiliate Revenue, Content & Media, Whitelabel/SaaS, Automated E-commerce',
+        value: '5',
+        label: 'Sumber Pendapatan',
+        detail: 'API AI-as-a-Service, Performance Ads, Affiliate Revenue, Content & Media, Automated E-commerce',
         },
         {
           value: '24/7',
@@ -191,7 +191,7 @@ export const homeData = {
         title: 'Traction Terbukti',
         metrics: [
           { value: '13', label: 'Layanan Production-Grade' },
-          { value: '6', label: 'Revenue Streams Diversified' },
+          { value: '5', label: 'Revenue Streams Diversified' },
           { value: '+12%', label: 'WoW Revenue Growth' },
           { value: '1.000+', label: 'Ecosystem Users' },
         ],
@@ -251,7 +251,7 @@ export const homeData = {
     cta: {
       title: 'Siap Melihat Masa Depan Otomasi AI?',
       description: 'Satu manusia. 13 layanan otonom. 0 VC funding. BerkahKarya bukan janji — ini bukti.',
-      button: { text: 'Mulai Sekarang →', href: '/id/one-ai' },
+      button: { text: 'Mulai Sekarang →', href: '/one-ai' },
     },
   },
 
@@ -280,9 +280,9 @@ export const homeData = {
           detail: '1AI, 1AI-Ads, 1AI-Content, 1AI-Affiliate, 1AI-Social, 1AI-Scheduler, 1AI-Email, 1AI-Phone, 1AI-Fax, 1AI-Search, 1AI-Monitor, 1AI-Saas, Gateway Autoheal',
         },
         {
-          value: '6',
-          label: 'Revenue Streams',
-          detail: 'AI API-as-a-Service, Performance Ads, Affiliate Revenue, Content & Media, Whitelabel/SaaS, Automated E-commerce',
+        value: '5',
+        label: 'Revenue Streams',
+        detail: 'AI API-as-a-Service, Performance Ads, Affiliate Revenue, Content & Media, Automated E-commerce',
         },
         {
           value: '24/7',
@@ -447,7 +447,7 @@ export const homeData = {
         title: 'Proven Traction',
         metrics: [
           { value: '13', label: 'Production-Grade Services' },
-          { value: '6', label: 'Diversified Revenue Streams' },
+          { value: '5', label: 'Diversified Revenue Streams' },
           { value: '+12%', label: 'WoW Revenue Growth' },
           { value: '1,000+', label: 'Ecosystem Users' },
         ],
@@ -507,7 +507,7 @@ export const homeData = {
     cta: {
       title: 'Ready to See the Future of AI Automation?',
       description: 'One human. 13 autonomous services. $0 VC funding. BerkahKarya is not a promise — it\'s proof.',
-      button: { text: 'Start Now →', href: '/en/one-ai' },
+      button: { text: 'Start Now →', href: '/one-ai' },
     },
   },
 } as const;

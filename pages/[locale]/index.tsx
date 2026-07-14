@@ -10,7 +10,6 @@ import PricingPreview from '@/components/PricingPreview';
 import EcosystemTiered from '@/components/EcosystemTiered';
 import HowItWorks from '@/components/HowItWorks';
 import SocialProof from '@/components/SocialProof';
-import TestimonialSection from '@/components/TestimonialSection';
 import InvestorSection from '@/components/InvestorSection';
 import CTASection from '@/components/CTASection';
 import { homeData } from '@/data/home';
@@ -112,8 +111,6 @@ export default function HomePage({ locale }: { locale: Locale }) {
         cta={d.socialProof.cta}
       />
 
-      {/* Testimonials */}
-      <TestimonialSection title={d.testimonials.title} items={testimonialItems} />
 
       {/* Investor Section */}
       <InvestorSection
