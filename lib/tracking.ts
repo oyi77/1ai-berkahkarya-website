@@ -12,11 +12,10 @@ export const TRACKING = {
   // TikTok Pixel
   TIKTOK_PIXEL_ID: 'D6IA84RC77UCTB9KG9OG',
 
-  // TikTok Events API (server-side)
-  TIKTOK_EVENTS_API_TOKEN: '3f300357f016bcae0a2504645ef61a51fa20a998',
-
-  // Meta Conversions API (server-side) — access token
-  META_CAPI_TOKEN: 'EAAJxIW8ZC3KsBRA2FCAeMLs1BKQcQYmdCRCaVnnTrjZArCKhjNxDnbJUuvIeTKKvjRzjRwGS3l0cmZBKIYEQKBGZCIcZC5PI0S2mlcZBiS3HEBrZAJBRNP7WRCQYPEa7jEpPTRuf4YytZCcFy1c92naIbZAH5Y076YX13IvcjzFhptqJVRvc0ouerFXYDe2uR7v7ZCygZDZD',
+  // TikTok Events API (server-side) — supplied via TRACKING_TIKTOK_EVENTS_API_TOKEN env var
+  TIKTOK_EVENTS_API_TOKEN: process.env.TRACKING_TIKTOK_EVENTS_API_TOKEN || '',
+  // Meta Conversions API (server-side) — supplied via TRACKING_META_CAPI_TOKEN env var
+  META_CAPI_TOKEN: process.env.TRACKING_META_CAPI_TOKEN || '',
 
   // Pinterest domain verification
   PINTEREST_VERIFICATION: '9212df9ddce352a5ada074e7d33a9e77',

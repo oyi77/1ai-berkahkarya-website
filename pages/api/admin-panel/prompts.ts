@@ -6,8 +6,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const BOT_API_URL = process.env.BOT_API_URL || 'https://api-saas.aitradepulse.com';
-const BOT_ADMIN_PASSWORD = process.env.BOT_ADMIN_PASSWORD || 'BerkahKarya2026!';
-const PANEL_KEY = process.env.ADMIN_PANEL_KEY || 'BerkahKarya2026!';
+const BOT_ADMIN_PASSWORD = process.env.BOT_ADMIN_PASSWORD;
+const PANEL_KEY = process.env.ADMIN_PANEL_KEY;
 
 function authHeaders() {
   return {

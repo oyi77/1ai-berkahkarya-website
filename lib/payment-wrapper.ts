@@ -6,7 +6,8 @@
  */
 
 const PAYMENT_AGGREGATOR_URL = process.env.PAYMENT_AGGREGATOR_URL || 'http://localhost:3100';
-const PAYMENT_API_KEY: string = process.env.PAYMENT_API_KEY ?? (() => { throw new Error('PAYMENT_API_KEY env var required'); })();
+if (!process.env.PAYMENT_API_KEY) throw new Error('PAYMENT_API_KEY env var required');
+const PAYMENT_API_KEY: string = process.env.PAYMENT_API_KEY;
 const PROJECT_ID = 'berkahkarya-website';
 
 export interface CreatePaymentRequest {

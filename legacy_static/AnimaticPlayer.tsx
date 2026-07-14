@@ -151,7 +151,7 @@ export const AnimaticPlayer: React.FC<AnimaticPlayerProps> = ({ shots, audioUrl,
                       <button onClick={() => {
                            if(audioUrl && audioRef.current) { audioRef.current.currentTime = 0; }
                            setProgress(0); setCurrentShotIndex(0); setIsPlaying(true);
-                           if(audioUrl) audioRef.current.play();
+                           if(audioUrl) audioRef.current?.play();
                       }} className="text-white/70 hover:text-white"><SkipForward className="rotate-180" size={20}/></button>
                       
                       <button onClick={handlePlayPause} className="w-14 h-14 bg-white text-black rounded-full flex items-center justify-center hover:scale-105 transition-transform">

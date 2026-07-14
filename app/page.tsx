@@ -1,17 +1,36 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+
+function detectLocale(): string {
+  if (typeof window === 'undefined') return 'id';
+  const lang = navigator.language?.toLowerCase() || '';
+  return lang === 'id' || lang.startsWith('id-') ? 'id' : 'en';
+}
+
+const navLinks = [
+  { label: 'Beranda', href: 'home' },
+  { label: 'Layanan', href: 'services' },
+  { label: 'Tentang Kami', href: 'about' },
+  { label: 'Kontak', href: 'contact' },
+] as const;
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false);
+  const [locale, setLocale] = useState('id');
   const router = useRouter();
+
+  useEffect(() => {
+    setLocale(detectLocale());
+  }, []);
 
   const handleStart = async () => {
     setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 500));
-    router.push('/id/services');
+    const { promise, resolve } = Promise.withResolvers<void>();
+    setTimeout(resolve, 500);
+    await promise;
+    router.push(`/${locale}/services`);
   };
 
   return (
@@ -21,25 +40,24 @@ export default function HomePage() {
           <nav className="flex items-center justify-between">
             <div className="text-2xl font-bold text-gray-800">BerkahKarya</div>
             <div className="flex gap-6">
-              <a href="/id/home" className="text-gray-600 hover:text-blue-600 font-medium">Beranda</a>
-              <a href="/id/services" className="text-gray-600 hover:text-blue-600 font-medium">Layanan</a>
-              <a href="/id/about" className="text-gray-600 hover:text-blue-600 font-medium">Tentang Kami</a>
-              <a href="/id/contact" className="text-gray-600 hover:text-blue-600 font-medium">Kontak</a>
+              {navLinks.map(({ label, href }) => (
+                <a key={href} href={`/${locale}/${href}`} className="text-gray-600 hover:text-blue-600 font-medium">{label}</a>
+              ))}
             </div>
           </nav>
         </header>
-        
+
         <main className="flex flex-col items-center justify-center min-h-[60vh]">
           <h1 className="text-5xl md:text-6xl font-light text-white mb-4">Digital Solutions</h1>
           <p className="text-xl text-white/90 mb-8 max-w-2xl text-center">Transform your ideas into powerful web applications with professional development</p>
-          <button 
+          <button
             onClick={handleStart}
             disabled={isLoading}
             className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors disabled:opacity-50">
             {isLoading ? 'Memuat...' : 'Mulai Sekarang'}
           </button>
         </main>
-        
+
         <section className="bg-white rounded-2xl p-8 shadow-lg mt-12">
           <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Layanan Kami</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -62,7 +80,7 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-        
+
         <footer className="mt-12 py-6 text-center text-white">
           <p>&copy; 2026 BerkahKarya. All rights reserved.</p>
         </footer>

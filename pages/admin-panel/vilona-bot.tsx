@@ -32,7 +32,8 @@ interface ModalState {
   data: Partial<Prompt>;
 }
 
-const ADMIN_KEY = process.env.NEXT_PUBLIC_ADMIN_PANEL_KEY || 'BerkahKarya2026!';
+if (!process.env.NEXT_PUBLIC_ADMIN_PANEL_KEY) throw new Error('NEXT_PUBLIC_ADMIN_PANEL_KEY env var required');
+const ADMIN_KEY: string = process.env.NEXT_PUBLIC_ADMIN_PANEL_KEY;
 
 export default function VilonaAdminPanel() {
   const [authed, setAuthed]         = useState(false);

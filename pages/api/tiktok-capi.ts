@@ -35,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Access-Token': TRACKING.TIKTOK_EVENTS_API_TOKEN,
+        'Access-Token': process.env.TRACKING_TIKTOK_EVENTS_API_TOKEN || TRACKING.TIKTOK_EVENTS_API_TOKEN,
       },
       body: JSON.stringify(payload),
     });

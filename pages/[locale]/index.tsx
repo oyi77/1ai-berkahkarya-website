@@ -77,7 +77,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         title={d.bisnisShowcase.title}
         subtitle={d.bisnisShowcase.subtitle}
         cases={bisnisCases}
-        cta={d.bisnisShowcase.cta}
+        cta={{ text: d.bisnisShowcase.cta.text, href: withLocale(d.bisnisShowcase.cta.href) }}
       />
 
       {/* Pricing Preview — Free / Pro tier cards */}
@@ -89,9 +89,18 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
       {/* Ecosystem — 3 visual tiers */}
       <EcosystemTiered
-        revenue={d.ecosystem.revenue}
-        infrastructure={d.ecosystem.infrastructure}
-        experimental={d.ecosystem.experimental}
+        revenue={{
+          ...d.ecosystem.revenue,
+          items: d.ecosystem.revenue.items.map(i => ({ ...i, href: withLocale(i.href) })),
+        }}
+        infrastructure={{
+          ...d.ecosystem.infrastructure,
+          items: d.ecosystem.infrastructure.items.map(i => ({ ...i, href: withLocale(i.href) })),
+        }}
+        experimental={{
+          ...d.ecosystem.experimental,
+          items: d.ecosystem.experimental.items.map(i => ({ ...i, href: withLocale(i.href) })),
+        }}
       />
 
       {/* How It Works — evidence-based steps */}

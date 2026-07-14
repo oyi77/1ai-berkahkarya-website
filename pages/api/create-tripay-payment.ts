@@ -26,6 +26,12 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse<ResponseDat
     customer_phone?: string;
     method?: string;
   };
+  if (!customer_name || !customer_email) {
+    return res.status(400).json({
+      success: false,
+      error: 'customer_name and customer_email are required',
+    });
+  }
 
   if (!plan || typeof plan !== 'string' || !PRICING[plan]) {
     return res.status(400).json({
@@ -44,8 +50,8 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse<ResponseDat
       currency: 'IDR',
       payment_method: method || 'QRIS',
       customer: {
-        name: customer_name || 'Student',
-        email: customer_email || 'student@example.com',
+        name: customer_name,
+        email: customer_email,
         phone: customer_phone || '',
       },
       metadata: {

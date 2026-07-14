@@ -35,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // test_event_code: 'TEST12345', // Uncomment for testing in Events Manager
     };
 
-    const response = await fetch(`${GRAPH_API}?access_token=${TRACKING.META_CAPI_TOKEN}`, {
+    const response = await fetch(`${GRAPH_API}?access_token=${process.env.TRACKING_META_CAPI_TOKEN || TRACKING.META_CAPI_TOKEN}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(event),

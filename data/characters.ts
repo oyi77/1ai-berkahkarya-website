@@ -5,7 +5,7 @@ export const characters = {
   'adforge-ai': { src: '/characters/vilona.jpg', alt: 'Vilona — AI Ads Strategist' },
   'ai-agent-pro': { src: '/characters/eddie.jpg', alt: 'Eddie — AI Agent' },
   'algorithmic-trading': { src: '/characters/vilona-side.jpg', alt: 'Vilona — AI Trading Analyst' },
-  'digital-products': { src: '/characters/paijo.jpg', alt: 'Coder $String$ — Creator' },
+  'digital-products': { src: '/characters/paijo.jpg', alt: 'Coder & Builder — Creator' },
   team: { src: '/characters/vilona.jpg', alt: 'Vilona — Team Lead' },
   contact: { src: '/characters/eddie.jpg', alt: 'Eddie — Ready to Help' },
   omniroute: { src: '/characters/vilona-side.jpg', alt: 'Vilona — API Architect' },

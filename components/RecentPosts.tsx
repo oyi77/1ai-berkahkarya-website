@@ -1,6 +1,6 @@
 import styles from './RecentPosts.module.css';
 
-interface Post { tag: string; title: string; excerpt: string; date: string; href: string; emoji: string }
+interface Post { tag: string; title: string; excerpt: string; date: string; path: string; emoji: string }
 
 const posts: Post[] = [
   {
@@ -9,7 +9,7 @@ const posts: Post[] = [
     title: 'Cara Bikin Video TikTok Viral Tanpa Skill Editing — Cukup Upload Foto',
     excerpt: 'Platform reward konten bergerak 4x lebih tinggi dari foto statis. Begini cara bisnis kecil bisa produksi 10 video/hari dengan biaya Rp 8K per video.',
     date: '20 Mar 2026',
-    href: '/id/ai-video-studio',
+    path: 'ai-video-studio',
   },
   {
     emoji: '📢',
@@ -17,7 +17,7 @@ const posts: Post[] = [
     title: 'ROAS Kamu Jelek Bukan Karena Budget — Tapi Karena Copywriting yang Salah',
     excerpt: '80% kegagalan iklan bukan soal budget atau targeting. Ini tentang formula copywriting yang missing. 5 elemen iklan yang converting vs yang tidak.',
     date: '17 Mar 2026',
-    href: '/id/adforge-ai',
+    path: 'adforge-ai',
   },
   {
     emoji: '🤖',
@@ -25,7 +25,7 @@ const posts: Post[] = [
     title: 'Kenapa 65% Lead Hilang Setiap Hari dan Cara Stop Itu Terjadi',
     excerpt: 'Lead kirim WA jam 11 malam. CS offline. Pagi-pagi mereka sudah beli di kompetitor. Ini angka-angka yang mengejutkan tentang respons time dan revenue yang hilang.',
     date: '14 Mar 2026',
-    href: '/id/ai-agent-pro',
+    path: 'ai-agent-pro',
   },
 ];
 
@@ -40,7 +40,7 @@ export default function RecentPosts({ locale = 'id' }: { locale?: string }) {
         <h2>{title}</h2>
         <div className={styles.grid}>
           {posts.map((post) => (
-            <a key={post.title} href={post.href} className={`card-light ${styles.card}`}>
+            <a key={post.title} href={`/${locale}/${post.path}`} className={`card-light ${styles.card}`}>
               <span className={styles.emoji}>{post.emoji}</span>
               <span className={styles.tag}>{post.tag}</span>
               <h3 className={styles.title}>{post.title}</h3>
