@@ -33,12 +33,11 @@ const SERVICES = [
 ];
 
 const WHY_US = [
-  { icon: '✓', title: '10+ Tahun Pengalaman', desc: 'Ribuan proyek sukses dari rumah tinggal hingga bangunan komersial berskala besar.' },
-  { icon: '✓', title: 'Tepat Waktu & Anggaran', desc: 'Komitmen terhadap deadline dan transparansi biaya tanpa biaya tersembunyi.' },
-  { icon: '✓', title: 'Tim Profesional', desc: 'Arsitek, insinyur, & pekerja berpengalaman yang tersertifikasi di bidangnya.' },
-  { icon: '✓', title: 'Garansi Kepuasan', desc: 'Kualitas terjamin dengan garansi purna jual & layanan konsultasi gratis seumur hidup.' },
+  { icon: '🏛️', title: 'Arsitek + Engineer Dalam 1 Tim', desc: 'Tidak perlu repot koordinasi antar vendor. Satu tim menangani desain, struktur, RAB, hingga pengawasan pembangunan.' },
+  { icon: '📊', title: 'RAB Detail & Transparan', desc: 'Setiap biaya dipecah per item pekerjaan. Tidak ada biaya tersembunyi. Anda tahu persis dana yang dibutuhkan dari awal.' },
+  { icon: '📅', title: 'Timeline Proyek Terstruktur', desc: 'Setiap proyek memiliki jadwal kerja mingguan yang terukur. Progress dilaporkan secara berkala via WhatsApp & foto.' },
+  { icon: '🛡️', title: 'Garansi Pengerjaan', desc: 'Garansi untuk setiap pekerjaan yang kami lakukan. Jika ada kendala setelah serah terima, tim kami siap turun tangan tanpa biaya.' },
 ];
-
 const PRICING = [
   {
     name: 'Desain & RAB',
@@ -71,30 +70,26 @@ const PROCESS = [
 ];
 
 const TESTIMONIALS = [
-  { name: 'Budi Santoso', role: 'Pemilik Rumah, Jakarta', initials: 'BS', text: 'Hasil renovasi rumah saya luar biasa! Tepat waktu, sesuai budget, dan kualitasnya premium. Sangat merekomendasikan!' },
-  { name: 'Siti Rahmawati', role: 'Owner Kafe, Bandung', initials: 'SR', text: 'Desain interior kafe saya dibuat sangat detail. Suasananya jadi jauh lebih nyaman dan pengunjung betah berlama-lama.' },
-  { name: 'Andi Pratama', role: 'Direktur PT. Maju Jaya', initials: 'AP', text: 'Kantor baru kami selesai dalam 3 bulan. Kualitas pengerjaan sangat rapi dan profesional. Tim sangat komunikatif.' },
-  { name: 'Dewi Lestari', role: 'Ibu Rumah Tangga, Surabaya', initials: 'DL', text: 'Terima kasih BerkahKarya! Rumah impian saya jadi kenyataan. Desainnya persis seperti yang saya bayangkan.' },
-  { name: 'Rudi Hermawan', role: 'Pengusaha, Semarang', initials: 'RH', text: 'Pagar dan kanopi rumah saya sangat kokoh dan elegan. Harga bersahabat dengan kualitas yang tidak main-main.' },
-  { name: 'Mega Putri', role: 'Arsitek, Yogyakarta', initials: 'MP', text: 'Kolaborasi dengan tim BerkahKarya sangat menyenangkan. Mereka sangat detail dan profesional dalam setiap proyek.' },
+  { name: 'Budi Santoso', role: 'Pemilik Rumah, Jakarta Selatan | 2025', initials: 'BS', text: '"Rumah 2 lantai 250m² selesai sesuai timeline walau sempat ragu karena pengalaman pertama bangun rumah. RAB-nya detail — tidak ada biaya mendadak. Hasilnya sesuai render 3D. Makasih tim BerkahKarya!"' },
+  { name: 'Siti Rahmawati', role: 'Owner Kafe, Bandung | 2024', initials: 'SR', text: '"Desain interior kafe saya dibuat sangat detail. Suasananya jadi jauh lebih nyaman, pengunjung betah berlama-lama, omzet naik 30% dalam 3 bulan pertama."' },
+  { name: 'Andi Pratama', role: 'Direktur PT. Maju Jaya | 2024', initials: 'AP', text: '"Kantor baru 3 lantai selesai dalam 4 bulan. Kualitas pengerjaan rapi, tim sangat komunikatif, dan progress selalu dilaporkan mingguan. Profesional banget."' },
+  { name: 'Dewi Lestari', role: 'Ibu Rumah Tangga, Surabaya | 2025', initials: 'DL', text: '"Terima kasih BerkahKarya! Awalnya takut renovasi molor & berantakan, tapi ternyata selesai 2 minggu lebih cepat. Desainnya persis seperti yang saya bayangkan."' },
+  { name: 'Rudi Hermawan', role: 'Pengusaha, Semarang | 2024', initials: 'RH', text: '"Pagar & kanopi rumah kokoh & elegan. Yang paling saya suka, mereka kasih saran material sesuai budget tanpa maksa pake yang mahal. Harga bersahabat."' },
+  { name: 'Mega Putri', role: 'Arsitek Mitra, Yogyakarta | 2025', initials: 'MP', text: '"Kolaborasi dengan tim BerkahKarya sangat menyenangkan. Detail-oriented, tepat janji, dan selalu prioritasin kualitas. Recommended untuk kolega."' },
 ];
 
 const PORTFOLIO_IMAGES = [
-  { src: '/images/jasa-kontraktor/work1.jpeg', label: 'Desain Rumah Modern', sub: 'Jakarta Selatan' },
-  { src: '/images/jasa-kontraktor/work2.jpeg', label: 'Interior Kantor', sub: 'SCBD, Jakarta' },
-  { src: '/images/jasa-kontraktor/work3.jpeg', label: 'Desain Hotel', sub: 'Bandung' },
-  { src: '/images/jasa-kontraktor/work4.jpeg', label: 'Fasad Bangunan', sub: 'Kawasan Bisnis' },
-  { src: '/images/jasa-kontraktor/work5.jpeg', label: 'Taman & Lansekap', sub: 'Residence, BSD' },
-  { src: '/images/jasa-kontraktor/work6.jpeg', label: 'Desain Interior Premium', sub: 'Apartemen, Jakarta' },
-  { src: '/images/jasa-kontraktor/work7.jpeg', label: 'Konstruksi Gedung', sub: 'Kuningan, Jakarta' },
-  { src: '/images/jasa-kontraktor/work8.jpeg', label: 'Kanopi & Pagar Minimalis', sub: 'Depok' },
+  { src: '/images/jasa-kontraktor/desain-rumah.jpg', label: 'Desain Rumah Modern 2 Lantai', sub: 'Jakarta Selatan', challenge: 'Lahan terbatas 120m² tapi butuh 4 kamar + ruang keluarga luas', solution: 'Konsep open space dengan pencahayaan maksimal & vertical zoning', result: 'Rumah terasa lega, semua ruangan dapat cahaya alami' },
+  { src: '/images/jasa-kontraktor/interior-kantor.jpg', label: 'Interior Kantor Eksekutif', sub: 'SCBD, Jakarta', challenge: 'Ruang sempit 80m² untuk 20 staf, harus tetap nyaman', solution: 'Layout open plan + partisi kaca untuk kesan luas & modern', result: 'Produktivitas staf meningkat, ruangan terlihat 2x lebih luas' },
+  { src: '/images/jasa-kontraktor/desain-hotel.jpg', label: 'Renovasi Hotel Boutique', sub: 'Bandung', challenge: 'Bangunan lama 1970-an, perlu tampilan modern tanpa rubah struktur', solution: 'Fasad baru + interior redesign dengan gaya industrial-modern', result: 'Occupancy rate naik 40% setelah renovasi' },
+  { src: '/images/jasa-kontraktor/fasad-bangunan.jpg', label: 'Fasad & Tampak Bangunan', sub: 'Kawasan Bisnis', challenge: 'Bangunan kumuh perlu citra profesional untuk tarik tenant', solution: 'Desain fasad modern dengan kombinasi batu alam & kaca', result: 'Nilai properti naik 25%, tenant baru dalam 2 bulan' },
+  { src: '/images/jasa-kontraktor/taman-lansekap.jpg', label: 'Taman & Lansekap Residence', sub: 'BSD City', challenge: 'Lahan 200m² tandus, pemilik ingin taman tropis low-maintenance', solution: 'Tanaman lokal + sistem irigasi otomatis + area duduk batu alam', result: 'Taman hijau sepanjang tahun, perawatan minimal' },
+  { src: '/images/jasa-kontraktor/interior-premium.jpg', label: 'Desain Interior Premium', sub: 'Apartemen, Jakarta', challenge: 'Unit apartment 45m² ingin terasa seperti suite hotel bintang 5', solution: 'Desain multifungsi dengan material premium & pencahayaan layered', result: 'Nilai jual apartment naik 35% setelah renovasi' },
+  { src: '/images/jasa-kontraktor/konstruksi-gedung.jpg', label: 'Konstruksi Gedung 5 Lantai', sub: 'Kuningan, Jakarta', challenge: 'Proyek padat modal, deadline ketat untuk H-7 hari raya', solution: 'Manajemen proyek harian + 3 shift pekerja + material ready stock', result: 'Selesai H-14, tepat waktu & sesuai RAB' },
+  { src: '/images/jasa-kontraktor/kanopi-pagar.jpg', label: 'Kanopi & Pagar Minimalis', sub: 'Depok', challenge: 'Rumah sudut perlu kanopi luas + pagar tanpa mengurangi estetika', solution: 'Kanopi baja ringan bentang lebar + pagar kombinasi besi & kayu', result: 'Teras teduh, halaman aman, tampak rumah lebih modern' },
 ];
-
-
 const trackWhatsApp = (label: string) => {
-  if (typeof window !== 'undefined') {
-    try {
-      // Enhanced Meta Pixel tracking
+  try {
       if (window.fbq) {
         window.fbq('track', 'Contact', {
           content_name: label,
@@ -123,10 +118,12 @@ const trackWhatsApp = (label: string) => {
       // Silently handle
     }
   }
-};
+;
 
 export default function JasaKontraktor({ locale }: { locale: Locale }) {
   const [scrolled, setScrolled] = useState(false);
+  const [openFaq, setOpenFaq] = useState(-1);
+  const [portfolioExpanded, setPortfolioExpanded] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -193,19 +190,19 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
 
   const content = {
     hero: {
-      badge: isIndonesian ? '🔥 KONTRAKTOR PROFESIONAL INDONESIA' : '🔥 PROFESSIONAL CONTRACTOR INDONESIA',
+      badge: isIndonesian ? '🏗️ KONSULTAN BANGUNAN TERPERCAYA' : '🏗️ TRUSTED BUILDING CONSULTANT',
       title: isIndonesian
-        ? 'Bangun & Renovasi' : 'Build & Renovate',
-      titleBold: isIndonesian ? 'Impian Anda' : 'Your Dreams',
+        ? 'Bangun Rumah Impian' : 'Build Your Dream Home',
+      titleBold: isIndonesian ? 'Tanpa Khawatir Biaya Membengkak' : 'Without Budget Surprises',
       subtitle: isIndonesian
-        ? 'Konsultan & kontraktor terpercaya untuk desain rumah, kantor, hotel, mall, interior, kanopi, pagar & RAB. Lebih dari 500+ proyek sukses di seluruh Indonesia.'
-        : 'Trusted consultant & contractor for house, office, hotel, mall, interior, canopy, fence & RAB design. Over 500+ successful projects across Indonesia.',
-      cta: isIndonesian ? 'Konsultasi Gratis via WhatsApp' : 'Free Consultation via WhatsApp',
+        ? 'Dari desain, RAB, hingga pembangunan — tim kami bantu rencanakan rumah Anda dengan lebih terarah & transparan. GRATIS konsultasi & estimasi awal.'
+        : 'From design & RAB to construction — our team helps you plan your home with clarity & transparency. FREE initial consultation & estimate.',
+      cta: isIndonesian ? '🎁 Konsultasi + Estimasi Gratis' : '🎁 Free Consultation & Estimate',
       stats: [
-        { num: '500+', label: isIndonesian ? 'Proyek Selesai' : 'Projects Done' },
+        { num: '500+', label: isIndonesian ? 'Proyek Sukses' : 'Projects Done' },
         { num: '10+', label: isIndonesian ? 'Tahun Pengalaman' : 'Years Experience' },
         { num: '98%', label: isIndonesian ? 'Kepuasan Klien' : 'Client Satisfaction' },
-        { num: '50+', label: isIndonesian ? 'Kota Tersebar' : 'Cities Served' },
+        { num: '50+', label: isIndonesian ? 'Kota di Indonesia' : 'Cities Served' },
       ],
     },
     services: {
@@ -250,6 +247,33 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
       tag: isIndonesian ? 'TESTIMONIAL' : 'TESTIMONIALS',
       title: isIndonesian ? 'Apa Kata Klien Kami' : 'What Our Clients Say',
     },
+    problems: {
+      tag: isIndonesian ? 'SEBELUM BANGUN RUMAH' : 'BEFORE BUILDING',
+      title: isIndonesian ? 'Sering Terjadi Saat' : 'Common Issues When',
+      titleHighlight: isIndonesian ? 'Bangun Rumah Pertama Kali?' : 'Building Your First Home?',
+      problems: [
+        { icon: '💰', title: isIndonesian ? 'Budget Membengkak' : 'Budget Overruns', desc: isIndonesian ? 'Estimasi awal tidak detail, biaya material naik di tengah jalan, pekerjaan tambah-tambah tanpa hitung-hitungan.' : 'Initial estimates are vague, material costs rise midway, extra work piles up without calculation.' },
+        { icon: '🔄', title: isIndonesian ? 'Desain Berubah Terus' : 'Constant Design Changes', desc: isIndonesian ? 'Bangun setengah jalan baru sadar tata ruang tidak sesuai kebutuhan, akhirnya bongkar pasang — buang waktu & uang.' : 'Halfway through you realize the layout doesn\'t fit, leading to costly rework & wasted time.' },
+        { icon: '🧱', title: isIndonesian ? 'Material Tidak Sesuai' : 'Wrong Materials', desc: isIndonesian ? 'Tukang pakai material asal-asalan atau tidak sesuai spek karena tidak ada pengawasan dari ahlinya.' : 'Workers use subpar materials with no proper supervision from a qualified engineer.' },
+        { icon: '⏰', title: isIndonesian ? 'Waktu Pengerjaan Molor' : 'Delayed Completion', desc: isIndonesian ? 'Janji 3 bulan jadi 6 bulan. Tidak ada jadwal kerja yang jelas, progress tidak terukur, komunikasi terputus.' : 'Promised 3 months becomes 6. No clear work schedule, unmeasured progress, communication breakdown.' },
+      ],
+      solutions: [
+        isIndonesian ? '✅ Konsep desain matang sebelum bangun — jadi semua detail sudah diputuskan sejak awal' : '✅ Finalized design concept before construction — all decisions made upfront',
+        isIndonesian ? '✅ RAB detail per item pekerjaan — Anda tahu persis alokasi dana dari awal' : '✅ Detailed RAB per work item — you know exactly where every rupiah goes',
+        isIndonesian ? '✅ Gambar kerja lengkap untuk acuan tukang di lapangan' : '✅ Complete working drawings as a field reference for workers',
+        isIndonesian ? '✅ Pendampingan & monitoring proyek secara berkala' : '✅ Regular project monitoring & progress reporting',
+      ],
+    },
+    faq: {
+      tag: isIndonesian ? 'FAQ' : 'FAQ',
+      title: isIndonesian ? 'Pertanyaan Umum' : 'Frequently Asked Questions',
+      items: [
+        { q: isIndonesian ? 'Berapa biaya untuk bangun rumah?' : 'How much does it cost to build a house?', a: isIndonesian ? 'Biaya sangat tergantung luas bangunan, spesifikasi material, dan lokasi. Tim kami bisa memberikan estimasi awal secara GRATIS setelah diskusi singkat mengenai kebutuhan Anda. Konsultasi tidak mengikat.' : 'Costs depend on building size, material specs, and location. Our team can provide a FREE initial estimate after a brief discussion about your needs. No obligation.' },
+        { q: isIndonesian ? 'Berapa lama proses bangun rumah?' : 'How long does construction take?', a: isIndonesian ? 'Rumah tinggal 1-2 lantai biasanya selesai dalam 3-6 bulan tergantung luas & kompleksitas. Kami memberikan timeline proyek yang detail di awal dan melaporkan progress secara berkala.' : 'A 1-2 story home typically completes in 3-6 months depending on size & complexity. We provide a detailed timeline upfront with regular progress reports.' },
+        { q: isIndonesian ? 'Apakah hasil akhir sesuai dengan desain?' : 'Will the result match the design?', a: isIndonesian ? 'Kami memberikan 3D render fotorealistik SEBELUM pembangunan dimulai. Anda bisa lihat & revisi sampai puas. Di lapangan, kami menggunakan gambar kerja detail sebagai acuan agar hasilnya presisi.' : 'We provide photorealistic 3D renders BEFORE construction begins. You can review & revise until satisfied. In the field, detailed working drawings ensure precision.' },
+        { q: isIndonesian ? 'Bagaimana cara memulai?' : 'How do I get started?', a: isIndonesian ? 'Cukup klik tombol "Konsultasi + Estimasi Gratis" di atas. Diskusi awal via WhatsApp, tim kami akan membantu memahami kebutuhan Anda, dan memberikan gambaran biaya — tanpa biaya & tanpa kewajiban.' : 'Simply click the "Free Consultation & Estimate" button above. Initial discussion via WhatsApp, our team will understand your needs, and provide a cost overview — free & no obligation.' },
+      ],
+    },
     cta: {
       subtitle: isIndonesian ? 'SIAP MEWUJUDKAN IMPIAN ANDA?' : 'READY TO MAKE YOUR DREAMS COME TRUE?',
       title: isIndonesian ? 'Konsultasi Gratis' : 'Free Consultation',
@@ -273,7 +297,7 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         <meta property="og:description" content={meta.description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://berkahkarya.org/${locale}/jasa-kontraktor`} />
-        <meta property="og:image" content="https://berkahkarya.org/images/jasa-kontraktor/work1.jpeg" />
+        <meta property="og:image" content="https://berkahkarya.org/images/jasa-kontraktor/desain-rumah.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
@@ -290,7 +314,7 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
               '@context': 'https://schema.org',
               '@type': 'ProfessionalService',
               name: 'BerkahKarya Kontraktor',
-              image: 'https://berkahkarya.org/images/jasa-kontraktor/work1.jpeg',
+              image: 'https://berkahkarya.org/images/jasa-kontraktor/desain-rumah.jpg',
               description: 'Jasa kontraktor & desain bangunan profesional di Indonesia.',
               telephone: '+6285800620035',
               url: `https://berkahkarya.org/${locale}/jasa-kontraktor`,
@@ -330,7 +354,7 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         {/* ─── HERO ─── */}
         <section className={styles.hero}>
           <div className={styles.heroBg}>
-            <img src="/images/jasa-kontraktor/work4.jpeg" alt="Hero Background" />
+            <img src="/images/jasa-kontraktor/fasad-bangunan.jpg" alt="Hero Background" />
           </div>
           <div className={styles.heroOverlay} />
           <div className={styles.heroOverlay2} />
@@ -392,6 +416,51 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
           </div>
         </section>
 
+        {/* ─── SEBELUM BANGUN (PROBLEM-AGITATE-SOLUTION) ─── */}
+        <section className={styles.problemSection}>
+          <div className={styles.container}>
+            <div className={`${styles.center}`}>
+              <span className={styles.sectionTag}>{content.problems.tag}</span>
+              <h2 className={styles.sectionTitle}>
+                {content.problems.title}{' '}
+                <span className={styles.gold}>{content.problems.titleHighlight}</span>
+              </h2>
+            </div>
+
+            <div className={styles.problemGrid}>
+              {content.problems.problems.map((p, i) => (
+                <div key={i} className={styles.problemCard}>
+                  <span className={styles.problemIcon}>{p.icon}</span>
+                  <h3 className={styles.problemTitle}>{p.title}</h3>
+                  <p className={styles.problemDesc}>{p.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className={`${styles.center}`}>
+              <div className={styles.solutionBox}>
+                <h3 className={styles.solutionTitle}>
+                  {isIndonesian ? 'Solusi Kami:' : 'Our Solution:'}
+                </h3>
+                <ul className={styles.solutionList}>
+                  {content.problems.solutions.map((s, i) => (
+                    <li key={i} className={styles.solutionItem}>{s}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className={`${styles.center}`}>
+              <button
+                className={`${styles.btn} ${styles.btnGold} ${styles.btnLg}`}
+                onClick={() => handleWa('pas_section')}
+              >
+                🎁 {isIndonesian ? 'Konsultasi + Estimasi Gratis' : 'Free Consultation & Estimate'}
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* ─── PORTFOLIO ─── */}
         <section id="portfolio" className={styles.section}>
           <div className={styles.container}>
@@ -404,13 +473,36 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
               {PORTFOLIO_IMAGES.map((img, i) => (
                 <div
                   key={i}
-                  className={`${styles.portfolioItem} ${i === 0 ? styles.portfolioItemLarge : ''}`}
+                  className={`${styles.portfolioItem} ${i === 0 ? styles.portfolioItemLarge : ''} ${portfolioExpanded === i ? styles.portfolioItemActive : ''}`}
+                  onClick={() => setPortfolioExpanded(portfolioExpanded === i ? null : i)}
                 >
                   <img src={img.src} alt={img.label} loading={i < 3 ? 'eager' : 'lazy'} />
                   <div className={styles.portfolioOverlay}>
                     <span className={styles.portfolioLabel}>{img.label}</span>
                     <span className={styles.portfolioSub}>{img.sub}</span>
                   </div>
+                  {portfolioExpanded === i && (
+                    <div className={styles.caseStudy}>
+                      <div className={styles.caseStudyContent}>
+                        <h4 className={styles.caseStudyLabel}>
+                          {isIndonesian ? 'Tantangan' : 'Challenge'}
+                        </h4>
+                        <p className={styles.caseStudyText}>{img.challenge}</p>
+                      </div>
+                      <div className={styles.caseStudyContent}>
+                        <h4 className={styles.caseStudyLabel}>
+                          {isIndonesian ? 'Solusi' : 'Solution'}
+                        </h4>
+                        <p className={styles.caseStudyText}>{img.solution}</p>
+                      </div>
+                      <div className={styles.caseStudyContent}>
+                        <h4 className={styles.caseStudyLabel}>
+                          {isIndonesian ? 'Hasil' : 'Result'}
+                        </h4>
+                        <p className={styles.caseStudyText}>{img.result}</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -519,6 +611,33 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
                       <div className={styles.testiName}>{t.name}</div>
                       <div className={styles.testiRole}>{t.role}</div>
                     </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── FAQ ─── */}
+        <section className={`${styles.section} ${styles.sectionDark}`}>
+          <div className={styles.container}>
+            <div className={`${styles.center}`}>
+              <span className={styles.sectionTag}>{content.faq.tag}</span>
+              <h2 className={styles.sectionTitle}>{content.faq.title}</h2>
+            </div>
+            <div className={styles.faqList}>
+              {content.faq.items.map((item, i) => (
+                <div
+                  key={i}
+                  className={`${styles.faqItem} ${openFaq === i ? styles.faqOpen : ''}`}
+                  onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
+                >
+                  <div className={styles.faqQuestion}>
+                    <span>{item.q}</span>
+                    <span className={styles.faqArrow}>{openFaq === i ? '−' : '+'}</span>
+                  </div>
+                  <div className={styles.faqAnswer}>
+                    <p>{item.a}</p>
                   </div>
                 </div>
               ))}
