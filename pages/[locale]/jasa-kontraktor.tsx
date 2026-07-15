@@ -20,6 +20,7 @@ const WA_LINK = `https://wa.me/${WA_NUMBER}?text=Halo%20BerkahKarya%20Kontraktor
 const SERVICES = [
   {
     icon: '📐',
+    image: '/images/jasa-kontraktor/desain-1.jpg',
     title: 'Jasa Gambar Kerja',
     price: 'Rp28.000',
     unit: '/m²',
@@ -33,6 +34,7 @@ const SERVICES = [
   },
   {
     icon: '💰',
+    image: '/images/jasa-kontraktor/desain-2.jpg',
     title: 'Jasa RAB',
     price: 'Rp1.200.000',
     unit: '/proyek',
@@ -46,6 +48,7 @@ const SERVICES = [
   },
   {
     icon: '🏡',
+    image: '/images/jasa-kontraktor/desain-3.jpg',
     title: 'Visualisasi 3D',
     price: 'Rp1.200.000',
     unit: '/proyek',
@@ -87,6 +90,9 @@ const PORTFOLIO_IMAGES = [
   { src: '/images/jasa-kontraktor/interior-premium.jpg', label: 'Desain Interior Premium', sub: 'Apartemen, Jakarta', challenge: 'Unit apartment 45m² ingin terasa seperti suite hotel bintang 5', solution: 'Desain multifungsi dengan material premium & pencahayaan layered', result: 'Nilai jual apartment naik 35% setelah renovasi' },
   { src: '/images/jasa-kontraktor/konstruksi-gedung.jpg', label: 'Konstruksi Gedung 5 Lantai', sub: 'Kuningan, Jakarta', challenge: 'Proyek padat modal, deadline ketat untuk H-7 hari raya', solution: 'Manajemen proyek harian + 3 shift pekerja + material ready stock', result: 'Selesai H-14, tepat waktu & sesuai RAB' },
   { src: '/images/jasa-kontraktor/kanopi-pagar.jpg', label: 'Kanopi & Pagar Minimalis', sub: 'Depok', challenge: 'Rumah sudut perlu kanopi luas + pagar tanpa mengurangi estetika', solution: 'Kanopi baja ringan bentang lebar + pagar kombinasi besi & kayu', result: 'Teras teduh, halaman aman, tampak rumah lebih modern' },
+  { src: '/images/jasa-kontraktor/interior-cafe-1.jpg', label: 'Interior Cafe Minimalis', sub: 'Bandung', challenge: 'Cafe kecil 60m² ingin tampil instagramable dengan budget terbatas', solution: 'Kombinasi exposed brick, furniture custom, dan pencahayaan hangat', result: 'Pengunjung meningkat 3x lipat, viral di TikTok & Instagram' },
+  { src: '/images/jasa-kontraktor/interior-hotel-1.jpg', label: 'Hotel Butik 20 Kamar', sub: 'Yogyakarta', challenge: 'Bangunan heritage perlu renovasi tanpa mengubah fasad asli', solution: 'Interior modern-minimalis dengan aksen budaya Jawa', result: 'Rating 4.8 di Booking.com, occupancy 85% sejak bulan pertama' },
+  { src: '/images/jasa-kontraktor/interior-kantor-2.jpg', label: 'Co-Working Space Modern', sub: 'BSD City', challenge: 'Ruang 200m² harus fleksibel untuk 40 tenant berbeda', solution: 'Layout modular + movable partition + zona silent & collaborative', result: 'Terjual habis 100% seat dalam 2 minggu pertama' },
 ];
 const trackWhatsApp = (label: string) => {
   try {
@@ -472,6 +478,10 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
             <div className={styles.servicesGrid}>
               {SERVICES.map((svc, i) => (
                 <div key={i} className={`${styles.serviceCard} ${i === 1 ? styles.serviceFeatured : ''}`}>
+                  <div className={styles.serviceImgWrap}>
+                    <img src={svc.image} alt={svc.title} className={styles.serviceImg} loading="lazy" />
+                    {i === 1 && <span className={styles.serviceBadge}>{isIndonesian ? 'POPULER' : 'POPULAR'}</span>}
+                  </div>
                   <span className={styles.serviceIcon}>{svc.icon}</span>
                   <h3 className={styles.serviceTitle}>{svc.title}</h3>
                   <div className={styles.servicePrice}>
