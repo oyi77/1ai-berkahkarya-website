@@ -1170,6 +1170,96 @@
   box-shadow: 0 4px 20px rgba(212,168,75,0.4);
 }
 
+/* ─── Hero Offer ─── */
+.heroOffer {
+  margin: 1.5rem 0;
+}
+
+.heroOfferTag {
+  font-size: 0.8rem;
+  color: var(--jk-gold);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.heroOfferGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  max-width: 520px;
+}
+
+.heroOfferItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--jk-text-2);
+  background: rgba(255,255,255,0.03);
+  border: 0.5px solid rgba(212,168,75,0.1);
+  border-radius: var(--jk-radius-sm, 6px);
+  padding: 0.6rem 0.75rem;
+  transition: all 0.2s;
+}
+
+.heroOfferItem:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(212,168,75,0.2);
+}
+
+.heroOfferIcon {
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.heroOfferLabel {
+  line-height: 1.3;
+}
+
+/* ─── Hero Trust Badge ─── */
+.heroTrust {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.heroTrustStars {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.heroTrustText {
+  font-size: 0.78rem;
+  color: var(--jk-text-4);
+}
+
+.heroTrustText strong {
+  color: var(--jk-text-2);
+}
+
+/* ─── Final CTA Trust ─── */
+.finalTrust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.25rem 0;
+}
+
+.finalTrustStars {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.finalTrustText {
+  font-size: 0.82rem;
+  color: var(--jk-text-3);
+}
+
 /* ─── Responsive ─── */
 
 @keyframes fadeIn {
@@ -1219,6 +1309,23 @@
 
   .serviceFeatured {
     margin-top: 0;
+  }
+
+  .heroOfferGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroTrust {
+    margin-top: 1rem;
+  }
+
+  .heroTrustStars {
+    font-size: 0.75rem;
+  }
+
+  .finalTrust {
+    flex-direction: column;
+    gap: 0.3rem;
   }
 
   .stickyCta {

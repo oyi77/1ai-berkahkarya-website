@@ -14,8 +14,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
   props: { locale: (params?.locale as Locale) || 'id' },
 });
 
-const WA_NUMBER = '6285800620035'; // 085800620035
-const WA_LINK = `https://wa.me/${WA_NUMBER}?text=Halo%20BerkahKarya%20Kontraktor%2C%20saya%20tertarik%20dengan%20jasa%20konstruksi%20Anda.`;
+const WA_NUMBER = '6285800620035';
+const WA_LINK = `https://wa.me/${WA_NUMBER}?text=Halo%20BerkahKarya%20Kontraktor%20-%20saya%20ingin%20konsultasi%20rencana%20bangun%20rumah.%20Mohon%20info%20estimasi%20biaya%20dan%20konsultasi%20gratis.%20Terima%20kasih.`;
 
 const SERVICES = [
   {
@@ -225,10 +225,9 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         ? 'Bangun Rumah Impian' : 'Build Your Dream Home',
       titleBold: isIndonesian ? 'Tanpa Takut Biaya Membengkak' : 'No More Budget Surprises',
       subtitle: isIndonesian
-        ? 'Mulai dari desain, gambar kerja, RAB detail, hingga pembangunan — proses lebih terarah, biaya lebih terkendali. GRATIS konsultasi & estimasi awal.'
-        : 'From design, working drawings, detailed RAB, to construction — a clearer process, better cost control. FREE consultation & initial estimate.',
+        ? 'Dapatkan gambar kerja, RAB detail, dan 3D visualisasi rumah impian Anda. Tim Arsitek & Engineer kami siap membantu — GRATIS konsultasi, analisa kebutuhan, dan estimasi awal biaya.'
+        : 'Get working drawings, detailed RAB, and 3D visualization of your dream home. Our Architects & Engineers are ready — FREE consultation, needs analysis, and initial cost estimate.',
       cta: isIndonesian ? 'Saya Mau Konsultasi Rumah' : "I'd Like a Home Consultation",
-      cta2: isIndonesian ? '📐 Hitung Estimasi Biaya' : '💰 Calculate My Budget',
       stats: [
         { num: '500+', label: isIndonesian ? 'Proyek Sukses' : 'Projects Done' },
         { num: '10+', label: isIndonesian ? 'Tahun Pengalaman' : 'Years Experience' },
@@ -236,10 +235,11 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         { num: '4.9★', label: isIndonesian ? 'Rating Google' : 'Google Rating' },
       ],
       offerItems: [
-        { icon: '📋', title: isIndonesian ? 'GRATIS Konsultasi' : 'FREE Consultation' },
-        { icon: '💰', title: isIndonesian ? 'GRATIS Estimasi' : 'FREE Estimate' },
-        { icon: '✏️', title: isIndonesian ? 'GRATIS Rekomendasi Konsep' : 'FREE Concept Suggestion' },
-        { icon: '✅', title: isIndonesian ? 'GRATIS Checklist Bangun Rumah' : 'FREE Building Checklist' },
+        { icon: '📋', title: isIndonesian ? 'Analisa Kebutuhan Rumah' : 'Home Needs Analysis' },
+        { icon: '🎨', title: isIndonesian ? 'Rekomendasi Konsep Desain' : 'Design Concept Recommendation' },
+        { icon: '📐', title: isIndonesian ? 'Gambaran Kebutuhan Ruang' : 'Space Requirement Overview' },
+        { icon: '🗓️', title: isIndonesian ? 'Arahan Tahap Pembangunan' : 'Construction Stage Guidance' },
+        { icon: '💰', title: isIndonesian ? 'Estimasi Awal Budget' : 'Initial Budget Estimate' },
       ],
     },
     leadMagnet: {
@@ -296,14 +296,6 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         },
       ],
     },
-    pricing: {
-      tag: isIndonesian ? 'HARGA TERJANGKAU' : 'AFFORDABLE PRICING',
-      title: isIndonesian ? 'Harga Bersahabat,' : 'Friendly Prices,',
-      titleHighlight: isIndonesian ? 'Kualitas Premium' : 'Premium Quality',
-      desc: isIndonesian
-        ? 'Transparan tanpa biaya tersembunyi. Dapatkan estimasi GRATIS untuk proyek Anda.'
-        : 'Transparent with no hidden fees. Get a FREE estimate for your project.',
-    },
     process: {
       tag: isIndonesian ? 'CARA KERJA' : 'HOW IT WORKS',
       title: isIndonesian ? 'Mudah & Transparan' : 'Easy & Transparent',
@@ -346,14 +338,14 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
       ],
     },
     cta: {
-      subtitle: isIndonesian ? 'SIAP MULAI BANGUN RUMAH?' : 'READY TO BUILD YOUR HOME?',
-      title: isIndonesian ? 'Konsultasi Gratis' : 'Free Consultation',
-      titleBold: isIndonesian ? 'Sekarang Juga!' : 'Now!',
+      subtitle: isIndonesian ? 'Rp0 — KOMITMEN KAMI' : 'Rp0 — OUR COMMITMENT',
+      title: isIndonesian ? 'Konsultasi & Estimasi' : 'Consultation & Estimate',
+      titleBold: isIndonesian ? 'GRATIS!' : 'FREE!',
       desc: isIndonesian
-        ? 'Tim kami siap membantu Anda dari konsep hingga rumah berdiri. Tidak ada kewajiban — dapatkan estimasi gratis untuk proyek Anda.'
-        : 'Our team is ready to help from concept to completion. No obligation — get a free estimate for your project.',
-      cta: isIndonesian ? 'Saya Mau Konsultasi' : 'I Want a Consultation',
-      cta2: isIndonesian ? '📞 Hubungi Kami Langsung' : '📞 Call Us Directly',
+        ? 'Tim Arsitek & Engineer kami siap analisa kebutuhan rumah Anda. Dapatkan rekomendasi desain, gambaran ruang, arahan tahap bangun, dan estimasi budget — tanpa biaya, tanpa kewajiban.'
+        : 'Our Architects & Engineers are ready to analyze your home needs. Get design recommendations, space overview, construction guidance, and budget estimate — free, no obligation.',
+      cta: isIndonesian ? 'Saya Mau Konsultasi Rumah' : 'I Want a Home Consultation',
+      cta2: isIndonesian ? 'Hubungi Via WhatsApp' : 'Contact via WhatsApp',
     },
   };
 
@@ -412,7 +404,7 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
           <div className={styles.navLinks}>
             <button className={styles.navLink} onClick={() => scrollTo('services')}>Layanan</button>
             <button className={styles.navLink} onClick={() => scrollTo('portfolio')}>Portfolio</button>
-            <button className={styles.navLink} onClick={() => scrollTo('pricing')}>Harga</button>
+            <button className={styles.navLink} onClick={() => scrollTo('services')}>Harga Jasa</button>
             <button className={styles.navLink} onClick={() => scrollTo('testimonials')}>Testimoni</button>
           </div>
           <div className={styles.navCta}>
@@ -439,6 +431,19 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
               <span className={styles.heroGradient}>{content.hero.titleBold}</span>
             </h1>
             <p className={styles.heroSub}>{content.hero.subtitle}</p>
+            <div className={styles.heroOffer}>
+              <div className={styles.heroOfferTag}>
+                {isIndonesian ? '🎁 GRATIS — Yang Anda Dapatkan:' : '🎁 FREE — What You Get:'}
+              </div>
+              <div className={styles.heroOfferGrid}>
+                {content.hero.offerItems.map((item, i) => (
+                  <div key={i} className={styles.heroOfferItem}>
+                    <span className={styles.heroOfferIcon}>{item.icon}</span>
+                    <span className={styles.heroOfferLabel}>{item.title}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className={styles.heroActions}>
               <button
                 className={`${styles.btn} ${styles.btnGold} ${styles.btnLg}`}
@@ -460,6 +465,13 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
                   <div className={styles.heroStatLabel}>{stat.label}</div>
                 </div>
               ))}
+            </div>
+            <div className={styles.heroTrust}>
+              <span className={styles.heroTrustStars}>⭐⭐⭐⭐⭐</span>
+              <span className={styles.heroTrustText}>
+                {isIndonesian ? '4.9/5 dari 200+ ulasan —' : '4.9/5 from 200+ reviews —'}{' '}
+                <strong>{isIndonesian ? 'Telah bantu 500+ keluarga bangun rumah' : 'Helped 500+ families build homes'}</strong>
+              </span>
             </div>
           </div>
         </section>
@@ -729,6 +741,12 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
               <span className={styles.gold}>{content.cta.titleBold}</span>
             </h2>
             <p className={styles.finalCtaDesc}>{content.cta.desc}</p>
+            <div className={styles.finalTrust}>
+              <span className={styles.finalTrustStars}>⭐⭐⭐⭐⭐</span>
+              <span className={styles.finalTrustText}>
+                {isIndonesian ? '4.9/5 — 200+ ulasan nyata dari pemilik rumah' : '4.9/5 — 200+ verified reviews from homeowners'}
+              </span>
+            </div>
             <div className={styles.finalCtaActions}>
               <button
                 className={`${styles.btn} ${styles.btnGold} ${styles.btnLg}`}
@@ -753,7 +771,7 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
             <div className={styles.footerLinks}>
               <button className={styles.footerLink} onClick={() => scrollTo('services')}>Layanan</button>
               <button className={styles.footerLink} onClick={() => scrollTo('portfolio')}>Portfolio</button>
-              <button className={styles.footerLink} onClick={() => scrollTo('pricing')}>Harga</button>
+              <button className={styles.footerLink} onClick={() => scrollTo('services')}>Harga Jasa</button>
               <button className={styles.footerLink} onClick={() => handleWa('footer')}>WhatsApp</button>
             </div>
             <div className={styles.footerCopy}>
