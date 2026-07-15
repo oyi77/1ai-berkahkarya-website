@@ -18,49 +18,49 @@ const WA_NUMBER = '6285800620035'; // 085800620035
 const WA_LINK = `https://wa.me/${WA_NUMBER}?text=Halo%20BerkahKarya%20Kontraktor%2C%20saya%20tertarik%20dengan%20jasa%20konstruksi%20Anda.`;
 
 const SERVICES = [
-  { icon: '🏛️', title: 'Desain Rumah', desc: 'Desain rumah tinggal modern, minimalis, klasik & kontemporer sesuai impian Anda.' },
-  { icon: '🏢', title: 'Desain Kantor', desc: 'Ruang kerja produktif dengan desain ergonomis & profesional untuk bisnis Anda.' },
-  { icon: '🛍️', title: 'Desain Mall & Ruko', desc: 'Konsep komersial yang menarik pengunjung & mengoptimalkan ruang usaha.' },
-  { icon: '🏨', title: 'Desain Hotel', desc: 'Pengalaman menginap premium dengan desain yang memadukan estetika & fungsi.' },
-  { icon: '📐', title: 'Pembuatan RAB', desc: 'Rencana Anggaran Biaya detail, akurat, & transparan untuk setiap proyek.' },
-  { icon: '🎨', title: 'Render Desain 3D', desc: 'Visualisasi fotorealistik sebelum bangun — lihat hasilnya terlebih dahulu.' },
-  { icon: '🔨', title: 'Jasa Kontraktor', desc: 'Bangun & renovasi profesional untuk rumah, kantor, gedung, & kawasan komersial.' },
-  { icon: '☀️', title: 'Kanopi & Pagar', desc: 'Kanopi baja ringan, pagar besi tempa, pagar minimalis — kuat & elegan.' },
-  { icon: '🪑', title: 'Desain Interior', desc: 'Interior hunian & komersial: ruang tamu, kamar, dapur, kantor, lobby.' },
-  { icon: '🚪', title: 'Pagar & Gerbang', desc: 'Pagar rumah, kantor, instansi, & gerbang otomatis dengan desain eksklusif.' },
-  { icon: '🔄', title: 'Tangga Rumah', desc: 'Tangga beton, besi, kayu, & kombinasi — kokoh, aman, & memukau.' },
-  { icon: '📋', title: 'Konsultasi Proyek', desc: 'Konsultasi gratis untuk rencana bangun & renovasi Anda.' },
+  {
+    icon: '📐',
+    title: 'Jasa Gambar Kerja',
+    price: 'Rp28.000',
+    unit: '/m²',
+    features: [
+      'Gambar Kerja Lengkap',
+      'Siap Digunakan Untuk Pembangunan',
+      'Mengurangi Risiko Kesalahan Tukang',
+      'Mempermudah Penyusunan RAB',
+      'Revisi Sesuai Ketentuan Proyek',
+    ],
+  },
+  {
+    icon: '💰',
+    title: 'Jasa RAB',
+    price: 'Rp1.200.000',
+    unit: '/proyek',
+    features: [
+      'Estimasi Biaya Detail',
+      'Kontrol Anggaran Proyek',
+      'Menghindari Pembengkakan Biaya',
+      'Prioritas Pekerjaan Jelas',
+      'Transparan & Mudah Dipahami',
+    ],
+  },
+  {
+    icon: '🏡',
+    title: 'Visualisasi 3D',
+    price: 'Rp1.200.000',
+    unit: '/proyek',
+    features: [
+      'Visual Realistis Sebelum Bangun',
+      'Memudahkan Pengambilan Keputusan',
+      'Revisi Desain Sebelum Eksekusi',
+      'Meminimalkan Perubahan di Lapangan',
+      'File Siap Presentasi',
+    ],
+  },
 ];
 
-const WHY_US = [
-  { icon: '🏛️', title: 'Arsitek + Engineer Dalam 1 Tim', desc: 'Tidak perlu repot koordinasi antar vendor. Satu tim menangani desain, struktur, RAB, hingga pengawasan pembangunan.' },
-  { icon: '📊', title: 'RAB Detail & Transparan', desc: 'Setiap biaya dipecah per item pekerjaan. Tidak ada biaya tersembunyi. Anda tahu persis dana yang dibutuhkan dari awal.' },
-  { icon: '📅', title: 'Timeline Proyek Terstruktur', desc: 'Setiap proyek memiliki jadwal kerja mingguan yang terukur. Progress dilaporkan secara berkala via WhatsApp & foto.' },
-  { icon: '🛡️', title: 'Garansi Pengerjaan', desc: 'Garansi untuk setiap pekerjaan yang kami lakukan. Jika ada kendala setelah serah terima, tim kami siap turun tangan tanpa biaya.' },
-];
-const PRICING = [
-  {
-    name: 'Desain & RAB',
-    price: 'Rp 20rb',
-    unit: '/meter persegi',
-    featured: false,
-    features: ['Desain rumah/kantor', 'Gambar 2D & 3D', 'RAB detail & akurat', 'Revisi 2x gratis', 'Konsultasi gratis'],
-  },
-  {
-    name: 'Interior Premium',
-    price: 'Rp 2,8jt',
-    unit: '/proyek mulai dari',
-    featured: true,
-    features: ['Desain interior ruangan', '3D render fotorealistik', 'Pemilihan material', 'Revisi hingga puas', 'Pengawasan pengerjaan'],
-  },
-  {
-    name: 'Pagar & Kanopi',
-    price: 'Rp 350rb',
-    unit: '/meter mulai dari',
-    featured: false,
-    features: ['Kanopi baja ringan', 'Pagar besi/minimalis', 'Pemasangan profesional', 'Material berkualitas', 'Garansi pengerjaan'],
-  },
-];
+
+
 
 const PROCESS = [
   { title: 'Konsultasi', desc: 'Diskusi kebutuhan, lokasi, & budget secara gratis via WhatsApp atau tatap muka.' },
@@ -165,6 +165,30 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
     }
   }, []);
 
+
+  // Scroll depth tracking
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const thresholds = [25, 50, 75, 100];
+    let fired = new Set<number>();
+    const handler = () => {
+      const scrollPct = Math.round(
+        (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100
+      );
+      thresholds.forEach(t => {
+        if (scrollPct >= t && !fired.has(t)) {
+          fired.add(t);
+          try {
+            if (window.gtag) window.gtag('event', 'scroll_depth', { event_category: 'engagement', event_label: `${t}%` });
+            if (window.fbq) window.fbq('track', 'ScrollDepth', { value: t, currency: 'IDR' });
+            if (window.ttq) window.ttq.track('ScrollDepth', { content_name: `${t}%` });
+          } catch (_) {}
+        }
+      });
+    };
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
   const scrollTo = useCallback((id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -190,20 +214,36 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
 
   const content = {
     hero: {
-      badge: isIndonesian ? '🏗️ KONSULTAN BANGUNAN TERPERCAYA' : '🏗️ TRUSTED BUILDING CONSULTANT',
+      badge: isIndonesian ? '🔨 SIAP BANTU ANDA MEMBANGUN' : '🔨 READY TO HELP YOU BUILD',
       title: isIndonesian
         ? 'Bangun Rumah Impian' : 'Build Your Dream Home',
-      titleBold: isIndonesian ? 'Tanpa Khawatir Biaya Membengkak' : 'Without Budget Surprises',
+      titleBold: isIndonesian ? 'Tanpa Takut Biaya Membengkak' : 'No More Budget Surprises',
       subtitle: isIndonesian
-        ? 'Dari desain, RAB, hingga pembangunan — tim kami bantu rencanakan rumah Anda dengan lebih terarah & transparan. GRATIS konsultasi & estimasi awal.'
-        : 'From design & RAB to construction — our team helps you plan your home with clarity & transparency. FREE initial consultation & estimate.',
-      cta: isIndonesian ? '🎁 Konsultasi + Estimasi Gratis' : '🎁 Free Consultation & Estimate',
+        ? 'Mulai dari desain, gambar kerja, RAB detail, hingga pembangunan — proses lebih terarah, biaya lebih terkendali. GRATIS konsultasi & estimasi awal.'
+        : 'From design, working drawings, detailed RAB, to construction — a clearer process, better cost control. FREE consultation & initial estimate.',
+      cta: isIndonesian ? 'Saya Mau Konsultasi Rumah' : "I'd Like a Home Consultation",
+      cta2: isIndonesian ? '📐 Hitung Estimasi Biaya' : '💰 Calculate My Budget',
       stats: [
         { num: '500+', label: isIndonesian ? 'Proyek Sukses' : 'Projects Done' },
         { num: '10+', label: isIndonesian ? 'Tahun Pengalaman' : 'Years Experience' },
         { num: '98%', label: isIndonesian ? 'Kepuasan Klien' : 'Client Satisfaction' },
-        { num: '50+', label: isIndonesian ? 'Kota di Indonesia' : 'Cities Served' },
+        { num: '4.9★', label: isIndonesian ? 'Rating Google' : 'Google Rating' },
       ],
+      offerItems: [
+        { icon: '📋', title: isIndonesian ? 'GRATIS Konsultasi' : 'FREE Consultation' },
+        { icon: '💰', title: isIndonesian ? 'GRATIS Estimasi' : 'FREE Estimate' },
+        { icon: '✏️', title: isIndonesian ? 'GRATIS Rekomendasi Konsep' : 'FREE Concept Suggestion' },
+        { icon: '✅', title: isIndonesian ? 'GRATIS Checklist Bangun Rumah' : 'FREE Building Checklist' },
+      ],
+    },
+    leadMagnet: {
+      tag: isIndonesian ? 'GRATIS' : 'FREE',
+      title: isIndonesian ? 'Panduan Bangun Rumah' : 'Home Building Guide',
+      titleHighlight: isIndonesian ? 'Lengkap' : 'Complete Guide',
+      desc: isIndonesian
+        ? 'Dapatkan ebook GRATIS berisi checklist bangun rumah, estimasi budget, dan tips memilih kontraktor.'
+        : 'Get our FREE ebook: home building checklist, budget estimation guide, and contractor selection tips.',
+      cta: isIndonesian ? '📥 Download Gratis Sekarang' : '📥 Download Free Now',
     },
     services: {
       tag: isIndonesian ? 'LAYANAN KAMI' : 'OUR SERVICES',
@@ -221,12 +261,34 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         : 'Every project is proof of our commitment to quality, precision & client satisfaction.',
     },
     why: {
-      tag: isIndonesian ? 'MENGAPA KAMI' : 'WHY US',
-      title: isIndonesian ? 'Mengapa Memilih' : 'Why Choose',
-      titleHighlight: isIndonesian ? 'BerkahKarya Kontraktor?' : 'BerkahKarya Contractor?',
+      tag: isIndonesian ? 'KENAPA KAMI BERBEDA' : 'WHY WE\'RE DIFFERENT',
+      title: isIndonesian ? 'Aman & Transparan' : 'Safe & Transparent',
+      titleHighlight: isIndonesian ? 'Bangun Rumah Bersama Kami' : 'Building With Us',
       desc: isIndonesian
-        ? 'Kami tidak hanya membangun struktur — kami membangun kepercayaan & hubungan jangka panjang dengan setiap klien.'
-        : 'We don\'t just build structures — we build trust & long-term relationships with every client.',
+        ? 'Kami tidak hanya membangun — kami memastikan Anda paham & nyaman di setiap tahap.'
+        : 'We don\'t just build — we make sure you understand & feel comfortable at every stage.',
+      reasons: [
+        {
+          icon: '📐',
+          title: isIndonesian ? 'Gambar Kerja Detail' : 'Detailed Working Drawings',
+          desc: isIndonesian ? 'Tukang tidak menebak-nebak. Semua ukuran, material, & spesifikasi tertuang dalam gambar kerja lengkap sebagai acuan lapangan.' : 'No guesswork for workers. All measurements, materials & specifications in complete working drawings for field reference.'
+        },
+        {
+          icon: '📊',
+          title: isIndonesian ? 'RAB Kontrol Biaya' : 'Cost Control RAB',
+          desc: isIndonesian ? 'Setiap pos pekerjaan dianggarkan detail — Anda tahu persis alokasi dana dari awal tanpa biaya mendadak.' : 'Every work item is budgeted in detail — you know exactly where every rupiah goes with no surprise costs.'
+        },
+        {
+          icon: '📱',
+          title: isIndonesian ? 'Update Progress Berkala' : 'Regular Progress Updates',
+          desc: isIndonesian ? 'Laporan mingguan via WhatsApp berupa foto, video, & persentase progres. Anda pantau dari mana saja.' : 'Weekly reports via WhatsApp with photos, videos & progress percentage. Monitor from anywhere.'
+        },
+        {
+          icon: '🤝',
+          title: isIndonesian ? 'Satu Tim — Desain ke Pembangunan' : 'One Team — Design to Build',
+          desc: isIndonesian ? 'Arsitek, engineer, & pelaksana dalam satu koordinasi. Tidak ada lempar tanggung jawab antar vendor.' : 'Architects, engineers & executors in one coordinated team. No finger-pointing between vendors.'
+        },
+      ],
     },
     pricing: {
       tag: isIndonesian ? 'HARGA TERJANGKAU' : 'AFFORDABLE PRICING',
@@ -268,21 +330,24 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
       tag: isIndonesian ? 'FAQ' : 'FAQ',
       title: isIndonesian ? 'Pertanyaan Umum' : 'Frequently Asked Questions',
       items: [
-        { q: isIndonesian ? 'Berapa biaya untuk bangun rumah?' : 'How much does it cost to build a house?', a: isIndonesian ? 'Biaya sangat tergantung luas bangunan, spesifikasi material, dan lokasi. Tim kami bisa memberikan estimasi awal secara GRATIS setelah diskusi singkat mengenai kebutuhan Anda. Konsultasi tidak mengikat.' : 'Costs depend on building size, material specs, and location. Our team can provide a FREE initial estimate after a brief discussion about your needs. No obligation.' },
-        { q: isIndonesian ? 'Berapa lama proses bangun rumah?' : 'How long does construction take?', a: isIndonesian ? 'Rumah tinggal 1-2 lantai biasanya selesai dalam 3-6 bulan tergantung luas & kompleksitas. Kami memberikan timeline proyek yang detail di awal dan melaporkan progress secara berkala.' : 'A 1-2 story home typically completes in 3-6 months depending on size & complexity. We provide a detailed timeline upfront with regular progress reports.' },
-        { q: isIndonesian ? 'Apakah hasil akhir sesuai dengan desain?' : 'Will the result match the design?', a: isIndonesian ? 'Kami memberikan 3D render fotorealistik SEBELUM pembangunan dimulai. Anda bisa lihat & revisi sampai puas. Di lapangan, kami menggunakan gambar kerja detail sebagai acuan agar hasilnya presisi.' : 'We provide photorealistic 3D renders BEFORE construction begins. You can review & revise until satisfied. In the field, detailed working drawings ensure precision.' },
-        { q: isIndonesian ? 'Bagaimana cara memulai?' : 'How do I get started?', a: isIndonesian ? 'Cukup klik tombol "Konsultasi + Estimasi Gratis" di atas. Diskusi awal via WhatsApp, tim kami akan membantu memahami kebutuhan Anda, dan memberikan gambaran biaya — tanpa biaya & tanpa kewajiban.' : 'Simply click the "Free Consultation & Estimate" button above. Initial discussion via WhatsApp, our team will understand your needs, and provide a cost overview — free & no obligation.' },
+        { q: isIndonesian ? 'Berapa biaya untuk bangun rumah?' : 'How much does it cost to build a house?', a: isIndonesian ? 'Biaya tergantung luas bangunan, spesifikasi material, dan lokasi. Tim kami bisa memberikan estimasi awal secara GRATIS setelah diskusi singkat mengenai kebutuhan Anda. Konsultasi tidak mengikat.' : 'Costs depend on building size, material specs, and location. Our team can provide a FREE initial estimate after a brief discussion about your needs. No obligation.' },
+        { q: isIndonesian ? 'Kenapa harga Anda berbeda dengan kontraktor lain?' : 'Why is your price different from other contractors?', a: isIndonesian ? 'Kami transparan dari awal — RAB detail per item pekerjaan. Tidak ada biaya tersembunyi. Jika ada kontraktor yang lebih murah, pastikan scope pekerjaannya sama. Kami utamakan kualitas & kepuasan jangka panjang.' : 'We\'re transparent from the start — detailed RAB per work item. No hidden fees. If another contractor is cheaper, make sure the scope of work is the same. We prioritize quality & long-term satisfaction.' },
+        { q: isIndonesian ? 'Kenapa harus gambar kerja dulu?' : 'Why do we need working drawings first?', a: isIndonesian ? 'Gambar kerja adalah acuan tukang di lapangan. Tanpa gambar kerja, ukuran & spesifikasi hanya berdasarkan perkiraan — risiko kesalahan & pembengkakan biaya sangat tinggi. Dengan gambar kerja, Anda bisa yakin hasil akhir sesuai rencana.' : 'Working drawings are the field reference for workers. Without them, measurements & specs are just estimates — risk of errors & cost overruns is very high. With working drawings, you can be sure the final result matches the plan.' },
+        { q: isIndonesian ? 'Kenapa harus pakai RAB?' : 'Why do we need a RAB?', a: isIndonesian ? 'RAB (Rencana Anggaran Biaya) membuat Anda tahu persis alokasi dana untuk setiap item pekerjaan. Anda bisa mengambil keputusan: mana yang prioritas, mana yang bisa diatur ulang. Tanpa RAB, biaya mudah membengkak.' : 'RAB (Budget Plan) lets you know exactly the cost allocation for each work item. You can decide priorities and adjust as needed. Without RAB, costs easily balloon.' },
+        { q: isIndonesian ? 'Apakah konsultasi bisa online?' : 'Can consultation be done online?', a: isIndonesian ? 'Tentu! Konsultasi awal bisa via WhatsApp atau video call. Kami diskusikan kebutuhan, lokasi, dan budget Anda. Setelah itu kami siapkan estimasi & rekomendasi konsep — semua dari rumah Anda.' : 'Absolutely! Initial consultation can be via WhatsApp or video call. We discuss your needs, location, and budget. Then we prepare estimates & concept recommendations — all from the comfort of your home.' },
+        { q: isIndonesian ? 'Apakah ada revisi desain?' : 'Are there design revisions?', a: isIndonesian ? 'Tentu ada. Sebelum pembangunan dimulai, kami memberikan 3D render & gambar kerja untuk Anda review. Revisi bisa dilakukan sampai Anda benar-benar puas. Setelah semua fix, baru kami eksekusi di lapangan.' : 'Yes! Before construction begins, we provide 3D renders & working drawings for your review. Revisions can be made until you\'re fully satisfied. Once everything is finalized, only then we execute in the field.' },
+        { q: isIndonesian ? 'Bagaimana sistem pembayarannya?' : 'What is the payment system?', a: isIndonesian ? 'Pembayaran dilakukan bertahap sesuai progres pekerjaan (termin). Setiap termin dibayar setelah pekerjaan selesai & diverifikasi. Tidak ada permintaan pembayaran penuh di awal. Semua tertuang dalam kontrak resmi.' : 'Payment is made in stages according to work progress (terminations). Each stage is paid after work completion & verification. No full upfront payment. All stated in the official contract.' },
       ],
     },
     cta: {
-      subtitle: isIndonesian ? 'SIAP MEWUJUDKAN IMPIAN ANDA?' : 'READY TO MAKE YOUR DREAMS COME TRUE?',
+      subtitle: isIndonesian ? 'SIAP MULAI BANGUN RUMAH?' : 'READY TO BUILD YOUR HOME?',
       title: isIndonesian ? 'Konsultasi Gratis' : 'Free Consultation',
       titleBold: isIndonesian ? 'Sekarang Juga!' : 'Now!',
       desc: isIndonesian
-        ? 'Tim kami siap membantu dari konsep hingga realisasi. Tidak ada kewajiban — dapatkan estimasi gratis untuk proyek Anda.'
-        : 'Our team is ready to help from concept to realization. No obligation — get a free estimate for your project.',
-      cta: isIndonesian ? 'Chat WhatsApp Sekarang' : 'Chat WhatsApp Now',
-      cta2: isIndonesian ? 'Telepon Langsung' : 'Call Directly',
+        ? 'Tim kami siap membantu Anda dari konsep hingga rumah berdiri. Tidak ada kewajiban — dapatkan estimasi gratis untuk proyek Anda.'
+        : 'Our team is ready to help from concept to completion. No obligation — get a free estimate for your project.',
+      cta: isIndonesian ? 'Saya Mau Konsultasi' : 'I Want a Consultation',
+      cta2: isIndonesian ? '📞 Hubungi Kami Langsung' : '📞 Call Us Directly',
     },
   };
 
@@ -406,10 +471,27 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
             </div>
             <div className={styles.servicesGrid}>
               {SERVICES.map((svc, i) => (
-                <div key={i} className={styles.serviceCard}>
+                <div key={i} className={`${styles.serviceCard} ${i === 1 ? styles.serviceFeatured : ''}`}>
                   <span className={styles.serviceIcon}>{svc.icon}</span>
                   <h3 className={styles.serviceTitle}>{svc.title}</h3>
-                  <p className={styles.serviceDesc}>{svc.desc}</p>
+                  <div className={styles.servicePrice}>
+                    <span className={styles.servicePriceValue}>{svc.price}</span>
+                    <span className={styles.servicePriceUnit}>{svc.unit}</span>
+                  </div>
+                  <ul className={styles.serviceFeatures}>
+                    {svc.features.map((f, j) => (
+                      <li key={j} className={styles.serviceFeature}>
+                        <span className={styles.serviceCheck}>✓</span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    className={`${styles.btn} ${i === 1 ? styles.btnGold : styles.btnOutline} ${styles.btnFull}`}
+                    onClick={() => handleWa(`service_${i}`)}
+                  >
+                    💬 Konsultasi Sekarang
+                  </button>
                 </div>
               ))}
             </div>
@@ -457,6 +539,28 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
               >
                 🎁 {isIndonesian ? 'Konsultasi + Estimasi Gratis' : 'Free Consultation & Estimate'}
               </button>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── LEAD MAGNET ─── */}
+        <section className={styles.leadSection}>
+          <div className={styles.container}>
+            <div className={styles.leadBox}>
+              <span className={styles.leadTag}>{content.leadMagnet.tag}</span>
+              <h2 className={styles.leadTitle}>
+                {content.leadMagnet.title}{' '}
+                <span className={styles.gold}>{content.leadMagnet.titleHighlight}</span>
+              </h2>
+              <p className={styles.leadDesc}>{content.leadMagnet.desc}</p>
+              <div className={styles.leadActions}>
+                <button
+                  className={`${styles.btn} ${styles.btnGold} ${styles.btnLg}`}
+                  onClick={() => handleWa('lead_magnet')}
+                >
+                  {content.leadMagnet.cta}
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -518,10 +622,8 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
                 {content.why.title}{' '}
                 <span className={styles.gold}>{content.why.titleHighlight}</span>
               </h2>
-              <p className={styles.sectionDesc}>{content.why.desc}</p>
-            </div>
             <div className={styles.whyGrid}>
-              {WHY_US.map((item, i) => (
+              {content.why.reasons.map((item, i) => (
                 <div key={i} className={styles.whyCard}>
                   <div className={styles.whyIcon}>{item.icon}</div>
                   <h3 className={styles.whyTitle}>{item.title}</h3>
@@ -529,49 +631,12 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
                 </div>
               ))}
             </div>
+
+            </div>
           </div>
         </section>
 
-        {/* ─── PRICING ─── */}
-        <section id="pricing" className={styles.section}>
-          <div className={styles.container}>
-            <div className={`${styles.center}`}>
-              <span className={styles.sectionTag}>{content.pricing.tag}</span>
-              <h2 className={styles.sectionTitle}>
-                {content.pricing.title}{' '}
-                <span className={styles.gold}>{content.pricing.titleHighlight}</span>
-              </h2>
-              <p className={styles.sectionDesc}>{content.pricing.desc}</p>
-            </div>
-            <div className={styles.pricingGrid}>
-              {PRICING.map((pkg, i) => (
-                <div
-                  key={i}
-                  className={`${styles.pricingCard} ${pkg.featured ? styles.pricingFeatured : ''}`}
-                >
-                  {pkg.featured && <span className={styles.pricingBadge}>TERLARIS</span>}
-                  <h3 className={styles.pricingName}>{pkg.name}</h3>
-                  <div className={styles.pricingPrice}>{pkg.price}</div>
-                  <div className={styles.pricingUnit}>{pkg.unit}</div>
-                  <ul className={styles.pricingFeatures}>
-                    {pkg.features.map((f, j) => (
-                      <li key={j} className={styles.pricingFeature}>
-                        <span className={styles.pricingCheck}>✓</span>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <button
-                    className={`${styles.btn} ${pkg.featured ? styles.btnGold : styles.btnOutline} ${styles.btnFull}`}
-                    onClick={() => handleWa(`pricing_${pkg.name.toLowerCase().replace(/\s+/g, '_')}`)}
-                  >
-                    💬 Konsultasi Sekarang
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+
 
         {/* ─── PROCESS ─── */}
         <section className={`${styles.section} ${styles.sectionDark}`}>
@@ -697,6 +762,13 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
           💬
         </button>
       </div>
+        
+        {/* ─── STICKY MOBILE CTA ─── */}
+        <div className={styles.stickyCta}>
+          <button className={`${styles.btn} ${styles.btnGold}`} onClick={() => handleWa('sticky')}>
+            💬 {isIndonesian ? 'Konsultasi Gratis Sekarang' : 'Free Consultation Now'}
+          </button>
+        </div>
     </>
   );
 }

@@ -385,47 +385,110 @@
 /* ─── Services ─── */
 .servicesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1px;
-  background: var(--jk-border);
-  border: 0.5px solid var(--jk-border);
-  border-radius: var(--jk-radius-lg);
-  overflow: hidden;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .serviceCard {
   background: var(--jk-bg-card);
-  padding: 2rem 1.75rem;
+  border: 1px solid var(--jk-border);
+  border-radius: var(--jk-radius-lg);
+  padding: 2.5rem 2rem;
+  text-align: center;
   transition: all 0.4s;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .serviceCard:hover {
-  background: var(--jk-bg-card-hover);
+  border-color: var(--jk-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
 }
 
-.serviceCard:hover .serviceIcon {
-  color: var(--jk-gold);
+.serviceFeatured {
+  border-color: var(--jk-gold);
+  background: linear-gradient(180deg, rgba(212,168,75,0.08) 0%, var(--jk-bg-card) 100%);
+  position: relative;
+}
+
+.serviceFeatured::before {
+  content: '⭐ POPULER';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--jk-gold);
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  letter-spacing: 1px;
 }
 
 .serviceIcon {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   display: block;
-  color: var(--jk-text-3);
-  transition: color 0.3s;
 }
 
 .serviceTitle {
-  font-size: 1.05rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
 }
 
-.serviceDesc {
-  font-size: 0.82rem;
-  color: var(--jk-text-4);
-  line-height: 1.7;
+.servicePrice {
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
+
+.servicePriceValue {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--jk-gold);
+}
+
+.servicePriceUnit {
+  font-size: 0.85rem;
+  color: var(--jk-text-4);
+  margin-left: 0.3rem;
+}
+
+.serviceFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  text-align: left;
+  width: 100%;
+}
+
+.serviceFeature {
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+  color: var(--jk-text-3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1.4;
+}
+
+.serviceFeature + .serviceFeature {
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.serviceCheck {
+  color: var(--jk-gold);
+  font-weight: 700;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+
 
 /* ─── Portfolio ─── */
 .portfolioGrid {
@@ -1017,6 +1080,75 @@
   50% { transform: translateY(-6px); }
 }
 
+
+/* ─── Lead Magnet ─── */
+.leadSection {
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: linear-gradient(135deg, var(--jk-bg-2) 0%, #0d0d0d 100%);
+}
+
+.leadBox {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  border: 1px solid var(--jk-border-gold);
+  border-radius: var(--jk-radius-xl);
+  background: rgba(212,168,75,0.04);
+}
+
+.leadTag {
+  display: inline-block;
+  background: var(--jk-gold);
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.leadTitle {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+.leadDesc {
+  color: var(--jk-text-4);
+  max-width: 550px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.leadActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ─── Sticky Mobile CTA ─── */
+.stickyCta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 998;
+  background: linear-gradient(180deg, transparent 0%, rgba(7,7,7,0.98) 30%);
+  padding: 12px 16px 16px;
+}
+
+.stickyCta button {
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(212,168,75,0.4);
+}
+
 /* ─── Responsive ─── */
 
 @keyframes fadeIn {
@@ -1048,5 +1180,22 @@
     font-size: 1.2rem;
     bottom: 16px;
     right: 16px;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .serviceCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .serviceFeatured {
+    margin-top: 0;
+  }
+
+  .stickyCta {
+    display: block;
   }
 }
