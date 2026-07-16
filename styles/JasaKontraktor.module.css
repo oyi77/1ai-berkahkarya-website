@@ -314,6 +314,19 @@
   letter-spacing: 0.05em;
 }
 
+.scarcityBanner {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(212, 168, 75, 0.12), rgba(212, 168, 75, 0.04));
+  border: 1px solid rgba(212, 168, 75, 0.25);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--jk-gold);
+  margin-bottom: 1.5rem;
+  animation: heroPulse 2s infinite;
+  font-weight: 500;
+}
+
 .heroPulse {
   width: 7px;
   height: 7px;
@@ -779,6 +792,26 @@
   flex-shrink: 0;
 }
 
+.guaranteeBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin: 1.5rem auto 0;
+  max-width: 600px;
+  background: linear-gradient(135deg, rgba(212, 168, 75, 0.08), rgba(212, 168, 75, 0.02));
+  border: 0.5px solid var(--jk-border-gold);
+  border-radius: var(--jk-radius);
+  font-size: 0.82rem;
+  color: var(--jk-text-2);
+  text-align: center;
+}
+
+.guaranteeIcon {
+  font-size: 1.2rem;
+}
+
 /* ─── Process ─── */
 .processGrid {
   display: grid;
@@ -923,6 +956,29 @@
   line-height: 1.8;
   margin-bottom: 1.5rem;
   font-style: italic;
+}
+
+.testiStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.testiStat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  background: rgba(212, 168, 75, 0.08);
+  color: var(--jk-text-3);
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.testiStat strong {
+  font-size: 0.82rem;
 }
 
 .testiAuthor {
@@ -1387,6 +1443,20 @@
 .finalTrustText {
   font-size: 0.82rem;
   color: var(--jk-text-3);
+}
+
+.finalGaransi {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.5rem auto 2rem;
+  font-size: 0.82rem;
+  color: var(--jk-gold);
+  background: rgba(212, 168, 75, 0.06);
+  padding: 0.6rem 1rem;
+  border-radius: var(--jk-radius);
+  max-width: 500px;
 }
 
 /* ─── Responsive ─── */

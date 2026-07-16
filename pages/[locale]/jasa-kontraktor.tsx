@@ -134,12 +134,12 @@ const PROCESS = [
 ];
 
 const TESTIMONIALS = [
-  { name: 'Budi Santoso', role: 'Pemilik Rumah, Jakarta Selatan | 2025', initials: 'BS', text: '"Rumah 2 lantai 250m² selesai sesuai timeline walau sempat ragu karena pengalaman pertama bangun rumah. RAB-nya detail — tidak ada biaya mendadak. Hasilnya sesuai render 3D. Makasih tim BerkahKarya!"' },
-  { name: 'Siti Rahmawati', role: 'Owner Kafe, Bandung | 2024', initials: 'SR', text: '"Desain interior kafe saya dibuat sangat detail. Suasananya jadi jauh lebih nyaman, pengunjung betah berlama-lama, omzet naik 30% dalam 3 bulan pertama."' },
-  { name: 'Andi Pratama', role: 'Direktur PT. Maju Jaya | 2024', initials: 'AP', text: '"Kantor baru 3 lantai selesai dalam 4 bulan. Kualitas pengerjaan rapi, tim sangat komunikatif, dan progress selalu dilaporkan mingguan. Profesional banget."' },
-  { name: 'Dewi Lestari', role: 'Ibu Rumah Tangga, Surabaya | 2025', initials: 'DL', text: '"Terima kasih BerkahKarya! Awalnya takut renovasi molor & berantakan, tapi ternyata selesai 2 minggu lebih cepat. Desainnya persis seperti yang saya bayangkan."' },
-  { name: 'Rudi Hermawan', role: 'Pengusaha, Semarang | 2024', initials: 'RH', text: '"Pagar & kanopi rumah kokoh & elegan. Yang paling saya suka, mereka kasih saran material sesuai budget tanpa maksa pake yang mahal. Harga bersahabat."' },
-  { name: 'Mega Putri', role: 'Arsitek Mitra, Yogyakarta | 2025', initials: 'MP', text: '"Kolaborasi dengan tim BerkahKarya sangat menyenangkan. Detail-oriented, tepat janji, dan selalu prioritasin kualitas. Recommended untuk kolega."' },
+  { name: 'Budi Santoso', role: 'Pemilik Rumah, Jakarta Selatan | 2025', initials: 'BS', text: '"Rumah 2 lantai 250m² selesai sesuai timeline walau sempat ragu karena pengalaman pertama bangun rumah. RAB-nya detail — tidak ada biaya mendadak. Hasilnya sesuai render 3D. Makasih tim BerkahKarya!"', detail: { m2: '250 m²', duration: '4 Bulan', budget: 'Sesuai RAB', outcome: 'Tepat Waktu' } },
+  { name: 'Siti Rahmawati', role: 'Owner Kafe, Bandung | 2024', initials: 'SR', text: '"Desain interior kafe saya dibuat sangat detail. Suasananya jadi jauh lebih nyaman, pengunjung betah berlama-lama, omzet naik 30% dalam 3 bulan pertama."', detail: { m2: '120 m²', duration: '2 Bulan', budget: 'Rp150 Juta', outcome: 'Omzet +30%' } },
+  { name: 'Andi Pratama', role: 'Direktur PT. Maju Jaya | 2024', initials: 'AP', text: '"Kantor baru 3 lantai selesai dalam 4 bulan. Kualitas pengerjaan rapi, tim sangat komunikatif, dan progress selalu dilaporkan mingguan. Profesional banget."', detail: { m2: '600 m²', duration: '4 Bulan', budget: 'Rp2,1 M', outcome: 'Tepat Waktu' } },
+  { name: 'Dewi Lestari', role: 'Ibu Rumah Tangga, Surabaya | 2025', initials: 'DL', text: '"Terima kasih BerkahKarya! Awalnya takut renovasi molor & berantakan, tapi ternyata selesai 2 minggu lebih cepat. Desainnya persis seperti yang saya bayangkan."', detail: { m2: '85 m²', duration: '1,5 Bulan', budget: 'Rp95 Juta', outcome: '+2 Minggu Cepat' } },
+  { name: 'Rudi Hermawan', role: 'Pengusaha, Semarang | 2024', initials: 'RH', text: '"Pagar & kanopi rumah kokoh & elegan. Yang paling saya suka, mereka kasih saran material sesuai budget tanpa maksa pake yang mahal. Harga bersahabat."', detail: { m2: '100 m²', duration: '2 Minggu', budget: 'Rp35 Juta', outcome: 'Sesuai Budget' } },
+  { name: 'Mega Putri', role: 'Arsitek Mitra, Yogyakarta | 2025', initials: 'MP', text: '"Kolaborasi dengan tim BerkahKarya sangat menyenangkan. Detail-oriented, tepat janji, dan selalu prioritasin kualitas. Recommended untuk kolega."', detail: { m2: '350 m²', duration: '3 Bulan', budget: 'Rp950 Juta', outcome: 'Kolaborasi' } },
 ];
 
 const PORTFOLIO_IMAGES = [
@@ -299,11 +299,14 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         : 'From working drawings, RAB, 3D visualizations to construction — all your project needs handled by one architect & engineer team. More focused process, transparent costs, maximum results.',
       cta: isIndonesian ? '🟢 Konsultasi Gratis Sekarang' : '🟢 Free Consultation Now',
       stats: [
-        { num: '4.9', label: isIndonesian ? 'Rating Google ★' : 'Google Rating ★' },
-        { num: '200+', label: isIndonesian ? 'Proyek Selesai' : 'Projects Done' },
-        { num: '10+', label: isIndonesian ? 'Tahun Pengalaman' : 'Years Experience' },
         { num: '500+', label: isIndonesian ? 'Klien Puas' : 'Happy Clients' },
+        { num: '200+', label: isIndonesian ? 'Proyek Selesai' : 'Projects Done' },
+        { num: '4.9', label: isIndonesian ? 'Rating Google ★' : 'Google Rating ★' },
+        { num: '10+', label: isIndonesian ? 'Tahun Pengalaman' : 'Years Experience' },
       ],
+      offer: isIndonesian
+        ? '🎉 Promo Spesial: Diskon 5% Desain — Hanya untuk 5 Pendaftar Pertama Bulan Ini!'
+        : '🎉 Special Promo: 5% Design Discount — Only for the First 5 Clients This Month!',
     },
     leadMagnet: {
       tag: isIndonesian ? 'GRATIS' : 'FREE',
@@ -494,6 +497,9 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
               <span className={styles.heroPulse} />
               {content.hero.badge}
             </div>
+            <div className={styles.scarcityBanner}>
+              {content.hero.offer}
+            </div>
             <h1 className={styles.heroTitle}>
               {content.hero.title}{' '}
               <span className={styles.heroGradient}>{content.hero.titleBold}</span>
@@ -630,10 +636,19 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
                     className={`${styles.btn} ${i === 3 ? styles.btnGold : styles.btnOutline} ${styles.btnFull}`}
                     onClick={() => handleWa(`pricing_${i}`)}
                   >
-                    💬 {isIndonesian ? 'Konsultasi Sekarang' : 'Consult Now'}
+                    {i === 0 ? '📐 ' + (isIndonesian ? 'Pesan Desain' : 'Order Design')
+                    : i === 1 ? '📊 ' + (isIndonesian ? 'Buat RAB' : 'Get RAB')
+                    : i === 2 ? '🎨 ' + (isIndonesian ? 'Lihat 3D' : 'See 3D')
+                    : '💬 ' + (isIndonesian ? 'Konsultasi Sekarang' : 'Consult Now')}
                   </button>
                 </div>
               ))}
+            </div>
+            <div className={styles.guaranteeBadge}>
+              <span className={styles.guaranteeIcon}>🛡️</span>
+              <span>{isIndonesian
+                ? 'Setiap proyek bergaransi resmi & Anda bebas konsultasi GRATIS kapan pun!'
+                : 'Every project comes with an official warranty & free consultation anytime!'}</span>
             </div>
           </div>
         </section>
@@ -761,7 +776,10 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
                     className={`${styles.btn} ${i === 1 ? styles.btnGold : styles.btnOutline} ${styles.btnFull}`}
                     onClick={() => handleWa(`service_${i}`)}
                   >
-                    💬 Konsultasi Sekarang
+                    {i === 0 ? '📐 ' + (isIndonesian ? 'Konsultasi Desain' : 'Design Consultation')
+                    : i === 1 ? '🏗️ ' + (isIndonesian ? 'Hitung Biaya Bangun' : 'Calculate Cost')
+                    : i === 2 ? '🛋 ' + (isIndonesian ? 'Konsultasi Interior' : 'Interior Consultation')
+                    : '📞 ' + (isIndonesian ? 'Minta Quote' : 'Get a Quote')}
                   </button>
                 </div>
               ))}
@@ -781,6 +799,14 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
                 <div key={i} className={styles.testiCard}>
                   <div className={styles.testiStars}>{'★'.repeat(5)}</div>
                   <p className={styles.testiText}>"{t.text}"</p>
+                  {t.detail && (
+                    <div className={styles.testiStats}>
+                      <span className={styles.testiStat}><strong>📐</strong> {t.detail.m2}</span>
+                      <span className={styles.testiStat}><strong>⏱</strong> {t.detail.duration}</span>
+                      <span className={styles.testiStat}><strong>💰</strong> {t.detail.budget}</span>
+                      <span className={styles.testiStat}><strong>🏆</strong> {t.detail.outcome}</span>
+                    </div>
+                  )}
                   <div className={styles.testiAuthor}>
                     <div className={styles.testiAvatar}>{t.initials}</div>
                     <div>
@@ -883,6 +909,12 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
               <span className={styles.finalTrustText}>
                 {isIndonesian ? '4.9/5 — 200+ ulasan nyata dari pemilik rumah' : '4.9/5 — 200+ verified reviews from homeowners'}
               </span>
+            </div>
+            <div className={styles.finalGaransi}>
+              <span>🛡️</span>
+              <span>{isIndonesian
+                ? 'Garansi resmi untuk setiap proyek — lihat detailnya di kontrak sebelum tanda tangan!'
+                : 'Official warranty on every project — see details in your contract before signing!'}</span>
             </div>
             <div className={styles.finalCtaActions}>
               <button
