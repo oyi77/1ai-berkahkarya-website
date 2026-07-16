@@ -24,6 +24,8 @@ class Ebook(FPDF):
     def __init__(self):
         super().__init__(orientation='P', unit='mm', format='A4')
         self.set_auto_page_break(True, 25)
+        self.set_margins(LM, 20, RM)
+
         self.add_font('DejaVu', '', FONT)
         self.add_font('DejaVu', 'B', FONT_BOLD)
         self.add_font('DejaVu', 'I', FONT_ITALIC)
@@ -414,7 +416,7 @@ def generate():
             ['Pasir', 'Pasir beton (Muntilan)', 'Pasir mengandung lumpur >5%', 'Rp250-350rb/m3'],
             ['Bata', 'Bata ringan (AAC)', 'Bata merah kualitas rendah', 'Rp100-130rb/m2'],
         ],
-        [40, 55, 55, 40]
+        [40, 45, 45, 40]
     )
 
     pdf.bold('B. Material Finishing')
@@ -427,7 +429,7 @@ def generate():
             ['Plafon', 'Gypsum', 'GRC Board', 'Gypsum 9mm'],
             ['Atap', 'Genteng Metal', 'Genteng Tanah', 'Genteng Tanah ekspos'],
         ],
-        [40, 45, 45, 45]
+        [40, 40, 45, 41]
     )
 
     pdf.bold('C. Material Interior')
@@ -439,7 +441,7 @@ def generate():
             ['Pintu', 'PVC', 'Kayu solid', 'Kayu kamper/meranti'],
             ['Kusen', 'Aluminium', 'Kayu jati', 'Aluminium powder coating'],
         ],
-        [40, 45, 45, 45]
+        [40, 40, 45, 41]
     )
     pdf.tip('Beli material langsung di distributor/suplier untuk harga lebih murah 10-20%. Jangan lupa negosiasi untuk pembelian partai besar.')
 
