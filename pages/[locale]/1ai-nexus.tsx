@@ -34,7 +34,6 @@ export default function AINexusPage({ locale }: { locale: Locale }) {
         description={d.hero.subtitle}
         buttons={[...d.hero.buttons]}
         badges={[...d.hero.trust]}
-        dark
       />
 
       {/* ── Compare Grid: Pain vs Gain ── */}

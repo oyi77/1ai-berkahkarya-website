@@ -7,12 +7,12 @@ import styles from './LandingPage.module.css';
 import TrackedCTA from './TrackedCTA';
 import { useEngagementTracking } from '@/hooks/useEngagementTracking';
 
-export default function LP5() {
+export default function LP5({ locale = 'id' }: { locale?: string }) {
   useEngagementTracking('AI Video Studio - LP5', '0', 'ai-video-studio-lp5');
   return (
     <Layout
-      title="Ini Cara Baru — AI Content Studio | BerkahKarya"
-      description="Cara baru bikin konten viral. AI Content Studio dari BerkahKarya."
+      title={locale === 'en' ? "This Is the New Way — AI Content Studio | BerkahKarya" : "Ini Cara Baru — AI Content Studio | BerkahKarya"}
+      description={locale === 'en' ? "New way to create viral content. AI Content Studio by BerkahKarya." : "Cara baru bikin konten viral. AI Content Studio dari BerkahKarya."}
     >
       <div className={styles.wrapper}>
         {/* Hero Section */}
@@ -24,13 +24,12 @@ export default function LP5() {
             </div>
 
             <h1 className={styles.title}>
-              Ini<br/>
-              <span className={styles.gradientTextIndigo}>Cara Baru</span>
+              {locale === 'en' ? 'This Is' : 'Ini'}<br/>
+              <span className={styles.gradientTextIndigo}>{locale === 'en' ? 'the New Way' : 'Cara Baru'}</span>
             </h1>
 
             <p className={styles.subtitle}>
-              Yang lain masih pakai cara 2020. Kamu? Pakai teknologi 2025.
-              Image-to-Video AI yang bikin konten viral dalam hitungan menit.
+              {locale === 'en' ? 'Others still use 2020 methods. You? Use 2025 technology. Image-to-Video AI that creates viral content in minutes.' : 'Yang lain masih pakai cara 2020. Kamu? Pakai teknologi 2025. Image-to-Video AI yang bikin konten viral dalam hitungan menit.'}
             </p>
 
             <div className={styles.ctaRow}>
@@ -40,14 +39,14 @@ export default function LP5() {
                 productName="AI Video Studio - LP5 Hero"
                 productId="ai-video-studio-lp5"
               >
-                🚀 Upgrade Cara Kerja
+                {locale === 'en' ? '🚀 Upgrade Your Workflow' : '🚀 Upgrade Cara Kerja'}
               </TrackedCTA>
             </div>
 
             <div className={styles.trustStrip}>
-              <span>✓ Teknologi terbaru</span>
-              <span>✓ First mover advantage</span>
-              <span>✓ Gratis coba</span>
+              <span>{locale === 'en' ? '✓ Latest tech' : '✓ Teknologi terbaru'}</span>
+              <span>{locale === 'en' ? '✓ First mover advantage' : '✓ First mover advantage'}</span>
+              <span>{locale === 'en' ? '✓ Free trial' : '✓ Gratis coba'}</span>
             </div>
           </div>
         </section>
@@ -72,38 +71,38 @@ export default function LP5() {
         {/* Timeline Section */}
         <section className={styles.section}>
           <div className={styles.container}>
-            <span className={styles.eyebrow}>Evolusi</span>
+            <span className={styles.eyebrow}>{locale === 'en' ? 'Evolution' : 'Evolusi'}</span>
             <h2 className={styles.sectionTitle}>
-              Evolusi <span className={styles.gradientText}>Bikin Konten</span>
+              {locale === 'en' ? 'Content Creation' : 'Evolusi'} <span className={styles.gradientText}>{locale === 'en' ? 'Evolution' : 'Bikin Konten'}</span>
             </h2>
 
             <div className={styles.timeline}>
               <div className={`${styles.timelineItem} ${styles.timelineOld}`}>
                 <div className={styles.timelineDot}></div>
                 <div className={styles.timelineContent}>
-                  <h3>2018 — Foto Statis</h3>
-                  <p>Upload foto produk ke IG. Engagement rendah. Algoritma gak suka.</p>
+                  <h3>{locale === 'en' ? '2018 — Static Photos' : '2018 — Foto Statis'}</h3>
+                  <p>{locale === 'en' ? 'Upload product photos to IG. Low engagement. Algorithm doesn\'t like it.' : 'Upload foto produk ke IG. Engagement rendah. Algoritma gak suka.'}</p>
                 </div>
               </div>
               <div className={`${styles.timelineItem} ${styles.timelineOld}`}>
                 <div className={styles.timelineDot}></div>
                 <div className={styles.timelineContent}>
-                  <h3>2020 — Edit Manual</h3>
-                  <p>Belajar CapCut/Premiere. Habis waktu berjam-jam. Output terbatas.</p>
+                  <h3>{locale === 'en' ? '2020 — Manual Editing' : '2020 — Edit Manual'}</h3>
+                  <p>{locale === 'en' ? 'Learn CapCut/Premiere. Spend hours. Limited output.' : 'Belajar CapCut/Premiere. Habis waktu berjam-jam. Output terbatas.'}</p>
                 </div>
               </div>
               <div className={`${styles.timelineItem} ${styles.timelineOld}`}>
                 <div className={styles.timelineDot}></div>
                 <div className={styles.timelineContent}>
-                  <h3>2022 — Hire Editor</h3>
-                  <p>Outsource ke freelancer. Mahal, inkonsisten, revisi tanpa akhir.</p>
+                  <h3>{locale === 'en' ? '2022 — Hire Editor' : '2022 — Hire Editor'}</h3>
+                  <p>{locale === 'en' ? 'Outsource to freelancer. Expensive, inconsistent, endless revisions.' : 'Outsource ke freelancer. Mahal, inkonsisten, revisi tanpa akhir.'}</p>
                 </div>
               </div>
               <div className={`${styles.timelineItem} ${styles.timelineNew}`}>
                 <div className={styles.timelineDot}></div>
                 <div className={styles.timelineContent}>
-                  <h3>2025 — AI Content Studio 🚀</h3>
-                  <p>Upload foto → video viral otomatis. 5 menit. Rp 8.000. Tanpa skill.</p>
+                  <h3>{locale === 'en' ? '2025 — AI Content Studio 🚀' : '2025 — AI Content Studio 🚀'}</h3>
+                  <p>{locale === 'en' ? 'Upload photo → viral video automatically. 5 minutes. Rp 8,000. No skills needed.' : 'Upload foto → video viral otomatis. 5 menit. Rp 8.000. Tanpa skill.'}</p>
                 </div>
               </div>
             </div>
@@ -114,16 +113,16 @@ export default function LP5() {
         <section className={styles.finalCta}>
           <div className={styles.container}>
             <h2 className={styles.sectionTitle}>
-              Siap <span className={styles.gradientText}>Upgrade?</span>
+              {locale === 'en' ? 'Ready to' : 'Siap'} <span className={styles.gradientText}>{locale === 'en' ? 'Upgrade?' : 'Upgrade?'}</span>
             </h2>
-            <p className={styles.subtitle}>Jangan ketinggalan. Kompetitor udah pakai ini.</p>
+            <p className={styles.subtitle}>{locale === 'en' ? 'Don\'t miss out. Your competitors are already using this.' : 'Jangan ketinggalan. Kompetitor udah pakai ini.'}</p>
             <TrackedCTA
               href="https://saas.aitradepulse.com/"
               className={styles.btnPrimary}
               productName="AI Video Studio - LP5 Footer"
               productId="ai-video-studio-lp5-footer"
             >
-              🚀 Mulai Sekarang
+              {locale === 'en' ? '🚀 Start Now' : '🚀 Mulai Sekarang'}
             </TrackedCTA>
           </div>
         </section>

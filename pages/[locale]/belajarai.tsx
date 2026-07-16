@@ -101,7 +101,7 @@ const btnStyle: Record<string, string> = {
 };
 
 const closeBtnStyle: Record<string, string> = {
-  background: 'none', border: 'none', color: 'var(--text-white-60)',
+  background: 'none', border: 'none', color: 'rgba(255,255,255,0.6)',
   fontSize: '1.5rem', cursor: 'pointer', padding: '0.25rem',
 };
 
@@ -165,7 +165,7 @@ function TripayModal({
           <div>
             <span style={{ fontSize: '1.5rem' }}>{plan.icon}</span>
             <h3 style={{ margin: '0.25rem 0 0', color: '#fff', fontSize: '1.35rem' }}>{plan.name}</h3>
-            <p style={{ margin: 0, color: 'var(--text-white-60)', fontSize: '0.85rem' }}>
+            <p style={{ margin: 0, color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem' }}>
               {plan.price} — {plan.tagline}
             </p>
           </div>
@@ -175,7 +175,7 @@ function TripayModal({
         {!result ? (
           <>
             <div style={{ marginBottom: '1rem' }}>
-              <label style={{ color: 'var(--text-white-80)', fontSize: '0.85rem', fontWeight: 600 }}>
+              <label style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.85rem', fontWeight: 600 }}>
                 {isId ? 'Nama Lengkap' : 'Full Name'}
               </label>
               <input
@@ -186,7 +186,7 @@ function TripayModal({
               />
             </div>
             <div style={{ marginBottom: '1rem' }}>
-              <label style={{ color: 'var(--text-white-80)', fontSize: '0.85rem', fontWeight: 600 }}>Email</label>
+              <label style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.85rem', fontWeight: 600 }}>Email</label>
               <input
                 style={inputStyle} type="email" value={email}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
@@ -194,7 +194,7 @@ function TripayModal({
               />
             </div>
             <div style={{ marginBottom: '1rem' }}>
-              <label style={{ color: 'var(--text-white-80)', fontSize: '0.85rem', fontWeight: 600 }}>
+              <label style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.85rem', fontWeight: 600 }}>
                 {isId ? 'No. WhatsApp (opsional)' : 'Phone Number (optional)'}
               </label>
               <input
@@ -214,7 +214,7 @@ function TripayModal({
             >
               {loading ? (isId ? 'Memproses...' : 'Processing...') : `${isId ? 'Bayar ' : 'Pay '}${plan.price}`}
             </button>
-            <p style={{ color: 'var(--text-white-40)', fontSize: '0.75rem', textAlign: 'center', marginTop: '0.75rem' }}>
+            <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.75rem', textAlign: 'center', marginTop: '0.75rem' }}>
               {isId
                 ? 'Pembayaran diproses via Tripay (QRIS / VA / E-Wallet). Data kamu aman.'
                 : 'Payment via Tripay (QRIS / VA / E-Wallet). Your data is secure.'}
@@ -226,7 +226,7 @@ function TripayModal({
             <h3 style={{ color: '#34D399', margin: '0.75rem 0 0.5rem' }}>
               {isId ? 'Pembayaran Dibuat!' : 'Payment Created!'}
             </h3>
-            <p style={{ color: 'var(--text-white-60)', fontSize: '0.875rem', marginBottom: '1.25rem' }}>
+            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.875rem', marginBottom: '1.25rem' }}>
               {isId ? 'Silakan selesaikan pembayaran:' : 'Please complete payment:'}
             </p>
 
@@ -246,7 +246,7 @@ function TripayModal({
 
             {(typeof result.reference === 'string') && (
               <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '0.75rem', padding: '0.75rem', marginTop: '0.75rem' }}>
-                <p style={{ color: 'var(--text-white-60)', fontSize: '0.8rem', marginBottom: '0.25rem' }}>
+                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.8rem', marginBottom: '0.25rem' }}>
                   {isId ? 'Kode Referensi:' : 'Reference:'}
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
@@ -276,7 +276,7 @@ function TripayModal({
               style={{
                 display: 'block', margin: '1.25rem auto 0', background: 'none',
                 border: '1px solid rgba(255,255,255,0.15)', borderRadius: '0.5rem',
-                color: 'var(--text-white-60)', cursor: 'pointer', padding: '0.5rem 1.5rem',
+                color: 'rgba(255,255,255,0.6)', cursor: 'pointer', padding: '0.5rem 1.5rem',
                 fontSize: '0.875rem',
               }}
             >
@@ -316,15 +316,15 @@ function TrackModal({
           <div>
             <span style={{ fontSize: '2rem' }}>{track.icon}</span>
             <h3 style={{ margin: '0.5rem 0 0.25rem', color: '#fff', fontSize: '1.5rem' }}>{track.title}</h3>
-            <p style={{ margin: 0, color: 'var(--text-white-60)', fontSize: '0.9rem' }}>{track.subtitle}</p>
+            <p style={{ margin: 0, color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem' }}>{track.subtitle}</p>
             <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
               <span style={{
-                fontSize: '0.75rem', color: 'var(--text-white-50)',
+                fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)',
                 background: 'rgba(255,255,255,0.06)', padding: '0.2rem 0.6rem',
                 borderRadius: '999px',
               }}>{track.courseCount} kursus</span>
               <span style={{
-                fontSize: '0.75rem', color: 'var(--text-white-50)',
+                fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)',
                 background: 'rgba(255,255,255,0.06)', padding: '0.2rem 0.6rem',
                 borderRadius: '999px',
               }}>{track.level}</span>
@@ -333,7 +333,7 @@ function TrackModal({
           <button onClick={onClose} style={closeBtnStyle}>✕</button>
         </div>
 
-        <p style={{ color: 'var(--text-white-70)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+        <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
           {track.desc}
         </p>
 
@@ -373,14 +373,14 @@ function TrackModal({
                         )}
                       </div>
                       <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.25rem' }}>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--text-white-50)' }}>⏱ {course.duration}</span>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--text-white-50)' }}>📚 {course.lessons} pelajaran</span>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--text-white-50)' }}>📊 {course.level}</span>
+                        <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)' }}>⏱ {course.duration}</span>
+                        <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)' }}>📚 {course.lessons} pelajaran</span>
+                        <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)' }}>📊 {course.level}</span>
                       </div>
                     </div>
                   </div>
                   <span style={{
-                    fontSize: '0.85rem', color: 'var(--text-white-50)',
+                    fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)',
                     transform: isOpen ? 'rotate(180deg)' : 'none',
                     transition: 'transform 0.2s',
                   }}>▼</span>
@@ -388,11 +388,11 @@ function TrackModal({
 
                 {isOpen && (
                   <div style={{ padding: '0 1rem 1rem' }}>
-                    <p style={{ color: 'var(--text-white-70)', fontSize: '0.85rem', lineHeight: 1.5, marginBottom: '0.75rem' }}>
+                    <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem', lineHeight: 1.5, marginBottom: '0.75rem' }}>
                       {course.desc}
                     </p>
                     <div style={{ marginBottom: '0.75rem' }}>
-                      <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-white-50)', marginBottom: '0.35rem' }}>
+                      <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'rgba(255,255,255,0.5)', marginBottom: '0.35rem' }}>
                         Tools:
                       </p>
                       <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
@@ -407,10 +407,10 @@ function TrackModal({
                       </div>
                     </div>
                     <div>
-                      <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-white-50)', marginBottom: '0.35rem' }}>
+                      <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'rgba(255,255,255,0.5)', marginBottom: '0.35rem' }}>
                         Kamu akan bisa:
                       </p>
-                      <ul style={{ margin: 0, paddingLeft: '1rem', fontSize: '0.8rem', color: 'var(--text-white-60)', lineHeight: 1.6 }}>
+                      <ul style={{ margin: 0, paddingLeft: '1rem', fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6 }}>
                         {course.outcomes.map((o) => <li key={o}>{o}</li>)}
                       </ul>
                     </div>
@@ -451,7 +451,7 @@ function FounderSection({ isId }: { isId: boolean }) {
   const { name, alias, role, bio, stats, contributions, tg, wa } = instructorData;
 
   return (
-    <section id="founder" style={{ padding: '5rem 1.5rem', background: 'var(--dark-hero)' }}>
+    <section id="founder" style={{ padding: '5rem 1.5rem', background: '#0a0a1a' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '3rem', alignItems: 'start' }}>
           {/* Avatar */}
@@ -478,8 +478,8 @@ function FounderSection({ isId }: { isId: boolean }) {
             <h2 style={{ fontSize: '2rem', fontWeight: 700, margin: '0 0 0.25rem', color: '#fff' }}>
               {name}
             </h2>
-            <p style={{ color: 'var(--text-white-50)', fontSize: '0.9rem', marginBottom: '1rem' }}>{role}</p>
-            <p style={{ color: 'var(--text-white-70)', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', marginBottom: '1rem' }}>{role}</p>
+            <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
               {bio}
             </p>
 
@@ -490,12 +490,12 @@ function FounderSection({ isId }: { isId: boolean }) {
                   borderRadius: '0.75rem', padding: '0.75rem',
                 }}>
                   <div style={{ fontSize: '1.25rem', fontWeight: 700, color: '#00D9FF' }}>{s.value}</div>
-                  <div style={{ fontSize: '0.65rem', color: 'var(--text-white-50)', marginTop: '0.15rem' }}>{s.label}</div>
+                  <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.15rem' }}>{s.label}</div>
                 </div>
               ))}
             </div>
 
-            <p style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-white-50)', marginBottom: '0.5rem' }}>
+            <p style={{ fontSize: '0.8rem', fontWeight: 600, color: 'rgba(255,255,255,0.5)', marginBottom: '0.5rem' }}>
               {isId ? 'Kontribusi Open Source:' : 'Open Source Contributions'}
             </p>
             <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
@@ -599,7 +599,7 @@ export default function BelajarAIPage({ locale }: { locale: Locale }) {
       />
 
       {/* Learning Tracks */}
-      <section id="tracks" style={{ padding: '5rem 1.5rem', background: 'var(--dark-body)' }}>
+      <section id="tracks" style={{ padding: '5rem 1.5rem', background: '#0a0a1a' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <p style={{
             fontSize: '0.8rem', fontWeight: 600, color: '#00D9FF',
@@ -615,7 +615,7 @@ export default function BelajarAIPage({ locale }: { locale: Locale }) {
             {isId ? '4 Track yang Cocok Buat Kamu' : '4 Tracks Made for You'}
           </h2>
           <p style={{
-            color: 'var(--text-white-50)', textAlign: 'center', fontSize: '1rem',
+            color: 'rgba(255,255,255,0.5)', textAlign: 'center', fontSize: '1rem',
             marginBottom: '3rem', maxWidth: 600, marginLeft: 'auto',
             marginRight: 'auto',
           }}>
@@ -648,22 +648,22 @@ export default function BelajarAIPage({ locale }: { locale: Locale }) {
                   <h3 style={{ fontSize: '1.25rem', fontWeight: 700, margin: '0 0 0.25rem', color: '#fff' }}>
                     {track.title}
                   </h3>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--text-white-50)', marginBottom: '0.5rem' }}>
+                  <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', marginBottom: '0.5rem' }}>
                     {track.subtitle}
                   </p>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-white-70)', lineHeight: 1.5, marginBottom: '0.75rem' }}>
+                  <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5, marginBottom: '0.75rem' }}>
                     {track.desc}
                   </p>
                   <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
                     <span style={{
-                      fontSize: '0.7rem', color: 'var(--text-white-50)',
+                      fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)',
                       background: 'rgba(255,255,255,0.06)', padding: '0.2rem 0.5rem',
                       borderRadius: '999px',
                     }}>
                       📚 {track.courseCount} kursus
                     </span>
                     <span style={{
-                      fontSize: '0.7rem', color: 'var(--text-white-50)',
+                      fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)',
                       background: 'rgba(255,255,255,0.06)', padding: '0.2rem 0.5rem',
                       borderRadius: '999px',
                     }}>
@@ -718,13 +718,13 @@ export default function BelajarAIPage({ locale }: { locale: Locale }) {
       />
 
       {/* Contact */}
-      <section style={{ padding: '5rem 1.5rem', background: 'var(--dark-hero)', textAlign: 'center' }}>
+      <section style={{ padding: '5rem 1.5rem', background: '#0a0a1a', textAlign: 'center' }}>
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
           <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>💬</span>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem', color: '#fff' }}>
             {isId ? 'Masih Ragu?' : 'Still Unsure?'}
           </h2>
-          <p style={{ color: 'var(--text-white-60)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
+          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
             {isId
               ? 'Diskusi gratis, tidak ada tekanan. Tanya apa saja soal AI — Paijo siap bantu.'
               : 'Free chat, no pressure. Ask anything about AI — Paijo is here to help.'}

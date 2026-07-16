@@ -7,12 +7,12 @@ import styles from './LandingPage.module.css';
 import TrackedCTA from './TrackedCTA';
 import { useEngagementTracking } from '@/hooks/useEngagementTracking';
 
-export default function LP6() {
+export default function LP6({ locale = 'id' }: { locale?: string }) {
   useEngagementTracking('AI Video Studio - LP6', '0', 'ai-video-studio-lp6');
   return (
     <Layout
-      title="Hasil Nyata Seller — AI Content Studio | BerkahKarya"
-      description="Hasil nyata seller yang pakai AI Content Studio. Bukti, bukan janji."
+      title={locale === 'en' ? "Real Seller Results — AI Content Studio | BerkahKarya" : "Hasil Nyata Seller — AI Content Studio | BerkahKarya"}
+      description={locale === 'en' ? "Real results from sellers using AI Content Studio. Proof, not promises." : "Hasil nyata seller yang pakai AI Content Studio. Bukti, bukan janji."}
     >
       <div className={styles.wrapper}>
         {/* Hero Section */}
@@ -20,17 +20,18 @@ export default function LP6() {
           <div className={styles.heroInner}>
             <div className={styles.badge}>
               <span className={styles.badgeDot}></span>
-              <span>Real Results, Real Sellers</span>
+              <span>{locale === 'en' ? 'Real Results, Real Sellers' : 'Real Results, Real Sellers'}</span>
             </div>
 
             <h1 className={styles.title}>
-              Hasil Nyata<br/>
-              <span className={styles.gradientTextGold}>Seller</span>
+              {locale === 'en' ? 'Real Results from' : 'Hasil Nyata'}<br/>
+              <span className={styles.gradientTextGold}>{locale === 'en' ? 'Sellers' : 'Seller'}</span>
             </h1>
 
             <p className={styles.subtitle}>
-              Bukan teori. Bukan janji manis.
-              Ini hasil real dari seller yang udah pakai AI Content Studio.
+              {locale === 'en' 
+                ? "Not theory. Not sweet promises. These are real results from sellers who've used AI Content Studio."
+                : "Bukan teori. Bukan janji manis. Ini hasil real dari seller yang udah pakai AI Content Studio."}
             </p>
 
             <div className={styles.ctaRow}>
@@ -40,14 +41,14 @@ export default function LP6() {
                 productName="AI Video Studio - LP6 Hero"
                 productId="ai-video-studio-lp6"
               >
-                ⭐ Mau Hasil Kayak Gini
+                {locale === 'en' ? '⭐ I Want Results Like This' : '⭐ Mau Hasil Kayak Gini'}
               </TrackedCTA>
             </div>
 
             <div className={styles.trustStrip}>
-              <span>✓ Verified results</span>
-              <span>✓ Real testimonials</span>
-              <span>✓ Kamu bisa juga</span>
+              <span>{locale === 'en' ? '✓ Verified results' : '✓ Verified results'}</span>
+              <span>{locale === 'en' ? '✓ Real testimonials' : '✓ Real testimonials'}</span>
+              <span>{locale === 'en' ? '✓ You can too' : '✓ Kamu bisa juga'}</span>
             </div>
           </div>
         </section>
@@ -58,7 +59,7 @@ export default function LP6() {
             <div className={styles.heroImageWrapper}>
               <Image
                 src="https://i.postimg.cc/VNPX50T2/Gemini-Generated-Image-wqs45xwqs45xwqs4.png"
-                alt="AI Content Studio - Hasil Nyata Seller"
+                alt={locale === 'en' ? "AI Content Studio - Real Seller Results" : "AI Content Studio - Hasil Nyata Seller"}
                 width={900}
                 height={600}
                 className={styles.heroImage}
@@ -72,48 +73,54 @@ export default function LP6() {
         {/* Testimonials Section */}
         <section className={styles.section}>
           <div className={styles.container}>
-            <span className={styles.eyebrow}>Testimonials</span>
+            <span className={styles.eyebrow}>{locale === 'en' ? 'Testimonials' : 'Testimonials'}</span>
             <h2 className={styles.sectionTitle}>
-              Kata Mereka yang <span className={styles.gradientText}>Udah Coba</span>
+              {locale === 'en' ? 'What ' : 'Kata Mereka yang '}<span className={styles.gradientText}>{locale === 'en' ? 'They Say' : 'Udah Coba'}</span>
             </h2>
 
             <div className={styles.grid3}>
               <div className={styles.testiCard}>
                 <div className={styles.testiStars}>★★★★★</div>
                 <blockquote>
-                  "Dulu upload 3x seminggu udah ngos-ngosan. Sekarang upload 2x sehari santai. Views naik 400% dalam 2 minggu."
+                  {locale === 'en'
+                    ? "Used to upload 3x a week and was exhausted. Now I upload 2x daily easily. Views increased 400% in 2 weeks."
+                    : "Dulu upload 3x seminggu udah ngos-ngosan. Sekarang upload 2x sehari santai. Views naik 400% dalam 2 minggu."}
                 </blockquote>
                 <div className={styles.testiAuthor}>
                   <div className={styles.testiAvatar}>R</div>
                   <div>
                     <strong>Rina S.</strong>
-                    <span>Seller Fashion, Bandung</span>
+                    <span>{locale === 'en' ? 'Fashion Seller, Bandung' : 'Seller Fashion, Bandung'}</span>
                   </div>
                 </div>
               </div>
               <div className={styles.testiCard}>
                 <div className={styles.testiStars}>★★★★★</div>
                 <blockquote>
-                  "Gue skeptis awalnya. Ternyata video AI ini performanya lebih bagus dari video yang gue edit sendiri berjam-jam. Mind blown."
+                  {locale === 'en'
+                    ? "I was skeptical at first. Turns out these AI videos perform better than videos I spent hours editing myself. Mind blown."
+                    : "Gue skeptis awalnya. Ternyata video AI ini performanya lebih bagus dari video yang gue edit sendiri berjam-jam. Mind blown."}
                 </blockquote>
                 <div className={styles.testiAuthor}>
                   <div className={styles.testiAvatar}>A</div>
                   <div>
                     <strong>Andi W.</strong>
-                    <span>Dropshipper, Jakarta</span>
+                    <span>{locale === 'en' ? 'Dropshipper, Jakarta' : 'Dropshipper, Jakarta'}</span>
                   </div>
                 </div>
               </div>
               <div className={styles.testiCard}>
                 <div className={styles.testiStars}>★★★★★</div>
                 <blockquote>
-                  "ROI paling gila. Bayar 49K, dapat 12 video yang hasilin omset jutaan. Ini game changer buat UMKM."
+                  {locale === 'en'
+                    ? "Craziest ROI. Paid 49K, got 12 videos that generated millions in revenue. This is a game changer for SMEs."
+                    : "ROI paling gila. Bayar 49K, dapat 12 video yang hasilin omset jutaan. Ini game changer buat UMKM."}
                 </blockquote>
                 <div className={styles.testiAuthor}>
                   <div className={styles.testiAvatar}>D</div>
                   <div>
                     <strong>Dewi L.</strong>
-                    <span>UMKM Kuliner, Surabaya</span>
+                    <span>{locale === 'en' ? 'Culinary SME, Surabaya' : 'UMKM Kuliner, Surabaya'}</span>
                   </div>
                 </div>
               </div>
@@ -123,19 +130,19 @@ export default function LP6() {
             <div className={styles.statsRow}>
               <div className={styles.stat}>
                 <div className={styles.statNum}>500+</div>
-                <div className={styles.statLabel}>Active Sellers</div>
+                <div className={styles.statLabel}>{locale === 'en' ? 'Active Sellers' : 'Active Sellers'}</div>
               </div>
               <div className={styles.stat}>
                 <div className={styles.statNum}>12K+</div>
-                <div className={styles.statLabel}>Videos Generated</div>
+                <div className={styles.statLabel}>{locale === 'en' ? 'Videos Generated' : 'Videos Generated'}</div>
               </div>
               <div className={styles.stat}>
                 <div className={styles.statNum}>4.8★</div>
-                <div className={styles.statLabel}>Average Rating</div>
+                <div className={styles.statLabel}>{locale === 'en' ? 'Average Rating' : 'Average Rating'}</div>
               </div>
               <div className={styles.stat}>
                 <div className={styles.statNum}>3x</div>
-                <div className={styles.statLabel}>Avg Views Increase</div>
+                <div className={styles.statLabel}>{locale === 'en' ? 'Avg Views Increase' : 'Avg Views Increase'}</div>
               </div>
             </div>
           </div>
@@ -145,16 +152,16 @@ export default function LP6() {
         <section className={styles.finalCta}>
           <div className={styles.container}>
             <h2 className={styles.sectionTitle}>
-              Giliran Kamu <span className={styles.gradientText}>Buktiin</span>
+              {locale === 'en' ? 'Your Turn to ' : 'Giliran Kamu '}<span className={styles.gradientText}>{locale === 'en' ? 'Prove It' : 'Buktiin'}</span>
             </h2>
-            <p className={styles.subtitle}>Join 500+ seller yang udah rasain hasilnya.</p>
+            <p className={styles.subtitle}>{locale === 'en' ? 'Join 500+ sellers who have experienced the results.' : 'Join 500+ seller yang udah rasain hasilnya.'}</p>
             <TrackedCTA
               href="https://saas.aitradepulse.com/"
               className={styles.btnPrimary}
               productName="AI Video Studio - LP6 Footer"
               productId="ai-video-studio-lp6-footer"
             >
-              ⭐ Coba Gratis Sekarang
+              {locale === 'en' ? '⭐ Try Free Now' : '⭐ Coba Gratis Sekarang'}
             </TrackedCTA>
           </div>
         </section>

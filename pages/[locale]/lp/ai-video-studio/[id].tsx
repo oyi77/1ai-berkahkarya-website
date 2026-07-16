@@ -36,6 +36,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
 type Props = { locale: Locale; id: string };
 
 export default function LPRoute({ locale, id }: Props) {
-  const LPComponent = LP_MAP[id] || LP1Component;
+  const LPComponent = LP_MAP[id];
+  if (!LPComponent) return null;
   return <LPComponent locale={locale} />;
 }

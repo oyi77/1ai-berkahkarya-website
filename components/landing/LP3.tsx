@@ -11,8 +11,8 @@ export default function LP3({ locale = 'id' }: { locale?: string }) {
   useEngagementTracking('AI Video Studio - LP3', '0', 'ai-video-studio-lp3');
   return (
     <Layout 
-      title="Masih Edit Manual? — AI Content Studio | BerkahKarya"
-      description="Stop edit manual. AI bikin video viral otomatis. BerkahKarya AI Content Studio."
+      title={locale === 'en' ? 'Still Editing Manually? — AI Content Studio | BerkahKarya' : 'Masih Edit Manual? — AI Content Studio | BerkahKarya'}
+      description={locale === 'en' ? 'Stop manual editing. AI creates viral videos automatically. BerkahKarya AI Content Studio.' : 'Stop edit manual. AI bikin video viral otomatis. BerkahKarya AI Content Studio.'}
     >
       <div className={styles.wrapper}>
         {/* Hero Section */}
@@ -20,17 +20,18 @@ export default function LP3({ locale = 'id' }: { locale?: string }) {
           <div className={styles.heroInner}>
             <div className={styles.badge}>
               <span className={styles.badgeDot}></span>
-              <span>Ada Cara Lebih Cepat</span>
+              <span>{locale === 'en' ? 'A Faster Way' : 'Ada Cara Lebih Cepat'}</span>
             </div>
             
             <h1 className={styles.title}>
-              Masih<br/>
-              <span className={styles.gradientTextOrange}>Edit Manual?</span>
+              {locale === 'en' ? 'Still' : 'Masih'}<br/>
+              <span className={styles.gradientTextOrange}>{locale === 'en' ? 'Editing Manually?' : 'Edit Manual?'}</span>
             </h1>
             
             <p className={styles.subtitle}>
-              Sementara kamu habis 3 jam edit 1 video, kompetitor upload 10 video pakai AI. 
-              Waktu = uang. Stop buang waktu.
+              {locale === 'en' 
+                ? 'While you spend 3 hours editing 1 video, your competitors upload 10 videos using AI. Time = money. Stop wasting time.'
+                : 'Sementara kamu habis 3 jam edit 1 video, kompetitor upload 10 video pakai AI. Waktu = uang. Stop buang waktu.'}
             </p>
             
             <div className={styles.ctaRow}>
@@ -40,14 +41,14 @@ export default function LP3({ locale = 'id' }: { locale?: string }) {
                 productName="AI Video Studio - LP3 Hero"
                 productId="ai-video-studio-lp3"
               >
-                😫 Stop Kerja Rodi
+                {locale === 'en' ? '😫 Stop Grinding' : '😫 Stop Kerja Rodi'}
               </TrackedCTA>
             </div>
             
             <div className={styles.trustStrip}>
-              <span>✓ Hemat 3 jam/video</span>
-              <span>✓ Output 10x lebih banyak</span>
-              <span>✓ Kualitas tetap pro</span>
+              <span>{locale === 'en' ? '✓ Save 3 hours/video' : '✓ Hemat 3 jam/video'}</span>
+              <span>{locale === 'en' ? '✓ 10x more output' : '✓ Output 10x lebih banyak'}</span>
+              <span>{locale === 'en' ? '✓ Pro quality maintained' : '✓ Kualitas tetap pro'}</span>
             </div>
           </div>
         </section>
@@ -58,7 +59,7 @@ export default function LP3({ locale = 'id' }: { locale?: string }) {
             <div className={styles.heroImageWrapper}>
               <Image 
                 src="https://i.postimg.cc/5tW8jQGG/Gemini-Generated-Image-d1nxoed1nxoed1nx.png" 
-                alt="AI Content Studio - Stop Edit Manual"
+                alt={locale === 'en' ? 'AI Content Studio - Stop Manual Editing' : 'AI Content Studio - Stop Edit Manual'}
                 width={900}
                 height={600}
                 className={styles.heroImage}
@@ -72,30 +73,30 @@ export default function LP3({ locale = 'id' }: { locale?: string }) {
         {/* Comparison Section */}
         <section className={styles.section}>
           <div className={styles.container}>
-            <span className={styles.eyebrow}>Perbandingan</span>
+            <span className={styles.eyebrow}>{locale === 'en' ? 'Comparison' : 'Perbandingan'}</span>
             <h2 className={styles.sectionTitle}>
-              Edit Manual vs <span className={styles.gradientText}>AI Studio</span>
+              {locale === 'en' ? 'Manual Editing vs ' : 'Edit Manual vs '}<span className={styles.gradientText}>{locale === 'en' ? 'AI Studio' : 'AI Studio'}</span>
             </h2>
             
             <div className={styles.compareGrid}>
               <div className={styles.compareOld}>
-                <h3>❌ Edit Manual</h3>
+                <h3>{locale === 'en' ? '❌ Manual Editing' : '❌ Edit Manual'}</h3>
                 <ul>
-                  <li><span className={styles.xMark}>✗</span> 3-4 jam untuk 1 video 30 detik</li>
-                  <li><span className={styles.xMark}>✗</span> Perlu skill CapCut/Premiere</li>
-                  <li><span className={styles.xMark}>✗</span> Bayar editor Rp 300K-700K/video</li>
-                  <li><span className={styles.xMark}>✗</span> Revisi bolak-balik capek</li>
-                  <li><span className={styles.xMark}>✗</span> Max upload 3x seminggu</li>
+                  <li><span className={styles.xMark}>✗</span> {locale === 'en' ? '3-4 hours for 1 x 30s video' : '3-4 jam untuk 1 video 30 detik'}</li>
+                  <li><span className={styles.xMark}>✗</span> {locale === 'en' ? 'Need CapCut/Premiere skills' : 'Perlu skill CapCut/Premiere'}</li>
+                  <li><span className={styles.xMark}>✗</span> {locale === 'en' ? 'Pay editor $20-50/video' : 'Bayar editor Rp 300K-700K/video'}</li>
+                  <li><span className={styles.xMark}>✗</span> {locale === 'en' ? 'Back-and-forth revisions exhausting' : 'Revisi bolak-balik capek'}</li>
+                  <li><span className={styles.xMark}>✗</span> {locale === 'en' ? 'Max upload 3x/week' : 'Max upload 3x seminggu'}</li>
                 </ul>
               </div>
               <div className={styles.compareNew}>
                 <h3>🚀 AI Studio</h3>
                 <ul>
-                  <li><span className={styles.checkMark}>✓</span> 5 menit untuk 1 video</li>
-                  <li><span className={styles.checkMark}>✓</span> Zero skill — upload aja</li>
-                  <li><span className={styles.checkMark}>✓</span> Rp 8.000/video</li>
-                  <li><span className={styles.checkMark}>✓</span> Instant result, no revisi</li>
-                  <li><span className={styles.checkMark}>✓</span> Upload 3x sehari santai</li>
+                  <li><span className={styles.checkMark}>✓</span> {locale === 'en' ? '5 minutes for 1 video' : '5 menit untuk 1 video'}</li>
+                  <li><span className={styles.checkMark}>✓</span> {locale === 'en' ? 'Zero skill — just upload' : 'Zero skill — upload aja'}</li>
+                  <li><span className={styles.checkMark}>✓</span> {locale === 'en' ? '$0.50/video' : 'Rp 8.000/video'}</li>
+                  <li><span className={styles.checkMark}>✓</span> {locale === 'en' ? 'Instant result, no revisions' : 'Instant result, no revisi'}</li>
+                  <li><span className={styles.checkMark}>✓</span> {locale === 'en' ? 'Upload 3x/day easily' : 'Upload 3x sehari santai'}</li>
                 </ul>
               </div>
             </div>
@@ -106,16 +107,16 @@ export default function LP3({ locale = 'id' }: { locale?: string }) {
         <section className={styles.finalCta}>
           <div className={styles.container}>
             <h2 className={styles.sectionTitle}>
-              Udahan <span className={styles.gradientText}>Kerja Rodinya</span>
+              {locale === 'en' ? 'Stop ' : 'Udahan '}<span className={styles.gradientText}>{locale === 'en' ? 'Grinding' : 'Kerja Rodinya'}</span>
             </h2>
-            <p className={styles.subtitle}>Biar AI yang kerja. Kamu fokus scaling bisnis.</p>
+            <p className={styles.subtitle}>{locale === 'en' ? 'Let AI do the work. You focus on scaling your business.' : 'Biar AI yang kerja. Kamu fokus scaling bisnis.'}</p>
             <TrackedCTA 
               href="https://saas.aitradepulse.com/" 
               className={styles.btnPrimary}
               productName="AI Video Studio - LP3 Footer"
               productId="ai-video-studio-lp3-footer"
             >
-              😫 Gue Mau Upgrade
+              {locale === 'en' ? '😫 I Want to Upgrade' : '😫 Gue Mau Upgrade'}
             </TrackedCTA>
           </div>
         </section>
