@@ -607,6 +607,44 @@
   line-height: 1.5;
 }
 
+.caseStudySpecs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.caseStudySpec {
+  flex: 1;
+  min-width: 70px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--jk-radius-sm, 6px);
+  padding: 0.5rem 0.4rem;
+  text-align: center;
+}
+
+.caseStudySpecIcon {
+  font-size: 1rem;
+  display: block;
+}
+
+.caseStudySpecValue {
+  display: block;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--jk-gold);
+  margin-top: 0.15rem;
+}
+
+.caseStudySpecLabel {
+  display: block;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--jk-text-3);
+  margin-top: 0.05rem;
+}
+
 /* ─── Why Us ─── */
 .whyGrid {
   display: grid;
@@ -1079,15 +1117,16 @@
   bottom: 24px;
   right: 24px;
   z-index: 999;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  padding: 14px 24px;
+  border-radius: 50px;
   background: #25D366;
   color: #fff;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
   box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
   transition: all 0.3s;
   cursor: pointer;
@@ -1376,11 +1415,8 @@
   }
 
   .floatWa {
-    width: 48px;
-    height: 48px;
-    font-size: 1.2rem;
-    bottom: 16px;
-    right: 16px;
+    padding: 10px 16px;
+    font-size: 0.85rem;
   }
 
   .servicesGrid {
