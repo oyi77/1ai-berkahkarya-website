@@ -302,7 +302,7 @@ export default function JasaWebsitePage({ locale }: Props) {
       ogImage="/images/og-website.jpg"
       jsonLd={jsonLd}
     >
-      <JasaServicePage locale={locale} waNumber={WA_NUMBER} waText={WA_TEXT} content={content} />
+      <JasaServicePage locale={locale} pageName='jasa-website' content={content} />
     </Layout>
   );
 }

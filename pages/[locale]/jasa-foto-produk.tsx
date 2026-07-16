@@ -174,7 +174,7 @@ export default function JasaFotoProdukPage({ locale }: Props) {
       ogImage="/images/og-foto-produk.jpg"
       jsonLd={jsonLd}
     >
-      <JasaServicePage locale={loc} waNumber={WA_NUMBER} waText={WA_TEXT} content={content} />
+      <JasaServicePage locale={loc} pageName='jasa-foto-produk' content={content} />
     </Layout>
   );
 }

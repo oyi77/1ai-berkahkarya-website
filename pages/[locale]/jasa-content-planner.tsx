@@ -176,7 +176,7 @@ export default function JasaContentPlannerPage({ locale }: Props) {
       ogImage="/images/og-content-planner.jpg"
       jsonLd={jsonLd}
     >
-      <JasaServicePage locale={locale as 'id' | 'en'} waNumber={WA_NUMBER} waText={WA_TEXT} content={content} />
+      <JasaServicePage locale={locale as 'id' | 'en'} pageName='jasa-content-planner' content={content} />
     </Layout>
   );
 }

@@ -63,20 +63,11 @@ export interface JasaServiceContent {
 
 interface Props {
   locale: Locale;
-  waNumber: string;
-  waText: string;
   content: JasaServiceContent;
+  pageName?: string;
 }
-
-export default function JasaServicePage({ locale, waNumber, waText, content }: Props) {
+export default function JasaServicePage({ locale, content, pageName }: Props) {
   const isIndonesian = locale === 'id';
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Scroll depth tracking
   useEffect(() => {
@@ -106,8 +97,9 @@ export default function JasaServicePage({ locale, waNumber, waText, content }: P
   useEffect(() => {
     if (typeof window !== 'undefined') {
       try {
+        const name = pageName || 'jasa-service-landing';
         if (window.fbq) window.fbq('track', 'ViewContent', {
-          content_name: 'jasa-service-landing',
+          content_name: name,
           content_category: 'landing_page',
           value: 1, currency: 'IDR',
         });
@@ -116,11 +108,11 @@ export default function JasaServicePage({ locale, waNumber, waText, content }: P
           page_location: window.location.href,
         });
         if (window.ttq) window.ttq.track('ViewContent', {
-          content_name: 'jasa-service-landing',
+          content_name: name,
         });
       } catch {}
     }
-  }, []);
+  }, [pageName]);
 
   const scrollTo = useCallback((id: string) => {
     const el = document.getElementById(id);
@@ -141,8 +133,7 @@ export default function JasaServicePage({ locale, waNumber, waText, content }: P
 
   const handleWa = useCallback((label: string) => {
     trackWhatsApp(label);
-    window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`, '_blank');
-  }, [waNumber, waText]);
+  }, []);
 
   return (
     <>

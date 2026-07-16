@@ -179,7 +179,7 @@ export default function JasaVideoAIPage({ locale }: Props) {
       ogImage="/images/og-video-ai.jpg"
       jsonLd={jsonLd}
     >
-      <JasaServicePage locale={locale as 'id' | 'en'} waNumber={WA_NUMBER} waText={WA_TEXT} content={content} />
+      <JasaServicePage locale={locale as 'id' | 'en'} pageName='jasa-video-ai' content={content} />
     </Layout>
   );
 }

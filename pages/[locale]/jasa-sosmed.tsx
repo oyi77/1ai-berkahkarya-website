@@ -178,7 +178,7 @@ export default function JasaSosmedPage({ locale }: Props) {
       ogImage="/images/og-sosmed.jpg"
       jsonLd={jsonLd}
     >
-      <JasaServicePage locale={locale} waNumber={WA_NUMBER} waText={WA_TEXT} content={content} />
+      <JasaServicePage locale={locale} pageName='jasa-sosmed' content={content} />
     </Layout>
   );
 }

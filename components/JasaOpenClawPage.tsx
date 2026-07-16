@@ -51,20 +51,12 @@ export interface JasaOpenClawContent {
 
 interface Props {
   locale: Locale;
-  waNumber: string;
-  waText: string;
   content: JasaOpenClawContent;
 }
 
-export default function JasaOpenClawPage({ locale, waNumber, waText, content }: Props) {
+export default function JasaOpenClawPage({ locale, content }: Props) {
   const isIndonesian = locale === 'id';
-  const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Scroll depth tracking
   useEffect(() => {
@@ -125,8 +117,7 @@ export default function JasaOpenClawPage({ locale, waNumber, waText, content }: 
 
   const handleWa = useCallback((label: string) => {
     trackWhatsApp(label);
-    window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`, '_blank');
-  }, [waNumber, waText]);
+  }, []);
 
   return (
     <>

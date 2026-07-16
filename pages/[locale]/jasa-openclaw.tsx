@@ -155,7 +155,7 @@ export default function JasaOpenClaw({ locale }: Props) {
       ogImage="/images/og-openclaw.jpg"
       jsonLd={jsonLd}
     >
-      <JasaOpenClawPage locale={locale as any} waNumber={WA_NUMBER} waText={WA_TEXT} content={content} />
+      <JasaOpenClawPage locale={locale as 'id' | 'en'} content={content} />
     </Layout>
   );
 }
