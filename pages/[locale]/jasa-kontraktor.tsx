@@ -16,6 +16,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
 
 const WA_NUMBER = '6285800620035';
 const WA_LINK = `https://wa.me/${WA_NUMBER}?text=Halo%20BerkahKarya%20Kontraktor%20-%20saya%20ingin%20konsultasi%20rencana%20bangun%20rumah.%20Mohon%20info%20estimasi%20biaya%20dan%20konsultasi%20gratis.%20Terima%20kasih.`;
+const EBOOK_URL = '/ebook/panduan-bangun-rumah-lengkap.pdf';
+const WA_LINK_EBOOK = `https://wa.me/${WA_NUMBER}?text=Halo%20BerkahKarya%20Kontraktor%20-%20saya%20minta%20ebook%20Panduan%20Bangun%20Rumah%20Lengkap%20gratis.%20Terima%20kasih.`;
 
 const SERVICES = [
   {
@@ -204,7 +206,13 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
 
   const handleWa = useCallback((label: string) => {
     trackWhatsApp(label);
-    window.open(WA_LINK, '_blank');
+    const link = label.includes('ebook') ? WA_LINK_EBOOK : WA_LINK;
+    window.open(link, '_blank');
+  }, []);
+
+  const handleDownloadEbook = useCallback(() => {
+    try { trackWhatsApp('ebook_download'); } catch (_) {}
+    window.open(EBOOK_URL, '_blank');
   }, []);
 
   const isIndonesian = locale === 'id';
@@ -249,7 +257,9 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
       desc: isIndonesian
         ? 'Dapatkan ebook GRATIS berisi checklist bangun rumah, estimasi budget, dan tips memilih kontraktor.'
         : 'Get our FREE ebook: home building checklist, budget estimation guide, and contractor selection tips.',
-      cta: isIndonesian ? '📥 Download Gratis Sekarang' : '📥 Download Free Now',
+      primaryCta: isIndonesian ? '📥 Download Langsung' : '📥 Download Now',
+      secondaryCta: isIndonesian ? '💬 Dapatkan via WhatsApp + Bonus' : '💬 Get via WhatsApp + Bonus',
+      waNote: isIndonesian ? 'Atau dapatkan via WhatsApp — team kami kirimkan PDF + tips eksklusif langsung ke HP Anda' : 'Or get it via WhatsApp — our team sends the PDF + exclusive tips straight to your phone',
     },
     services: {
       tag: isIndonesian ? 'LAYANAN KAMI' : 'OUR SERVICES',
@@ -578,11 +588,17 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
               <div className={styles.leadActions}>
                 <button
                   className={`${styles.btn} ${styles.btnGold} ${styles.btnLg}`}
-                  onClick={() => handleWa('lead_magnet')}
+                  onClick={handleDownloadEbook}
                 >
-                  {content.leadMagnet.cta}
+                  {content.leadMagnet.primaryCta}
                 </button>
               </div>
+              <p className={styles.leadWaNote}>
+                {content.leadMagnet.waNote}{' '}
+                <button className={styles.leadWaBtn} onClick={() => handleWa('lead_magnet_ebook')}>
+                  {content.leadMagnet.secondaryCta}
+                </button>
+              </p>
             </div>
           </div>
         </section>
