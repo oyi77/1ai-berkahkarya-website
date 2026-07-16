@@ -164,15 +164,19 @@
   transition: color 0.2s;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  cursor: pointer;
-  background: none;
-  border: none;
 }
 
-.navLink:hover {
-  color: var(--jk-gold);
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(7, 7, 7, 0.94) 0%,
+    rgba(7, 7, 7, 0.8) 40%,
+    rgba(7, 7, 7, 0.55) 100%
+  );
+  z-index: 1;
 }
-
 .navCta {
   display: flex;
   align-items: center;
@@ -341,7 +345,7 @@
 
 .heroSub {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: var(--jk-text-3);
+  color: #c8c0b5;
   max-width: 640px;
   margin: 0 auto 2.5rem;
   line-height: 1.8;
@@ -385,7 +389,7 @@
 /* ─── Services ─── */
 .servicesGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   max-width: 900px;
   margin: 0 auto;
