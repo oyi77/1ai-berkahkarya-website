@@ -79,6 +79,16 @@ const SERVICES = [
 ];
 
 
+const QUICK_SERVICES = [
+  { icon: '🏠', label: 'Bangun Rumah', anchor: 'svc-konstruksi' },
+  { icon: '🏢', label: 'Bangun Kantor', anchor: 'svc-konstruksi' },
+  { icon: '🛠', label: 'Renovasi', anchor: 'svc-konstruksi' },
+  { icon: '📐', label: 'Desain Rumah', anchor: 'svc-desain' },
+  { icon: '🛋', label: 'Interior', anchor: 'svc-interior' },
+  { icon: '🚗', label: 'Kanopi', anchor: 'svc-pagar' },
+  { icon: '🚪', label: 'Pagar & Railing', anchor: 'svc-pagar' },
+  { icon: '📊', label: 'RAB Bangunan', anchor: 'svc-desain' },
+];
 
 
 const PROCESS = [
@@ -242,26 +252,20 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
 
   const content = {
     hero: {
-      badge: isIndonesian ? '🔨 SIAP BANTU ANDA MEMBANGUN' : '🔨 READY TO HELP YOU BUILD',
+      badge: isIndonesian ? '🏗️ SOLUSI BANGUNAN LENGKAP' : '🏗️ COMPLETE BUILDING SOLUTION',
       title: isIndonesian
-        ? 'Bangun Rumah Impian' : 'Build Your Dream Home',
-      titleBold: isIndonesian ? 'Tanpa Takut Biaya Membengkak' : 'No More Budget Surprises',
+        ? 'Semua Kebutuhan Bangunan Anda' : 'All Your Building Needs',
+      titleBold: isIndonesian
+        ? 'Dalam Satu Tim Profesional' : 'In One Professional Team',
       subtitle: isIndonesian
-        ? 'Dapatkan gambar kerja, RAB detail, dan 3D visualisasi rumah impian Anda. Tim Arsitek & Engineer kami siap membantu — GRATIS konsultasi, analisa kebutuhan, dan estimasi awal biaya.'
-        : 'Get working drawings, detailed RAB, and 3D visualization of your dream home. Our Architects & Engineers are ready — FREE consultation, needs analysis, and initial cost estimate.',
-      cta: isIndonesian ? 'Saya Mau Konsultasi Rumah' : "I'd Like a Home Consultation",
+        ? 'Dari desain, renovasi, interior, kanopi, pagar, hingga RAB — semua bisa ditangani tim profesional kami. GRATIS konsultasi & analisa kebutuhan tanpa biaya.'
+        : 'From design, renovation, interiors, carports, fences to RAB — our professional team handles it all. FREE consultation & needs analysis.',
+      cta: isIndonesian ? '💬 Konsultasi Gratis' : '💬 Free Consultation',
       stats: [
         { num: '500+', label: isIndonesian ? 'Proyek Sukses' : 'Projects Done' },
         { num: '10+', label: isIndonesian ? 'Tahun Pengalaman' : 'Years Experience' },
         { num: '98%', label: isIndonesian ? 'Kepuasan Klien' : 'Client Satisfaction' },
         { num: '4.9★', label: isIndonesian ? 'Rating Google' : 'Google Rating' },
-      ],
-      offerItems: [
-        { icon: '📋', title: isIndonesian ? 'Analisa Kebutuhan Rumah' : 'Home Needs Analysis' },
-        { icon: '🎨', title: isIndonesian ? 'Rekomendasi Konsep Desain' : 'Design Concept Recommendation' },
-        { icon: '📐', title: isIndonesian ? 'Gambaran Kebutuhan Ruang' : 'Space Requirement Overview' },
-        { icon: '🗓️', title: isIndonesian ? 'Arahan Tahap Pembangunan' : 'Construction Stage Guidance' },
-        { icon: '💰', title: isIndonesian ? 'Estimasi Awal Budget' : 'Initial Budget Estimate' },
       ],
     },
     leadMagnet: {
@@ -455,16 +459,18 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
               <span className={styles.heroGradient}>{content.hero.titleBold}</span>
             </h1>
             <p className={styles.heroSub}>{content.hero.subtitle}</p>
-            <div className={styles.heroOffer}>
-              <div className={styles.heroOfferTag}>
-                {isIndonesian ? '🎁 GRATIS — Yang Anda Dapatkan:' : '🎁 FREE — What You Get:'}
-              </div>
-              <div className={styles.heroOfferGrid}>
-                {content.hero.offerItems.map((item, i) => (
-                  <div key={i} className={styles.heroOfferItem}>
-                    <span className={styles.heroOfferIcon}>{item.icon}</span>
-                    <span className={styles.heroOfferLabel}>{item.title}</span>
-                  </div>
+            {/* ─── Quick Service Grid ─── */}
+            <div className={styles.quickServices}>
+              <div className={styles.quickServicesGrid}>
+                {QUICK_SERVICES.map((svc, i) => (
+                  <button
+                    key={i}
+                    className={styles.quickServiceItem}
+                    onClick={() => scrollTo(svc.anchor)}
+                  >
+                    <span className={styles.quickServiceIcon}>{svc.icon}</span>
+                    <span className={styles.quickServiceLabel}>{svc.label}</span>
+                  </button>
                 ))}
               </div>
             </div>
@@ -513,7 +519,7 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
             </div>
             <div className={styles.servicesGrid}>
               {SERVICES.map((svc, i) => (
-                <div key={i} className={`${styles.serviceCard} ${i === 1 ? styles.serviceFeatured : ''}`}>
+                <div key={i} id={`svc-${['desain','konstruksi','interior','pagar'][i]}`} className={`${styles.serviceCard} ${i === 1 ? styles.serviceFeatured : ''}`}>
                   <div className={styles.serviceImgWrap}>
                     <img src={svc.image} alt={svc.title} className={styles.serviceImg} loading="lazy" />
                     {i === 1 && <span className={styles.serviceBadge}>{isIndonesian ? 'POPULER' : 'POPULAR'}</span>}

@@ -1267,6 +1267,70 @@
   color: var(--jk-text-2);
 }
 
+
+/* ─── Quick Service Grid ─── */
+.quickServices {
+  margin: 1.5rem 0;
+}
+
+.quickServicesLabel {
+  font-size: 0.78rem;
+  color: var(--jk-gold);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.quickServicesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+
+.quickServiceItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(212,168,75,0.12);
+  border-radius: 10px;
+  padding: 0.7rem 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--jk-text-2);
+  font-family: inherit;
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.quickServiceItem:hover {
+  background: rgba(212,168,75,0.12);
+  border-color: var(--jk-gold);
+  transform: translateY(-2px);
+}
+
+.quickServiceIcon {
+  font-size: 1.3rem;
+}
+
+.quickServiceLabel {
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .quickServicesGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+  }
+  .quickServiceItem {
+    padding: 0.5rem 0.2rem;
+    font-size: 0.7rem;
+  }
+  .quickServiceIcon {
+    font-size: 1.1rem;
+  }
+}
 /* ─── Final CTA Trust ─── */
 .finalTrust {
   display: flex;
