@@ -26,6 +26,8 @@ interface HeroProps {
   liveIndicator?: string;
   /** Ledger metrics table — key-value rows under hero title */
   metrics?: Array<{ label: string; value: string; highlight?: boolean }>;
+  /** Dark theme variant */
+  dark?: boolean;
 }
 
 export default function HeroSection({

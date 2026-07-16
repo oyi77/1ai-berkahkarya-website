@@ -5,8 +5,9 @@
 [build.environment]
   NODE_VERSION = "20"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+# Next.js is handled via default build
+#[[plugins]]
+#  package = "@netlify/plugin-nextjs"
 
 # Environment variables — set in Netlify dashboard: Site settings → Build & Deploy → Environment
 # Required: META_CAPI_ACCESS_TOKEN, TRIPAY_API_KEY, TRIPAY_PRIVATE_KEY, TRIPAY_MERCHANT_CODE
