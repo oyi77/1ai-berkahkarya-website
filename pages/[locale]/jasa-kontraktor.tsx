@@ -556,7 +556,7 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         </section>
 
         {/* ─── SEBELUM BANGUN (PROBLEM-AGITATE-SOLUTION) ─── */}
-        <section className={styles.problemSection}>
+        <section className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.container}>
             <div className={`${styles.center}`}>
               <span className={styles.sectionTag}>{content.problems.tag}</span>
@@ -719,7 +719,7 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         </section>
 
         {/* ─── WHY US ─── */}
-        <section id="why-us" className={`${styles.section} ${styles.sectionDark}`}>
+        <section id="why-us" className={`${styles.section} ${styles.sectionLightAlt}`}>
           <div className={styles.container}>
             <div className={`${styles.center}`}>
               <span className={styles.sectionTag}>{content.why.tag}</span>
@@ -741,7 +741,7 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         </section>
 
         {/* ─── SERVICES ─── */}
-        <section id="services" className={`${styles.section} ${styles.sectionDark}`}>
+        <section id="services" className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.container}>
             <div className={`${styles.center}`}>
               <span className={styles.sectionTag}>{content.services.tag}</span>
@@ -788,7 +788,7 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         </section>
 
         {/* ─── TESTIMONIALS ─── */}
-        <section id="testimonials" className={styles.section}>
+        <section id="testimonials" className={`${styles.section} ${styles.sectionLightAlt}`}>
           <div className={styles.container}>
             <div className={`${styles.center}`}>
               <span className={styles.sectionTag}>{content.testimonial.tag}</span>
@@ -821,7 +821,7 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         </section>
 
         {/* ─── PROCESS ─── */}
-        <section className={`${styles.section} ${styles.sectionDark}`}>
+        <section className={`${styles.section} ${styles.sectionLight}`}>
           <div className={styles.container}>
             <div className={`${styles.center}`}>
               <span className={styles.sectionTag}>{content.process.tag}</span>
@@ -841,7 +841,7 @@ export default function JasaKontraktor({ locale }: { locale: Locale }) {
         </section>
 
         {/* ─── FAQ ─── */}
-        <section className={`${styles.section} ${styles.sectionDark}`}>
+        <section className={`${styles.section} ${styles.sectionLightAlt}`}>
           <div className={styles.container}>
             <div className={`${styles.center}`}>
               <span className={styles.sectionTag}>{content.faq.tag}</span>

@@ -19,8 +19,8 @@
   --jk-border-gold: rgba(212, 168, 75, 0.25);
   --jk-text: #f5efe6;
   --jk-text-2: #d4cec4;
-  --jk-text-3: #8a857e;
-  --jk-text-4: #6b6762;
+  --jk-text-3: #9e9892;
+  --jk-text-4: #88837d;
   --jk-radius: 4px;
   --jk-radius-lg: 12px;
   --jk-pad: clamp(1.25rem, 4vw, 2.5rem);
@@ -65,6 +65,34 @@
 
 .sectionDark {
   background: var(--jk-bg-2);
+}
+
+.sectionLight {
+  --jk-text: #1d1d1b;
+  --jk-text-2: #3d3d3b;
+  --jk-text-3: #6b6762;
+  --jk-text-4: #8a857e;
+  --jk-bg-card: #ffffff;
+  --jk-bg-card-hover: #f5f3f0;
+  --jk-border: rgba(0, 0, 0, 0.08);
+  --jk-border-gold: rgba(212, 168, 75, 0.3);
+  --jk-gold-dim: rgba(212, 168, 75, 0.08);
+  background: #f9f7f4;
+  color: var(--jk-text);
+}
+
+.sectionLightAlt {
+  --jk-text: #1d1d1b;
+  --jk-text-2: #3d3d3b;
+  --jk-text-3: #6b6762;
+  --jk-text-4: #8a857e;
+  --jk-bg-card: #ffffff;
+  --jk-bg-card-hover: #f5f3f0;
+  --jk-border: rgba(0, 0, 0, 0.08);
+  --jk-border-gold: rgba(212, 168, 75, 0.3);
+  --jk-gold-dim: rgba(212, 168, 75, 0.08);
+  background: #f4f1ec;
+  color: var(--jk-text);
 }
 
 .gold {
@@ -159,7 +187,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--jk-text-4);
+  color: var(--jk-text-3);
   padding: 0.4rem 0.9rem;
   transition: color 0.2s;
   font-family: 'Inter', sans-serif;
@@ -375,8 +403,11 @@
   display: flex;
   gap: 2.5rem;
   justify-content: center;
-  margin-top: 3rem;
-  flex-wrap: wrap;
+  font-size: 0.75rem;
+  color: var(--jk-text-3);
+  margin-top: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .heroStat {
@@ -393,13 +424,12 @@
 
 .heroStatLabel {
   font-size: 0.75rem;
-  color: var(--jk-text-4);
+  color: var(--jk-text-3);
   margin-top: 0.4rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
-/* ─── Services ─── */
 .servicesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -843,7 +873,7 @@
 /* ─── Problem Section (PAS) ─── */
 .problemSection {
   padding: var(--jk-pad) 0;
-  background: linear-gradient(180deg, #0a0a0a 0%, #070707 100%);
+  background: #f4f1ec;
 }
 
 .problemGrid {
@@ -852,7 +882,6 @@
   gap: 1.5rem;
   margin: 2rem 0 2.5rem;
 }
-
 .problemCard {
   background: var(--jk-bg-card);
   border: 0.5px solid var(--jk-border);
