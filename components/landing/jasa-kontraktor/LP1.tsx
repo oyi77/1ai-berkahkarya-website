@@ -65,11 +65,10 @@ const TESTIMONIALS = [
     text: 'Kolaborasi dengan tim BerkahKarya sangat menyenangkan. Detail-oriented, tepat janji, dan selalu prioritasin kualitas. Recommended untuk kolega.',
   },
 ];
-
 const PACKAGES = [
   {
     icon: '\u{1F4D0}',
-    image: '/images/jasa-kontraktor/desain-1.jpg',
+    image: '/images/jasa-kontraktor/desain-1.webp',
     name: 'Gambar Kerja (DED)',
     price: 'Rp28.000 /m\u00B2',
     desc: 'Detail Engineering Design lengkap — acuan utama untuk pembangunan & pengurusan IMB. 22+ lembar gambar teknis mencakup semua detail dari pondasi hingga atap, berdasarkan standar proyek sesungguhnya.',
@@ -82,7 +81,7 @@ const PACKAGES = [
   },
   {
     icon: '\u{1F4CA}',
-    image: '/images/jasa-kontraktor/konstruksi-gedung.jpg',
+    image: '/images/jasa-kontraktor/konstruksi-gedung.webp',
     name: 'Rencana Anggaran Biaya (RAB)',
     price: 'Rp1,2 Juta /paket',
     desc: 'RAB terperinci per item pekerjaan dengan 10 kategori & 24 sub-pekerjaan — seperti proyek riil kami. Anda tahu persis alokasi dana untuk setiap pos. Tidak ada biaya mendadak.',
@@ -95,7 +94,7 @@ const PACKAGES = [
   },
   {
     icon: '\u{1F3A8}',
-    image: '/images/jasa-kontraktor/interior-premium.jpg',
+    image: '/images/jasa-kontraktor/interior-premium.webp',
     name: 'Visual 3D Realistis',
     price: 'Rp1,2 Juta /paket',
     desc: 'Visualisasi 3D foto-realistis interior & eksterior — lihat hasil akhir rumah Anda sebelum bangun. Revisi sampai puas. Material & tekstur sesuai spesifikasi asli proyek.',
@@ -108,7 +107,7 @@ const PACKAGES = [
   },
   {
     icon: '\u{1F3E0}',
-    image: '/images/jasa-kontraktor/kanopi-pagar.jpg',
+    image: '/images/jasa-kontraktor/kanopi-pagar.webp',
     name: 'Paket Lengkap (Desain + RAB + 3D)',
     price: 'Mulai Rp2,5 Juta',
     desc: 'Dapatkan gambar kerja (22+ lembar), RAB detail (10 kategori), dan visual 3D dalam satu paket hemat. Jika tim kami yang bangun, desain GRATIS!',
@@ -122,8 +121,16 @@ const PACKAGES = [
 ];
 
 const RAB_CATEGORIES = [
-  { label: 'Material', pct: 48.5, color: 'mat', amount: 'Rp 200.586.108' },
-  { label: 'Upah', pct: 21.2, color: 'upah', amount: 'Rp 87.679.746' },
+  { label: 'Pekerjaan Dinding', pct: 28.1, color: 'dinding', amount: 'Rp 115.905.264' },
+  { label: 'Pekerjaan Pondasi', pct: 11.9, color: 'pondasi', amount: 'Rp 49.106.391' },
+  { label: 'Pekerjaan Lantai', pct: 8.5, color: 'lantai', amount: 'Rp 35.254.265' },
+  { label: 'Pekerjaan Atap', pct: 8.3, color: 'atap', amount: 'Rp 34.363.277' },
+  { label: 'Pekerjaan Finishing', pct: 7.6, color: 'finishing', amount: 'Rp 31.304.626' },
+  { label: 'Persiapan', pct: 3.0, color: 'persiapan', amount: 'Rp 12.363.180' },
+  { label: 'Pekerjaan Plafond', pct: 1.7, color: 'plafond', amount: 'Rp 7.199.900' },
+  { label: 'Pekerjaan Beton', pct: 1.0, color: 'beton', amount: 'Rp 4.298.590' },
+  { label: 'Pekerjaan Instalasi', pct: 0.9, color: 'instalasi', amount: 'Rp 3.902.630' },
+  { label: 'Pekerjaan Eksterior', pct: 2.1, color: 'eksterior', amount: 'Rp 8.526.500' },
   { label: 'Overhead & Profit', pct: 13.3, color: 'overhead', amount: 'Rp 54.856.230' },
   { label: 'Pajak (PPN)', pct: 9.9, color: 'ppn', amount: 'Rp 40.968.942' },
   { label: 'Contingency', pct: 7.0, color: 'cont', amount: 'Rp 28.871.700' },
@@ -176,12 +183,18 @@ const PROCESS = [
 ];
 
 const PORTFOLIO = [
-  { src: '/images/jasa-kontraktor/rumah-1.jpg', label: 'Rumah Modern Minimalis', sub: 'Jakarta Selatan — 2 Lantai, 250 m\u00B2' },
-  { src: '/images/jasa-kontraktor/interior-1.jpg', label: 'Interior Kafe Industrial', sub: 'Bandung — 60 m\u00B2, Konsep Industrial' },
-  { src: '/images/jasa-kontraktor/gedung-1.jpg', label: 'Kantor 3 Lantai', sub: 'Jakarta Timur — 600 m\u00B2, Gedung Perkantoran' },
-  { src: '/images/jasa-kontraktor/renovasi-1.jpg', label: 'Renovasi Rumah Tua', sub: 'Surabaya — 150 m\u00B2, Renovasi Total' },
-  { src: '/images/jasa-kontraktor/kanopi-1.jpg', label: 'Kanopi & Pagar Minimalis', sub: 'Semarang — 40 m, Baja Ringan' },
-  { src: '/images/jasa-kontraktor/rumah-2.jpg', label: 'Rumah Tropis Modern', sub: 'Jombang — 1 Lantai, 167 m\u00B2' },
+  { src: '/images/jasa-kontraktor/rumah-modern-1.webp', label: 'Rumah Modern Minimalis', sub: 'Jakarta Selatan — 2 Lantai, 250 m\u00B2' },
+  { src: '/images/jasa-kontraktor/interior-cafe-1.webp', label: 'Interior Kafe Industrial', sub: 'Bandung — 60 m\u00B2, Konsep Industrial' },
+  { src: '/images/jasa-kontraktor/kantor-3lt-1.webp', label: 'Kantor 3 Lantai', sub: 'Jakarta Timur — 600 m\u00B2, Gedung Perkantoran' },
+  { src: '/images/jasa-kontraktor/rumah-renovasi-1.webp', label: 'Renovasi Rumah Tua', sub: 'Surabaya — 150 m\u00B2, Renovasi Total' },
+  { src: '/images/jasa-kontraktor/rumah-tropis-1.webp', label: 'Rumah Tropis Modern', sub: 'Jombang — 1 Lantai, 167 m\u00B2' },
+  { src: '/images/jasa-kontraktor/toko-1.webp', label: 'Interior Toko Modern', sub: 'Surabaya — 30 m\u00B2, Retail Minimalis' },
+  { src: '/images/jasa-kontraktor/hotel-1.webp', label: 'Interior Hotel Butik', sub: 'Malang — 8 Kamar, Klasik Modern' },
+  { src: '/images/jasa-kontraktor/mall-1.webp', label: 'Interior Pusat Perbelanjaan', sub: 'Jakarta — 200 m\u00B2, Area Tenant' },
+  { src: '/images/jasa-kontraktor/kantor-interior.webp', label: 'Desain Interior Kantor', sub: 'Bandung — 150 m\u00B2, Open Space' },
+  { src: '/images/jasa-kontraktor/rumah-interior-1.webp', label: 'Interior Rumah Tinggal', sub: 'Surabaya — 200 m\u00B2, Keluarga' },
+  { src: '/images/jasa-kontraktor/tangga-1.webp', label: 'Tangga Minimalis Modern', sub: 'Jakarta — Beton Ekspos, Railing Kaca' },
+  { src: '/images/jasa-kontraktor/cafe-interior.webp', label: 'Interior Cafe & Resto', sub: 'Bandung — 80 m\u00B2, Konsep Rustic' },
 ];
 
 const WHY = [
