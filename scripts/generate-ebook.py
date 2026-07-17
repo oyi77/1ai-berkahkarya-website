@@ -135,11 +135,26 @@ class Ebook(FPDF):
         self.set_font(self.F, '', 7.5)
         self.set_draw_color(200)
         for ri, row in enumerate(rows):
-            if ri % 2 == 0:
+            # Detect section header: first cell empty, Uraian has text, last cell empty
+            is_section = (len(row) > 2 and row[0] == '' and row[2] != '' and row[-1] == '')
+            # Detect sub-total: first cell empty, Uraian has text, last cell non-empty
+            is_subtotal = (len(row) > 2 and row[0] == '' and row[2] != '' and row[-1] != '')
+
+            if is_section:
+                self.set_fill_color(240, 235, 215)
+                self.set_font(self.F, 'B', 8)
+                self.set_text_color(80, 50, 20)
+            elif is_subtotal:
+                self.set_fill_color(245, 242, 235)
+                self.set_font(self.F, 'B', 7.5)
+                self.set_text_color(30)
+            elif ri % 2 == 0:
                 self.set_fill_color(250, 245, 240)
+                self.set_text_color(50)
             else:
                 self.set_fill_color(255)
-            self.set_text_color(50)
+                self.set_text_color(50)
+
             # Check if row fits before drawing
             if self.get_y() + h > self.h - self.b_margin:
                 self.add_page()
@@ -152,13 +167,23 @@ class Ebook(FPDF):
                 for idx, hdr in enumerate(headers):
                     self.cell(cw[idx], h, hdr, border=1, fill=True, align='C')
                 self.ln()
-                self.set_font(self.F, '', 7.5)
+                # After page break, reapply the row style for the row being drawn
                 self.set_draw_color(200)
-                if ri % 2 == 0:
+                if is_section:
+                    self.set_fill_color(240, 235, 215)
+                    self.set_font(self.F, 'B', 8)
+                    self.set_text_color(80, 50, 20)
+                elif is_subtotal:
+                    self.set_fill_color(245, 242, 235)
+                    self.set_font(self.F, 'B', 7.5)
+                    self.set_text_color(30)
+                elif ri % 2 == 0:
                     self.set_fill_color(250, 245, 240)
+                    self.set_text_color(50)
                 else:
                     self.set_fill_color(255)
-                self.set_text_color(50)
+                    self.set_text_color(50)
+
             for i, cell in enumerate(row):
                 self.cell(cw[i], h, str(cell), border=1, fill=True, align='C' if i > 0 else 'L')
             self.ln()
@@ -358,13 +383,13 @@ def generate():
     # BAB 4: RAB
     # ===========================
     pdf.add_page()
-    pdf.section_title('4', 'Rencana Anggaran Biaya (RAB)', 'Estimasi biaya pembangunan rumah')
+    pdf.section_title('4', 'Rencana Anggaran Biaya (RAB)', 'Estimasi biaya pembangunan rumah — lengkap dengan studi kasus proyek riil')
 
-    pdf.bold('Estimasi Biaya per Meter Persegi (2024-2025)')
+    pdf.bold('A. Estimasi Biaya per Meter Persegi (2025-2026)')
     pdf.tbl(
         ['Standar', 'Per m2', 'Keterangan'],
         [
-            ['Sederhana', 'Rp3-4 juta', 'Material standar, desain simple'],
+            ['Sederhana', 'Rp3-4 juta', 'Material standar, desain sederhana'],
             ['Menengah', 'Rp4-6 juta', 'Material cukup baik, finishing cat'],
             ['Modern Minimalis', 'Rp6-8 juta', 'Desain arsitek, material bagus'],
             ['Mewah', 'Rp8-12+ juta', 'Premium material, interior desain'],
@@ -372,34 +397,140 @@ def generate():
         [50, 40, 70]
     )
 
-    pdf.bold('Contoh RAB Rumah 2 Lantai (150m2 - Standar Menengah)')
-    pdf.body(
-        'Luas total: 150m2, estimasi: Rp5juta/m2 = Rp750 Juta\n\n'
-        'Rincian Biaya:'
-    )
+    pdf.ln(2)
+    pdf.body('Berikut adalah RAB proyek riil Rumah Tinggal 1 Lantai milik Bapak Tri Triswanto di Desa Pagerwojo, Perak, Jombang (luas 167 m2) — data transparan, bukan perkiraan.')
+
+    # === Dashboard ===
+    pdf.bold('B. Dashboard Proyek')
+    pdf.body('TOTAL ESTIMASI: Rp 413.415.366 (Termasuk PPN 11% & Overhead)')
 
     pdf.tbl(
-        ['Item', 'Biaya', '%'],
+        ['Komponen', 'Persentase', 'Jumlah'],
         [
-            ['Pekerjaan Persiapan', 'Rp15 Juta', '2%'],
-            ['Pondasi & Struktur', 'Rp180 Juta', '24%'],
-            ['Dinding & Plester', 'Rp60 Juta', '8%'],
-            ['Atap', 'Rp45 Juta', '6%'],
-            ['Plafon & Lantai', 'Rp75 Juta', '10%'],
-            ['MEP (Listrik, Pipa)', 'Rp60 Juta', '8%'],
-            ['Finishing & Cat', 'Rp90 Juta', '12%'],
-            ['Kusen, Pintu, Jendela', 'Rp75 Juta', '10%'],
-            ['Interior & Furniture', 'Rp100 Juta', '13%'],
-            ['Biaya Jasa Desain & Menejemen', 'Rp50 Juta', '7%'],
-            ['TOTAL', 'Rp750 Juta', '100%'],
+            ['Material', '48.5%', 'Rp 200.586.108'],
+            ['Upah', '21.2%', 'Rp 87.679.746'],
+            ['Alat', '0.1%', 'Rp 451.145'],
+            ['Overhead & Profit', '13.3%', 'Rp 54.856.230'],
+            ['Contingency', '7.0%', 'Rp 28.871.700'],
+            ['Pajak (PPN)', '9.9%', 'Rp 40.968.942'],
+            ['TOTAL', '100%', 'Rp 413.415.366'],
         ],
-        [85, 40, 25]
+        [60, 30, 60]
+    )
+
+    pdf.ln(2)
+    pdf.bold('C. 5 Item Pekerjaan Termahal (Pareto)')
+    pdf.tbl(
+        ['No', 'Uraian Pekerjaan', 'Biaya', '%'],
+        [
+            ['1', 'Pasang Dinding Bata Ringan AAC 10cm', 'Rp 79.191.087', '19.2%'],
+            ['2', 'Pasang Pondasi Batu Kali 1:3:10', 'Rp 49.106.391', '11.9%'],
+            ['3', 'Plesteran Dinding 1PC:3KP t=15mm', 'Rp 47.864.880', '11.6%'],
+            ['4', 'Pasang Keramik Lantai Granit Tile 60x60', 'Rp 28.787.394', '7.0%'],
+            ['5', 'Penutup Atap Genteng Beton Flat', 'Rp 26.364.000', '6.4%'],
+        ],
+        [12, 90, 35, 25]
+    )
+    pdf.tip('Hanya 5 dari 24 item ini mewakili ~56% dari total biaya. Fokus negosiasi pada item-item ini untuk efisiensi maksimal.')
+
+    # === 24-Item Detail RAB ===
+    pdf.bold('D. Rincian RAB — 24 Item Pekerjaan')
+    pdf.body('Proyek: Rumah Tinggal 1 Lantai — Lokasi: Pagerwojo, Jombang — Luas: 167 m2')
+
+    rab_headers = ['No', 'Kode', 'Uraian Pekerjaan', 'Volume', 'Sat', 'Harga Satuan', 'Jumlah Harga']
+    rab_rows = [
+        # I — Pekerjaan Persiapan
+        ['', '', 'I. PEKERJAAN PERSIAPAN', '', '', '', ''],
+        ['1', 'I.1', 'Pembersihan Lahan', '350', 'm2', 'Rp 3.735', 'Rp 1.307.250'],
+        ['2', 'I.2', 'Pengukuran & Pasang Bouwplank', '160', 'm\'', 'Rp 52.311', 'Rp 8.369.707'],
+        ['3', 'I.3', 'Galian Tanah Pondasi Batu Kali', '179.2', 'm3', 'Rp 14.276', 'Rp 2.558.200'],
+        ['4', 'I.4', 'Urugan Tanah Kembali', '89.6', 'm3', 'Rp 2.490', 'Rp 223.104'],
+        ['', '', 'SUB TOTAL I', '', '', '', 'Rp 12.458.260'],
+        # II — Struktur Pondasi
+        ['', '', 'II. STRUKTUR PONDASI', '', '', '', ''],
+        ['5', 'II.1', 'Pasang Pondasi Batu Kali 1:3:10', '88', 'm3', 'Rp 463.163', 'Rp 40.758.305'],
+        ['6', 'II.2', 'Beton Sloof S1 (15x20)', '4.8', 'm3', 'Rp 792.860', 'Rp 3.805.730'],
+        ['', '', 'SUB TOTAL II', '', '', '', 'Rp 44.564.035'],
+        # III — Struktur Beton
+        ['', '', 'III. STRUKTUR BETON BERTULANG', '', '', '', ''],
+        ['7', 'III.1', 'Beton Kolom K1/KP (12x12)', '1.43', 'm3', 'Rp 764.933', 'Rp 1.093.854'],
+        ['8', 'III.2', 'Beton Ring Balok RB (15x20)', '4.8', 'm3', 'Rp 668.986', 'Rp 3.211.131'],
+        ['', '', 'SUB TOTAL III', '', '', '', 'Rp 4.304.985'],
+        # IV — Dinding
+        ['', '', 'IV. PEKERJAAN DINDING', '', '', '', ''],
+        ['9', 'IV.1', 'Pasang Dinding Bata Ringan AAC 10cm', '700', 'm2', 'Rp 93.898', 'Rp 65.728.602'],
+        ['10', 'IV.2', 'Plesteran Dinding 1PC:3KP t=15mm', '1.400', 'm2', 'Rp 28.377', 'Rp 39.727.850'],
+        ['11', 'IV.3', 'Acian Dinding', '1.400', 'm2', 'Rp 7.458', 'Rp 10.440.570'],
+        ['', '', 'SUB TOTAL IV', '', '', '', 'Rp 115.897.022'],
+        # V — Atap
+        ['', '', 'V. PEKERJAAN ATAP', '', '', '', ''],
+        ['12', 'V.1', 'Rangka Atap Baja Ringan', '240', 'm2', 'Rp 61.632', 'Rp 14.791.681'],
+        ['13', 'V.2', 'Penutup Atap Genteng Beton Flat', '240', 'm2', 'Rp 91.176', 'Rp 21.882.120'],
+        ['', '', 'SUB TOTAL V', '', '', '', 'Rp 36.673.801'],
+        # VI — Lantai
+        ['', '', 'VI. PEKERJAAN LANTAI', '', '', '', ''],
+        ['14', 'VI.1', 'Pasang Keramik Granit Tile 60x60', '140', 'm2', 'Rp 170.668', 'Rp 23.893.537'],
+        ['', '', 'SUB TOTAL VI', '', '', '', 'Rp 23.893.537'],
+        # VII — Plafond
+        ['', '', 'VII. PEKERJAAN PLAFOND', '', '', '', ''],
+        ['15', 'VII.1', 'Rangka Plafond Hollow Galvanis 20x40', '131', 'm2', 'Rp 15.583', 'Rp 2.041.372'],
+        ['16', 'VII.2', 'Penutup Plafond Gypsum Board 9mm', '131', 'm2', 'Rp 39.747', 'Rp 5.206.808'],
+        ['', '', 'SUB TOTAL VII', '', '', '', 'Rp 7.248.179'],
+        # VIII — Finishing
+        ['', '', 'VIII. PEKERJAAN FINISHING', '', '', '', ''],
+        ['17', 'VIII.1', 'Pengecatan Dinding Interior', '490', 'm2', 'Rp 7.376', 'Rp 3.614.066'],
+        ['18', 'VIII.2', 'Pasang Kusen Pintu & Jendela Alum 4"', '90', 'm\'', 'Rp 133.447', 'Rp 12.010.266'],
+        ['19', 'VIII.3', 'Pasang Daun Pintu Panel Kayu Meranti', '7', 'bh', 'Rp 1.091.367', 'Rp 7.639.569'],
+        ['20', 'VIII.4', 'Pasang Kaca Polos 5mm', '48.5', 'm2', 'Rp 117.379', 'Rp 5.692.862'],
+        ['21', 'VIII.5', 'Pasang Closet Duduk', '2', 'bh', 'Rp 1.165.992', 'Rp 2.331.985'],
+        ['', '', 'SUB TOTAL VIII', '', '', '', 'Rp 31.288.748'],
+        # IX — Instalasi
+        ['', '', 'IX. PEKERJAAN INSTALASI', '', '', '', ''],
+        ['22', 'IX.1', 'Instalasi Titik Lampu', '26', 'titik', 'Rp 100.472', 'Rp 2.612.259'],
+        ['23', 'IX.2', 'Instalasi Pipa Air Bersih PVC 1/2"', '40', 'm\'', 'Rp 31.976', 'Rp 1.279.047'],
+        ['', '', 'SUB TOTAL IX', '', '', '', 'Rp 3.891.306'],
+        # X — Eksterior
+        ['', '', 'X. PEKERJAAN EKSTERIOR', '', '', '', ''],
+        ['24', 'X.1', 'Pembangunan Septik Tank & Resapan', '1', 'bh', 'Rp 8.497.125', 'Rp 8.497.125'],
+        ['', '', 'SUB TOTAL X', '', '', '', 'Rp 8.497.125'],
+    ]
+
+    pdf.tbl(rab_headers, rab_rows, [10, 14, 65, 12, 12, 24, 24])
+
+    # === Grand total ===
+    pdf.bold('E. Rekapitulasi')
+    pdf.tbl(
+        ['Uraian', 'Jumlah'],
+        [
+            ['Total Biaya Langsung (I s.d. X)', 'Rp 288.718.044'],
+            ['Overhead (7%)', 'Rp 20.210.263'],
+            ['Profit (12%)', 'Rp 34.646.165'],
+            ['Contingency (10%)', 'Rp 28.871.804'],
+            ['Total Nilai Pekerjaan', 'Rp 372.446.276'],
+            ['PPN (11%)', 'Rp 40.969.090'],
+            ['TOTAL RAB AKHIR', 'Rp 413.415.366'],
+        ],
+        [100, 60]
     )
 
     pdf.tip(
-        'Harga ini estimasi di Jakarta/sekitar. Harga bisa berbeda tergantung lokasi, spesifikasi, '
-        'dan kontraktor yang dipilih. Selalu minta RAB detail minimal dari 3 kontraktor.'
+        'Harga menggunakan HSP (Harga Satuan Pokok) JOMBANG 2026. Estimasi berbeda-beda tergantung '
+        'lokasi dan spesifikasi. Selalu konsultasikan RAB dengan kontraktor atau QS profesional.'
     )
+
+    # Catatan dari proyek riil
+    pdf.ln(2)
+    pdf.set_font(pdf.F, 'I', 7.5)
+    pdf.set_text_color(100)
+    notes = (
+        'Catatan: (1) Tinggi dinding 3.80m dari lantai ke ring balok. (2) Pondasi dihitung per denah pondasi. '
+        '(3) Volume galian diasumsikan kedalaman 1.40m, footplate 1.50m. (4) Mutu beton struktur K-225. '
+        '(5) Luas atap dihitung dgn faktor kemiringan 1.22 dari luas denah. '
+        '(6) Koefisien analisa HSP mengacu SNI untuk wilayah JOMBANG.'
+    )
+    pdf.multi_cell(W-LM-RM, 4, notes)
+    pdf.set_text_color(30)
+
 
     # ===========================
     # BAB 5: MATERIAL
@@ -453,6 +584,29 @@ def generate():
 
     img4 = os.path.join(IMG_DIR, 'diagram-potongan.png')
     pdf.img_centered(img4, w=150, caption='Detail potongan struktur bangunan (pondasi, kolom, ring balk, atap)')
+
+    pdf.bold('10 Kategori Pekerjaan (berdasarkan RAB Proyek Riil)')
+    pdf.body('Berikut pembagian 10 kelompok pekerjaan dari proyek Rumah 1 Lantai 167 m2 di Jombang — lihat detail RAB 24 item di Bab 4.')
+
+    pdf.tbl(
+        ['Tahap', 'Kategori', 'Estimasi Biaya', '%'],
+        [
+            ['I', 'Persiapan (Pembersihan, Bouwplank, Galian, Urugan)', 'Rp 12.458.260', '4.3%'],
+            ['II', 'Struktur Pondasi (Pondasi Batu Kali, Sloof 15x20)', 'Rp 44.564.035', '15.4%'],
+            ['III', 'Struktur Beton (Kolom 12x12, Ring Balok 15x20)', 'Rp 4.304.985', '1.5%'],
+            ['IV', 'Dinding (Bata Ringan AAC, Plester, Acian)', 'Rp 115.897.022', '40.1%'],
+            ['V', 'Atap (Rangka Baja Ringan, Genteng Beton Flat)', 'Rp 36.673.801', '12.7%'],
+            ['VI', 'Lantai (Granit Tile 60x60, Keramik Kasar)', 'Rp 23.893.537', '8.3%'],
+            ['VII', 'Plafond (Hollow Galvanis 20x40, Gypsum 9mm)', 'Rp 7.248.179', '2.5%'],
+            ['VIII', 'Finishing (Cat, Kusen Alum, Pintu Kayu, Closet)', 'Rp 31.288.748', '10.8%'],
+            ['IX', 'Instalasi (Titik Lampu, Stop Kontak, Pipa Air)', 'Rp 3.891.306', '1.3%'],
+            ['X', 'Eksterior (Septik Tank & Resapan)', 'Rp 8.497.125', '2.9%'],
+            ['', 'TOTAL BIAYA LANGSUNG', 'Rp 288.718.044', '100%'],
+        ],
+        [16, 90, 40, 18]
+    )
+
+    pdf.ln(2)
 
     stages = [
         ('TAHAP 1 - Persiapan & Pondasi (3-4 minggu)',
@@ -550,25 +704,31 @@ def generate():
     pdf.section_title('', 'STUDI KASUS', 'Contoh proyek nyata BerkahKarya')
 
     cases = [
-        ('STUDI KASUS 1: Rumah 2 Lantai Modern', 'Jakarta Selatan, 2024',
+        ('STUDI KASUS 1: Rumah 1 Lantai — Pagerwojo, Jombang', '2025-2026',
+         '',
+         'Luas: 167 m2 (14x25m)\n5 KT, 2 KM, R. Keluarga, Dapur, Carport, Taman\nAnggaran Rp413 Juta | Selesai',
+         'Lahan di perdesaan dengan akses material terbatas. Biaya pengiriman material harus diperhitungkan dengan cermat.',
+         'Material lokal (bata ringan AAC, granit tile 60x60, genteng beton flat). RAB detail 24 item — tidak ada biaya mendadak. Desain optimasi pencahayaan alami.',
+         'Tepat waktu & sesuai anggaran Rp413 Juta. RAB transparan per item pekerjaan. Pemilik sangat puas.'),
+        ('STUDI KASUS 2: Rumah 2 Lantai Modern', 'Jakarta Selatan, 2024',
          'rumah-tampak-depan.jpg',
          'Luas: 150m2 (10x15m), Bangunan: 200m2\n3 KT, 2 KM, R. Keluarga, Dapur, Carport, Rooftop\nAnggaran Rp1.2 Miliar | 8 bulan',
          'Lahan sempit 10x15m dengan GSB 5m. Membutuhkan desain yang memaksimalkan ruang.',
          'Desain 2 lantai dengan void tangga untuk ilusi luas. Pondasi footplate. Material lokal berkualitas.',
          'Tepat waktu (8 bulan). Sesuai anggaran Rp1.2 Miliar. Klien sangat puas.'),
-        ('STUDI KASUS 2: Rumah Tua jadi Cafe & Co-Working', 'Bandung, 2025',
+        ('STUDI KASUS 3: Rumah Tua jadi Cafe & Co-Working', 'Bandung, 2025',
          'cafe-interior.jpg',
          'Bangunan 250m2, usia 40 tahun\nRenovasi total\nCafe lantai 1 + Co-Working lantai 2\nAnggaran Rp350 Juta | 4 bulan',
          'Bangunan tua 40 tahun dengan struktur lemah. Butuh retrofit tanpa mengubah estetika.',
          'Retrofit struktur dengan baja WF. Ekspos bata merah. Plafon 4m + skylight. Meja co-working custom.',
          'Kapasitas 60 orang. Omzet Rp3 juta/hari. Review positif di Google Maps.'),
-        ('STUDI KASUS 3: Hotel Butik 12 Kamar', 'Yogyakarta, 2024',
+        ('STUDI KASUS 4: Hotel Butik 12 Kamar', 'Yogyakarta, 2024',
          'hotel-interior.jpg',
          '600m2, 3 lantai, 12 kamar + lobby + rooftop\nAnggaran Rp2.8 Miliar | 10 bulan',
          'Integrasi konsep tradisional Jawa dengan kenyamanan modern. Budget ketat untuk kualitas bintang 3+.',
          'Batu alam lokal, kayu jati daur ulang, pencahayaan hangat. Kolam renang rooftop minimalis.',
          'Occupancy 75% di tahun pertama. Rating 4.7/5 di Booking.com.'),
-        ('STUDI KASUS 4: Interior Kantor Modern', 'Jakarta, 2025',
+        ('STUDI KASUS 5: Interior Kantor Modern', 'Jakarta, 2025',
          'kantor-interior.jpg',
          '400m2, 60 staf\nOpen plan + 3 meeting room\nAnggaran Rp500 Juta | 6 minggu',
          'Deadline ketat 6 minggu. Area operasional 60 staf tidak boleh terganggu.',
@@ -590,8 +750,8 @@ def generate():
         pdf.set_font(pdf.F, '', 8)
         pdf.ln(1)
 
-        ipath = os.path.join(IMG_DIR, img_name)
-        if os.path.exists(ipath):
+        ipath = os.path.join(IMG_DIR, img_name) if img_name else None
+        if ipath and os.path.exists(ipath):
             # Data text on left, image on right — ensure x-reset
             pdf.set_x(pdf.l_margin)
             pdf.set_font(pdf.F, '', 7.5)
