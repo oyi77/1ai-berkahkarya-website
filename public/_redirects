@@ -1,0 +1,23 @@
+# ── Legacy page redirects ──
+# Jasa Kontraktor → LP route
+/id/jasa-kontraktor/*   /id/lp/jasa-kontraktor/1   301
+/en/jasa-kontraktor/*   /en/lp/jasa-kontraktor/1   301
+/jasa-kontraktor        /id/lp/jasa-kontraktor/1   301
+
+# ── Service / product renames ──
+/id/omniroute           /id/one-ai                 301
+/en/omniroute           /en/one-ai                 301
+/omniroute              /id/one-ai                 301
+/id/1ai                 /id/one-ai                 301
+/en/1ai                 /en/one-ai                 301
+/1ai                    /id/one-ai                 301
+
+# /1ai-nexus → default locale (page exists at /[locale]/1ai-nexus)
+/1ai-nexus              /id/1ai-nexus             301
+
+# ── Belajar AI ──
+/id/belajar             /id/belajarai              301
+/belajar                /id/belajarai              301
+
+# ── LP short URLs ──
+/vilonafx               /id/lp/vilonafx/1          301

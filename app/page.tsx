@@ -34,54 +34,139 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-lg mb-8">
-          <nav className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-gray-800">BerkahKarya</div>
-            <div className="flex gap-6">
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #f5f3ff, #e0e7ff)',
+      padding: '3rem 0',
+    }}>
+      <div className="container">
+        <header style={{
+          background: 'rgba(255,255,255,0.8)',
+          backdropFilter: 'blur(12px)',
+          borderRadius: '16px',
+          padding: '1.5rem',
+          boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)',
+          marginBottom: '2rem',
+        }}>
+          <nav style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
+            <div style={{
+              fontSize: '1.5rem',
+              fontWeight: 700,
+              color: '#1f2937',
+            }}>BerkahKarya</div>
+            <div style={{ display: 'flex', gap: '1.5rem' }}>
               {navLinks.map(({ label, href }) => (
-                <a key={href} href={`/${locale}/${href}`} className="text-gray-600 hover:text-blue-600 font-medium">{label}</a>
+                <a
+                  key={href}
+                  href={`/${locale}/${href}`}
+                  style={{
+                    color: '#4b5563',
+                    fontWeight: 500,
+                    textDecoration: 'none',
+                    transition: 'color 0.2s',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#2563eb')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#4b5563')}
+                >{label}</a>
               ))}
             </div>
           </nav>
         </header>
 
-        <main className="flex flex-col items-center justify-center min-h-[60vh]">
-          <h1 className="text-5xl md:text-6xl font-light text-white mb-4">Digital Solutions</h1>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl text-center">Transform your ideas into powerful web applications with professional development</p>
+        <main style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '60vh',
+          textAlign: 'center',
+        }}>
+          <h1 style={{
+            fontSize: 'clamp(2.5rem, 5vw, 3.75rem)',
+            fontWeight: 300,
+            color: 'white',
+            marginBottom: '1rem',
+          }}>Digital Solutions</h1>
+          <p style={{
+            fontSize: '1.25rem',
+            color: 'rgba(255,255,255,0.9)',
+            marginBottom: '2rem',
+            maxWidth: '42rem',
+          }}>Transform your ideas into powerful web applications with professional development</p>
           <button
             onClick={handleStart}
             disabled={isLoading}
-            className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors disabled:opacity-50">
+            className="btn btn--primary"
+            style={{
+              borderRadius: '9999px',
+              padding: '0.75rem 2rem',
+              fontSize: '1rem',
+              opacity: isLoading ? 0.5 : 1,
+            }}
+          >
             {isLoading ? 'Memuat...' : 'Mulai Sekarang'}
           </button>
         </main>
 
-        <section className="bg-white rounded-2xl p-8 shadow-lg mt-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Layanan Kami</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-gray-50 p-6 rounded-xl text-center hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold text-blue-600 mb-3">Web Dev</h3>
-              <p className="text-gray-600">Modern, responsive sites</p>
-            </div>
-            <div className="bg-gray-50 p-6 rounded-xl text-center hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold text-blue-600 mb-3">UI/UX</h3>
-              <p className="text-gray-600">Professional design</p>
-            </div>
-            <div className="text-center">
-              <div className="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-2">NEW</div>
-              <h3 className="text-xl font-semibold text-blue-600 mb-3">Performance</h3>
-              <p className="text-gray-600">Optimized for speed</p>
-            </div>
-            <div className="bg-gray-50 p-6 rounded-xl text-center hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold text-blue-600 mb-3">Support</h3>
-              <p className="text-gray-600">24/7 assistance</p>
-            </div>
+        <section className="section" style={{
+          background: 'white',
+          borderRadius: '16px',
+          padding: '2rem',
+          boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)',
+          marginTop: '3rem',
+        }}>
+          <h2 style={{
+            fontSize: '1.875rem',
+            fontWeight: 700,
+            color: '#1f2937',
+            marginBottom: '1.5rem',
+            textAlign: 'center',
+          }}>Layanan Kami</h2>
+          <div className="grid-4">
+            {[
+              { title: 'Web Dev', desc: 'Modern, responsive sites' },
+              { title: 'UI/UX', desc: 'Professional design' },
+              { title: 'Performance', desc: 'Optimized for speed', badge: 'NEW' },
+              { title: 'Support', desc: '24/7 assistance' },
+            ].map(({ title, desc, badge }) => (
+              <div key={title} className="card" style={{
+                padding: '1.5rem',
+                textAlign: 'center',
+                borderRadius: '12px',
+                background: '#f9fafb',
+                border: 'none',
+              }}>
+                {badge && (
+                  <span className="tag" style={{
+                    marginBottom: '0.5rem',
+                    background: '#dbeafe',
+                    color: '#2563eb',
+                    border: 'none',
+                    borderRadius: '9999px',
+                  }}>{badge}</span>
+                )}
+                <h3 style={{
+                  fontSize: '1.25rem',
+                  fontWeight: 600,
+                  color: '#2563eb',
+                  marginBottom: '0.75rem',
+                }}>{title}</h3>
+                <p style={{ color: '#4b5563', margin: 0 }}>{desc}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        <footer className="mt-12 py-6 text-center text-white">
+        <footer style={{
+          marginTop: '3rem',
+          padding: '1.5rem 0',
+          textAlign: 'center',
+          color: 'white',
+        }}>
           <p>&copy; 2026 BerkahKarya. All rights reserved.</p>
         </footer>
       </div>
