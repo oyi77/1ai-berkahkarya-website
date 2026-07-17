@@ -12,6 +12,7 @@ interface LayoutProps {
   noindex?: boolean;
   jsonLd?: object;
   hideHeader?: boolean;
+  hideFooter?: boolean;
 }
 
 const SITE_URL = 'https://berkahkarya.org';
@@ -25,12 +26,14 @@ export default function Layout({
   ogImage,
   noindex,
   jsonLd,
-  hideHeader
+  hideHeader,
+  hideFooter
 }: LayoutProps) {
   const { locale, locales, asPath, pathname } = useRouter();
   const path = asPath;
   
   const shouldHideHeader = hideHeader || pathname.includes('/lp/');
+  const shouldHideFooter = hideFooter || pathname.includes('/lp/');
   const fullTitle = title 
     ? `${title}` 
     : 'BerkahKarya — AI Ecosystem untuk Bisnis Indonesia';
@@ -176,7 +179,7 @@ export default function Layout({
       <main className="ledger-margin">
         <div className="ledger-margin-content">{children}</div>
       </main>
-      <Footer />
+      {!shouldHideFooter && <Footer />}
     </>
   );
 }
