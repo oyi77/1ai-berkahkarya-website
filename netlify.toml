@@ -89,3 +89,22 @@
   to = "/en/belajar/daftar"
   status = 301
   force = true
+
+# VilonaFX — redirect old static page to LP system
+[[redirects]]
+  from = "/vilonafx"
+  to = "/id/lp/vilonafx/1"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/id/vilonafx"
+  to = "/id/lp/vilonafx/1"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/vilonafx"
+  to = "/en/lp/vilonafx/1"
+  status = 301
+  force = true
