@@ -48,6 +48,9 @@ class Ebook(FPDF):
             self.cell(0, 8, f'Halaman {self.page_no()}', align='C')
 
     def section_title(self, num, title, subtitle=""):
+        # Prevent orphan: if remaining space < 35mm, force new page
+        if self.get_y() > self.h - self.b_margin - 35:
+            self.add_page()
         self.ln(4)
         self.set_text_color(180, 120, 20)
         self.set_font(self.F, 'B', 14)
@@ -104,7 +107,7 @@ class Ebook(FPDF):
             self.multi_cell(w, 5, item, new_x='LMARGIN', new_y='NEXT')
             self.ln(0.5)
         self.set_text_color(30)
-        self.ln(2)
+        self.ln(1)
 
 
     def tbl(self, headers, rows, col_widths=None):
@@ -198,6 +201,12 @@ class Ebook(FPDF):
             return
         self.set_x(self.l_margin)
         self.ln(2)
+        # Calculate rendered height and force page break if image won't fit
+        with Image.open(path) as _img:
+            iw, ih = _img.size
+        rendered_h = w * ih / iw
+        if self.get_y() + rendered_h + 10 > self.h - self.b_margin:
+            self.add_page()
         # Calculate centered x
         x = (W - w) / 2
         self.set_x(x)
@@ -583,7 +592,7 @@ def generate():
     pdf.section_title('6', 'Tahapan & Timeline Konstruksi', 'Proyek dari awal hingga serah terima')
 
     img4 = os.path.join(IMG_DIR, 'diagram-potongan.png')
-    pdf.img_centered(img4, w=150, caption='Detail potongan struktur bangunan (pondasi, kolom, ring balk, atap)')
+    pdf.img_centered(img4, w=110, caption='Detail potongan struktur bangunan (pondasi, kolom, ring balk, atap)')
 
     pdf.bold('10 Kategori Pekerjaan (berdasarkan RAB Proyek Riil)')
     pdf.body('Berikut pembagian 10 kelompok pekerjaan dari proyek Rumah 1 Lantai 167 m2 di Jombang — lihat detail RAB 24 item di Bab 4.')
@@ -640,11 +649,14 @@ def generate():
     ]
 
     for title, items, img_name in stages:
+        # Prevent orphan: if < 65mm left, start stage on new page
+        if pdf.get_y() > pdf.h - pdf.b_margin - 50:
+            pdf.add_page()
         pdf.bold(title)
         pdf.bullet(items)
         if img_name:
             ipath = os.path.join(IMG_DIR, img_name)
-            pdf.img_centered(ipath, w=150, caption='')
+            pdf.img_centered(ipath, w=85, caption='')
 
     # Timeline summary
     pdf.bold('Estimasi Total Waktu:')
@@ -660,7 +672,7 @@ def generate():
     pdf.tip('Cuaca hujan bisa menambah 20-30% waktu konstruksi. Siapkan buffer waktu dan biaya.')
 
     img5 = os.path.join(IMG_DIR, 'diagram-sirkulasi.png')
-    pdf.img_centered(img5, w=150, caption='Sirkulasi udara dan pencahayaan alami')
+    pdf.img_centered(img5, w=130, caption='Sirkulasi udara dan pencahayaan alami')
 
     # ===========================
     # BAB 7: STANDAR
@@ -700,7 +712,7 @@ def generate():
     # ===========================
     # STUDI KASUS
     # ===========================
-    pdf.add_page()
+    # Let section_title() handle orphan check automatically
     pdf.section_title('', 'STUDI KASUS', 'Contoh proyek nyata BerkahKarya')
 
     cases = [
