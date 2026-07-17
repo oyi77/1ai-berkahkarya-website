@@ -752,8 +752,263 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 0.82rem;
+  --text-muted: #888;
+}
+
+/* ── RAB Breakdown ── */
+.rabSection {
+  background: var(--bg-secondary);
+}
+
+.rabTotal {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.rabTotalValue {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: var(--gold-light);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.rabTotalValue span {
+  font-size: 1.2rem;
+  font-weight: 500;
   color: var(--text-muted);
 }
+
+.rabTotalSub {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.35rem;
+}
+
+.rabGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.rabBreakdownGroup h3,
+.rabParetoGroup h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 1.5rem;
+}
+
+.rabRow {
+  margin-bottom: 1rem;
+}
+
+.rabRowLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  margin-bottom: 0.3rem;
+}
+
+.rabRowLabel span:first-child {
+  color: var(--text-light);
+}
+
+.rabRowLabel span:last-child {
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.rabRowBar {
+  height: 10px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.rabRowFill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.6s ease;
+}
+
+.rabRowFill.mat { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.rabRowFill.upah { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+.rabRowFill.alat { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+.rabRowFill.overhead { background: linear-gradient(90deg, #10b981, #34d399); }
+.rabRowFill.cont { background: linear-gradient(90deg, #f97316, #fb923c); }
+.rabRowFill.ppn { background: linear-gradient(90deg, #ef4444, #f87171); }
+
+.rabParetoList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.rabParetoItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+.rabParetoRank {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rabParetoInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.rabParetoName {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rabParetoPrice {
+  font-size: 0.82rem;
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.rabNote {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  margin-top: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.rabNote strong {
+  color: var(--gold-light);
+}
+
+/* ── Material Specs ── */
+.matGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.matCard {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.matCard:hover {
+  border-color: var(--gold-border);
+}
+
+.matIcon {
+  font-size: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.matName {
+  font-weight: 600;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.matSpec {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* ── Timeline / Work Categories ── */
+.timeline {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.timelineGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.timelineItem {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.timelineItem:hover {
+  border-color: var(--gold-border);
+}
+
+.timelinePhase {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3rem;
+}
+
+.timelineCat {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 0.25rem;
+}
+
+.timelineItems {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.timelineCost {
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+
+.timelineCTA {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.timelineCTA p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+ }
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {

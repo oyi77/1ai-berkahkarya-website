@@ -72,24 +72,24 @@ const PACKAGES = [
     image: '/images/jasa-kontraktor/desain-1.jpg',
     name: 'Gambar Kerja (DED)',
     price: 'Rp28.000 /m\u00B2',
-    desc: 'Detail Engineering Design lengkap — acuan utama untuk pembangunan & pengurusan IMB. Semua detail teknis tertuang dalam gambar profesional.',
+    desc: 'Detail Engineering Design lengkap — acuan utama untuk pembangunan & pengurusan IMB. 22+ lembar gambar teknis mencakup semua detail dari pondasi hingga atap, berdasarkan standar proyek sesungguhnya.',
     features: [
+      '22+ Lembar Gambar Kerja DED Lengkap',
       'Denah & Tampak Bangunan',
-      'Potongan & Detail Struktur',
-      'Sistem ME (Mekanikal Elektrikal)',
-      'Spesifikasi Material Lengkap',
+      'Potongan, Detail Struktur & Tulangan',
+      'Sistem ME (Mekanikal Elektrikal) & Plumbing',
     ],
   },
   {
     icon: '\u{1F4CA}',
     image: '/images/jasa-kontraktor/konstruksi-gedung.jpg',
-    name: 'Rencana Anggaran Biaya',
+    name: 'Rencana Anggaran Biaya (RAB)',
     price: 'Rp1,2 Juta /paket',
-    desc: 'RAB terperinci per item pekerjaan — Anda tahu persis alokasi dana untuk setiap pos. Tidak ada biaya mendadak, tidak ada pembengkakan.',
+    desc: 'RAB terperinci per item pekerjaan dengan 10 kategori & 24 sub-pekerjaan — seperti proyek riil kami. Anda tahu persis alokasi dana untuk setiap pos. Tidak ada biaya mendadak.',
     features: [
       'Volume & Analisa Harga Satuan',
       'Rekapitulasi Per Item Pekerjaan',
-      'Rekap Per Sub Pekerjaan',
+      'Rekap Per Kategori Pekerjaan (10 Grup)',
       'Rekomendasi Efisiensi Budget',
     ],
   },
@@ -98,7 +98,7 @@ const PACKAGES = [
     image: '/images/jasa-kontraktor/interior-premium.jpg',
     name: 'Visual 3D Realistis',
     price: 'Rp1,2 Juta /paket',
-    desc: 'Visualisasi 3D foto-realistis interior & eksterior — lihat hasil akhir rumah Anda sebelum bangun. Revisi sampai puas.',
+    desc: 'Visualisasi 3D foto-realistis interior & eksterior — lihat hasil akhir rumah Anda sebelum bangun. Revisi sampai puas. Material & tekstur sesuai spesifikasi asli proyek.',
     features: [
       'Eksterior 360\u00B0 dari Berbagai Sisi',
       'Interior Per Ruangan Detail',
@@ -111,68 +111,119 @@ const PACKAGES = [
     image: '/images/jasa-kontraktor/kanopi-pagar.jpg',
     name: 'Paket Lengkap (Desain + RAB + 3D)',
     price: 'Mulai Rp2,5 Juta',
-    desc: 'Dapatkan gambar kerja, RAB detail, dan visual 3D dalam satu paket hemat. Jika tim kami yang bangun, desain GRATIS!',
+    desc: 'Dapatkan gambar kerja (22+ lembar), RAB detail (10 kategori), dan visual 3D dalam satu paket hemat. Jika tim kami yang bangun, desain GRATIS!',
     features: [
-      'Gambar Kerja Lengkap (DED)',
-      'RAB Detail Per Item Pekerjaan',
+      '22+ Lembar Gambar Kerja DED Lengkap',
+      'RAB Detail 10 Kategori Pekerjaan',
       'Visual 3D Interior & Eksterior',
       'GRATIS Desain Jika Kami Yang Bangun',
     ],
   },
 ];
 
+const RAB_CATEGORIES = [
+  { label: 'Material', pct: 48.5, color: 'mat', amount: 'Rp 200.586.108' },
+  { label: 'Upah', pct: 21.2, color: 'upah', amount: 'Rp 87.679.746' },
+  { label: 'Overhead & Profit', pct: 13.3, color: 'overhead', amount: 'Rp 54.856.230' },
+  { label: 'Pajak (PPN)', pct: 9.9, color: 'ppn', amount: 'Rp 40.968.942' },
+  { label: 'Contingency', pct: 7.0, color: 'cont', amount: 'Rp 28.871.700' },
+  { label: 'Alat', pct: 0.1, color: 'alat', amount: 'Rp 451.145' },
+];
+
+const TOP5 = [
+  { rank: 1, name: 'Pasang Dinding Bata Ringan AAC 10cm', price: 'Rp 79.191.087' },
+  { rank: 2, name: 'Pasang Pondasi Batu Kali 1:3:10', price: 'Rp 49.106.391' },
+  { rank: 3, name: 'Plesteran Dinding 1PC:3KP t=15mm', price: 'Rp 47.864.880' },
+  { rank: 4, name: 'Pasang Keramik Lantai Granit Tile 60x60', price: 'Rp 28.787.394' },
+  { rank: 5, name: 'Penutup Atap Genteng Beton Flat', price: 'Rp 26.364.000' },
+];
+
+const MATERIALS = [
+  { icon: '\u{1F3F7}\uFE0F', name: 'Bata Ringan AAC', spec: '60x20x10cm — 8-9 bh/m\u00B2, mortar instan, cepat & rapi' },
+  { icon: '\u{1F3AA}', name: 'Granit Tile', spec: '60x60 & 60x120 cm — Travertine finish, kesan mewah' },
+  { icon: '\u{26A1}', name: 'Rangka Atap Baja Ringan', spec: 'KK Baja Ringan, reng, genteng beton flat — kokoh & ringan' },
+  { icon: '\u{1F6A7}', name: 'Pondasi Batu Kali', spec: '1PC:3KP:10PS — footplate & pondasi menerus, kedalaman 1.5m' },
+  { icon: '\u{1F4CB}', name: 'Kusen Aluminium 4"', spec: 'Powder coating finish, kaca bening 5mm, sliding & swing' },
+  { icon: '\u{1F3E0}', name: 'Plafond Gypsum', spec: '9mm gypsum board, rangka hollow galvanis 20x40' },
+  { icon: '\u{1F6B0}', name: 'Plumbing', spec: 'Pipa PVC Ø\u00BE" — 3", air bersih & kotor, septik tank + resapan' },
+  { icon: '\u{1F4A1}', name: 'Instalasi Listrik', spec: 'Titik lampu downlight, saklar, stop kontak, panel MCB 2.200 VA' },
+];
+
+const WORK_10 = [
+  { phase: 'I', cat: 'Persiapan', items: 'Pembersihan, Bouwplank, Galian, Urugan', cost: 'Rp 12,4 Juta' },
+  { phase: 'II', cat: 'Struktur Pondasi', items: 'Pondasi Batu Kali, Sloof 15x20', cost: 'Rp 44,6 Juta' },
+  { phase: 'III', cat: 'Struktur Beton', items: 'Kolom K1/KP 12x12, Ring Balok 15x20', cost: 'Rp 4,3 Juta' },
+  { phase: 'IV', cat: 'Dinding', items: 'Bata Ringan AAC 10cm, Plester, Acian', cost: 'Rp 115,9 Juta' },
+  { phase: 'V', cat: 'Atap', items: 'Rangka Baja Ringan, Genteng Beton Flat', cost: 'Rp 36,7 Juta' },
+  { phase: 'VI', cat: 'Lantai', items: 'Granit Tile 60x60, Keramik Kasar, Batu Alam', cost: 'Rp 23,9 Juta' },
+  { phase: 'VII', cat: 'Plafond', items: 'Rangka Hollow, Gypsum 9mm', cost: 'Rp 7,2 Juta' },
+  { phase: 'VIII', cat: 'Finishing', items: 'Cat, Kusen Aluminium, Pintu Jati, Closet', cost: 'Rp 31,3 Juta' },
+  { phase: 'IX', cat: 'Instalasi', items: 'Titik Lampu, Pipa Air Bersih', cost: 'Rp 3,9 Juta' },
+  { phase: 'X', cat: 'Eksterior', items: 'Septik Tank & Resapan', cost: 'Rp 8,5 Juta' },
+];
+
 const PROCESS = [
-  {
-    icon: '\u{1F4AC}',
-    title: 'Konsultasi & Survey',
-    desc: 'Diskusi gratis via WA/telepon atau survey lokasi. Kami pahami kebutuhan, budget, & lokasi Anda tanpa biaya.',
-  },
-  {
-    icon: '\u{1F3D7}\uFE0F',
-    title: 'Desain & RAB Detail',
-    desc: 'Tim arsitek buatkan desain lengkap + RAB terperinci. Anda review, revisi sampai puas sebelum eksekusi.',
-  },
-  {
-    icon: '\u{1F3D7}\uFE0F',
-    title: 'Eksekusi & Monitoring',
-    desc: 'Proyek dikerjakan tim profesional. Progress dilaporkan mingguan via WA — Anda pantau dari mana saja.',
-  },
-  {
-    icon: '\u{1F389}',
-    title: 'Serah Terima & Garansi',
-    desc: 'Hasil jadi diperiksa bersama, garansi berlaku. Anda tinggal menikmati rumah impian tanpa drama.',
-  },
+  { icon: '\u{1F9F1}', title: 'Konsultasi & Brief', desc: 'Diskusi kebutuhan, gaya arsitektur, luas & anggaran awal. Gratis, tanpa komitmen.' },
+  { icon: '\u{1F4D0}', title: 'Survei Lokasi', desc: 'Tim engineer & surveyor ukur lahan, cek kondisi tanah & akses bangunan.' },
+  { icon: '\u{1F3A8}', title: 'Desain & Gambar Kerja', desc: '22+ lembar DED — denah, potongan, detail struktur, ME, plumbing. Siap IMB.' },
+  { icon: '\u{1F4CA}', title: 'RAB & Rencana Anggaran', desc: 'Perhitungan volume & biaya per 10 kategori pekerjaan, analisa harga satuan.' },
+  { icon: '\u{1F3AA}', title: 'Visual 3D Realistis', desc: 'Preview eksterior & interior — lihat hasil akhir rumah Anda sebelum bangun.' },
+  { icon: '\u{1F4DF}', title: 'Kontrak & Perizinan', desc: 'MoU, timeline, pembayaran bertahap. Bantuan pengurusan IMB jika diperlukan.' },
+  { icon: '\u{1F3D7}\uFE0F', title: 'Pelaksanaan & Progress', desc: 'Tahap I (Persiapan) s.d. X (Eksterior). Laporan progress mingguan via WA.' },
+  { icon: '\u{270F}\uFE0F', title: 'Quality Control', desc: 'Pengawasan ketat di tiap tahap — material sesuai spek, pengerjaan rapi.' },
+  { icon: '\u{1F3E0}', title: 'Finishing & Serah Terima', desc: 'Pembersihan, pengecekan seluruh fungsi, serah terima kunci & dokumen.' },
+  { icon: '\u{1F389}', title: 'Garansi & Aftercare', desc: 'Garansi 6 bulan untuk finishing, 1 tahun untuk struktur. Konsultasi gratis seumur hidup.' },
 ];
 
 const PORTFOLIO = [
-  { src: '/images/jasa-kontraktor/tangga-rumah-1.jpg', label: 'Tangga Rumah Tingkat', sub: 'Jakarta' },
-  { src: '/images/jasa-kontraktor/pagar-1.jpg', label: 'Pagar Rumah Minimalis', sub: 'Bekasi' },
-  { src: '/images/jasa-kontraktor/kanopi-1.jpg', label: 'Kanopi Multifungsi', sub: 'Depok' },
-  { src: '/images/jasa-kontraktor/interior-cafe-real-1.jpg', label: 'Interior Cafe & Coffee Shop', sub: 'Bandung' },
-  { src: '/images/jasa-kontraktor/interior-kantor-real-1.jpg', label: 'Kantor Eksekutif Modern', sub: 'SCBD, Jakarta' },
-  { src: '/images/jasa-kontraktor/desain-rumah.jpg', label: 'Desain Rumah Modern 2 Lantai', sub: 'Jakarta Selatan' },
+  { src: '/images/jasa-kontraktor/rumah-1.jpg', label: 'Rumah Modern Minimalis', sub: 'Jakarta Selatan — 2 Lantai, 250 m\u00B2' },
+  { src: '/images/jasa-kontraktor/interior-1.jpg', label: 'Interior Kafe Industrial', sub: 'Bandung — 60 m\u00B2, Konsep Industrial' },
+  { src: '/images/jasa-kontraktor/gedung-1.jpg', label: 'Kantor 3 Lantai', sub: 'Jakarta Timur — 600 m\u00B2, Gedung Perkantoran' },
+  { src: '/images/jasa-kontraktor/renovasi-1.jpg', label: 'Renovasi Rumah Tua', sub: 'Surabaya — 150 m\u00B2, Renovasi Total' },
+  { src: '/images/jasa-kontraktor/kanopi-1.jpg', label: 'Kanopi & Pagar Minimalis', sub: 'Semarang — 40 m, Baja Ringan' },
+  { src: '/images/jasa-kontraktor/rumah-2.jpg', label: 'Rumah Tropis Modern', sub: 'Jombang — 1 Lantai, 167 m\u00B2' },
 ];
 
 const WHY = [
   {
-    icon: '\u{1F4D0}',
-    title: 'Gambar Kerja Detail',
-    desc: 'Tukang tidak menebak-nebak. Semua ukuran, material, & spesifikasi tertuang dalam gambar kerja lengkap sebagai acuan lapangan.',
+    icon: '\u{1F468}\u200D\u{1F3EB}',
+    title: 'Tim Profesional & Berpengalaman',
+    desc: 'Arsitek, engineer sipil, & pelaksana dalam satu tim — lebih dari 200 proyek telah kami selesaikan dengan hasil memuaskan.',
   },
   {
-    icon: '\u{1F4CA}',
-    title: 'RAB Kontrol Biaya',
-    desc: 'Setiap pos pekerjaan dianggarkan detail — Anda tahu persis alokasi dana dari awal tanpa biaya mendadak.',
+    icon: '\u{1F4B0}',
+    title: 'Biaya Transparan — Tidak Ada Biaya Mendadak',
+    desc: 'RAB detail per item pekerjaan dengan volume & harga satuan. Anda tahu persis alokasi dana dari awal hingga akhir.',
   },
   {
-    icon: '\u{1F4F1}',
-    title: 'Update Progress Berkala',
-    desc: 'Laporan mingguan via WhatsApp berupa foto, video, & persentase progres. Anda pantau dari mana saja, kapan saja.',
+    icon: '\u{1F4CB}',
+    title: 'Gambar Kerja Lengkap (22+ Lembar)',
+    desc: 'DED profesional siap IMB — denah, potongan, detail struktur, ME, plumbing. Tidak ada tebak-tebakan di lapangan.',
   },
   {
-    icon: '\u{1F91D}',
-    title: 'Satu Tim — Desain ke Pembangunan',
-    desc: 'Arsitek, engineer, & pelaksana dalam satu koordinasi. Tidak ada lempar tanggung jawab antar vendor.',
+    icon: '\u{1F3D7}\uFE0F',
+    title: 'Progress Terpantau — Laporan Mingguan',
+    desc: 'Update progress via WhatsApp setiap minggu, dokumentasi foto tiap tahap. Anda bisa pantau dari mana saja.',
+  },
+  {
+    icon: '\u{1F4B8}',
+    title: 'Harga Bersaing, Bisa Bertahap',
+    desc: 'Sistem pembayaran termin disesuaikan progress proyek. Tidak perlu bayar lunas di awal — lebih nyaman di kantong.',
+  },
+  {
+    icon: '\u{1F6E1}\uFE0F',
+    title: 'Garansi & Aftercare',
+    desc: 'Garansi 6 bulan finishing, 1 tahun struktur. Konsultasi gratis seumur hidup — kami tetap ada meski proyek selesai.',
+  },
+  {
+    icon: '\u{1F3C6}',
+    title: '100% Sesuai Gambar — Tidak Ada Perubahan Sepihak',
+    desc: 'Semua perubahan dikomunikasikan & disetujui dulu. Hasil akhir sesuai dengan apa yang sudah Anda setujui di awal.',
+  },
+  {
+    icon: '\u{1F30D}',
+    title: 'Melayani Berbagai Skala Proyek',
+    desc: 'Dari renovasi rumah, kafe, kantor, hingga bangun rumah baru & gedung komersial. Semua dikerjakan dengan standar yang sama.',
   },
 ];
 
@@ -274,8 +325,7 @@ export default function JasaKontraktorLP1({ locale = 'id' }: { locale?: string }
               {[
                 {
                   icon: '\u{1F4B0}',
-                  title: 'Budget Membengkak',
-                  desc: 'Estimasi awal tidak detail, biaya material naik di tengah jalan, pekerjaan tambah-tambah tanpa hitungan.',
+                  desc: 'Estimasi awal tidak detail, biaya material naik di tengah jalan. Contoh nyata: dinding bata ringan AAC + plester + acian untuk rumah 1 lantai bisa mencapai Rp 127+ JUTA — tanpa RAB detail, Anda baru tahu saat tagihan datang.',
                 },
                 {
                   icon: '\u{1F504}',
@@ -284,13 +334,12 @@ export default function JasaKontraktorLP1({ locale = 'id' }: { locale?: string }
                 },
                 {
                   icon: '\u{1F9F1}',
-                  title: 'Material Tidak Sesuai',
-                  desc: 'Tukang pakai material asal-asalan karena tidak ada pengawasan dari ahli — hasil akhir di bawah standar.',
+                  desc: 'Tukang pakai material asal-asalan tanpa pengawasan ahli. Bata ringan AAC, granit tile 60×60, baja ringan, kusen aluminium 4" powder coating — semua ada standar spesifikasinya yang harus diikut.',
                 },
                 {
                   icon: '\u23F0',
                   title: 'Waktu Pengerjaan Molor',
-                  desc: 'Janji 3 bulan jadi 6 bulan. Tidak ada jadwal kerja jelas, progress tidak terukur, komunikasi terputus.',
+                  desc: 'Janji 3 bulan jadi 6 bulan. Tidak ada jadwal kerja jelas. Proyek rumah 1 lantai ideal 3–4 bulan, 2 lantai 4–6 bulan — tanpa timeline & milestone pasti, risiko molor sangat tinggi.',
                 },
               ].map((p) => (
                 <div key={p.title} className={s.painCard}>
@@ -439,6 +488,141 @@ export default function JasaKontraktorLP1({ locale = 'id' }: { locale?: string }
           </div>
         </section>
 
+
+        {/* ═══ RAB BREAKDOWN ═══ */}
+        <section className={`${s.section} ${s.sectionDark}`}>
+          <div className={s.container}>
+            <h2 className={s.sectionTitle}>
+              RAB Realistis{' '}
+              <span className={s.solidAccent}>Rp 413 Juta</span>
+            </h2>
+            <p className={s.sectionSub}>
+              Ini bukan perkiraan asal — ini data proyek riil kami, Rumah Tinggal 1 Lantai
+              (167 m&sup2;) di Pagerwojo, Jombang. 10 kategori pekerjaan, 24 sub-pekerjaan,
+              transparan penuh agar Anda tidak over-budget.
+            </p>
+
+            <div className={s.rabTotal}>
+              <div className={s.rabTotalValue}>
+                Rp 413.415.366
+                <span>Total Anggaran Biaya (RAB)</span>
+              </div>
+              <div className={s.rabTotalSub}>
+                Rumah Tinggal 1 Lantai — Luas 167 m&sup2; — 10 Kategori Pekerjaan
+              </div>
+            </div>
+
+            <div className={s.rabGrid}>
+              <div className={s.rabBreakdownGroup}>
+                <h3>Rincian Biaya</h3>
+                {RAB_CATEGORIES.map((cat) => (
+                  <div key={cat.label} className={s.rabRow}>
+                    <div className={s.rabRowLabel}>
+                      <span>{cat.label}</span>
+                      <span>{cat.amount} ({cat.pct}%)</span>
+                    </div>
+                    <div className={s.rabRowBar}>
+                      <div
+                        className={`${s.rabRowFill} ${s[cat.color]}`}
+                        style={{ width: `${cat.pct * 2.5}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className={s.rabParetoGroup}>
+                <h3>5 Item Pekerjaan Termahal</h3>
+                <div className={s.rabParetoList}>
+                  {TOP5.map((item) => (
+                    <div key={item.rank} className={s.rabParetoItem}>
+                      <div className={s.rabParetoRank}>#{item.rank}</div>
+                      <div className={s.rabParetoInfo}>
+                        <div className={s.rabParetoName}>{item.name}</div>
+                        <div className={s.rabParetoPrice}>{item.price}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className={s.rabNote}>
+                  * Harga material, upah, & overhead disesuaikan dengan kondisi pasar
+                  daerah setempat. Dapat berubah sesuai lokasi & spesifikasi.
+                  <strong> Dapatkan RAB detail untuk proyek Anda!</strong>
+                </div>
+              </div>
+            </div>
+
+            <div className={s.ctaRow}>
+              <TrackedCTA
+                href="https://wa.me/6285732740006?text=Halo%20BerkahKarya%20Kontraktor%20-%20saya%20minta%20contoh%20RAB%20lengkap%20seperti%20proyek%20Rp%20413%20juta.%20Terima%20kasih."
+                className={s.btnPrimary}
+                productName="Jasa Kontraktor - RAB Contoh"
+              >
+                {'\u{1F4AC}'} Minta Contoh RAB Lengkap
+              </TrackedCTA>
+            </div>
+          </div>
+        </section>
+        {/* ═══ MATERIAL SPECS ═══ */}
+        <section className={s.section}>
+          <div className={s.container}>
+            <h2 className={s.sectionTitle}>
+              Spesifikasi Material{' '}
+              <span className={s.gradientAccent}>Standar Proyek</span>
+            </h2>
+            <p className={s.sectionSub}>
+              Setiap material kami pilih berdasarkan standar SNI, ketahanan jangka panjang, & hasil
+              akhir yang memuaskan. Ini spesifikasi yang kami gunakan di proyek riil kami.
+            </p>
+            <div className={s.matGrid}>
+              {MATERIALS.map((m) => (
+                <div key={m.name} className={s.matCard}>
+                  <div className={s.matIcon}>{m.icon}</div>
+                  <div className={s.matName}>{m.name}</div>
+                  <div className={s.matSpec}>{m.spec}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══ WORK TIMELINE ═══ */}
+        <section className={`${s.section} ${s.sectionDark}`}>
+          <div className={s.container}>
+            <h2 className={s.sectionTitle}>
+              10 Kategori{' '}
+              <span className={s.solidAccent}>Pekerjaan</span>
+            </h2>
+            <p className={s.sectionSub}>
+              Dari Persiapan hingga Eksterior — setiap tahap dikerjakan dengan standar kualitas
+              tinggi & pengawasan ketat. Anda tahu apa yang dikerjakan & berapa biayanya.
+            </p>
+            <div className={s.timeline}>
+              <div className={s.timelineGrid}>
+                {WORK_10.map((w) => (
+                  <div key={w.phase} className={s.timelineItem}>
+                    <div className={s.timelinePhase}>Tahap {w.phase}</div>
+                    <div className={s.timelineCat}>{w.cat}</div>
+                    <div className={s.timelineItems}>{w.items}</div>
+                    <div className={s.timelineCost}>{w.cost}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={s.timelineCTA}>
+              <p>
+                Ingin lihat RAB & timeline detail untuk proyek Anda?
+              </p>
+              <TrackedCTA
+                href="https://wa.me/6285732740006"
+                className={s.btnPrimary}
+                productName="Jasa Kontraktor - Timeline Detail"
+              >
+                {'\u{1F4AC}'} Minta RAB & Timeline Detail
+              </TrackedCTA>
+            </div>
+          </div>
+        </section>
         {/* ═══ TESTIMONIALS ═══ */}
         <section className={s.section}>
           <div className={s.container}>
@@ -473,12 +657,13 @@ export default function JasaKontraktorLP1({ locale = 'id' }: { locale?: string }
             <div className={s.leadMagnet}>
               <div className={s.leadBadge}>GRATIS</div>
               <h3 className={s.leadTitle}>
-                Panduan Bangun Rumah Lengkap
+                Gratis: Panduan + Contoh RAB
               </h3>
               <p className={s.leadDesc}>
-                Dapatkan ebook GRATIS berisi checklist bangun rumah, estimasi budget, dan tips
-                memilih kontraktor. Download langsung atau dapatkan via WhatsApp + bonus tips
-                eksklusif.
+                Dapatkan 2 referensi GRATIS: (1) Ebook &ldquo;Panduan Bangun Rumah Lengkap&rdquo;
+                berisi 7 bab dari persiapan hingga finishing, dan (2) Contoh RAB proyek riil
+                Rp 413 juta lengkap dengan 10 kategori pekerjaan & spesifikasi material.
+                Download langsung atau minta via WhatsApp + bonus tips eksklusif.
               </p>
               <div className={s.ctaRow}>
                 <TrackedCTA
