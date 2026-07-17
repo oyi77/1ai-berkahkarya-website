@@ -1,0 +1,536 @@
+/* ═══════════════════════════════════════════════════════════════
+   LP BASE LAYOUT — structural CSS using CSS custom properties
+   Each LP CSS module sets its own color scheme via variables.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── CSS Variables (override per LP) ── */
+.wrapper {
+  --bg-primary: #0a0a0a;
+  --bg-section: #0d0d0d;
+  --bg-card: #151515;
+  --bg-card-hover: #1a1a1a;
+  --border-card: #262626;
+  --text-primary: #e5e5e5;
+  --text-secondary: #a3a3a3;
+  --text-muted: #737373;
+  --text-white-60: rgba(255,255,255,0.6);
+  --text-white-85: rgba(255,255,255,0.85);
+  --accent: #f97316;
+  --accent-secondary: #ef4444;
+  --accent-gradient: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 50%, #dc2626 100%);
+  --hero-gradient: radial-gradient(ellipse at top, #1c1917 0%, var(--bg-primary) 70%);
+  --badge-bg: rgba(249,115,22,0.1);
+  --badge-border: rgba(249,115,22,0.3);
+  --badge-text: #f97316;
+  --badge-dot: #f97316;
+  --cta-gradient: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  --cta-shadow: rgba(249,115,22,0.3);
+  --cta-text: #fff;
+  --final-cta-gradient: radial-gradient(ellipse at bottom, #1c1917 0%, var(--bg-primary) 70%);
+  --gradient-text-bg: var(--accent-gradient);
+  overflow-x: hidden;
+}
+
+/* ── Hero Section ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: var(--hero-gradient);
+  position: relative;
+}
+
+.heroInner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ── Badge ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  color: var(--badge-text);
+  margin-bottom: 2rem;
+}
+
+.badgeDot {
+  width: 8px;
+  height: 8px;
+  background: var(--badge-dot);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .5; transform: scale(1.2); }
+}
+
+/* ── Title ── */
+.title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.gradientText {
+  background: var(--gradient-text-bg);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 80px rgba(249,115,22,0.5);
+}
+
+/* ── Subtitle ── */
+.subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+/* ── CTA Row ── */
+.ctaRow {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--cta-gradient);
+  color: var(--cta-text);
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 40px var(--cta-shadow);
+  cursor: pointer;
+  border: none;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 60px var(--cta-shadow);
+}
+
+/* ── Trust Strip ── */
+.trustStrip {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.trustStrip span::before {
+  content: "✓ ";
+  color: var(--accent);
+}
+
+/* ── Section ── */
+.section {
+  padding: 5rem 1.5rem;
+  background: var(--bg-section);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.sectionTitle {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--text-primary);
+}
+
+/* ── Grid Layouts ── */
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+}
+
+.cardIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Step Card ── */
+.stepCard {
+  text-align: center;
+  padding: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.stepCard:hover {
+  transform: translateY(-4px);
+  background: var(--bg-card-hover);
+}
+
+.stepNum {
+  width: 60px;
+  height: 60px;
+  background: var(--accent-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin: 0 auto 1rem;
+  color: #fff;
+}
+
+.stepCard h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.stepCard p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* ── Compare Grid ── */
+.compareGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .compareGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.compareOld, .compareNew {
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.compareOld {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+}
+
+.compareNew {
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+}
+
+.compareOld h3, .compareNew h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+}
+
+.compareOld ul, .compareNew ul {
+  list-style: none;
+}
+
+.compareOld li, .compareNew li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-card);
+  font-size: 0.9rem;
+}
+
+.compareOld li:last-child, .compareNew li:last-child {
+  border-bottom: none;
+}
+
+.compareOld li { color: var(--text-white-60); }
+.compareNew li { color: var(--text-white-85); }
+
+.xMark::before { content: "✗ "; color: #ef4444; }
+.checkMark::before { content: "✓ "; color: #22c55e; }
+
+/* ── Timeline ── */
+.timeline {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-left: 2px solid var(--border-card);
+  padding-left: 2rem;
+  position: relative;
+}
+
+.timelineItem::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 2rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.timelineDot {
+  display: none;
+}
+
+.timelineOld { opacity: 0.5; }
+.timelineNew { opacity: 1; }
+.timelineNew .timelineDot { background: var(--accent); }
+
+.timelineContent h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.timelineContent p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ── Testimonial Card ── */
+.testiCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.testiStars {
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.testiCard blockquote {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testiAuthor {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testiAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #000;
+}
+
+.testiAuthor strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.testiAuthor span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ── Stats Row ── */
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.stat {
+  padding: 1.5rem;
+}
+
+.statNum {
+  font-size: 2.5rem;
+  font-weight: 900;
+  background: var(--gradient-text-bg);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* ── Final CTA ── */
+.finalCta {
+  padding: 6rem 1.5rem;
+  text-align: center;
+  background: var(--final-cta-gradient);
+  position: relative;
+}
+
+.finalCta .container {
+  max-width: 700px;
+}
+
+.finalCta .sectionTitle {
+  margin-bottom: 1rem;
+}
+
+.finalCta .subtitle {
+  margin: 0 auto 2rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .grid4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 1.25rem;
+    min-height: auto;
+  }
+
+  .title {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+
+  .section {
+    padding: 3rem 1.25rem;
+  }
+
+  .grid3, .grid4 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .trustStrip {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .finalCta {
+    padding: 4rem 1.25rem;
+  }
+
+  .compareGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .btnPrimary {
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ctaRow a {
+    text-align: center;
+  }
+
+  .statsRow {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}

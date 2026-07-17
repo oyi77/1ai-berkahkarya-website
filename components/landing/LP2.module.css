@@ -1,0 +1,14 @@
+.wrapper {
+  --accent: #a855f7;
+  --accent-secondary: #7c3aed;
+  --accent-dark: #6d28d9;
+  --gradient-text-bg: linear-gradient(135deg, #a855f7 0%, #7c3aed 50%, #6d28d9 100%);
+  --hero-gradient: radial-gradient(ellipse at top, #1c1917 0%, #0a0a0a 70%);
+  --badge-bg: rgba(168,85,247,0.1);
+  --badge-border: rgba(168,85,247,0.3);
+  --badge-text: #a855f7;
+  --badge-dot: #a855f7;
+  --cta-gradient: linear-gradient(135deg, #a855f7, #7c3aed);
+  --cta-shadow: rgba(168,85,247,0.3);
+  --final-cta-gradient: radial-gradient(ellipse at bottom, #1c1917 0%, #0a0a0a 70%);
+}

@@ -49,6 +49,20 @@ import JasaDesignLP1 from './jasa-design/LP1';
 
 register('jasa-design', '1', JasaDesignLP1);
 
+// ══════════════════════════════════════
+// VilonaFX LPs
+// ══════════════════════════════════════
+import VilonaFXLP1 from './vilonafx/LP1';
+
+register('vilonafx', '1', VilonaFXLP1);
+
+// ══════════════════════════════════════
+// Jasa Kontraktor LPs
+// ══════════════════════════════════════
+import JasaKontraktorLP1 from './jasa-kontraktor/LP1';
+
+register('jasa-kontraktor', '1', JasaKontraktorLP1);
+
 // ─── Metadata per service ───
 export interface ServiceMeta {
   service: string;
@@ -85,6 +99,20 @@ export const SERVICE_METADATA: ServiceMeta[] = [
     icon: '🏛️',
     displayName: { id: 'Jasa Design', en: 'Design Services' },
     description: { id: 'Jasa design arsitektur & interior — gambar kerja, 3D visualisasi, RAB detail.', en: 'Architecture & interior design services — working drawings, 3D visualization, detailed RAB.' },
+    lps: ['1'],
+  },
+  {
+    service: 'vilonafx',
+    icon: '🤖',
+    displayName: { id: 'Vilona Trade FX', en: 'Vilona Trade FX' },
+    description: { id: 'AI Trading Assistant — sinyal trading akurat, auto-eksekusi, dan platform whitelabel untuk bisnis sinyal Anda sendiri.', en: 'AI Trading Assistant — accurate trading signals, auto-execution, and whitelabel platform for your own signal business.' },
+    lps: ['1'],
+  },
+  {
+    service: 'jasa-kontraktor',
+    icon: '🏗️',
+    displayName: { id: 'Jasa Kontraktor', en: 'Contractor Services' },
+    description: { id: 'Jasa kontraktor & desain bangunan profesional — rumah, kantor, hotel, interior, kanopi, pagar, RAB. Gratis konsultasi.', en: 'Professional contractor & building design services — home, office, hotel, interior, carport, fence, RAB. Free consultation.' },
     lps: ['1'],
   },
 ];
