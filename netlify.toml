@@ -4,6 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
 # Next.js is handled via default build
 #[[plugins]]
