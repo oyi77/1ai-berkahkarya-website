@@ -151,7 +151,7 @@ export default function JasaSosmedPage({ locale }: Props) {
       : 'Free consultation — we\'ll audit your account and create the right strategy.',
     ctaBtn: isIndonesian ? 'Konsultasi Gratis' : 'Free Consultation',
     ctaBtnLink: `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`,
-    ctaSecondary: '/id/jasa-sosmed',
+    ctaSecondary: `/${locale}/jasa-sosmed`,
   };
 
   const jsonLd = {

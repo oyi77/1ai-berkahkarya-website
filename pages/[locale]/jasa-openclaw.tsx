@@ -123,7 +123,7 @@ export default function JasaOpenClaw({ locale }: Props) {
       : 'Free consultation to see how OpenClaw can make your business more efficient.',
     ctaBtn: isIndonesian ? 'Konsultasi Gratis' : 'Free Consultation',
     ctaBtnLink: `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`,
-    ctaSecondary: '/id/jasa-openclaw',
+    ctaSecondary: `/${locale}/jasa-openclaw`,
     ctaNote: isIndonesian
       ? '*Cocok untuk bisnis online, UMKM digital, startup, dan agency.'
       : '*Suitable for online businesses, digital SMEs, startups, and agencies.',

@@ -147,7 +147,7 @@ export default function JasaFotoProdukPage({ locale }: Props) {
       : 'Free consultation, send us a sample product, see the results before deciding.',
     ctaBtn: isIndonesian ? 'Konsultasi Gratis' : 'Free Consultation',
     ctaBtnLink: `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`,
-    ctaSecondary: '/id/jasa-foto-produk',
+    ctaSecondary: `/${locale}/jasa-foto-produk`,
   };
 
   const jsonLd = {

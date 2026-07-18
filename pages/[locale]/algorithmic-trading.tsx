@@ -149,7 +149,7 @@ export default function AlgorithmicTradingPage({ locale }: Props) {
       : 'Free consultation — our team helps you choose the right package for your capital and trading goals.',
     ctaBtn: isIndonesian ? 'Konsultasi Gratis' : 'Free Consultation',
     ctaBtnLink: `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`,
-    ctaSecondary: '/id/algorithmic-trading',
+    ctaSecondary: `/${locale}/algorithmic-trading`,
   };
 
   const jsonLd = {

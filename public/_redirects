@@ -23,3 +23,51 @@
 /vilonafx               /id/lp/vilonafx/1          301
 # ── Root → locale (middleware doesn't work with static export) ──
 /                        /id/                            301
+
+# ── Locale-less page redirects (middleware doesn't run with static export) ──
+/academy                /id/academy               301
+/adforge-ai             /id/adforge-ai            301
+/ai-agent-pro           /id/ai-agent-pro          301
+/ai-automation          /id/ai-automation         301
+/ai-video-studio        /id/ai-video-studio       301
+/algorithmic-trading    /id/algorithmic-trading   301
+/belajarai              /id/belajarai             301
+/belajar/daftar         /id/belajar/daftar        301
+/belajar/kurikulum      /id/belajar/kurikulum     301
+/certificate-design     /id/certificate-design    301
+/contact                /id/contact               301
+/custom-documents       /id/custom-documents      301
+/deep-research          /id/deep-research         301
+/digital-products       /id/digital-products      301
+/digital-products/ebook-suami-sejati  /id/digital-products/ebook-suami-sejati  301
+/ecosystem              /id/ecosystem             301
+/jasa-content-planner   /id/jasa-content-planner  301
+/jasa-design            /id/jasa-design           301
+/jasa-foto-produk       /id/jasa-foto-produk      301
+/jasa-openclaw          /id/jasa-openclaw         301
+/jasa-sosmed            /id/jasa-sosmed           301
+/jasa-video-ai          /id/jasa-video-ai         301
+/jasa-website           /id/jasa-website          301
+/one-ai                 /id/one-ai                301
+/portfolio              /id/portfolio             301
+/pricing                /id/pricing               301
+/privacy-policy         /id/privacy-policy        301
+/rev-system             /id/rev-system            301
+/roadmap                /id/roadmap               301
+/security-audit         /id/security-audit        301
+/social-media-management  /id/social-media-management  301
+/story                  /id/story                 301
+/team                   /id/team                  301
+/terms-of-service       /id/terms-of-service      301
+/transparency           /id/transparency          301
+/video-production       /id/video-production      301
+/website-development    /id/website-development   301
+
+# ── LP pages: /lp/* → /id/lp/* ──
+/lp/*                   /id/lp/:splat             301
+
+# ── Course redirects (moved to belajarai) ──
+/kurikulum              /id/belajar/kurikulum     301
+/daftar                 /id/belajar/daftar        301
+/en/kurikulum           /en/belajar/kurikulum     301
+/en/daftar              /en/belajar/daftar        301

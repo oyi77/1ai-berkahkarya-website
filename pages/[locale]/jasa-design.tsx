@@ -148,7 +148,7 @@ export default function JasaDesignPage({ locale }: Props) {
       : 'Free consultation — share your ideas, we\'ll turn them into working drawings and 3D visualizations.',
     ctaBtn: isIndonesian ? 'Konsultasi Gratis' : 'Free Consultation',
     ctaBtnLink: `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`,
-    ctaSecondary: '/id/jasa-design',
+    ctaSecondary: `/${locale}/jasa-design`,
   };
 
   const jsonLd = {

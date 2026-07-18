@@ -149,7 +149,7 @@ export default function JasaContentPlannerPage({ locale }: Props) {
       : 'Free consultation — we\'ll create the perfect content strategy for your brand!',
     ctaBtn: isIndonesian ? 'Konsultasi Gratis' : 'Free Consultation',
     ctaBtnLink: `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`,
-    ctaSecondary: '/id/jasa-content-planner',
+    ctaSecondary: `/${locale}/jasa-content-planner`,
   };
 
   const jsonLd = {

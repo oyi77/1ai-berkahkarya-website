@@ -152,7 +152,7 @@ export default function JasaVideoAIPage({ locale }: Props) {
       : 'Free consultation, no obligations. Tell us your video idea, we\'ll make it happen.',
     ctaBtn: isIndonesian ? 'Konsultasi Gratis' : 'Free Consultation',
     ctaBtnLink: `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`,
-    ctaSecondary: '/id/jasa-video-ai',
+    ctaSecondary: `/${locale}/jasa-video-ai`,
   };
 
   const jsonLd = {

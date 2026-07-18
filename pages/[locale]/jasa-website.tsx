@@ -275,7 +275,7 @@ export default function JasaWebsitePage({ locale }: Props) {
       : 'Free consultation, no obligations. We\'ll discuss your website needs and find the best solution.',
     ctaBtn: isIndonesian ? 'Konsultasi Gratis Sekarang' : 'Free Consultation Now',
     ctaBtnLink: `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`,
-    ctaSecondary: '/id/jasa-website',
+    ctaSecondary: `/${locale}/jasa-website`,
   };
 
   const jsonLd = {
