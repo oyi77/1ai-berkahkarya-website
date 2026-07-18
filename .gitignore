@@ -7,3 +7,5 @@ next-env.d.ts
 .next/
 local/
 out-static/
+__pycache__/
+*.tsbuildinfo
