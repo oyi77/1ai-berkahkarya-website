@@ -32,8 +32,9 @@ export default function Layout({
   const { locale, locales, asPath, pathname } = useRouter();
   const path = asPath;
   
-  const shouldHideHeader = hideHeader || pathname.includes('/lp/');
-  const shouldHideFooter = hideFooter || pathname.includes('/lp/');
+  const isLPPage = pathname.includes('/lp/');
+  const shouldHideHeader = hideHeader || isLPPage;
+  const shouldHideFooter = hideFooter || isLPPage;
   const fullTitle = title 
     ? `${title}` 
     : 'BerkahKarya — AI Ecosystem untuk Bisnis Indonesia';
@@ -175,10 +176,13 @@ export default function Layout({
           />
         ))}
       </Head>
-      {!shouldHideHeader && <Header />}
-      <main className="ledger-margin">
-        <div className="ledger-margin-content">{children}</div>
-      </main>
+      {isLPPage ? (
+        <>{children}</>
+      ) : (
+        <main className="ledger-margin">
+          <div className="ledger-margin-content">{children}</div>
+        </main>
+      )}
       {!shouldHideFooter && <Footer />}
     </>
   );
