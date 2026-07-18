@@ -670,34 +670,22 @@ export default function JasaKontraktorLP1({ locale = 'id' }: { locale?: string }
             <div className={s.leadMagnet}>
               <div className={s.leadBadge}>GRATIS</div>
               <h3 className={s.leadTitle}>
-                Gratis: Panduan + Contoh RAB
+                Konsultasi Gratis — Langsung ke Admin
               </h3>
               <p className={s.leadDesc}>
-                Dapatkan 2 referensi GRATIS: (1) Ebook &ldquo;Panduan Bangun Rumah Lengkap&rdquo;
-                berisi 7 bab dari persiapan hingga finishing, dan (2) Contoh RAB proyek riil
-                Rp 413 juta lengkap dengan 10 kategori pekerjaan & spesifikasi material.
-                Download langsung atau minta via WhatsApp + bonus tips eksklusif.
+                Punya rencana bangun rumah, renovasi, atau butuh desain? Admin kami siap bantu —
+                diskusi kebutuhan, estimasi biaya, dan rekomendasi konsep. Semua gratis, tanpa
+                kewajiban lanjut.
               </p>
-              <div className={s.ctaRow}>
+              <div className={s.ctaRow} style={{ flexDirection: 'column', gap: '0' }}>
                 <TrackedCTA
-                  href="/ebook/panduan-bangun-rumah-lengkap.pdf"
+                  href="https://wa.me/6285732740006?text=Halo%20BerkahKarya%20Kontraktor%20-%20saya%20mau%20konsultasi%20gratis%20soal%20bangun%20rumah/renovasi.%20Mohon%20info%20kak."
                   className={s.btnPrimary}
-                  productName="Jasa Kontraktor - Ebook Download"
+                  productName="Jasa Kontraktor - CTA Konsultasi"
                 >
-                  {'\u{1F4E5}'} Download Langsung
-                </TrackedCTA>
-                <TrackedCTA
-                  href="https://wa.me/6285732740006?text=Halo%20BerkahKarya%20Kontraktor%20-%20saya%20minta%20ebook%20Panduan%20Bangun%20Rumah%20Lengkap%20gratis.%20Terima%20kasih."
-                  className={s.btnSecondary}
-                  productName="Jasa Kontraktor - Ebook WA"
-                >
-                  {'\u{1F4AC}'} Dapatkan via WhatsApp + Bonus
+                  {'\u{1F4AC}'} Konsultasi Gratis via WhatsApp
                 </TrackedCTA>
               </div>
-              <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.75rem' }}>
-                Atau dapatkan via WhatsApp — tim kami kirimkan PDF + tips eksklusif langsung ke HP
-                Anda
-              </p>
             </div>
           </div>
         </section>
