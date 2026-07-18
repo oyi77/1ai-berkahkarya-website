@@ -25,6 +25,20 @@
 /en/vilonafx             /en/lp/vilonafx/1          301
 # ── Root → locale (middleware doesn't work with static export) ──
 /                        /id/                            301
+# ── Pre-existing 404 fixes (broken nav links, common aliases) ──
+/home                   /                           301
+/services               /one-ai                     301
+/about                  /story                      301
+/produk                 /id/digital-products         301
+/layanan                /id/one-ai                  301
+/tentang                /id/story                   301
+/kontak                 /id/contact                 301
+/id/home                /id/                        301
+/en/home                /en/                        301
+/id/services            /id/one-ai                  301
+/en/services            /en/one-ai                  301
+/id/about               /id/story                   301
+/en/about               /en/story                   301
 
 # ── Locale-less page redirects (middleware doesn't run with static export) ──
 /academy                /id/academy               301

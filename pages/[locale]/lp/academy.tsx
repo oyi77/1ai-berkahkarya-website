@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useState, useEffect, useRef, useCallback } from 'react';
-import Layout from '@/components/Layout';
+import { useEngagementTracking } from '@/hooks/useEngagementTracking';
+import { trackWhatsAppClick, trackViewContent } from '@/lib/tracking';
 
 /* ─── Types ─── */
 
@@ -353,9 +354,16 @@ function Navbar() {
           ))}
         </div>
 
-        {/* CTA */}
         <a
           href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent('Halo, saya tertarik dengan kelas di Berkah Karya Academy. Mohon info lebih lanjut.')}`}
+          onClick={() =>
+            trackWhatsAppClick({
+              intent: 'Academy Enrollment',
+              phone_number: WA_PHONE,
+              message: 'Halo, saya tertarik dengan kelas di Berkah Karya Academy. Mohon info lebih lanjut.',
+              product_value: 500000,
+            })
+          }
           target="_blank"
           rel="noopener noreferrer"
           style={{
@@ -384,7 +392,10 @@ function Navbar() {
             e.currentTarget.style.boxShadow = `0 4px 14px ${COLORS.accent}44`;
           }}
         >
-          {'\u{1F4AC}'} Konsultasi Gratis
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '4px'}}>
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          Daftar Sekarang
         </a>
       </div>
     </nav>
@@ -506,6 +517,14 @@ function HeroSection() {
               href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent('Halo, saya mau konsultasi dulu tentang kelas di Berkah Karya Academy.')}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                trackWhatsAppClick({
+                  intent: 'Academy Consultation',
+                  phone_number: WA_PHONE,
+                  message: 'Halo, saya mau konsultasi dulu tentang kelas di Berkah Karya Academy.',
+                  product_value: 500000,
+                })
+              }
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -738,7 +757,10 @@ function ProgramCard({ course, onDetail }: { course: Course; onDetail: (c: Cours
         <span style={{ ...headingStyle, fontSize: '22px', color: course.color }}>{course.price}</span>
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
-            onClick={() => onDetail(course)}
+            onClick={() => {
+              onDetail(course);
+              trackViewContent(course.title, 'course_detail');
+            }}
             style={{
               padding: '8px 18px',
               borderRadius: '12px',
@@ -765,6 +787,15 @@ function ProgramCard({ course, onDetail }: { course: Course; onDetail: (c: Cours
             href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(course.waText)}`}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() =>
+              trackWhatsAppClick({
+                intent: 'Academy Enrollment',
+                phone_number: WA_PHONE,
+                message: course.waText,
+                product_name: course.title,
+                product_value: 500000,
+              })
+            }
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -1112,6 +1143,15 @@ function CourseModal({ course, onClose }: { course: Course; onClose: () => void 
             href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(course.waText)}`}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() =>
+              trackWhatsAppClick({
+                intent: 'Academy Enrollment',
+                phone_number: WA_PHONE,
+                message: course.waText,
+                product_name: course.title,
+                product_value: 500000,
+              })
+            }
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -1342,7 +1382,12 @@ function TestimonialsSection() {
 
           {/* Navigation */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginTop: '24px' }}>
-            <button onClick={prev} style={{ width: '40px', height: '40px', borderRadius: '50%', border: `1px solid ${COLORS.border}`, background: '#fff', cursor: 'pointer', fontSize: '16px', color: COLORS['text-secondary'], transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            <button
+              onClick={() => {
+                prev();
+                trackViewContent('testimonial_prev', 'testimonial_nav');
+              }}
+              style={{ width: '40px', height: '40px', borderRadius: '50%', border: `1px solid ${COLORS.border}`, background: '#fff', cursor: 'pointer', fontSize: '16px', color: COLORS['text-secondary'], transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               onMouseEnter={(e) => { e.currentTarget.style.borderColor = COLORS.accent; e.currentTarget.style.color = COLORS.accent; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = COLORS.border; e.currentTarget.style.color = COLORS['text-secondary']; }}
               aria-label="Sebelumnya">{'\u2190'}</button>
@@ -1364,7 +1409,12 @@ function TestimonialsSection() {
                 />
               ))}
             </div>
-            <button onClick={next} style={{ width: '40px', height: '40px', borderRadius: '50%', border: `1px solid ${COLORS.border}`, background: '#fff', cursor: 'pointer', fontSize: '16px', color: COLORS['text-secondary'], transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            <button
+              onClick={() => {
+                next();
+                trackViewContent('testimonial_next', 'testimonial_nav');
+              }}
+              style={{ width: '40px', height: '40px', borderRadius: '50%', border: `1px solid ${COLORS.border}`, background: '#fff', cursor: 'pointer', fontSize: '16px', color: COLORS['text-secondary'], transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               onMouseEnter={(e) => { e.currentTarget.style.borderColor = COLORS.accent; e.currentTarget.style.color = COLORS.accent; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = COLORS.border; e.currentTarget.style.color = COLORS['text-secondary']; }}
               aria-label="Selanjutnya">{'\u2192'}</button>
@@ -1471,6 +1521,14 @@ function ClosingCTA() {
           href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent('Halo, saya tertarik dengan kelas di Berkah Karya Academy. Mohon info pendaftarannya.')}`}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() =>
+            trackWhatsAppClick({
+              intent: 'Academy Enrollment',
+              phone_number: WA_PHONE,
+              message: 'Halo, saya tertarik dengan kelas di Berkah Karya Academy. Mohon info pendaftarannya.',
+              product_value: 500000,
+            })
+          }
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -1571,6 +1629,15 @@ function AcademyFooter() {
                   href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(c.waText)}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackWhatsAppClick({
+                      intent: 'Academy Enrollment',
+                      phone_number: WA_PHONE,
+                      message: c.waText,
+                      product_name: c.title,
+                      product_value: 500000,
+                    })
+                  }
                   style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }}
                   onMouseEnter={(e) => { e.currentTarget.style.color = COLORS.accent; }}
                   onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; }}
@@ -1607,6 +1674,13 @@ function AcademyFooter() {
                 href={`https://wa.me/${WA_PHONE}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackWhatsAppClick({
+                    intent: 'Academy Contact',
+                    phone_number: WA_PHONE,
+                    product_value: 500000,
+                  })
+                }
                 style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s', display: 'flex', alignItems: 'center', gap: '6px' }}
                 onMouseEnter={(e) => { e.currentTarget.style.color = COLORS.accent; }}
                 onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; }}
@@ -1758,6 +1832,7 @@ function GlobalStyles() {
 
 export default function AcademyLPPage({ locale }: { locale: Locale }) {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  useEngagementTracking('BerkahKarya Academy', '500000', 'academy');
 
   return (
     <>
