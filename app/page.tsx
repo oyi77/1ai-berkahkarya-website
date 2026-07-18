@@ -10,9 +10,9 @@ function detectLocale(): string {
 }
 
 const navLinks = [
-  { label: 'Beranda', href: 'home' },
-  { label: 'Layanan', href: 'services' },
-  { label: 'Tentang Kami', href: 'about' },
+  { label: 'Beranda', href: '' },
+  { label: 'Layanan', href: 'one-ai' },
+  { label: 'Tentang Kami', href: 'story' },
   { label: 'Kontak', href: 'contact' },
 ] as const;
 
@@ -30,7 +30,7 @@ export default function HomePage() {
     const { promise, resolve } = Promise.withResolvers<void>();
     setTimeout(resolve, 500);
     await promise;
-    router.push(`/${locale}/services`);
+    router.push(`/${locale}/one-ai`);
   };
 
   return (
