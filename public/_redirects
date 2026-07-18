@@ -21,6 +21,8 @@
 
 # ── LP short URLs ──
 /vilonafx               /id/lp/vilonafx/1          301
+/id/vilonafx             /id/lp/vilonafx/1          301
+/en/vilonafx             /en/lp/vilonafx/1          301
 # ── Root → locale (middleware doesn't work with static export) ──
 /                        /id/                            301
 
