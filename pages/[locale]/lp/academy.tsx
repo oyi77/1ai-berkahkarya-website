@@ -81,11 +81,11 @@ const COURSES: Course[] = [
       'Punya skill digital yang bikin kamu lebih produktif dan percaya diri',
     ],
     price: 'Rp 500.000',
-    waText: 'Halo, saya tertarik dengan kelas AI Produktivitas. Mohon info pendaftarannya.',
+    waText: 'Halo, saya tertarik konsultasi Kelas AI Produktivitas. Apakah cocok untuk pemula tanpa background teknis?',
     color: '#4ECDC4',
     colorBg: '#E8FAF8',
     iconBg: '#D4F5F0',
-    duration: '4 Minggu',
+    duration: '2x Pertemuan Intensif',
     badge: 'Popular',
   },
   {
@@ -109,11 +109,11 @@ const COURSES: Course[] = [
       'Punya strategi iklan yang terukur dan budget-friendly',
     ],
     price: 'Rp 500.000',
-    waText: 'Halo, saya tertarik dengan kelas Meta Ads. Mohon info pendaftarannya.',
+    waText: 'Halo, saya mau konsultasi Kelas Meta Ads. Saya ingin jualan online — apakah program ini cocok?',
     color: '#FF6B6B',
     colorBg: '#FFF0F0',
     iconBg: '#FFE4E4',
-    duration: '4 Minggu',
+    duration: '2x Pertemuan Intensif',
     badge: 'Best Seller',
   },
   {
@@ -137,11 +137,11 @@ const COURSES: Course[] = [
       'Punya strategi crossposting ke 4 platform sekaligus',
     ],
     price: 'Rp 500.000',
-    waText: 'Halo, saya tertarik dengan kelas Affiliate Marketing. Mohon info pendaftarannya.',
+    waText: 'Halo, saya tertarik konsultasi Kelas Affiliate Marketing. Gimana cara mulai tanpa modal besar?',
     color: '#45B7D1',
     colorBg: '#EEF9FC',
     iconBg: '#DCF4FA',
-    duration: '4 Minggu',
+    duration: '2x Pertemuan Intensif',
     badge: 'New',
   },
   {
@@ -165,11 +165,11 @@ const COURSES: Course[] = [
       'Punya portofolio 3 proyek nyata',
     ],
     price: 'Rp 500.000',
-    waText: 'Halo, saya tertarik dengan kelas AI Coding. Mohon info pendaftarannya.',
+    waText: 'Halo, saya mau konsultasi Kelas AI Coding. Apakah cocok untuk yang nol programming?',
     color: '#9B59B6',
     colorBg: '#F3ECF9',
     iconBg: '#EAD5F5',
-    duration: '4 Minggu',
+    duration: '2x Pertemuan Intensif',
     badge: 'Trending',
   },
 ];
@@ -185,7 +185,7 @@ const VALUE_PROPS: ValueProp[] = [
   {
     icon: '\u{1F558}',
     title: 'Jadwal Weekend',
-    desc: '4x pertemuan tiap Hari Minggu. Nggak ganggu kerja atau kuliah.',
+    desc: '2x pertemuan intensif tiap Hari Minggu. Nggak ganggu kerja atau kuliah.',
     color: '#6366F1',
     colorBg: '#EEEDFD',
   },
@@ -395,7 +395,7 @@ function Navbar() {
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '4px'}}>
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
           </svg>
-          Daftar Sekarang
+          Konsultasi Gratis
         </a>
       </div>
     </nav>
@@ -447,7 +447,7 @@ function HeroSection() {
             }}
           >
             <span style={{ fontSize: '18px' }}>{'\u{1F393}'}</span>
-            <span>Berkah Karya Academy — Praktisi, Bukan Teori</span>
+            <span>Belajar Skill Digital — 2x Pertemuan Intensif, Langsung Praktik</span>
           </div>
 
           {/* Headline */}
@@ -459,11 +459,11 @@ function HeroSection() {
               marginBottom: '20px',
             }}
           >
-            Kuasai Skill Digital{' '}
+            Siap Praktek dalam{' '}
             <span style={{ color: COLORS.accent, display: 'inline-block' }}>
-              Paling Dibutuhkan
+              2x Pertemuan Intensif
             </span>
-            {' '}Saat Ini
+            {' '}— Dijamin Bisa!
           </h1>
 
           <p
@@ -476,7 +476,7 @@ function HeroSection() {
               fontWeight: '400',
             }}
           >
-            Belajar langsung dari praktisi yang sudah bertahun-tahun berkecimpung di industri. Kurikulum praktis, bukan teori mulu. Langsung bisa dipakai kerja.
+            Belajar skill digital dari praktisi aktif lewat 2x pertemuan intensif. Kurikulum padat, langsung praktek, beneran bisa dipakai. Karyawan, IRT, pemilik usaha — semua cocok.
           </p>
 
           {/* CTAs */}
@@ -812,7 +812,7 @@ function ProgramCard({ course, onDetail }: { course: Course; onDetail: (c: Cours
             onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85'; }}
             onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
           >
-            {'\u{1F4AC}'} Daftar
+            {'\u{1F4AC}'} Konsultasi
           </a>
         </div>
       </div>
@@ -831,14 +831,14 @@ const STEPS = [
   },
   {
     num: '2',
-    title: 'Daftar via WhatsApp',
-    desc: 'Konsultasi dulu, lalu daftar langsung via WhatsApp — nggak ribet.',
+    title: 'Konsultasi Gratis',
+    desc: 'Konsultasi dulu via WhatsApp — gratis, nggak ada kewajiban apa pun.',
     color: COLORS.accent,
   },
   {
     num: '3',
     title: 'Mulai Belajar',
-    desc: 'Ikuti 4x pertemuan, kerjakan final project, dan kuasai skill barumu!',
+    desc: 'Ikuti 2x pertemuan intensif, kerjakan final project, dan kuasai skill barumu!',
     color: '#6366F1',
   },
 ];
@@ -855,7 +855,7 @@ function HowItWorks() {
             Mulai Belajar dalam 3 Langkah Mudah
           </h2>
           <p style={{ fontSize: '16px', color: COLORS['text-secondary'], maxWidth: '480px', margin: '0 auto' }}>
-            Dari daftar sampai mahir, kami dampingi kamu di setiap langkah.
+            Dari konsultasi sampai mahir, kami dampingi kamu di setiap langkah.
           </p>
         </div>
 
@@ -1175,7 +1175,7 @@ function CourseModal({ course, onClose }: { course: Course; onClose: () => void 
               e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
-            {'\u{1F4AC}'} Daftar Sekarang
+            {'\u{1F4AC}'} Konsultasi Sekarang
           </a>
         </div>
       </div>
@@ -1670,14 +1670,14 @@ function ClosingCTA() {
         </p>
 
         <a
-          href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent('Halo, saya tertarik dengan kelas di Berkah Karya Academy. Mohon info pendaftarannya.')}`}
+          href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent('Halo, saya mau konsultasi kelas di Berkah Karya Academy. Apakah ada yang cocok untuk saya?')}`}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() =>
             trackWhatsAppClick({
               intent: 'Academy Enrollment',
               phone_number: WA_PHONE,
-              message: 'Halo, saya tertarik dengan kelas di Berkah Karya Academy. Mohon info pendaftarannya.',
+              message: 'Halo, saya mau konsultasi kelas di Berkah Karya Academy. Apakah ada yang cocok untuk saya?',
               product_value: 500000,
             })
           }
@@ -1980,6 +1980,133 @@ function GlobalStyles() {
   );
 }
 
+/* ─── Siapa Yang Cocok ─── */
+
+const PERSONAS = [
+  { icon: '\u{1F454}', title: 'Karyawan', desc: 'Upgrade skill digital tanpa ganggu jam kerja' },
+  { icon: '\u{1F3E0}', title: 'Ibu Rumah Tangga', desc: 'Cari penghasilan tambahan dari rumah' },
+  { icon: '\u{1F393}', title: 'Mahasiswa', desc: 'Persiapan masuk dunia kerja dengan skill siap pakai' },
+  { icon: '\u{1F3EA}', title: 'Pelaku UMKM', desc: 'Tingkatkan omzet lewat pemasaran digital' },
+  { icon: '\u{1F468}\u200D\u{1F4BC}', title: 'Pemilik Bisnis', desc: 'Efektifkan budget marketing tim Anda' },
+  { icon: '\u{1F4F1}', title: 'Content Creator', desc: 'Bikin konten yang benar-benar menghasilkan' },
+];
+
+const cardBase: React.CSSProperties = {
+  background: '#fff',
+  borderRadius: 16,
+  padding: '24px 20px',
+  display: 'flex',
+  alignItems: 'center',
+  gap: 16,
+  boxShadow: '0 2px 12px rgba(0,0,0,.06)',
+  transition: 'transform .2s, box-shadow .2s',
+};
+
+function SiapaCocokSection() {
+  return (
+    <section id="siapa-cocok" style={{ ...sectionBase, background: '#fff' }}>
+      <div style={innerBase}>
+        <h2 style={headingStyle}>Siapa yang Cocok?</h2>
+        <p style={{
+          textAlign: 'center' as const,
+          fontSize: 18,
+          color: '#555',
+          maxWidth: 640,
+          margin: '0 auto 48px',
+          lineHeight: 1.6,
+        }}>
+          Program ini dirancang untuk siapa pun yang ingin langsung praktek —
+          tanpa perlu latar belakang teknis atau pengalaman sebelumnya.
+        </p>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gap: 14,
+          maxWidth: 860,
+          margin: '0 auto',
+        }}>
+          {PERSONAS.map(p => (
+            <div key={p.title} style={cardBase}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,.1)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = '';
+                e.currentTarget.style.boxShadow = '';
+              }}
+            >
+              <span style={{ fontSize: 28 }}>{p.icon}</span>
+              <div>
+                <strong style={{ fontSize: 16, display: 'block' }}>{p.title}</strong>
+                <span style={{ fontSize: 14, color: '#666' }}>{p.desc}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Yang Kamu Dapatkan ─── */
+
+const BENEFITS = [
+  { icon: '\u{1F393}', title: 'Sertifikat Kelulusan', desc: 'Bukti resmi penyelesaian program yang bisa dipajang di LinkedIn & CV' },
+  { icon: '\u{1F4DA}', title: 'Akses Materi Selamanya', desc: 'Review rekaman kelas kapan aja, di mana aja — tanpa batas waktu' },
+  { icon: '\u{1F4AC}', title: 'Konsultasi 1 Bulan', desc: 'Tanya langsung ke mentor lewat grup eksklusif setelah kelas selesai' },
+  { icon: '\u{1F91D}', title: 'Grup Komunitas', desc: 'Networking dengan sesama peserta dan alumni' },
+  { icon: '\u{1F3C6}', title: 'Final Project & Portofolio', desc: 'Hasil nyata yang bisa langsung dipamerkan ke klien atau atasan' },
+  { icon: '\u{1F504}', title: 'Garansi Bisa Ulang', desc: 'Gratis ikut lagi di batch berikutnya kalau belum puas' },
+];
+
+const benefitCard: React.CSSProperties = {
+  background: COLORS['bg-alt'],
+  borderRadius: 16,
+  padding: '28px 24px',
+  textAlign: 'center' as const,
+  transition: 'transform .2s',
+};
+
+function YangKamuDapatkanSection() {
+  return (
+    <section id="dapatkan" style={{ ...sectionBase, background: COLORS['bg-alt'] }}>
+      <div style={innerBase}>
+        <h2 style={headingStyle}>Yang Kamu Dapatkan</h2>
+        <p style={{
+          textAlign: 'center' as const,
+          fontSize: 18,
+          color: '#555',
+          maxWidth: 600,
+          margin: '0 auto 48px',
+          lineHeight: 1.6,
+        }}>
+          Investasi sekali, manfaat jangka panjang.
+        </p>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+          gap: 20,
+          maxWidth: 900,
+          margin: '0 auto',
+        }}>
+          {BENEFITS.map(b => (
+            <div key={b.title} style={benefitCard}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = ''; }}
+            >
+              <div style={{ fontSize: 40, marginBottom: 12 }}>{b.icon}</div>
+              <h3 style={{ fontSize: 17, margin: '0 0 8px', color: COLORS['text-dark'] }}>{b.title}</h3>
+              <p style={{ fontSize: 14, color: '#555', margin: 0, lineHeight: 1.5 }}>{b.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 /* ─── Main Page ─── */
 
 export default function AcademyLPPage({ locale }: { locale: Locale }) {
@@ -2004,13 +2131,20 @@ export default function AcademyLPPage({ locale }: { locale: Locale }) {
         </RevealedSection>
 
         <RevealedSection delay="0.1s">
+          <SiapaCocokSection />
+        </RevealedSection>
+
+        <RevealedSection delay="0.1s">
           <HowItWorks />
+        </RevealedSection>
+
+        <RevealedSection delay="0.15s">
+          <YangKamuDapatkanSection />
         </RevealedSection>
 
         <RevealedSection delay="0.15s">
           <ValuePropsSection />
         </RevealedSection>
-
         <RevealedSection delay="0.1s">
           <CredibilitySection />
         </RevealedSection>
