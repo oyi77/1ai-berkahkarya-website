@@ -184,6 +184,7 @@
   --brand-violet: var(--indigo);
   --brand-violet-bright: var(--indigo-soft);
   --brand-gold: #B8860B;
+  --gold: var(--brand-gold);
   --brand-emerald: #2D6A2D;
   --brand-coral: var(--margin-red-soft);
   --shadow-glow-secondary: 0 0 20px rgba(51, 69, 107, 0.08);

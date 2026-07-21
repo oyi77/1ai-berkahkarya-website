@@ -5,7 +5,7 @@ export default function FeatureGrid({ items, title }: { items: Feature[]; title?
   return (
     <section className={styles.wrap} id="features">
       <div className={styles.container}>
-        {title && <><p className={styles.label}>✦ Fitur Unggulan</p><h2 className={styles.heading}>{title}</h2></>}
+        {title && <><p className={styles.eyebrow}>✦ Fitur Unggulan</p><h2 className={styles.heading}>{title}</h2></>}
         <div className={styles.grid}>
           {items.map((f) => (
             <div key={f.title} className={styles.card}>

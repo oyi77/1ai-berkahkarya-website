@@ -176,6 +176,7 @@ export default function Layout({
           />
         ))}
       </Head>
+      {!shouldHideHeader && <Header />}
       {isLPPage ? (
         <>{children}</>
       ) : (
