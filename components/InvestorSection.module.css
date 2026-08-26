@@ -147,7 +147,7 @@
 .tractionNote {
   font-family: var(--font-ui);
   font-size: var(--text-sm);
-  color: var(--text-subtle);
+  color: var(--text-muted);
   text-align: center;
   padding: var(--space-4);
   background: rgba(255, 255, 255, 0.02);
@@ -375,7 +375,7 @@
   font-family: var(--font-ui);
   font-size: var(--text-sm);
   font-weight: 700;
-  color: var(--text-inverse);
+  color: var(--surface-0);
   background: var(--gradient-primary);
   border-radius: var(--radius-full);
   text-decoration: none;

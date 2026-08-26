@@ -51,7 +51,7 @@
 
 .accentViolet .labelAccent,
 .accentViolet {
-  color: var(--margin-red-soft);
+  color: var(--margin-red);
 }
 .accentViolet .labelAccent {
   background: var(--margin-red-soft);

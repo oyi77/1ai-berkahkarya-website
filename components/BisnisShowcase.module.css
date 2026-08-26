@@ -13,7 +13,7 @@
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--margin-red);
   margin-bottom: 0.75rem;
 }
 
@@ -27,7 +27,7 @@
 
 .subtitle {
   font-size: 1.125rem;
-  color: var(--text-white-60);
+  color: var(--ink-muted);
   margin-bottom: 3rem;
   max-width: 700px;
 }
@@ -49,7 +49,7 @@
 .caseTitle {
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--text-white-50);
+  color: var(--ink-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 1.5rem;
@@ -71,7 +71,7 @@
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--text-white);
-  background: linear-gradient(135deg, var(--teal-primary), var(--gold));
+  background: linear-gradient(135deg, var(--margin-red), var(--stamp-red));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -79,7 +79,7 @@
 
 .metricLabel {
   font-size: 0.75rem;
-  color: var(--text-white-50);
+  color: var(--ink-muted);
   font-weight: 500;
 }
 
@@ -94,16 +94,16 @@
   font-size: 1rem;
   font-weight: 800;
   padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, var(--violet), var(--violet-light));
-  color: var(--text-white);
+  background: var(--gradient-primary);
+  color: var(--surface-0);
   border-radius: 8px;
   text-decoration: none;
-  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
   transition: box-shadow 0.2s, transform 0.15s;
 }
 
 .cta:hover {
-  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.45);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
   transform: translateY(-2px);
 }
 

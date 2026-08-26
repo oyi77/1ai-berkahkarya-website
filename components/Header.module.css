@@ -204,8 +204,8 @@
   display: none;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   font-size: var(--text-lg);
   color: var(--ink-muted);
   cursor: pointer;
@@ -251,9 +251,11 @@
 
 .mobileLinks > li > a,
 .mobileLinks > li > button {
-  display: block;
   width: 100%;
   text-align: left;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
   padding: 0.75rem 0;
   font-family: var(--font-body);
   font-size: var(--text-base);
@@ -279,6 +281,7 @@
   justify-content: space-between;
   width: 100%;
   text-align: left;
+  min-height: 44px;
   padding: 0.75rem 0;
   font-family: var(--font-body);
   font-size: var(--text-base);
@@ -294,11 +297,12 @@
 }
 
 .mobileDropdown li a {
-  display: block;
-  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--ink-subtle);
+  color: var(--ink-muted);
   transition: color var(--duration-fast) var(--ease-out);
 }
 
@@ -320,6 +324,10 @@
   font-size: var(--text-sm);
   font-weight: 500;
   text-align: center;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.75rem 1.5rem;
   background: var(--ink);
   color: var(--paper);
@@ -342,5 +350,12 @@
 
   .menuBtn {
     display: flex;
+  }
+
+  .langBtn {
+    min-height: 44px;
+    padding: 0 0.75rem;
+    display: inline-flex;
+    align-items: center;
   }
 }

@@ -85,7 +85,7 @@
   --text-inverse-subtle: var(--ink-subtle);
 
   /* ─── Gradient Presets ─── */
-  --gradient-primary: linear-gradient(135deg, var(--margin-red), #B84A3F);
+  --gradient-primary: linear-gradient(135deg, var(--margin-red), var(--stamp-red));
   --gradient-secondary: linear-gradient(135deg, var(--indigo), #4B5E88);
   --gradient-hero: linear-gradient(180deg, rgba(234,228,214,0) 0%, var(--paper-2) 100%);
   --gradient-card: linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 100%);
@@ -218,6 +218,17 @@
   --text-white-60: rgba(28, 36, 48, 0.6);
   --text-white-50: rgba(28, 36, 48, 0.5);
   --text-white-40: rgba(28, 36, 48, 0.40);
+  /* Migration completion: tokens referenced by components but never defined
+     (undefined vars invalidate declarations at computed-value time) */
+  --gradient-primary-reverse: linear-gradient(315deg, var(--margin-red), var(--stamp-red));
+  --border-light-default: var(--rule-light);
+  --border-light-strong: var(--rule-strong);
+  --brand-teal-glow-strong: var(--teal-glow-strong);
+  --color-secondary-strong: rgba(51, 69, 107, 0.35);
+  --glass-blur-strong: 16px;
+  --success: var(--verification);
+  --section-py-mobile: clamp(2.5rem, 6vw, 4rem);
+  --section-px-mobile: var(--space-4);
 }
 
 /* ─── Gradient Text ─── */
