@@ -1,7 +1,7 @@
 'use client';
 
 import { trackCTAClick } from '@/lib/tracking';
-import styles from './SaaSShowcase.module.css';
+import styles from './EcosystemShowcase.module.css';
 import type { SaasProduct } from '@/data/ecosystem-saas';
 
 interface Props {
@@ -10,34 +10,30 @@ interface Props {
   items: SaasProduct[];
 }
 
-export default function SaaSShowcase({ title, subtitle, items }: Props) {
+export default function EcosystemShowcase({ title, subtitle, items }: Props) {
   return (
-    <section className={styles.section} id="produk" aria-labelledby="saas-title">
+    <section className={styles.section} id="ecosystem" aria-labelledby="ecosystem-title">
       <div className={styles.wrap}>
         <div className={styles.heading}>
-          <span className={styles.eyebrow}>
-            <span className={styles.bullet} /> LIVE DEMOS
-          </span>
-          <h2 id="saas-title" className={styles.title}>{title}</h2>
+          <span className={styles.eyebrow}>LIVE PRODUCTS</span>
+          <h2 id="ecosystem-title" className={styles.title}>{title}</h2>
           <p className={styles.subtitle}>{subtitle}</p>
         </div>
 
         <div className={styles.grid}>
-          {items.map((item, i) => (
+          {items.map((item) => (
             <a
               key={item.name}
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
               className={`${styles.card} ${item.status === 'starting' ? styles.cardStarting : ''}`}
-              style={{ animationDelay: `${i * 60}ms` }}
-              onClick={() => trackCTAClick('saas_showcase', item.url)}
+              onClick={() => trackCTAClick('ecosystem_showcase', item.url)}
               aria-label={`${item.name} — ${item.tagline}. Open live demo`}
             >
               <span
-                className={`${styles.liveBadge} ${item.status === 'starting' ? styles.liveBadgeStarting : ''}`}
+                className={`${styles.badge} ${item.status === 'starting' ? styles.badgeStarting : ''}`}
               >
-                <span className={styles.liveDot} />
                 {item.status === 'live' ? 'LIVE' : 'STARTING'}
               </span>
               <span className={styles.icon} aria-hidden="true">{item.emoji}</span>

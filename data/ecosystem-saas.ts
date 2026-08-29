@@ -25,10 +25,10 @@ export const ecosystemSaasData = {
         'Produk SaaS AI 1ai-ecosystem yang live dan bisa dicoba langsung: AdForge, AI Content, Trip Planner, NEXUS, AI Social, 1AI Marketplace, 1ai-payment, 1proxy, Vilona Trade FX, dan lainnya.',
     },
     hero: {
-      eyebrow: '1AI ECOSYSTEM · 12 PRODUK',
-      title: 'Dua belas produk SaaS AI.<br/>Live. Bisa dicoba sekarang.',
+      eyebrow: '12 PRODUK AI · 1 EKOSISTEM · LIVE',
+      title: 'Perusahaan AI dengan *bukti live*.<br/>Bukan pitch deck.',
       description:
-        'BerkahKarya menjalankan ekosistem produk AI yang nyata — bukan slide. Setiap produk punya demo live, di-deploy dari repo yang sama, dan saling terhubung lewat satu infrastruktur.',
+        '12 produk SaaS AI berjalan di production — dari Meta Ads manager sampai LLM marketplace. Satu orang, satu infrastruktur, semua bisa dicoba langsung.',
       ctaPrimary: { text: 'Jelajahi Produk →', href: '#produk' },
       ctaSecondary: { text: 'Hubungi Kami', href: '/contact' },
       liveIndicator: '● 10/12 layanan online',
@@ -222,6 +222,63 @@ export const ecosystemSaasData = {
         'BerkahKarya membangun produk SaaS AI end-to-end — dari ide sampai live demo. Konsultasi gratis.',
       button: { text: 'Konsultasi Gratis →', href: '/contact' },
     },
+    story: {
+      eyebrow: 'CERITA KAMI',
+      title: 'Satu manusia. 12 produk live. 0 dana VC.',
+      paragraphs: [
+        'BerkahKarya bukan startup AI dengan pitch deck manis. Ini eksperimen nyata: bisa satu orang menjalankan perusahaan AI yang menghasilkan nilai, berjalan 24/7, tanpa tim besar?',
+        'Jawabannya sekarang live. Setiap produk di halaman ini di-deploy dari repo yang sama, melayani request sungguhan, dan bisa Anda coba langsung — bukan screenshot.',
+      ],
+      quote: 'Kami tidak menjanjikan. Kami membuktikan — dan buktinya bisa diklik.',
+      principles: [
+        {
+          emoji: '📐',
+          title: 'Angka Nyata, Bukan Pitch Deck',
+          desc: 'Setiap fitur dibangun karena ada permintaan pasar, bukan untuk demo fundraising. Revenue dan uptime terbuka.',
+        },
+        {
+          emoji: '🤖',
+          title: 'Autonomy sebagai Prinsip Desain',
+          desc: 'Manusia pegang arah (visi, etika, keputusan besar), AI pegang eksekusi repetitif. Bukan menggantikan — mendelegasikan.',
+        },
+        {
+          emoji: '🔓',
+          title: 'Open Source karena Dipakai Sendiri',
+          desc: 'Kami membuka kode karena memang menggunakannya. Open source memaksa kualitas tetap terjaga, bukan sekadar narasi.',
+        },
+      ],
+    },
+    about: {
+      eyebrow: 'WHO WE ARE',
+      title: 'Kami adalah one-man AI company',
+      description:
+        'Dibangun oleh seorang software engineer yang percaya perusahaan AI otonom itu mungkin — didukung tim AI agent dan jaringan spesialis. Kecil, cepat, dan transparan.',
+      values: [
+        { emoji: '⚡', title: 'Proven over Promised', desc: 'Bukti live > janji di slide.' },
+        { emoji: '🧭', title: 'Autonomous by Default', desc: 'Sistem jalan sendiri, manusia arahkan.' },
+        { emoji: '🪟', title: 'Transparent by Design', desc: 'Revenue, uptime, dan infra terbuka.' },
+      ],
+      stats: [
+        { value: '1', label: 'Founder' },
+        { value: '10', label: 'Produk live' },
+        { value: '$0', label: 'VC funding' },
+        { value: '24/7', label: 'Berjalan otomatis' },
+      ],
+    },
+    visionMission: {
+      eyebrow: 'VISI & MISI',
+      title: 'Ke mana kami melangkah',
+      vision: {
+        emoji: '🌅',
+        title: 'Visi',
+        text: 'Menjadi bukti bahwa perusahaan AI otonom bisa dibangun dari Indonesia — dari satu orang, tanpa dana VC, dan menghasilkan nilai nyata yang bisa diverifikasi siapa pun.',
+      },
+      mission: {
+        emoji: '🎯',
+        title: 'Misi',
+        text: 'Membangun produk SaaS AI end-to-end yang live dan transparan, lalu membagikan cara kerja dan infrastrukturnya ke ekosistem — supaya lebih banyak orang bisa melakukan hal yang sama.',
+      },
+    },
   },
   en: {
     meta: {
@@ -230,10 +287,10 @@ export const ecosystemSaasData = {
         'Live AI SaaS products in the 1ai-ecosystem you can try now: AdForge, AI Content, Trip Planner, NEXUS, AI Social, 1AI Marketplace, 1ai-payment, 1proxy, Vilona Trade FX, and more.',
     },
     hero: {
-      eyebrow: '1AI ECOSYSTEM · 12 PRODUCTS',
-      title: 'Twelve AI SaaS products.<br/>Live. Try them now.',
+      eyebrow: '12 AI PRODUCTS · 1 ECOSYSTEM · LIVE NOW',
+      title: 'An AI company with *live proof*.<br/>Not a pitch deck.',
       description:
-        'BerkahKarya runs a real AI product ecosystem — not slides. Every product has a live demo, deployed from real repos, all connected through one infrastructure.',
+        '12 AI SaaS products running in production — from Meta Ads manager to LLM marketplace. One person, one infrastructure, all tryable live.',
       ctaPrimary: { text: 'Explore Products →', href: '#produk' },
       ctaSecondary: { text: 'Contact Us', href: '/contact' },
       liveIndicator: '● 10/12 services online',
@@ -426,6 +483,63 @@ export const ecosystemSaasData = {
       description:
         'BerkahKarya builds end-to-end AI SaaS products — from idea to live demo. Free consultation.',
       button: { text: 'Free Consultation →', href: '/contact' },
+    },
+    story: {
+      eyebrow: 'OUR STORY',
+      title: 'One human. 12 live products. Zero VC.',
+      paragraphs: [
+        'BerkahKarya is not an AI startup with a sweet pitch deck. This is a real experiment: can one person run an AI company that creates value, runs 24/7, without a big team?',
+        'The answer is live right now. Every product on this page is deployed from the same repo, serving real requests, and can be tried directly — not screenshots.',
+      ],
+      quote: 'We don\'t promise. We prove — and the proof is clickable.',
+      principles: [
+        {
+          emoji: '📐',
+          title: 'Real Numbers, Not Pitch Decks',
+          desc: 'Every feature is built because the market asked for it, not for fundraising demos. Revenue and uptime are open.',
+        },
+        {
+          emoji: '🤖',
+          title: 'Autonomy as a Design Principle',
+          desc: 'Humans hold direction (vision, ethics, big calls), AI holds repetitive execution. Not replacing — delegating.',
+        },
+        {
+          emoji: '🔓',
+          title: 'Open Source Because We Use It',
+          desc: 'We open code because we actually use it. Open source forces quality to stay high, not just a narrative.',
+        },
+      ],
+    },
+    about: {
+      eyebrow: 'WHO WE ARE',
+      title: 'We are a one-man AI company',
+      description:
+        'Built by a software engineer who believes autonomous AI companies are possible — backed by an AI agent team and a network of specialists. Small, fast, and transparent.',
+      values: [
+        { emoji: '⚡', title: 'Proven over Promised', desc: 'Live proof > slide promises.' },
+        { emoji: '🧭', title: 'Autonomous by Default', desc: 'Systems run themselves, humans steer.' },
+        { emoji: '🪟', title: 'Transparent by Design', desc: 'Revenue, uptime, and infra are open.' },
+      ],
+      stats: [
+        { value: '1', label: 'Founder' },
+        { value: '10', label: 'Live products' },
+        { value: '$0', label: 'VC funding' },
+        { value: '24/7', label: 'Running autonomously' },
+      ],
+    },
+    visionMission: {
+      eyebrow: 'VISION & MISSION',
+      title: 'Where we are heading',
+      vision: {
+        emoji: '🌅',
+        title: 'Vision',
+        text: 'To be proof that an autonomous AI company can be built from Indonesia — from one person, with zero VC funding, creating real value that anyone can verify.',
+      },
+      mission: {
+        emoji: '🎯',
+        title: 'Mission',
+        text: 'To build end-to-end AI SaaS products that are live and transparent, then share how they work and the infrastructure behind them — so more people can do the same.',
+      },
     },
   },
 } as const;
