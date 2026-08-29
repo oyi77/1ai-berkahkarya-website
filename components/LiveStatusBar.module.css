@@ -20,7 +20,8 @@
   gap: var(--space-2);
 }
 
-.statusBadge {
+.statusBadge,
+.statusBadgePartial {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -29,11 +30,20 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--verification);
   padding: var(--space-2) var(--space-3);
+  width: fit-content;
+}
+
+.statusBadge {
+  color: var(--verification);
   border: 1px solid var(--verification);
   background: rgba(45, 106, 45, 0.06);
-  width: fit-content;
+}
+
+.statusBadgePartial {
+  color: var(--color-warning);
+  border: 1px solid var(--color-warning);
+  background: rgba(184, 134, 11, 0.08);
 }
 
 .dot {
@@ -87,13 +97,21 @@
   border: 1px solid var(--rule-light);
 }
 
-.okDot {
+.okDot,
+.startingDot {
   display: block;
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--verification);
   flex-shrink: 0;
+}
+
+.okDot {
+  background: var(--verification);
+}
+
+.startingDot {
+  background: var(--color-warning);
 }
 
 .host {
@@ -105,13 +123,21 @@
   white-space: nowrap;
 }
 
-.status {
+.status,
+.statusStarting {
   margin-left: auto;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 600;
-  color: var(--verification);
   flex-shrink: 0;
+}
+
+.status {
+  color: var(--verification);
+}
+
+.statusStarting {
+  color: var(--color-warning);
 }
 
 @media (max-width: 640px) {

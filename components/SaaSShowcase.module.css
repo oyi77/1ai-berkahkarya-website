@@ -112,6 +112,10 @@
   background: var(--verification);
 }
 
+.cardStarting::before {
+  background: var(--color-warning);
+}
+
 .card:hover {
   border-color: var(--rule-strong);
   box-shadow: var(--shadow-md);
@@ -140,6 +144,16 @@
   padding: 2px 6px;
   border: 1px solid var(--verification);
   background: rgba(45, 106, 45, 0.06);
+}
+
+.liveBadgeStarting {
+  color: var(--color-warning);
+  border-color: var(--color-warning);
+  background: rgba(184, 134, 11, 0.08);
+}
+
+.liveBadgeStarting .liveDot {
+  background: var(--color-warning);
 }
 
 .liveDot {

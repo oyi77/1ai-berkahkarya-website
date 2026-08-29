@@ -1,7 +1,10 @@
 /**
  * Ecosystem SaaS Showcase — live products verified against 1ai-cf-router mappings.
  * Only SaaS-themed products with a live demo UI are listed here.
+ * status: 'live' = returns 200 (verified); 'starting' = configured but upstream down.
  */
+
+export type SaasStatus = 'live' | 'starting';
 
 export interface SaasProduct {
   emoji: string;
@@ -11,46 +14,52 @@ export interface SaasProduct {
   url: string;
   category: string;
   highlight: string;
+  status: SaasStatus;
 }
 
 export const ecosystemSaasData = {
   id: {
     meta: {
-      title: 'BerkahKarya — 7 SaaS AI Live, Satu Ekosistem',
+      title: 'BerkahKarya — 10 SaaS AI Live, Satu Ekosistem',
       description:
-        '7 produk SaaS AI yang live dan bisa dicoba langsung: AdForge ads manager, AI Content factory, Trip Planner, NEXUS terminal, AI Social, AI Hub, dan OmniRoute AI gateway.',
+        'Produk SaaS AI 1ai-ecosystem yang live dan bisa dicoba langsung: AdForge, AI Content, Trip Planner, NEXUS, AI Social, 1AI Marketplace, 1ai-payment, 1proxy, Vilona Trade FX, dan lainnya.',
     },
     hero: {
-      eyebrow: '1AI ECOSYSTEM · 7 PRODUK LIVE',
-      title: 'Tujuh produk SaaS AI.<br/>Live. Bisa dicoba sekarang.',
+      eyebrow: '1AI ECOSYSTEM · 12 PRODUK',
+      title: 'Dua belas produk SaaS AI.<br/>Live. Bisa dicoba sekarang.',
       description:
         'BerkahKarya menjalankan ekosistem produk AI yang nyata — bukan slide. Setiap produk punya demo live, di-deploy dari repo yang sama, dan saling terhubung lewat satu infrastruktur.',
       ctaPrimary: { text: 'Jelajahi Produk →', href: '#produk' },
       ctaSecondary: { text: 'Hubungi Kami', href: '/contact' },
-      liveIndicator: '● 7/7 layanan online',
-      metricHighlight: { value: '7', label: 'produk live' },
+      liveIndicator: '● 10/12 layanan online',
+      metricHighlight: { value: '10', label: 'produk live' },
       metrics: [
-        { label: 'Produk SaaS live', value: '7', highlight: true },
-        { label: 'Domain aktif', value: '7', highlight: false },
+        { label: 'Produk SaaS live', value: '10', highlight: true },
+        { label: 'Total produk terdaftar', value: '12', highlight: false },
         { label: 'Semua terhubung 1 infra', value: '1', highlight: false },
       ],
     },
     status: {
       title: 'Status Layer',
-      subtitle: 'Semua layanan dicek live sebelum dipublikasikan — bukan placeholder.',
+      subtitle: 'Setiap layanan dicek live sebelum dipublikasikan — bukan placeholder.',
       services: [
-        { name: 'adforge.aitradepulse.com', status: '200 OK' },
-        { name: 'content.aitradepulse.com', status: '200 OK' },
-        { name: 'trip.aitradepulse.com', status: '200 OK' },
-        { name: 'tracker.aitradepulse.com', status: '200 OK' },
-        { name: 'social.aitradepulse.com', status: '200 OK' },
-        { name: 'hub.aitradepulse.com', status: '200 OK' },
-        { name: 'ai.aitradepulse.com', status: '200 OK' },
+        { name: 'adforge.aitradepulse.com', status: 'live' },
+        { name: 'content.aitradepulse.com', status: 'live' },
+        { name: 'trip.aitradepulse.com', status: 'live' },
+        { name: 'tracker.aitradepulse.com', status: 'live' },
+        { name: 'social.aitradepulse.com', status: 'live' },
+        { name: 'ai.berkahkarya.org', status: 'live' },
+        { name: 'pay.berkahkarya.org', status: 'live' },
+        { name: 'oyi77.is-a.dev/1proxy', status: 'live' },
+        { name: 'career.berkahkarya.org', status: 'live' },
+        { name: 'phantomfx.aitradepulse.com', status: 'live' },
+        { name: 'phonefarm.aitradepulse.com', status: 'starting' },
+        { name: 'polyedge.aitradepulse.com', status: 'starting' },
       ],
     },
     products: {
       title: 'Produk Live',
-      subtitle: 'Tujuh produk SaaS yang berjalan hari ini. Klik untuk membuka demo langsung.',
+      subtitle: 'Produk SaaS yang berjalan di ekosistem. Klik untuk membuka demo langsung.',
       items: [
         {
           emoji: '📣',
@@ -61,6 +70,7 @@ export const ecosystemSaasData = {
           url: 'https://adforge.aitradepulse.com',
           category: 'Ads & Marketing',
           highlight: 'Auto campaign monitoring',
+          status: 'live',
         },
         {
           emoji: '🏭',
@@ -71,6 +81,7 @@ export const ecosystemSaasData = {
           url: 'https://content.aitradepulse.com',
           category: 'Content Platform',
           highlight: 'Multi-language publishing',
+          status: 'live',
         },
         {
           emoji: '✈️',
@@ -81,6 +92,7 @@ export const ecosystemSaasData = {
           url: 'https://trip.aitradepulse.com',
           category: 'Travel AI',
           highlight: 'Itinerary instan',
+          status: 'live',
         },
         {
           emoji: '📈',
@@ -91,6 +103,7 @@ export const ecosystemSaasData = {
           url: 'https://tracker.aitradepulse.com',
           category: 'Market Intelligence',
           highlight: 'Realtime orderbook',
+          status: 'live',
         },
         {
           emoji: '📲',
@@ -101,31 +114,89 @@ export const ecosystemSaasData = {
           url: 'https://social.aitradepulse.com',
           category: 'Social Automation',
           highlight: 'Human approval gate',
+          status: 'live',
         },
         {
-          emoji: '🧠',
-          name: '1AI Hub',
-          tagline: 'AI Orchestration',
+          emoji: '🔌',
+          name: '1AI Marketplace',
+          tagline: 'Two-Sided LLM Marketplace',
           description:
-            'Pusat orkestrasi: 25 workflow, brain & memory, treasury, dan dashboard monitoring satu ekosistem.',
-          url: 'https://hub.aitradepulse.com/dashboard',
-          category: 'AI Orchestration',
-          highlight: '25 workflow aktif',
+            'Satu API untuk semua model AI. Provider bersaing harga secara real-time — pembeli selalu dapat harga terbaik, penjual monetisasi kapasitas idle.',
+          url: 'https://ai.berkahkarya.org',
+          category: 'AI Marketplace',
+          highlight: 'Best price, every model',
+          status: 'live',
+        },
+        {
+          emoji: '💳',
+          name: '1ai-payment',
+          tagline: 'Payment Infrastructure',
+          description:
+            'Infrastruktur pembayaran untuk Indonesia & e-commerce global — terhubung 13 gateway pembayaran populer.',
+          url: 'https://pay.berkahkarya.org',
+          category: 'Payments',
+          highlight: '13 gateway terhubung',
+          status: 'live',
         },
         {
           emoji: '🔀',
-          name: 'OmniRoute',
-          tagline: 'AI Gateway',
+          name: '1proxy',
+          tagline: 'Free Proxy Aggregation',
           description:
-            'AI gateway multi-provider: routing ke banyak LLM, failover otomatis, model combo, dan health monitoring.',
-          url: 'https://ai.aitradepulse.com/dashboard',
-          category: 'AI Gateway',
-          highlight: 'Auto-failover',
+            'Platform agregasi proxy gratis — multi-user, OAuth GitHub/Google, filtering lanjutan, dan ekspor txt/json/csv.',
+          url: 'https://oyi77.is-a.dev/1proxy',
+          category: 'Network',
+          highlight: 'Multi-user + OAuth',
+          status: 'live',
+        },
+        {
+          emoji: '💼',
+          name: 'Career',
+          tagline: 'Proxy Aggregation API',
+          description:
+            'career.berkahkarya.org live — API agregasi proxy (1proxy v2.0) dengan health check, OAuth, dan endpoint ekspor.',
+          url: 'https://career.berkahkarya.org',
+          category: 'Network',
+          highlight: 'API v2 live',
+          status: 'live',
+        },
+        {
+          emoji: '🦊',
+          name: 'Vilona Trade FX',
+          tagline: 'AI Trading Assistant',
+          description:
+            'Platform trading AI & whitelabel — 3 model AI menganalisis market, mengirim sinyal entry/stop loss/take profit ke Telegram.',
+          url: 'https://phantomfx.aitradepulse.com',
+          category: 'Trading',
+          highlight: 'Sinyal AI ke Telegram',
+          status: 'live',
+        },
+        {
+          emoji: '📱',
+          name: 'Phone Farm',
+          tagline: 'Device Farm',
+          description:
+            'Android device farm — rental marketplace plus internal automation. Sedang dihidupkan kembali.',
+          url: 'https://phonefarm.aitradepulse.com',
+          category: 'Infrastructure',
+          highlight: 'Device automation',
+          status: 'starting',
+        },
+        {
+          emoji: '📊',
+          name: 'PolyEdge',
+          tagline: 'DEX + Prediction Markets',
+          description:
+            'Market-making DEX + arbitrase prediction market. Sedang dihidupkan kembali.',
+          url: 'https://polyedge.aitradepulse.com',
+          category: 'Trading',
+          highlight: 'Market-making',
+          status: 'starting',
         },
       ],
     },
     howItWorks: {
-      title: 'Satu Infrastruktur, Tujuh Produk',
+      title: 'Satu Infrastruktur, Banyak Produk',
       subtitle: 'Cara ekosistem ini dibangun dan dijalankan.',
       steps: [
         {
@@ -154,22 +225,22 @@ export const ecosystemSaasData = {
   },
   en: {
     meta: {
-      title: 'BerkahKarya — 7 Live AI SaaS, One Ecosystem',
+      title: 'BerkahKarya — 10 Live AI SaaS, One Ecosystem',
       description:
-        '7 live AI SaaS products you can try now: AdForge ads manager, AI Content factory, Trip Planner, NEXUS terminal, AI Social, AI Hub, and OmniRoute AI gateway.',
+        'Live AI SaaS products in the 1ai-ecosystem you can try now: AdForge, AI Content, Trip Planner, NEXUS, AI Social, 1AI Marketplace, 1ai-payment, 1proxy, Vilona Trade FX, and more.',
     },
     hero: {
-      eyebrow: '1AI ECOSYSTEM · 7 LIVE PRODUCTS',
-      title: 'Seven AI SaaS products.<br/>Live. Try them now.',
+      eyebrow: '1AI ECOSYSTEM · 12 PRODUCTS',
+      title: 'Twelve AI SaaS products.<br/>Live. Try them now.',
       description:
         'BerkahKarya runs a real AI product ecosystem — not slides. Every product has a live demo, deployed from real repos, all connected through one infrastructure.',
       ctaPrimary: { text: 'Explore Products →', href: '#produk' },
       ctaSecondary: { text: 'Contact Us', href: '/contact' },
-      liveIndicator: '● 7/7 services online',
-      metricHighlight: { value: '7', label: 'live products' },
+      liveIndicator: '● 10/12 services online',
+      metricHighlight: { value: '10', label: 'live products' },
       metrics: [
-        { label: 'Live SaaS products', value: '7', highlight: true },
-        { label: 'Active domains', value: '7', highlight: false },
+        { label: 'Live SaaS products', value: '10', highlight: true },
+        { label: 'Total registered products', value: '12', highlight: false },
         { label: 'Shared infrastructure', value: '1', highlight: false },
       ],
     },
@@ -177,18 +248,23 @@ export const ecosystemSaasData = {
       title: 'Status Layer',
       subtitle: 'Every service is checked live before publishing — no placeholders.',
       services: [
-        { name: 'adforge.aitradepulse.com', status: '200 OK' },
-        { name: 'content.aitradepulse.com', status: '200 OK' },
-        { name: 'trip.aitradepulse.com', status: '200 OK' },
-        { name: 'tracker.aitradepulse.com', status: '200 OK' },
-        { name: 'social.aitradepulse.com', status: '200 OK' },
-        { name: 'hub.aitradepulse.com', status: '200 OK' },
-        { name: 'ai.aitradepulse.com', status: '200 OK' },
+        { name: 'adforge.aitradepulse.com', status: 'live' },
+        { name: 'content.aitradepulse.com', status: 'live' },
+        { name: 'trip.aitradepulse.com', status: 'live' },
+        { name: 'tracker.aitradepulse.com', status: 'live' },
+        { name: 'social.aitradepulse.com', status: 'live' },
+        { name: 'ai.berkahkarya.org', status: 'live' },
+        { name: 'pay.berkahkarya.org', status: 'live' },
+        { name: 'oyi77.is-a.dev/1proxy', status: 'live' },
+        { name: 'career.berkahkarya.org', status: 'live' },
+        { name: 'phantomfx.aitradepulse.com', status: 'live' },
+        { name: 'phonefarm.aitradepulse.com', status: 'starting' },
+        { name: 'polyedge.aitradepulse.com', status: 'starting' },
       ],
     },
     products: {
       title: 'Live Products',
-      subtitle: 'Seven SaaS products running today. Click to open the live demo.',
+      subtitle: 'SaaS products running in the ecosystem. Click to open the live demo.',
       items: [
         {
           emoji: '📣',
@@ -199,6 +275,7 @@ export const ecosystemSaasData = {
           url: 'https://adforge.aitradepulse.com',
           category: 'Ads & Marketing',
           highlight: 'Auto campaign monitoring',
+          status: 'live',
         },
         {
           emoji: '🏭',
@@ -209,6 +286,7 @@ export const ecosystemSaasData = {
           url: 'https://content.aitradepulse.com',
           category: 'Content Platform',
           highlight: 'Multi-language publishing',
+          status: 'live',
         },
         {
           emoji: '✈️',
@@ -219,6 +297,7 @@ export const ecosystemSaasData = {
           url: 'https://trip.aitradepulse.com',
           category: 'Travel AI',
           highlight: 'Instant itineraries',
+          status: 'live',
         },
         {
           emoji: '📈',
@@ -229,6 +308,7 @@ export const ecosystemSaasData = {
           url: 'https://tracker.aitradepulse.com',
           category: 'Market Intelligence',
           highlight: 'Realtime orderbook',
+          status: 'live',
         },
         {
           emoji: '📲',
@@ -239,31 +319,89 @@ export const ecosystemSaasData = {
           url: 'https://social.aitradepulse.com',
           category: 'Social Automation',
           highlight: 'Human approval gate',
+          status: 'live',
         },
         {
-          emoji: '🧠',
-          name: '1AI Hub',
-          tagline: 'AI Orchestration',
+          emoji: '🔌',
+          name: '1AI Marketplace',
+          tagline: 'Two-Sided LLM Marketplace',
           description:
-            'Orchestration hub: 25 workflows, brain & memory, treasury, and a monitoring dashboard for one ecosystem.',
-          url: 'https://hub.aitradepulse.com/dashboard',
-          category: 'AI Orchestration',
-          highlight: '25 active workflows',
+            'One API for every AI model. Providers compete on price in real-time — buyers always get the best price, sellers monetize idle capacity.',
+          url: 'https://ai.berkahkarya.org',
+          category: 'AI Marketplace',
+          highlight: 'Best price, every model',
+          status: 'live',
+        },
+        {
+          emoji: '💳',
+          name: '1ai-payment',
+          tagline: 'Payment Infrastructure',
+          description:
+            'Payment infrastructure for Indonesia & global commerce — connected to 13 popular payment gateways.',
+          url: 'https://pay.berkahkarya.org',
+          category: 'Payments',
+          highlight: '13 gateways connected',
+          status: 'live',
         },
         {
           emoji: '🔀',
-          name: 'OmniRoute',
-          tagline: 'AI Gateway',
+          name: '1proxy',
+          tagline: 'Free Proxy Aggregation',
           description:
-            'Multi-provider AI gateway: routing to many LLMs, automatic failover, model combos, and health monitoring.',
-          url: 'https://ai.aitradepulse.com/dashboard',
-          category: 'AI Gateway',
-          highlight: 'Auto-failover',
+            'Free proxy aggregation platform — multi-user, GitHub/Google OAuth, advanced filtering, and txt/json/csv export.',
+          url: 'https://oyi77.is-a.dev/1proxy',
+          category: 'Network',
+          highlight: 'Multi-user + OAuth',
+          status: 'live',
+        },
+        {
+          emoji: '💼',
+          name: 'Career',
+          tagline: 'Proxy Aggregation API',
+          description:
+            'career.berkahkarya.org is live — proxy aggregation API (1proxy v2.0) with health check, OAuth, and export endpoints.',
+          url: 'https://career.berkahkarya.org',
+          category: 'Network',
+          highlight: 'Live API v2',
+          status: 'live',
+        },
+        {
+          emoji: '🦊',
+          name: 'Vilona Trade FX',
+          tagline: 'AI Trading Assistant',
+          description:
+            'AI trading & whitelabel platform — 3 AI models analyze the market and send entry/stop-loss/take-profit signals to Telegram.',
+          url: 'https://phantomfx.aitradepulse.com',
+          category: 'Trading',
+          highlight: 'AI signals to Telegram',
+          status: 'live',
+        },
+        {
+          emoji: '📱',
+          name: 'Phone Farm',
+          tagline: 'Device Farm',
+          description:
+            'Android device farm — rental marketplace plus internal automation. Being brought back online.',
+          url: 'https://phonefarm.aitradepulse.com',
+          category: 'Infrastructure',
+          highlight: 'Device automation',
+          status: 'starting',
+        },
+        {
+          emoji: '📊',
+          name: 'PolyEdge',
+          tagline: 'DEX + Prediction Markets',
+          description:
+            'DEX market-making + prediction market arbitrage. Being brought back online.',
+          url: 'https://polyedge.aitradepulse.com',
+          category: 'Trading',
+          highlight: 'Market-making',
+          status: 'starting',
         },
       ],
     },
     howItWorks: {
-      title: 'One Infrastructure, Seven Products',
+      title: 'One Infrastructure, Many Products',
       subtitle: 'How this ecosystem is built and operated.',
       steps: [
         {

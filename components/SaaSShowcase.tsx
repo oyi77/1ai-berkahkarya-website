@@ -29,13 +29,16 @@ export default function SaaSShowcase({ title, subtitle, items }: Props) {
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.card}
+              className={`${styles.card} ${item.status === 'starting' ? styles.cardStarting : ''}`}
               style={{ animationDelay: `${i * 60}ms` }}
               onClick={() => trackCTAClick('saas_showcase', item.url)}
               aria-label={`${item.name} — ${item.tagline}. Open live demo`}
             >
-              <span className={styles.liveBadge}>
-                <span className={styles.liveDot} /> LIVE
+              <span
+                className={`${styles.liveBadge} ${item.status === 'starting' ? styles.liveBadgeStarting : ''}`}
+              >
+                <span className={styles.liveDot} />
+                {item.status === 'live' ? 'LIVE' : 'STARTING'}
               </span>
               <span className={styles.icon} aria-hidden="true">{item.emoji}</span>
               <span className={styles.category}>{item.category}</span>
