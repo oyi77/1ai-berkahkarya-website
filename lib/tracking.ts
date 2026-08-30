@@ -16,10 +16,19 @@ export const TRACKING = {
   TIKTOK_EVENTS_API_TOKEN: process.env.TRACKING_TIKTOK_EVENTS_API_TOKEN || '',
   // Meta Conversions API (server-side) — supplied via TRACKING_META_CAPI_TOKEN env var
   META_CAPI_TOKEN: process.env.TRACKING_META_CAPI_TOKEN || '',
+  // Pinterest Tag (conversion tracking) — empty = tag disabled.
+  // Set a real tag ID to enable; avoid placeholder IDs that fire junk events.
+  PINTEREST_TAG_ID: '',
 
   // Pinterest domain verification
   PINTEREST_VERIFICATION: '9212df9ddce352a5ada074e7d33a9e77',
 } as const;
+
+// Client-side CAPI requires a server to proxy /api/* — static exports
+// (CF Pages, Netlify static) cannot serve API routes, and the calls would
+// 405 on every page load. GTM server-side (stape) covers server events there.
+// Enable only when deploying to a host that serves Next.js API routes.
+const CLIENT_CAPI_ENABLED = process.env.NEXT_PUBLIC_ENABLE_CLIENT_CAPI === 'true';
 
 // ============================================
 // USER SESSION & REFERRER TRACKING
@@ -225,7 +234,7 @@ export function trackTikTokEvent(event: string, data?: Record<string, unknown>) 
 
 /** Send event via TikTok Events API (server-side) */
 export function sendTikTokCAPI(eventName: string, data?: Record<string, unknown>) {
-  if (typeof window === 'undefined' || !TRACKING.TIKTOK_PIXEL_ID) return;
+  if (typeof window === 'undefined' || !TRACKING.TIKTOK_PIXEL_ID || !CLIENT_CAPI_ENABLED) return;
 
   const session = getUserSession();
   const payload = {
@@ -250,7 +259,7 @@ export function sendTikTokCAPI(eventName: string, data?: Record<string, unknown>
 
 /** Send event via Meta Conversions API (server-side) */
 export function sendMetaCAPI(eventName: string, customData?: Record<string, unknown>) {
-  if (typeof window === 'undefined' || !TRACKING.META_PIXEL_ID) return;
+  if (typeof window === 'undefined' || !TRACKING.META_PIXEL_ID || !CLIENT_CAPI_ENABLED) return;
 
   const getCookie = (name: string) => {
     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));

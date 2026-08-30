@@ -120,7 +120,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#0D0F14" />
 
-         {/* Pinterest Domain Verification */}
+        <meta name="p:domain_verify" content={TRACKING.PINTEREST_VERIFICATION} />
 
         {/* Google Analytics 4 */}
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING.GA_ID}`} />
@@ -177,21 +177,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
 
-        {/* Pinterest Tag (optional - for conversion tracking) */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(e){if(!window.pintrk){window.pintrk = function () {
-              window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var
-                n=window.pintrk;n.queue=[],n.version="3.0";var
-                t=document.createElement("script");t.async=!0,t.src=e;var
-                r=document.getElementsByTagName("script")[0];
-                r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");
-              pintrk('load', 'YOUR_PINTEREST_TAG_ID', {em: '<user_email_address>'});
-              pintrk('page');
-            `,
-          }}
-        />
+
       </Head>
       <body>
         {/* Google Tag Manager (noscript) #1 */}
