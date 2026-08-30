@@ -20,7 +20,9 @@ export default function Document() {
           dangerouslySetInnerHTML={{
             __html: [
               'function bkFireWhenIdle(fn){',
-              "'requestIdleCallback' in window ? requestIdleCallback(fn,{timeout:2500}) : setTimeout(fn,2000)",
+              'var done=false,run=function(){if(!done){done=true;fn();}};',
+              "'requestIdleCallback' in window && requestIdleCallback(run,{timeout:3000});",
+              'setTimeout(run,2500);',
               '}',
             ].join(''),
           }}
