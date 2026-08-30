@@ -1,9 +1,5 @@
 /* ─── Open Ledger Design System ─── */
 /* Paper: EA E4 D6 | Ink: 1C 24 30 | Margin Red: A3 35 2B */
-/* Fonts: IBM Plex Serif (headings), Sans (body), Mono (data) */
-
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-
 :root {
   /* ─── Typography ─── */
   --font-display: 'IBM Plex Serif', Georgia, serif;

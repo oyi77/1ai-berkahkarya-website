@@ -27,7 +27,7 @@ export default function Footer() {
       <div className={styles.container}>
         {/* Brand */}
         <div>
-          <h4>BerkahKarya</h4>
+          <h3>BerkahKarya</h3>
           <p className={styles.tagline}>
             {locale === 'id'
               ? 'AI Ecosystem untuk bisnis Indonesia. Tools, automation, dan sistem AI yang langsung menghasilkan.'
@@ -42,7 +42,7 @@ export default function Footer() {
 
         {/* Products */}
         <div>
-          <h5>{locale === 'id' ? 'Produk' : 'Products'}</h5>
+          <h4>{locale === 'id' ? 'Produk' : 'Products'}</h4>
           <ul>
             <li><a href={`/${locale}/ai-video-studio`}>AI Video Studio</a></li>
             <li><a href={`/${locale}/adforge-ai`}>AdForge AI</a></li>
@@ -54,7 +54,7 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <h5>{locale === 'id' ? 'Kontak' : 'Contact'}</h5>
+          <h4>{locale === 'id' ? 'Kontak' : 'Contact'}</h4>
           <ul>
             <li><a href="https://wa.me/6285732740006" target="_blank" rel="noopener noreferrer" onClick={handleWAClick}>📱 WhatsApp</a></li>
             <li><a href="https://t.me/berkahkarya_saas_bot" target="_blank" rel="noopener noreferrer" onClick={handleTelegramClick}>✈️ Telegram Bot</a></li>
@@ -70,7 +70,7 @@ export default function Footer() {
 
         {/* Office address */}
         <div>
-          <h5>{locale === 'id' ? 'Kantor' : 'Office'}</h5>
+          <h4>{locale === 'id' ? 'Kantor' : 'Office'}</h4>
           <div className={styles.address}>
             <p className={styles.officeName}>Vilona AI Agent</p>
             <p>Berkah Karya Digital Agency</p>
