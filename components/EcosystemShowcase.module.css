@@ -163,6 +163,61 @@
   background: var(--color-warning);
 }
 
+/* ─── Screenshot (live product preview) ─── */
+
+.screenshotWrap {
+	position: relative;
+	border-radius: var(--radius-lg);
+	border: 1px solid var(--rule);
+	overflow: hidden;
+	aspect-ratio: 16 / 9;
+	background: var(--paper-3);
+	margin-bottom: var(--space-4);
+}
+
+.screenshot {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+}
+
+.screenshotOverlay {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-2);
+	padding: var(--space-2) var(--space-3);
+	background: linear-gradient(to top, rgba(10, 14, 22, 0.78), rgba(10, 14, 22, 0));
+}
+
+.screenshotUrl {
+	font-family: var(--font-mono);
+	font-size: 0.6rem;
+	color: rgba(255, 255, 255, 0.92);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.screenshotBadge {
+	font-family: var(--font-mono);
+	font-size: 0.6rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #0d5c2e;
+	background: rgba(105, 233, 149, 0.9);
+	border-radius: 999px;
+	padding: 1px 7px;
+	white-space: nowrap;
+}
+
 /* ─── Category Tag ─── */
 
 .category {
