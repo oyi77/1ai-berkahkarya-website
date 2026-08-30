@@ -63,7 +63,11 @@ export default function MarketingHeader() {
         </ul>
 
         <div className={styles.actions}>
-          <button onClick={switchLocale} className={styles.langBtn} aria-label="Switch language">
+          <button
+            onClick={switchLocale}
+            className={styles.langBtn}
+            aria-label={locale === 'id' ? 'Switch to English (EN)' : 'Switch to Indonesian (ID)'}
+          >
             {locale === 'id' ? 'EN' : 'ID'}
           </button>
           <a

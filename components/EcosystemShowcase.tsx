@@ -29,7 +29,6 @@ export default function EcosystemShowcase({ title, subtitle, items }: Props) {
               rel="noopener noreferrer"
               className={`${styles.card} ${item.status === 'starting' ? styles.cardStarting : ''}`}
               onClick={() => trackCTAClick('ecosystem_showcase', item.url)}
-              aria-label={`${item.name} — ${item.tagline}. Open live demo`}
             >
               {item.status === 'starting' && (
                 <span className={`${styles.badge} ${styles.badgeStarting}`}>
