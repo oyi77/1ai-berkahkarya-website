@@ -1,33 +1,43 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Layout from '@/components/Layout';
-import HeroSection from '@/components/HeroSection';
-import ProblemSection from '@/components/ProblemSection';
-import FeatureGrid from '@/components/FeatureGrid';
-import HowItWorks from '@/components/HowItWorks';
-import TestimonialSection from '@/components/TestimonialSection';
-import PricingTable from '@/components/PricingTable';
-import FAQSection from '@/components/FAQSection';
-import CTASection from '@/components/CTASection';
-import { productsFullData } from '@/data/products';
-import { characters } from '@/data/characters';
+import Head from 'next/head';
 
 type Locale = 'id' | 'en';
-export const getStaticPaths: GetStaticPaths = async () => ({ paths: [{ params: { locale: 'id' } }, { params: { locale: 'en' } }], fallback: false });
-export const getStaticProps: GetStaticProps = async ({ params }) => ({ props: { locale: (params?.locale as Locale) || 'id' } });
 
-export default function AdForgeAI({ locale }: { locale: Locale }) {
-  const d = productsFullData['adforge-ai'][locale];
-  const pr = d.pricing.map(t => ({ ...t, features: [...t.features], cta: { ...t.cta } }));
+const LP_ROUTE: Record<Locale, string> = {
+  id: '/id/lp/adforge-ai/1',
+  en: '/en/lp/adforge-ai/1',
+};
+
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [{ params: { locale: 'id' } }, { params: { locale: 'en' } }],
+  fallback: false,
+});
+
+export const getStaticProps: GetStaticProps = async ({ params }) => ({
+  props: { locale: (params?.locale as Locale) || 'id' },
+});
+
+export default function AdforgeAiRedirect({ locale }: { locale: Locale }) {
+  const target = LP_ROUTE[locale] || LP_ROUTE.id;
+
   return (
-    <Layout title={d.meta.title} description={d.meta.description}>
-      <HeroSection eyebrow={d.hero.eyebrow} title={d.hero.title} description={d.hero.description} buttons={[...d.hero.buttons]} character={characters['adforge-ai']} />
-      <ProblemSection hook={d.problem.hook} pains={[...d.problem.pains]} bridge={d.problem.bridge} />
-      <FeatureGrid items={[...d.features]} />
-      <HowItWorks title={d.howItWorks.title} steps={[...d.howItWorks.steps]} />
-      <TestimonialSection title={locale === 'id' ? 'Hasil Nyata Pengguna AdForge' : 'Real AdForge User Results'} items={[...d.testimonials]} />
-      <PricingTable tiers={pr} />
-      <FAQSection title={d.faq.title} items={[...d.faq.items]} />
-      <CTASection title={d.cta.title} description={d.cta.description} button={{ ...d.cta.button }} />
-    </Layout>
+    <>
+      <Head>
+        <meta httpEquiv="refresh" content={`0; url=${target}`} />
+        <link rel="canonical" href={`https://berkahkarya.org${target}`} />
+        <title>Redirecting — AdForge AI | BerkahKarya</title>
+      </Head>
+      <div style={{
+        display: 'flex',
+        minHeight: '100vh',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: 'system-ui, sans-serif',
+        background: '#faf8f3',
+        color: '#1C2430',
+      }}>
+        <p>Redirecting… <a href={target}>Klik di sini jika tidak otomatis</a></p>
+      </div>
+    </>
   );
 }

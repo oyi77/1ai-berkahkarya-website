@@ -1,16 +1,12 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Layout from '@/components/Layout';
-import HeroSection from '@/components/HeroSection';
-import ProblemSection from '@/components/ProblemSection';
-import FeatureGrid from '@/components/FeatureGrid';
-import HowItWorks from '@/components/HowItWorks';
-import PricingTable from '@/components/PricingTable';
-import FAQSection from '@/components/FAQSection';
-import StatsRow from '@/components/StatsRow';
-import CTASection from '@/components/CTASection';
-import { servicesData } from '@/data/services-data';
+import Head from 'next/head';
 
 type Locale = 'id' | 'en';
+
+const LP_ROUTE: Record<Locale, string> = {
+  id: '/id/lp/security-audit/1',
+  en: '/en/lp/security-audit/1',
+};
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: [{ params: { locale: 'id' } }, { params: { locale: 'en' } }],
@@ -21,18 +17,27 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
   props: { locale: (params?.locale as Locale) || 'id' },
 });
 
-export default function SecurityAudit({ locale }: { locale: Locale }) {
-  const d = servicesData['security-audit'][locale];
+export default function SecurityAuditRedirect({ locale }: { locale: Locale }) {
+  const target = LP_ROUTE[locale] || LP_ROUTE.id;
+
   return (
-    <Layout title={d.meta.title} description={d.meta.description}>
-      <HeroSection eyebrow={d.hero.eyebrow} title={d.hero.title} description={d.hero.description} buttons={d.hero.buttons} />
-      <ProblemSection hook={d.problem.hook} pains={d.problem.pains} bridge={d.problem.bridge} />
-      <FeatureGrid items={d.features} />
-      <HowItWorks title={d.howItWorks.title} steps={d.howItWorks.steps} />
-      <PricingTable tiers={d.pricing} />
-      <FAQSection title={d.faq.title} items={d.faq.items} />
-      <StatsRow items={d.stats} />
-      <CTASection title={d.cta.title} description={d.cta.description} button={d.cta.button} />
-    </Layout>
+    <>
+      <Head>
+        <meta httpEquiv="refresh" content={`0; url=${target}`} />
+        <link rel="canonical" href={`https://berkahkarya.org${target}`} />
+        <title>Redirecting — Security Audit | BerkahKarya</title>
+      </Head>
+      <div style={{
+        display: 'flex',
+        minHeight: '100vh',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: 'system-ui, sans-serif',
+        background: '#faf8f3',
+        color: '#1C2430',
+      }}>
+        <p>Redirecting… <a href={target}>Klik di sini jika tidak otomatis</a></p>
+      </div>
+    </>
   );
 }

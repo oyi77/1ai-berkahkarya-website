@@ -1,18 +1,15 @@
-/**
- * AI Video Studio — Landing Page
- * Main entry: renders LP1 by default.
- * Individual LP variants are served at /[locale]/lp/ai-video-studio/{1..6}
- */
 import { GetStaticPaths, GetStaticProps } from 'next';
-import LP1 from '@/components/landing/LP1';
+import Head from 'next/head';
 
 type Locale = 'id' | 'en';
 
+const LP_ROUTE: Record<Locale, string> = {
+  id: '/id/lp/ai-video-studio/1',
+  en: '/en/lp/ai-video-studio/1',
+};
+
 export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: [
-    { params: { locale: 'id' } },
-    { params: { locale: 'en' } },
-  ],
+  paths: [{ params: { locale: 'id' } }, { params: { locale: 'en' } }],
   fallback: false,
 });
 
@@ -20,8 +17,27 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
   props: { locale: (params?.locale as Locale) || 'id' },
 });
 
-type Props = { locale: Locale };
+export default function AiVideoStudioRedirect({ locale }: { locale: Locale }) {
+  const target = LP_ROUTE[locale] || LP_ROUTE.id;
 
-export default function AIVideoStudio({ locale }: Props) {
-  return <LP1 locale={locale} />;
+  return (
+    <>
+      <Head>
+        <meta httpEquiv="refresh" content={`0; url=${target}`} />
+        <link rel="canonical" href={`https://berkahkarya.org${target}`} />
+        <title>Redirecting — AI Video Studio | BerkahKarya</title>
+      </Head>
+      <div style={{
+        display: 'flex',
+        minHeight: '100vh',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: 'system-ui, sans-serif',
+        background: '#faf8f3',
+        color: '#1C2430',
+      }}>
+        <p>Redirecting… <a href={target}>Klik di sini jika tidak otomatis</a></p>
+      </div>
+    </>
+  );
 }

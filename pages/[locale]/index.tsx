@@ -8,6 +8,7 @@ import VisionMission from '@/components/VisionMission';
 import MarketingCTA from '@/components/MarketingCTA';
 import { ecosystemSaasData } from '@/data/ecosystem-saas';
 import MarketingHeader from '@/components/MarketingHeader';
+import ServicesGrid from '@/components/ServicesGrid';
 import AcademySection from '@/components/AcademySection';
 
 type Locale = 'id' | 'en';
@@ -62,6 +63,9 @@ export default function HomePage({ locale }: { locale: Locale }) {
         subtitle={d.products.subtitle}
         items={[...d.products.items]}
       />
+
+      {/* Services — all LP landing pages */}
+      <ServicesGrid locale={locale} />
 
       {/* Who we are */}
       <AboutSection
