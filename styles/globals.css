@@ -2,6 +2,8 @@
 @import url('./colors.css');
 @import url('./typography.css');
 @import url('./ledger.css');
+/* Self-hosted fonts (prevents render-blocking external font request) */
+@import url('/fonts/fonts.css');
 
 *, *::before, *::after {
   box-sizing: border-box;

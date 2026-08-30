@@ -85,7 +85,7 @@ export const ecosystemSaasData = {
           category: 'Ads & Marketing',
           highlight: 'Auto campaign monitoring',
           status: 'live',
-          shot: '/ecosystem/adforge.png',
+          shot: '/ecosystem/adforge.webp',
         },
         {
           emoji: '🏭',
@@ -97,7 +97,7 @@ export const ecosystemSaasData = {
           category: 'Content Platform',
           highlight: 'Multi-language publishing',
           status: 'live',
-          shot: '/ecosystem/content.png',
+          shot: '/ecosystem/content.webp',
         },
         {
           emoji: '✈️',
@@ -109,7 +109,7 @@ export const ecosystemSaasData = {
           category: 'Travel AI',
           highlight: 'Itinerary instan',
           status: 'live',
-          shot: '/ecosystem/trip.png',
+          shot: '/ecosystem/trip.webp',
         },
         {
           emoji: '📈',
@@ -121,7 +121,7 @@ export const ecosystemSaasData = {
           category: 'Market Intelligence',
           highlight: 'Realtime orderbook',
           status: 'live',
-          shot: '/ecosystem/tracker.png',
+          shot: '/ecosystem/tracker.webp',
         },
         {
           emoji: '📲',
@@ -133,7 +133,7 @@ export const ecosystemSaasData = {
           category: 'Social Automation',
           highlight: 'Human approval gate',
           status: 'live',
-          shot: '/ecosystem/social.png',
+          shot: '/ecosystem/social.webp',
         },
         {
           emoji: '🔌',
@@ -145,7 +145,7 @@ export const ecosystemSaasData = {
           category: 'AI Marketplace',
           highlight: 'Best price, every model',
           status: 'live',
-          shot: '/ecosystem/marketplace.png',
+          shot: '/ecosystem/marketplace.webp',
         },
         {
           emoji: '💳',
@@ -157,7 +157,7 @@ export const ecosystemSaasData = {
           category: 'Payments',
           highlight: '13 gateway terhubung',
           status: 'live',
-          shot: '/ecosystem/payment.png',
+          shot: '/ecosystem/payment.webp',
         },
         {
           emoji: '🔀',
@@ -169,7 +169,7 @@ export const ecosystemSaasData = {
           category: 'Network',
           highlight: 'Multi-user + OAuth',
           status: 'live',
-          shot: '/ecosystem/1proxy.png',
+          shot: '/ecosystem/1proxy.webp',
         },
         {
           emoji: '💼',
@@ -193,7 +193,7 @@ export const ecosystemSaasData = {
           category: 'Trading',
           highlight: 'Sinyal AI ke Telegram',
           status: 'live',
-          shot: '/ecosystem/phantomfx.png',
+          shot: '/ecosystem/phantomfx.webp',
         },
         {
           emoji: '📱',
@@ -372,7 +372,7 @@ export const ecosystemSaasData = {
           category: 'Ads & Marketing',
           highlight: 'Auto campaign monitoring',
           status: 'live',
-          shot: '/ecosystem/adforge.png',
+          shot: '/ecosystem/adforge.webp',
         },
         {
           emoji: '🏭',
@@ -384,7 +384,7 @@ export const ecosystemSaasData = {
           category: 'Content Platform',
           highlight: 'Multi-language publishing',
           status: 'live',
-          shot: '/ecosystem/content.png',
+          shot: '/ecosystem/content.webp',
         },
         {
           emoji: '✈️',
@@ -396,7 +396,7 @@ export const ecosystemSaasData = {
           category: 'Travel AI',
           highlight: 'Instant itineraries',
           status: 'live',
-          shot: '/ecosystem/trip.png',
+          shot: '/ecosystem/trip.webp',
         },
         {
           emoji: '📈',
@@ -408,7 +408,7 @@ export const ecosystemSaasData = {
           category: 'Market Intelligence',
           highlight: 'Realtime orderbook',
           status: 'live',
-          shot: '/ecosystem/tracker.png',
+          shot: '/ecosystem/tracker.webp',
         },
         {
           emoji: '📲',
@@ -420,7 +420,7 @@ export const ecosystemSaasData = {
           category: 'Social Automation',
           highlight: 'Human approval gate',
           status: 'live',
-          shot: '/ecosystem/social.png',
+          shot: '/ecosystem/social.webp',
         },
         {
           emoji: '🔌',
@@ -432,7 +432,7 @@ export const ecosystemSaasData = {
           category: 'AI Marketplace',
           highlight: 'Best price, every model',
           status: 'live',
-          shot: '/ecosystem/marketplace.png',
+          shot: '/ecosystem/marketplace.webp',
         },
         {
           emoji: '💳',
@@ -444,7 +444,7 @@ export const ecosystemSaasData = {
           category: 'Payments',
           highlight: '13 gateways connected',
           status: 'live',
-          shot: '/ecosystem/payment.png',
+          shot: '/ecosystem/payment.webp',
         },
         {
           emoji: '🔀',
@@ -456,7 +456,7 @@ export const ecosystemSaasData = {
           category: 'Network',
           highlight: 'Multi-user + OAuth',
           status: 'live',
-          shot: '/ecosystem/1proxy.png',
+          shot: '/ecosystem/1proxy.webp',
         },
         {
           emoji: '💼',
@@ -480,7 +480,7 @@ export const ecosystemSaasData = {
           category: 'Trading',
           highlight: 'AI signals to Telegram',
           status: 'live',
-          shot: '/ecosystem/phantomfx.png',
+          shot: '/ecosystem/phantomfx.webp',
         },
         {
           emoji: '📱',
