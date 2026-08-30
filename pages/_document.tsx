@@ -19,10 +19,11 @@ export default function Document() {
         <script
           dangerouslySetInnerHTML={{
             __html: [
-              'function bkFireWhenIdle(fn){',
+              'function bkFireWhenIdle(fn,delay){',
+              'delay=delay||2500;',
               'var done=false,run=function(){if(!done){done=true;fn();}};',
-              "'requestIdleCallback' in window && requestIdleCallback(run,{timeout:3000});",
-              'setTimeout(run,2500);',
+              "'requestIdleCallback' in window && requestIdleCallback(run,{timeout:Math.max(delay,3000)});",
+              'setTimeout(run,delay);',
               '}',
             ].join(''),
           }}
@@ -50,7 +51,7 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TWWH8B3T');
-});`,
+},4200);`,
           }}
         />
 
@@ -83,7 +84,7 @@ s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','${TRACKING.META_PIXEL_ID}');
 fbq('track','PageView');
-});`,
+},3400);`,
           }}
         />
         <noscript>
@@ -105,7 +106,7 @@ fbq('track','PageView');
   ttq.load('${TRACKING.TIKTOK_PIXEL_ID}');
   ttq.page();
 }(window, document, 'ttq');
-});`,
+},4200);`,
           }}
         />
 
