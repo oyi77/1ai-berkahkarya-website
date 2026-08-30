@@ -55,7 +55,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-5);
+  gap: var(--space-7);
 }
 
 /* ─── Card ─── */
@@ -98,7 +98,7 @@
   outline-offset: 2px;
 }
 
-/* ─── Status Badge ─── */
+/* ─── STARTING Badge (only shown for non-live) ─── */
 
 .badge {
   position: absolute;
@@ -109,25 +109,58 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 999px;
-  border: 1px solid var(--verification);
-  background: rgba(45, 106, 45, 0.08);
-  color: var(--verification);
-}
-
-.badgeStarting {
-  border-color: var(--color-warning);
+  border: 1px solid var(--color-warning);
   background: rgba(184, 134, 11, 0.08);
   color: var(--color-warning);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
-/* ─── Icon ─── */
+.badgeDot {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-warning);
+}
 
-.icon {
-  font-size: 2rem;
+/* ─── Icon Tile (gradient tile + status dot) ─── */
+
+.iconTile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  font-size: 1.6rem;
   line-height: 1;
-  margin-bottom: var(--space-2);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(163, 53, 43, 0.12), rgba(51, 69, 107, 0.12));
+  border: 1px solid var(--rule);
+  margin-bottom: var(--space-3);
+}
+
+.iconTileStarting {
+  background: linear-gradient(135deg, rgba(184, 134, 11, 0.12), rgba(163, 53, 43, 0.08));
+}
+
+.iconDot {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--verification);
+  border: 2px solid var(--paper-2);
+}
+
+.iconTileStarting .iconDot {
+  background: var(--color-warning);
 }
 
 /* ─── Category Tag ─── */

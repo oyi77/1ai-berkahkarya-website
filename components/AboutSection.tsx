@@ -27,7 +27,7 @@ export default function AboutSection({
   stats,
 }: Props) {
   return (
-    <section className={styles.wrap} aria-labelledby="about-title">
+    <section className={styles.wrap} id="tentang" aria-labelledby="about-title">
       <div className={styles.container}>
         <p className={styles.eyebrow}>{eyebrow}</p>
         <h2 id="about-title" className={styles.title}>{title}</h2>

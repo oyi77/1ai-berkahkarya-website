@@ -12,7 +12,7 @@ interface Props {
 
 export default function EcosystemShowcase({ title, subtitle, items }: Props) {
   return (
-    <section className={styles.section} id="ecosystem" aria-labelledby="ecosystem-title">
+    <section className={styles.section} id="produk" aria-labelledby="ecosystem-title">
       <div className={styles.wrap}>
         <div className={styles.heading}>
           <span className={styles.eyebrow}>LIVE PRODUCTS</span>
@@ -31,12 +31,33 @@ export default function EcosystemShowcase({ title, subtitle, items }: Props) {
               onClick={() => trackCTAClick('ecosystem_showcase', item.url)}
               aria-label={`${item.name} — ${item.tagline}. Open live demo`}
             >
-              <span
-                className={`${styles.badge} ${item.status === 'starting' ? styles.badgeStarting : ''}`}
-              >
-                {item.status === 'live' ? 'LIVE' : 'STARTING'}
-              </span>
-              <span className={styles.icon} aria-hidden="true">{item.emoji}</span>
+              {item.status === 'starting' && (
+                <span className={`${styles.badge} ${styles.badgeStarting}`}>
+                  <span className={styles.badgeDot} /> STARTING
+                </span>
+              )}
+              {item.shot ? (
+                <div className={styles.screenshotWrap}>
+                  <img
+                    src={item.shot}
+                    alt={`${item.name} dashboard`}
+                    className={styles.screenshot}
+                    loading="lazy"
+                  />
+                  <div className={styles.screenshotOverlay}>
+                    <span className={styles.screenshotUrl}>{item.url}</span>
+                    <span className={styles.screenshotBadge}>LIVE</span>
+                  </div>
+                </div>
+              ) : (
+                <span
+                  className={`${styles.iconTile} ${item.status === 'starting' ? styles.iconTileStarting : ''}`}
+                  aria-hidden="true"
+                >
+                  {item.emoji}
+                  <span className={styles.iconDot} />
+                </span>
+              )}
               <span className={styles.category}>{item.category}</span>
               <h3 className={styles.name}>{item.name}</h3>
               <span className={styles.tagline}>{item.tagline}</span>

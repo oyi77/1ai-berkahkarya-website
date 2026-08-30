@@ -15,7 +15,7 @@ interface Props {
 
 export default function VisionMission({ eyebrow, title, vision, mission }: Props) {
   return (
-    <section className={styles.section} aria-labelledby="vision-mission-title">
+    <section className={styles.section} id="visi" aria-labelledby="vision-mission-title">
       <div className={styles.wrap}>
         <span className={styles.eyebrow}>{eyebrow}</span>
         <h2 id="vision-mission-title" className={styles.title}>{title}</h2>

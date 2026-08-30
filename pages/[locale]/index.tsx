@@ -7,6 +7,7 @@ import AboutSection from '@/components/AboutSection';
 import VisionMission from '@/components/VisionMission';
 import MarketingCTA from '@/components/MarketingCTA';
 import { ecosystemSaasData } from '@/data/ecosystem-saas';
+import MarketingHeader from '@/components/MarketingHeader';
 
 type Locale = 'id' | 'en';
 
@@ -24,7 +25,10 @@ export default function HomePage({ locale }: { locale: Locale }) {
   const href = (h: string) => (h.startsWith('/') ? `/${locale}${h}` : h);
 
   return (
-    <Layout title={d.meta.title} description={d.meta.description}>
+    <Layout title={d.meta.title} description={d.meta.description} hideHeader>
+      {/* Landing header — marketing nav with working anchors */}
+      <MarketingHeader />
+
       {/* Hook — headline + proof + stats */}
       <MarketingHero
         eyebrow={d.hero.eyebrow}

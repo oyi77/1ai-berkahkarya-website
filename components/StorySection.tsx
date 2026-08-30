@@ -22,7 +22,7 @@ export default function StorySection({
   principles,
 }: StorySectionProps) {
   return (
-    <section className={styles.section} aria-labelledby="story-title">
+    <section className={styles.section} id="cerita" aria-labelledby="story-title">
       <div className={styles.container}>
         <span className={styles.eyebrow}>{eyebrow}</span>
         <h2 id="story-title" className={styles.title}>{title}</h2>

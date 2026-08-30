@@ -15,6 +15,7 @@ export interface SaasProduct {
   category: string;
   highlight: string;
   status: SaasStatus;
+  shot: string | null;
 }
 
 export const ecosystemSaasData = {
@@ -31,12 +32,13 @@ export const ecosystemSaasData = {
         '12 produk SaaS AI berjalan di production — dari Meta Ads manager sampai LLM marketplace. Satu orang, satu infrastruktur, semua bisa dicoba langsung.',
       ctaPrimary: { text: 'Jelajahi Produk →', href: '#produk' },
       ctaSecondary: { text: 'Hubungi Kami', href: '/contact' },
-      liveIndicator: '● 10/12 layanan online',
+      liveIndicator: '● Semua produk dicek live',
       metricHighlight: { value: '10', label: 'produk live' },
       metrics: [
-        { label: 'Produk SaaS live', value: '10', highlight: true },
-        { label: 'Total produk terdaftar', value: '12', highlight: false },
-        { label: 'Semua terhubung 1 infra', value: '1', highlight: false },
+        { label: 'Total produk', value: '12', highlight: false },
+        { label: 'Live sekarang', value: '10', highlight: false },
+        { label: 'Dana VC', value: '0', highlight: true },
+        { label: 'Founder', value: '1', highlight: false },
       ],
     },
     status: {
@@ -71,6 +73,7 @@ export const ecosystemSaasData = {
           category: 'Ads & Marketing',
           highlight: 'Auto campaign monitoring',
           status: 'live',
+          shot: '/ecosystem/adforge.png',
         },
         {
           emoji: '🏭',
@@ -82,6 +85,7 @@ export const ecosystemSaasData = {
           category: 'Content Platform',
           highlight: 'Multi-language publishing',
           status: 'live',
+          shot: '/ecosystem/content.png',
         },
         {
           emoji: '✈️',
@@ -93,6 +97,7 @@ export const ecosystemSaasData = {
           category: 'Travel AI',
           highlight: 'Itinerary instan',
           status: 'live',
+          shot: '/ecosystem/trip.png',
         },
         {
           emoji: '📈',
@@ -104,6 +109,7 @@ export const ecosystemSaasData = {
           category: 'Market Intelligence',
           highlight: 'Realtime orderbook',
           status: 'live',
+          shot: '/ecosystem/tracker.png',
         },
         {
           emoji: '📲',
@@ -115,6 +121,7 @@ export const ecosystemSaasData = {
           category: 'Social Automation',
           highlight: 'Human approval gate',
           status: 'live',
+          shot: '/ecosystem/social.png',
         },
         {
           emoji: '🔌',
@@ -126,6 +133,7 @@ export const ecosystemSaasData = {
           category: 'AI Marketplace',
           highlight: 'Best price, every model',
           status: 'live',
+          shot: '/ecosystem/marketplace.png',
         },
         {
           emoji: '💳',
@@ -137,6 +145,7 @@ export const ecosystemSaasData = {
           category: 'Payments',
           highlight: '13 gateway terhubung',
           status: 'live',
+          shot: '/ecosystem/payment.png',
         },
         {
           emoji: '🔀',
@@ -148,6 +157,7 @@ export const ecosystemSaasData = {
           category: 'Network',
           highlight: 'Multi-user + OAuth',
           status: 'live',
+          shot: '/ecosystem/1proxy.png',
         },
         {
           emoji: '💼',
@@ -159,6 +169,7 @@ export const ecosystemSaasData = {
           category: 'Network',
           highlight: 'API v2 live',
           status: 'live',
+          shot: null,
         },
         {
           emoji: '🦊',
@@ -170,6 +181,7 @@ export const ecosystemSaasData = {
           category: 'Trading',
           highlight: 'Sinyal AI ke Telegram',
           status: 'live',
+          shot: '/ecosystem/phantomfx.png',
         },
         {
           emoji: '📱',
@@ -181,6 +193,7 @@ export const ecosystemSaasData = {
           category: 'Infrastructure',
           highlight: 'Device automation',
           status: 'starting',
+          shot: null,
         },
         {
           emoji: '📊',
@@ -192,6 +205,7 @@ export const ecosystemSaasData = {
           category: 'Trading',
           highlight: 'Market-making',
           status: 'starting',
+          shot: null,
         },
       ],
     },
@@ -293,12 +307,13 @@ export const ecosystemSaasData = {
         '12 AI SaaS products running in production — from Meta Ads manager to LLM marketplace. One person, one infrastructure, all tryable live.',
       ctaPrimary: { text: 'Explore Products →', href: '#produk' },
       ctaSecondary: { text: 'Contact Us', href: '/contact' },
-      liveIndicator: '● 10/12 services online',
+      liveIndicator: '● Every product checked live',
       metricHighlight: { value: '10', label: 'live products' },
       metrics: [
-        { label: 'Live SaaS products', value: '10', highlight: true },
-        { label: 'Total registered products', value: '12', highlight: false },
-        { label: 'Shared infrastructure', value: '1', highlight: false },
+        { label: 'Total products', value: '12', highlight: false },
+        { label: 'Live now', value: '10', highlight: false },
+        { label: 'VC funding', value: '0', highlight: true },
+        { label: 'Founder', value: '1', highlight: false },
       ],
     },
     status: {
@@ -333,6 +348,7 @@ export const ecosystemSaasData = {
           category: 'Ads & Marketing',
           highlight: 'Auto campaign monitoring',
           status: 'live',
+          shot: '/ecosystem/adforge.png',
         },
         {
           emoji: '🏭',
@@ -344,6 +360,7 @@ export const ecosystemSaasData = {
           category: 'Content Platform',
           highlight: 'Multi-language publishing',
           status: 'live',
+          shot: '/ecosystem/content.png',
         },
         {
           emoji: '✈️',
@@ -355,6 +372,7 @@ export const ecosystemSaasData = {
           category: 'Travel AI',
           highlight: 'Instant itineraries',
           status: 'live',
+          shot: '/ecosystem/trip.png',
         },
         {
           emoji: '📈',
@@ -366,6 +384,7 @@ export const ecosystemSaasData = {
           category: 'Market Intelligence',
           highlight: 'Realtime orderbook',
           status: 'live',
+          shot: '/ecosystem/tracker.png',
         },
         {
           emoji: '📲',
@@ -377,6 +396,7 @@ export const ecosystemSaasData = {
           category: 'Social Automation',
           highlight: 'Human approval gate',
           status: 'live',
+          shot: '/ecosystem/social.png',
         },
         {
           emoji: '🔌',
@@ -388,6 +408,7 @@ export const ecosystemSaasData = {
           category: 'AI Marketplace',
           highlight: 'Best price, every model',
           status: 'live',
+          shot: '/ecosystem/marketplace.png',
         },
         {
           emoji: '💳',
@@ -399,6 +420,7 @@ export const ecosystemSaasData = {
           category: 'Payments',
           highlight: '13 gateways connected',
           status: 'live',
+          shot: '/ecosystem/payment.png',
         },
         {
           emoji: '🔀',
@@ -410,6 +432,7 @@ export const ecosystemSaasData = {
           category: 'Network',
           highlight: 'Multi-user + OAuth',
           status: 'live',
+          shot: '/ecosystem/1proxy.png',
         },
         {
           emoji: '💼',
@@ -421,6 +444,7 @@ export const ecosystemSaasData = {
           category: 'Network',
           highlight: 'Live API v2',
           status: 'live',
+          shot: null,
         },
         {
           emoji: '🦊',
@@ -432,6 +456,7 @@ export const ecosystemSaasData = {
           category: 'Trading',
           highlight: 'AI signals to Telegram',
           status: 'live',
+          shot: '/ecosystem/phantomfx.png',
         },
         {
           emoji: '📱',
@@ -443,6 +468,7 @@ export const ecosystemSaasData = {
           category: 'Infrastructure',
           highlight: 'Device automation',
           status: 'starting',
+          shot: null,
         },
         {
           emoji: '📊',
@@ -454,6 +480,7 @@ export const ecosystemSaasData = {
           category: 'Trading',
           highlight: 'Market-making',
           status: 'starting',
+          shot: null,
         },
       ],
     },
