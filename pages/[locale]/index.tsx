@@ -8,6 +8,7 @@ import VisionMission from '@/components/VisionMission';
 import MarketingCTA from '@/components/MarketingCTA';
 import { ecosystemSaasData } from '@/data/ecosystem-saas';
 import MarketingHeader from '@/components/MarketingHeader';
+import AcademySection from '@/components/AcademySection';
 
 type Locale = 'id' | 'en';
 
@@ -31,6 +32,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
       {/* Hook — headline + proof + stats */}
       <MarketingHero
+        locale={locale}
         eyebrow={d.hero.eyebrow}
         title={d.hero.title}
         description={d.hero.description}
@@ -41,6 +43,9 @@ export default function HomePage({ locale }: { locale: Locale }) {
           ...d.hero.metrics.map((m) => ({ value: m.value, label: m.label })),
         ]}
       />
+
+      {/* AI Academy — flagship learning product */}
+      <AcademySection locale={locale} />
 
       {/* Story — cerita */}
       <StorySection

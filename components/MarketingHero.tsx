@@ -9,6 +9,7 @@ interface CTA {
 }
 
 interface Props {
+  locale?: 'id' | 'en';
   eyebrow: string;
   title: string; // may contain <br/> and *italic emphasized* segments
   description: string;
@@ -33,6 +34,7 @@ function renderTitle(title: string) {
 }
 
 export default function MarketingHero({
+  locale = 'id',
   eyebrow,
   title,
   description,
@@ -70,6 +72,18 @@ export default function MarketingHero({
             {ctaSecondary.text}
           </a>
         </div>
+
+        {/* Credibility strip — frameworks the founder contributes to */}
+        <ul className={styles.trustStrip} aria-label="Built by contributors of">
+          {['Next.js', 'Vue.js', 'Prisma', 'trpc'].map((fw) => (
+            <li key={fw} className={styles.trustItem}>{fw}</li>
+          ))}
+          <li className={styles.trustNote}>
+            {locale === 'id'
+              ? '— dibangun oleh kontributor aktif framework open-source terbesar'
+              : '— built by active contributors to the world\'s largest open-source frameworks'}
+          </li>
+        </ul>
 
         <div className={styles.statsBlock}>
           <span className={styles.liveChip}>

@@ -64,6 +64,18 @@ export const ecosystemSaasData = {
       subtitle: 'Produk SaaS yang berjalan di ekosistem. Klik untuk membuka demo langsung.',
       items: [
         {
+          emoji: '🎓',
+          name: 'AI Academy',
+          tagline: 'Belajar AI Praktek',
+          description:
+            'Kursus AI langsung praktek: AI Agent untuk UMKM, konten, guru, dan pelajar — dengan mentor 10+ tahun pengalaman produksi.',
+          url: 'https://berkahkarya.org/id/academy',
+          category: 'Education',
+          highlight: '39+ kursus · 4 track',
+          status: 'live',
+          shot: null,
+        },
+        {
           emoji: '📣',
           name: 'AdForge',
           tagline: 'Ads Management',
@@ -338,6 +350,18 @@ export const ecosystemSaasData = {
       title: 'Live Products',
       subtitle: 'SaaS products running in the ecosystem. Click to open the live demo.',
       items: [
+        {
+          emoji: '🎓',
+          name: 'AI Academy',
+          tagline: 'Hands-on AI Courses',
+          description:
+            'Practical AI courses: AI Agents for SMEs, content creators, teachers, and students — mentored by a 10+ year production engineer.',
+          url: 'https://berkahkarya.org/en/academy',
+          category: 'Education',
+          highlight: '39+ courses · 4 tracks',
+          status: 'live',
+          shot: null,
+        },
         {
           emoji: '📣',
           name: 'AdForge',
