@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import styles from './_lp-base.module.css';
 
 export interface PricingTier {
@@ -10,6 +13,9 @@ export interface PricingTier {
   cta: { id: string; en: string };
   ctaLink: string;
   badge?: { id: string; en: string };
+  /** When set, CTA becomes a Buy Now button that creates a payment via /api/checkout */
+  checkoutAmount?: number;
+  checkoutProduct?: string;
 }
 
 interface PricingCardProps {
@@ -18,6 +24,8 @@ interface PricingCardProps {
 }
 
 export default function PricingCard({ tier, locale = 'id' }: PricingCardProps) {
+  const [checkoutError, setCheckoutError] = useState('');
+  const [checking, setChecking] = useState(false);
   const name = locale === 'id' ? tier.name.id : tier.name.en;
   const price = locale === 'id' ? tier.price.id : tier.price.en;
   const originalPrice = tier.originalPrice ? (locale === 'id' ? tier.originalPrice.id : tier.originalPrice.en) : null;
@@ -44,9 +52,51 @@ export default function PricingCard({ tier, locale = 'id' }: PricingCardProps) {
           </li>
         ))}
       </ul>
-      <a href={tier.ctaLink} className={styles.pricingCta}>
-        {cta}
-      </a>
+      {tier.checkoutAmount ? (
+        <button
+          type="button"
+          disabled={checking}
+          className={styles.pricingCta}
+          style={{ border: 'none', cursor: checking ? 'not-allowed' : 'pointer', opacity: checking ? 0.7 : 1 }}
+          onClick={async () => {
+            setChecking(true); setCheckoutError('');
+            try {
+              const res = await fetch('/api/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  amount: tier.checkoutAmount,
+                  product_name: name,
+                  plan: (tier.checkoutProduct || name).toLowerCase().replace(/\s+/g, '-'),
+                  customer_name: 'Buyer',
+                  customer_email: 'buyer@example.com',
+                }),
+              });
+              const data = await res.json();
+              if (data.success && data.checkout_url) {
+                window.location.href = data.checkout_url;
+              } else {
+                setCheckoutError(data.error || 'Payment failed');
+                setChecking(false);
+              }
+            } catch {
+              setCheckoutError('Payment gateway error');
+              setChecking(false);
+            }
+          }}
+        >
+          {checking ? (locale === 'id' ? 'Memproses...' : 'Processing...') : cta}
+        </button>
+      ) : (
+        <a href={tier.ctaLink} className={styles.pricingCta}>
+          {cta}
+        </a>
+      )}
+      {checkoutError && (
+        <p style={{ color: '#dc2626', fontSize: '0.8rem', marginTop: '0.5rem', textAlign: 'center' }}>
+          {checkoutError}
+        </p>
+      )}
     </div>
   );
 }

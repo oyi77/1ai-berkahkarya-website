@@ -7,6 +7,7 @@ import PricingCard, { type PricingTier } from './PricingCard';
 import FAQSection, { type FAQItem } from './FAQSection';
 import TestimonialGrid, { type Testimonial } from './TestimonialGrid';
 import CompareTable, { type CompareRow } from './CompareTable';
+import LeadForm from '@/components/LeadForm';
 import b from './_lp-base.module.css';
 
 export interface LPContent {
@@ -241,6 +242,21 @@ export default function ServiceLP({ content, locale = 'id' }: ServiceLPProps) {
                 {t(content.finalCta.guarantee)}
               </div>
             )}
+          </div>
+        </section>
+
+        {/* ── Lead Capture ── */}
+        <section className={b.leadSection}>
+          <div className={b.container}>
+            <h2 className={b.sectionTitle}>
+              {locale === 'id' ? 'Dapatkan penawaran khusus' : 'Get a custom quote'}
+            </h2>
+            <p className={b.subtitle}>
+              {locale === 'id'
+                ? 'Isi form di bawah — tim kami akan menghubungi Anda dengan penawaran terbaik.'
+                : 'Fill in the form below — our team will reach out with the best offer.'}
+            </p>
+            <LeadForm serviceName={content.serviceName} />
           </div>
         </section>
       </div>

@@ -218,6 +218,8 @@ export const oneAiData: LPContent = {
         badge: { id: 'Terpopuler', en: 'Most Popular' },
         cta: { id: 'Pesan Sekarang', en: 'Order Now' },
         ctaLink: waLink('Halo, saya mau pesan One AI paket Pro.'),
+        checkoutAmount: 999000,
+        checkoutProduct: 'One AI Pro',
       },
       {
         name: { id: 'Enterprise', en: 'Enterprise' },
