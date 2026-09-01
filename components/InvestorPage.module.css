@@ -1,0 +1,408 @@
+/* InvestorPage.module.css — Ledger Design System */
+
+.section {
+  padding: var(--section-py) var(--section-px);
+}
+
+.container {
+  max-width: var(--container-lg);
+  margin: 0 auto;
+}
+
+/* ============ HERO ============ */
+.hero {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  text-align: center;
+  padding: clamp(4rem, 10vw, 7rem) var(--section-px);
+  border-bottom: 1px solid var(--rule-light);
+}
+
+.heroEyebrow {
+  display: inline-block;
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--margin-red);
+  font-weight: 600;
+  background: rgba(163, 53, 43, 0.08);
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: var(--space-4);
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: var(--space-4);
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.heroSubtitle {
+  font-size: var(--text-lg);
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin-inline: auto;
+  margin-bottom: var(--space-8);
+}
+
+.heroCtas {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============ METRICS ============ */
+.metrics {
+  background: var(--paper);
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.metricCard {
+  background: var(--paper-2);
+  border: 1px solid var(--rule-light);
+  border-radius: 12px;
+  padding: var(--space-6);
+  text-align: center;
+  transition: box-shadow 0.2s ease;
+}
+
+.metricCard:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.metricIcon {
+  font-size: 2rem;
+  margin-bottom: var(--space-2);
+}
+
+.metricValue {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--ink);
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+
+.metricLabel {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+/* ============ REVENUE CHART ============ */
+.revenue {
+  background: var(--paper-2);
+}
+
+.sectionHeading {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--ink);
+  margin-bottom: var(--space-2);
+}
+
+.sectionSubheading {
+  font-size: var(--text-base);
+  color: var(--ink-soft);
+  margin-bottom: var(--space-6);
+}
+
+.chartCard {
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-radius: 12px;
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ============ PRODUCTS ============ */
+.products {
+  background: var(--paper);
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-3);
+}
+
+.productCard {
+  background: var(--paper-2);
+  border: 1px solid var(--rule-light);
+  border-radius: 10px;
+  padding: var(--space-4);
+  text-align: center;
+  transition: box-shadow 0.2s ease;
+}
+
+.productCard:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.productEmoji {
+  font-size: 1.8rem;
+  margin-bottom: var(--space-2);
+}
+
+.productName {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.productCategory {
+  font-size: var(--text-xs);
+  color: var(--ink-soft);
+  margin-bottom: var(--space-2);
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+}
+
+.badgeLive {
+  background: rgba(45, 106, 45, 0.12);
+  color: var(--verification);
+}
+
+.badgeBeta {
+  background: rgba(184, 134, 11, 0.15);
+  color: var(--brand-gold);
+}
+
+.badgeStarting {
+  background: rgba(51, 69, 107, 0.12);
+  color: var(--indigo);
+}
+
+/* ============ ROADMAP ============ */
+.roadmap {
+  background: var(--paper-2);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--rule);
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: var(--space-6);
+}
+
+.timelineDot {
+  position: absolute;
+  left: -2rem;
+  top: 0.35rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid var(--margin-red);
+  background: var(--paper);
+}
+
+.timelineItem.current .timelineDot {
+  background: var(--margin-red);
+  box-shadow: 0 0 0 4px rgba(163, 53, 43, 0.15);
+}
+
+.timelineQuarter {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--ink);
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.timelineTitle {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--margin-red);
+  margin-bottom: var(--space-2);
+}
+
+.timelineItems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.timelineItems li {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  padding: 0.15rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.timelineItems li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--rule-strong);
+}
+
+/* ============ TEAM ============ */
+.team {
+  background: var(--paper);
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.teamCard {
+  background: var(--paper-2);
+  border: 1px solid var(--rule-light);
+  border-radius: 12px;
+  padding: var(--space-6);
+  text-align: center;
+  transition: box-shadow 0.2s ease;
+}
+
+.teamCard:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.teamAvatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--paper-3);
+  border: 2px solid var(--rule-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin: 0 auto var(--space-3);
+}
+
+.teamName {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.teamTitle {
+  font-size: var(--text-xs);
+  color: var(--margin-red);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.teamBio {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* ============ CTA ============ */
+.cta {
+  background: linear-gradient(180deg, var(--paper-2) 0%, var(--paper-3) 100%);
+  text-align: center;
+}
+
+.ctaCard {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--rule-light);
+  border-radius: 16px);
+  padding: var(--space-10);
+  box-shadow: var(--shadow-md);
+}
+
+.ctaTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  color: var(--ink);
+  margin-bottom: var(--space-3);
+}
+
+.ctaDesc {
+  font-size: var(--text-base);
+  color: var(--ink-soft);
+  margin-bottom: var(--space-6);
+  line-height: 1.6;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .metricGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .heroTitle {
+    font-size: var(--text-3xl);
+  }
+
+  .metricGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+
+  .metricCard {
+    padding: var(--space-4);
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .teamGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaCard {
+    padding: var(--space-6);
+  }
+
+  .timeline {
+    padding-left: 1.5rem;
+  }
+
+  .timelineDot {
+    left: -1.5rem;
+    width: 12px;
+    height: 12px;
+  }
+}

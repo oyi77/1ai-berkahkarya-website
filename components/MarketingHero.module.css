@@ -247,12 +247,81 @@
 }
 
 /* ─── Responsive ─── */
+/* ─── Persona Toggle ─── */
 
-@media (max-width: 640px) {
-  .title {
-    font-size: var(--text-4xl);
+.personaToggle {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  display: flex;
+  gap: 2px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.personaBtn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.personaBtn:hover {
+  color: var(--color-text);
+}
+
+.personaBtnActive {
+  background: var(--color-primary);
+  color: white;
+  box-shadow: 0 2px 6px rgba(163, 53, 43, 0.3);
+}
+
+.personaBtnActive:hover {
+  color: white;
+}
+
+/* ─── Fade + slide animation for copy switch ─── */
+
+.title,
+.description {
+  animation: personaFadeIn 0.4s ease;
+}
+
+@keyframes personaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
   }
-  .statsRow {
-    gap: var(--space-5);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
+/* ─── Responsive ─── */
+
+ @media (max-width: 640px) {
+   .title {
+     font-size: var(--text-4xl);
+   }
+   .statsRow {
+     gap: var(--space-5);
+   }
+  .personaToggle {
+    position: static;
+    margin-bottom: var(--space-4);
+    align-self: flex-end;
+  }
+}
+

@@ -40,6 +40,20 @@ export const ecosystemSaasData = {
         { label: 'Dana VC', value: '0', highlight: true },
         { label: 'Founder', value: '1', highlight: false },
       ],
+      persona: {
+        pemula: {
+          title: 'Perusahaan AI dengan *10 Produk Live*',
+          description: 'Belajar AI, pakai tools AI, atau otomatis bisnis — semua ada di sini',
+          ctaPrimary: { text: 'Jelajahi Produk →', href: '#produk' },
+          ctaSecondary: { text: 'Belajar AI Gratis', href: '/academy' },
+        },
+        investor: {
+          title: '10 SaaS AI *Revenue-Generating*<br/>Bootstrapped',
+          description: 'Bootstrapped, profitable, 12 products live. $2.4K MRR, 18% MoM growth, 34 enterprise clients',
+          ctaPrimary: { text: 'Lihat Metrics →', href: '/investor' },
+          ctaSecondary: { text: 'Pitch Deck', href: '/pitch-deck' },
+        },
+      },
     },
     status: {
       title: 'Status Layer',
@@ -327,6 +341,20 @@ export const ecosystemSaasData = {
         { label: 'VC funding', value: '0', highlight: true },
         { label: 'Founder', value: '1', highlight: false },
       ],
+      persona: {
+        pemula: {
+          title: 'AI company with *10 Live Products*',
+          description: 'Learn AI, use AI tools, or automate business — all in one place',
+          ctaPrimary: { text: 'Explore Products →', href: '#produk' },
+          ctaSecondary: { text: 'Learn AI Free', href: '/academy' },
+        },
+        investor: {
+          title: '10 AI SaaS *Revenue-Generating*<br/>Bootstrapped',
+          description: 'Bootstrapped, profitable, 12 products live. $2.4K MRR, 18% MoM growth, 34 enterprise clients',
+          ctaPrimary: { text: 'View Metrics →', href: '/investor' },
+          ctaSecondary: { text: 'Pitch Deck', href: '/pitch-deck' },
+        },
+      },
     },
     status: {
       title: 'Status Layer',

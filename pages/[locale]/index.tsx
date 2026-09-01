@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
-import MarketingHero from '@/components/MarketingHero';
+import MarketingHero, { Persona } from '@/components/MarketingHero';
 import StorySection from '@/components/StorySection';
 import EcosystemShowcase from '@/components/EcosystemShowcase';
 import AboutSection from '@/components/AboutSection';
@@ -12,6 +13,21 @@ import ServicesGrid from '@/components/ServicesGrid';
 import AcademySection from '@/components/AcademySection';
 
 type Locale = 'id' | 'en';
+
+const PERSONA_KEY = 'bk-persona';
+
+function usePersona() {
+  const [persona, setPersona] = useState<Persona>('pemula');
+  useEffect(() => {
+    const stored = localStorage.getItem(PERSONA_KEY) as Persona | null;
+    if (stored === 'pemula' || stored === 'investor') setPersona(stored);
+  }, []);
+  const update = (p: Persona) => {
+    setPersona(p);
+    localStorage.setItem(PERSONA_KEY, p);
+  };
+  return [persona, update] as const;
+}
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: [{ params: { locale: 'id' } }, { params: { locale: 'en' } }],
@@ -25,13 +41,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
 export default function HomePage({ locale }: { locale: Locale }) {
   const d = ecosystemSaasData[locale];
   const href = (h: string) => (h.startsWith('/') ? `/${locale}${h}` : h);
+  const [persona, setPersona] = usePersona();
 
   return (
     <Layout title={d.meta.title} description={d.meta.description} hideHeader>
-      {/* Landing header — marketing nav with working anchors */}
       <MarketingHeader />
-
-      {/* Hook — headline + proof + stats */}
       <MarketingHero
         locale={locale}
         eyebrow={d.hero.eyebrow}
@@ -40,12 +54,11 @@ export default function HomePage({ locale }: { locale: Locale }) {
         ctaPrimary={d.hero.ctaPrimary}
         ctaSecondary={{ ...d.hero.ctaSecondary, href: href(d.hero.ctaSecondary.href) }}
         liveIndicator={d.hero.liveIndicator}
-        stats={[
-          ...d.hero.metrics.map((m) => ({ value: m.value, label: m.label })),
-        ]}
+        stats={[...d.hero.metrics.map((m) => ({ value: m.value, label: m.label }))]}
+        persona={persona}
+        personaCopy={d.hero.persona}
+        onPersonaChange={setPersona}
       />
-
-      {/* AI Academy — flagship learning product */}
       <AcademySection locale={locale} />
 
       {/* Story — cerita */}

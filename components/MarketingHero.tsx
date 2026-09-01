@@ -8,15 +8,27 @@ interface CTA {
   href: string;
 }
 
+export type Persona = 'pemula' | 'investor';
+
+interface PersonaCopy {
+  title: string;
+  description: string;
+  ctaPrimary: CTA;
+  ctaSecondary: CTA;
+}
+
 interface Props {
   locale?: 'id' | 'en';
   eyebrow: string;
-  title: string; // may contain <br/> and *italic emphasized* segments
+  title: string;
   description: string;
   ctaPrimary: CTA;
   ctaSecondary: CTA;
   liveIndicator: string;
   stats: Array<{ value: string; label: string }>;
+  persona?: Persona;
+  personaCopy?: { pemula: PersonaCopy; investor: PersonaCopy };
+  onPersonaChange?: (persona: Persona) => void;
 }
 
 /**
@@ -42,34 +54,65 @@ export default function MarketingHero({
   ctaSecondary,
   liveIndicator,
   stats,
+  persona = 'pemula',
+  personaCopy,
+  onPersonaChange,
 }: Props) {
+  const activeCopy =
+    personaCopy && personaCopy[persona]
+      ? personaCopy[persona]
+      : { title, description, ctaPrimary, ctaSecondary };
+  const toggleLabels: Record<Persona, string> = locale === 'id'
+    ? { pemula: 'Pemula', investor: 'Investor' }
+    : { pemula: 'Beginner', investor: 'Investor' };
   return (
     <section className={styles.section} aria-labelledby="marketing-hero-title">
+      {personaCopy && (
+        <div
+          className={styles.personaToggle}
+          role="group"
+          aria-label={locale === 'id' ? 'Pilih persona' : 'Select persona'}
+        >
+          <button
+            type="button"
+            className={`${styles.personaBtn} ${persona === 'pemula' ? styles.personaBtnActive : ''}`}
+            aria-pressed={persona === 'pemula'}
+            onClick={() => onPersonaChange?.('pemula')}
+          >
+            {toggleLabels.pemula}
+          </button>
+          <button
+            type="button"
+            className={`${styles.personaBtn} ${persona === 'investor' ? styles.personaBtnActive : ''}`}
+            aria-pressed={persona === 'investor'}
+            onClick={() => onPersonaChange?.('investor')}
+          >
+            {toggleLabels.investor}
+          </button>
+        </div>
+      )}
       <div className={styles.wrap}>
         <span className={styles.eyebrow}>{eyebrow}</span>
-
         <h1
           id="marketing-hero-title"
           className={styles.title}
-          dangerouslySetInnerHTML={renderTitle(title)}
+          dangerouslySetInnerHTML={renderTitle(activeCopy.title)}
         />
-
-        <p className={styles.description}>{description}</p>
-
+        <p className={styles.description}>{activeCopy.description}</p>
         <div className={styles.ctaRow} role="group" aria-label="Hero actions">
           <a
-            href={ctaPrimary.href}
+            href={activeCopy.ctaPrimary.href}
             className={`${styles.btn} ${styles.btnPrimary}`}
-            onClick={() => trackCTAClick('hero_primary', ctaPrimary.href)}
+            onClick={() => trackCTAClick('hero_primary', activeCopy.ctaPrimary.href)}
           >
-            {ctaPrimary.text}
+            {activeCopy.ctaPrimary.text}
           </a>
           <a
-            href={ctaSecondary.href}
+            href={activeCopy.ctaSecondary.href}
             className={`${styles.btn} ${styles.btnSecondary}`}
-            onClick={() => trackCTAClick('hero_secondary', ctaSecondary.href)}
+            onClick={() => trackCTAClick('hero_secondary', activeCopy.ctaSecondary.href)}
           >
-            {ctaSecondary.text}
+            {activeCopy.ctaSecondary.text}
           </a>
         </div>
 
@@ -104,3 +147,4 @@ export default function MarketingHero({
     </section>
   );
 }
+

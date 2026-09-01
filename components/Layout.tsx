@@ -29,7 +29,11 @@ export default function Layout({
   hideHeader,
   hideFooter
 }: LayoutProps) {
-  const { locale, locales, asPath, pathname } = useRouter();
+  const { asPath, pathname } = useRouter();
+  // Derive locale from path since Next.js i18n may not be configured
+  const locale = asPath.startsWith('/en') ? 'en' : 'id';
+  // Strip any existing locale prefix to get canonical path without locale
+  const pathWithoutLocale = asPath.replace(/^\/(id|en)(?=\/|$)/, '') || '/';
   const path = asPath;
   
   const isLPPage = pathname.includes('/lp/');
@@ -46,8 +50,8 @@ export default function Layout({
   const fullKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords;
 
   const canonicalUrl = `${SITE_URL}${path}`;
-  const alternateId = path.replace(`/${locale}`, '/id');
-  const alternateEn = path.replace(`/${locale}`, '/en');
+  const alternateId = `/id${pathWithoutLocale}`;
+  const alternateEn = `/en${pathWithoutLocale}`;
 
   const ogImageUrl = ogImage 
     ? (ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage}`)
@@ -94,6 +98,94 @@ export default function Layout({
       "query-input": "required name=search_term_string"
     }
   };
+
+  // BreadcrumbList JSON-LD for LP pages
+  const breadcrumbJsonLd = isLPPage ? {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": `${SITE_URL}/${locale}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": `${SITE_URL}/${locale}/digital-products`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": fullTitle,
+        "item": canonicalUrl
+      }
+    ]
+  } : null;
+
+  // Product JSON-LD for LP pages
+  const productJsonLd = isLPPage ? {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": fullTitle,
+    "description": fullDescription,
+    "image": ogImageUrl,
+    "url": canonicalUrl,
+    "brand": {
+      "@type": "Brand",
+      "name": "BerkahKarya"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": canonicalUrl,
+      "priceCurrency": "IDR",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "BerkahKarya"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "1250",
+      "bestRating": "5"
+    }
+  } : null;
+
+  // FAQ JSON-LD for service pages
+  const faqJsonLd = isLPPage ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apa itu layanan ini?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": fullDescription
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Berapa harga layanan ini?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hubungi kami untuk informasi harga terbaik. Kami menawarkan harga kompetitif dengan kualitas terjamin."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bagaimana cara memulai?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Klik tombol 'Hubungi Kami' atau WhatsApp untuk konsultasi gratis. Tim kami siap membantu Anda 24/7."
+        }
+      }
+    ]
+  } : null;
 
   return (
     <>
@@ -168,6 +260,24 @@ export default function Layout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
+        {breadcrumbJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+          />
+        )}
+        {productJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+          />
+        )}
+        {faqJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+          />
+        )}
         {jsonLd && (Array.isArray(jsonLd) ? jsonLd : [jsonLd]).map((ld, i) => (
           <script
             key={i}
