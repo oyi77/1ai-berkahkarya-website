@@ -1,10 +1,35 @@
-/* ─── Marketing CTA ─── */
+/* ─── Marketing CTA — Gradient background + glow ─── */
 
 .section {
-  background: var(--ink);
+  position: relative;
+  background: linear-gradient(135deg, var(--ink), #2a3447);
+  overflow: hidden;
+}
+
+/* Animated glow orb */
+.section::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(163, 53, 43, 0.4), transparent 70%);
+  filter: blur(80px);
+  animation: float 6s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes float {
+  0% { transform: translateX(-50%) translateY(0); }
+  100% { transform: translateX(-50%) translateY(-20px); }
 }
 
 .inner {
+  position: relative;
+  z-index: 1;
   max-width: var(--container-lg);
   margin: 0 auto;
   padding: calc(var(--section-py) * 1.5) var(--section-px);
@@ -13,12 +38,13 @@
 
 .title {
   font-family: var(--font-heading);
-  font-size: var(--text-4xl);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   color: var(--paper-2);
   margin: 0 auto var(--space-4);
   max-width: 720px;
   line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 .description {
@@ -26,7 +52,7 @@
   font-size: var(--text-lg);
   color: rgba(242, 237, 225, 0.75);
   line-height: 1.6;
-  margin: 0 auto var(--space-6);
+  margin: 0 auto var(--space-7);
   max-width: 560px;
 }
 
@@ -41,15 +67,18 @@
   background: var(--paper-2);
   border: 1px solid var(--paper-2);
   border-radius: var(--radius-lg);
-  padding: var(--space-3) var(--space-7);
+  padding: var(--space-4) var(--space-8);
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: all 0.3s var(--ease-out-expo);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
   background: var(--margin-red);
   border-color: var(--margin-red);
   color: var(--paper-2);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(163, 53, 43, 0.4);
 }
 
 .button:focus-visible {

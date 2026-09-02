@@ -1,7 +1,7 @@
-/* ─── Open Ledger Global Styles ─── */
+/* ─── 1AI BerkahKarya Global Styles — Dark Mode Awwwards ─── */
 @import url('./colors.css');
 @import url('./typography.css');
-@import url('./ledger.css');
+@import url('./animations.css');
 /* Self-hosted fonts (prevents render-blocking external font request) */
 @import url('/fonts/fonts.css');
 
@@ -22,17 +22,33 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: 1.6;
-  background: var(--paper);
-  color: var(--ink-soft);
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ─── Mesh Gradient Background ─── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-mesh-1), var(--gradient-mesh-2), var(--gradient-mesh-3);
+  z-index: var(--z-bg);
+  pointer-events: none;
 }
 
 img { max-width: 100%; height: auto; display: block; }
-a { color: inherit; text-decoration: none; }
+a { color: inherit; text-decoration: none; transition: color var(--duration-fast) var(--ease-out); }
+a:hover { color: var(--accent); }
 
 button {
+  font-family: var(--font-body);
   cursor: pointer;
-  font-family: inherit;
   border: none;
   background: none;
 }
@@ -41,15 +57,20 @@ button {
 a:focus-visible,
 button:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--margin-red);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 /* ─── Utility Classes ─── */
 .container {
+  width: 100%;
   max-width: var(--container-xl);
   margin: 0 auto;
-  padding: 0 var(--section-px);
+  padding-left: var(--section-px);
+  padding-right: var(--section-px);
+  position: relative;
+  z-index: var(--z-base);
 }
 
 .container-sm { max-width: var(--container-sm); }
@@ -57,91 +78,119 @@ button:focus-visible,
 .container-lg { max-width: var(--container-lg); }
 .container-2xl { max-width: var(--container-2xl); }
 
-/* Section wrapper */
+/* ─── Section Wrapper — Generous ─── */
 .section {
   padding: var(--section-py) var(--section-px);
+  position: relative;
+  z-index: var(--z-base);
 }
 
-.section--tight { padding-top: calc(var(--section-py) * 0.5); padding-bottom: calc(var(--section-py) * 0.5); }
-.section--loose { padding-top: calc(var(--section-py) * 1.5); padding-bottom: calc(var(--section-py) * 1.5); }
+.section--tight {
+  padding-top: calc(var(--section-py) * 0.5);
+  padding-bottom: calc(var(--section-py) * 0.5);
+}
 
-/* Eyebrow */
+.section--loose {
+  padding-top: calc(var(--section-py) * 1.5);
+  padding-bottom: calc(var(--section-py) * 1.5);
+}
+
+/* ─── Eyebrow ─── */
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: var(--text-xs);
   text-transform: uppercase;
-  color: var(--margin-red);
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-weight: 500;
   margin-bottom: var(--space-3);
 }
 
-/* Buttons */
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ─── Buttons ─── */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 500;
-  letter-spacing: 0.03em;
-  padding: 0.625rem 1.5rem;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 1.75rem;
   cursor: pointer;
-  transition: background var(--duration-fast) var(--ease-out),
-              border-color var(--duration-fast) var(--ease-out),
-              color var(--duration-fast) var(--ease-out);
+  transition: all var(--duration-base) var(--ease-out);
   text-decoration: none;
+  border-radius: var(--radius-full);
+  position: relative;
+  overflow: hidden;
 }
 
 .btn--primary {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--accent);
+  color: var(--text);
   border: none;
 }
 
 .btn--primary:hover {
-  background: var(--ink-soft);
+  background: var(--accent-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
 }
 
 .btn--secondary {
-  background: transparent;
-  color: var(--ink);
-  border: 1px solid var(--rule-strong);
+  background: var(--glass-bg);
+  color: var(--text);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
 }
 
 .btn--secondary:hover {
-  background: var(--paper-2);
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
 }
 
 .btn--ghost {
   background: transparent;
-  color: var(--ink-muted);
+  color: var(--text-muted);
   border: none;
 }
 
 .btn--ghost:hover {
-  color: var(--ink);
+  color: var(--text);
 }
 
 .btn--stamp {
-  background: var(--margin-red);
-  color: var(--paper);
+  background: var(--accent);
+  color: var(--text);
 }
 
 .btn--stamp:hover {
-  background: var(--margin-red-soft);
+  background: var(--accent-hover);
+  box-shadow: var(--shadow-glow);
 }
 
-/* Legacy Glass Card → Ledger Card */
+/* ─── Glass Card ─── */
 .card {
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
   position: relative;
-  transition: box-shadow var(--duration-base) var(--ease-out);
+  transition: all var(--duration-base) var(--ease-out);
+  padding: var(--space-6);
 }
 
 .card::before {
@@ -149,29 +198,52 @@ button:focus-visible,
   position: absolute;
   top: 0;
   left: 0;
-  width: 3px;
-  height: 100%;
-  background: var(--margin-red);
-  opacity: 0.4;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
 }
 
 .card:hover {
-  box-shadow: var(--shadow-md);
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
 }
 
 .card-light {
-  background: var(--paper-2);
-  border: 1px solid var(--rule-light);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(var(--glass-blur));
 }
 
-/* Gradient Text — kept in colors.css now */
+/* ─── Glass Panel ─── */
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  backdrop-filter: blur(var(--glass-blur-strong));
+  -webkit-backdrop-filter: blur(var(--glass-blur-strong));
+  padding: var(--space-8);
+  position: relative;
+}
 
-/* Spacer */
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+}
+
+/* ─── Spacer ─── */
 .spacer {
   height: var(--space-8);
 }
 
-/* Tag / Chip */
+/* ─── Tag / Chip ─── */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -180,13 +252,15 @@ button:focus-visible,
   font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.05em;
-  padding: 0.2rem 0.6rem;
-  background: var(--paper-2);
-  border: 1px solid var(--rule-light);
-  color: var(--ink-muted);
+  padding: 0.25rem 0.75rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(var(--glass-blur));
 }
 
-/* Grid helpers */
+/* ─── Grid Helpers ─── */
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -205,11 +279,74 @@ button:focus-visible,
   gap: var(--space-6);
 }
 
-@media (max-width: 1024px) {
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
-  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
 }
 
-@media (max-width: 640px) {
+/* ─── Bento Grid ─── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(200px, auto);
+  gap: var(--space-4);
+}
+
+.bento-grid > *:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* ─── Divider ─── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: var(--space-8) 0;
+}
+
+/* ─── Glow Effects ─── */
+.glow-accent {
+  box-shadow: var(--shadow-glow);
+}
+
+.glow-text {
+  text-shadow: 0 0 40px var(--accent-glow);
+}
+
+/* ─── Noise Texture Overlay ─── */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .bento-grid { grid-template-columns: repeat(2, 1fr); }
+  .bento-grid > *:first-child {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 768px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .bento-grid { grid-template-columns: 1fr; }
+  .bento-grid > *:first-child {
+    grid-column: span 1;
+  }
+  .section {
+    padding: var(--section-py-mobile) var(--section-px-mobile);
+  }
 }

@@ -67,31 +67,33 @@ export default function MarketingHero({
     : { pemula: 'Beginner', investor: 'Investor' };
   return (
     <section className={styles.section} aria-labelledby="marketing-hero-title">
-      {personaCopy && (
-        <div
-          className={styles.personaToggle}
-          role="group"
-          aria-label={locale === 'id' ? 'Pilih persona' : 'Select persona'}
-        >
-          <button
-            type="button"
-            className={`${styles.personaBtn} ${persona === 'pemula' ? styles.personaBtnActive : ''}`}
-            aria-pressed={persona === 'pemula'}
-            onClick={() => onPersonaChange?.('pemula')}
-          >
-            {toggleLabels.pemula}
-          </button>
-          <button
-            type="button"
-            className={`${styles.personaBtn} ${persona === 'investor' ? styles.personaBtnActive : ''}`}
-            aria-pressed={persona === 'investor'}
-            onClick={() => onPersonaChange?.('investor')}
-          >
-            {toggleLabels.investor}
-          </button>
-        </div>
-      )}
+      {/* Animated mesh gradient background */}
+      <div className={styles.meshOrbExtra} aria-hidden="true" />
       <div className={styles.wrap}>
+        {personaCopy && (
+          <div
+            className={styles.personaToggle}
+            role="group"
+            aria-label={locale === 'id' ? 'Pilih persona' : 'Select persona'}
+          >
+            <button
+              type="button"
+              className={`${styles.personaBtn} ${persona === 'pemula' ? styles.personaBtnActive : ''}`}
+              aria-pressed={persona === 'pemula'}
+              onClick={() => onPersonaChange?.('pemula')}
+            >
+              {toggleLabels.pemula}
+            </button>
+            <button
+              type="button"
+              className={`${styles.personaBtn} ${persona === 'investor' ? styles.personaBtnActive : ''}`}
+              aria-pressed={persona === 'investor'}
+              onClick={() => onPersonaChange?.('investor')}
+            >
+              {toggleLabels.investor}
+            </button>
+          </div>
+        )}
         <span className={styles.eyebrow}>{eyebrow}</span>
         <h1
           id="marketing-hero-title"
@@ -147,4 +149,3 @@ export default function MarketingHero({
     </section>
   );
 }
-

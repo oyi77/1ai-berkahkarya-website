@@ -13,61 +13,79 @@ interface Props {
 export default function EcosystemShowcase({ title, subtitle, items }: Props) {
   return (
     <section className={styles.section} id="produk" aria-labelledby="ecosystem-title">
+      {/* Animated mesh gradient background */}
+      <div className={styles.meshBg} aria-hidden="true">
+        <div className={styles.meshOrb1} />
+        <div className={styles.meshOrb2} />
+        <div className={styles.meshOrb3} />
+      </div>
+
       <div className={styles.wrap}>
-        <div className={styles.heading}>
+        <div className={`animate-on-scroll ${styles.heading}`} data-animate="fade-up">
           <span className={styles.eyebrow}>LIVE PRODUCTS</span>
           <h2 id="ecosystem-title" className={styles.title}>{title}</h2>
           <p className={styles.subtitle}>{subtitle}</p>
         </div>
 
-        <div className={styles.grid}>
-          {items.map((item) => (
-            <a
-              key={item.name}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.card} ${item.status === 'starting' ? styles.cardStarting : ''}`}
-              onClick={() => trackCTAClick('ecosystem_showcase', item.url)}
-            >
-              {item.status === 'starting' && (
-                <span className={`${styles.badge} ${styles.badgeStarting}`}>
-                  <span className={styles.badgeDot} /> STARTING
-                </span>
-              )}
-              {item.shot ? (
-                <div className={styles.screenshotWrap}>
-                  <img
-                    src={item.shot}
-                    alt={`${item.name} dashboard`}
-                    className={styles.screenshot}
-                    loading="lazy"
-                  />
-                  <div className={styles.screenshotOverlay}>
-                    <span className={styles.screenshotUrl}>{item.url}</span>
-                    <span className={styles.screenshotBadge}>LIVE</span>
+        <div className={styles.bento}>
+          {items.map((item, idx) => {
+            // Bento sizing: first item is large, 3rd and 5th are medium
+            let sizeClass = styles.card;
+            if (idx === 0) sizeClass = `${styles.card} ${styles.cardLarge}`;
+            else if (idx === 2 || idx === 4) sizeClass = `${styles.card} ${styles.cardMedium}`;
+
+            return (
+              <a
+                key={item.name}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`animate-on-scroll ${sizeClass} ${item.status === 'starting' ? styles.cardStarting : ''}`}
+                style={{ animationDelay: `${idx * 80}ms` }}
+                onClick={() => trackCTAClick('ecosystem_showcase', item.url)}
+              >
+                {/* Glow border on hover */}
+                <span className={styles.cardGlow} aria-hidden="true" />
+
+                {item.status === 'starting' && (
+                  <span className={`${styles.badge} ${styles.badgeStarting}`}>
+                    <span className={styles.badgeDot} /> STARTING
+                  </span>
+                )}
+                {item.shot ? (
+                  <div className={styles.screenshotWrap}>
+                    <img
+                      src={item.shot}
+                      alt={`${item.name} dashboard`}
+                      className={styles.screenshot}
+                      loading="lazy"
+                    />
+                    <div className={styles.screenshotOverlay}>
+                      <span className={styles.screenshotUrl}>{item.url}</span>
+                      <span className={styles.screenshotBadge}>LIVE</span>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <span
-                  className={`${styles.iconTile} ${item.status === 'starting' ? styles.iconTileStarting : ''}`}
-                  aria-hidden="true"
-                >
-                  {item.emoji}
-                  <span className={styles.iconDot} />
+                ) : (
+                  <span
+                    className={`${styles.iconTile} ${item.status === 'starting' ? styles.iconTileStarting : ''}`}
+                    aria-hidden="true"
+                  >
+                    {item.emoji}
+                    <span className={styles.iconDot} />
+                  </span>
+                )}
+                <span className={styles.category}>{item.category}</span>
+                <h3 className={styles.name}>{item.name}</h3>
+                <span className={styles.tagline}>{item.tagline}</span>
+                <p className={styles.desc}>{item.description}</p>
+                <span className={styles.highlight}>{item.highlight}</span>
+                <span className={styles.link}>
+                  <span className={styles.linkText}>Open Live Demo</span>
+                  <span className={styles.linkArrow} aria-hidden="true">→</span>
                 </span>
-              )}
-              <span className={styles.category}>{item.category}</span>
-              <h3 className={styles.name}>{item.name}</h3>
-              <span className={styles.tagline}>{item.tagline}</span>
-              <p className={styles.desc}>{item.description}</p>
-              <span className={styles.highlight}>{item.highlight}</span>
-              <span className={styles.link}>
-                <span className={styles.linkText}>Open Live Demo</span>
-                <span className={styles.linkArrow} aria-hidden="true">→</span>
-              </span>
-            </a>
-          ))}
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

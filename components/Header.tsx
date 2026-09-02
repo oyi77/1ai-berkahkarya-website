@@ -109,9 +109,10 @@ export default function Header() {
       <li key={link.slug}>
         <Link
           href={`/${locale}/${link.slug}`}
-          className={isActive(link.slug) ? styles.active : ''}
+          className={`${styles.navLink} ${isActive(link.slug) ? styles.active : ''}`}
         >
-          {locale === 'id' ? link.id : link.en}
+          <span className={styles.navLinkText}>{locale === 'id' ? link.id : link.en}</span>
+          <span className={styles.navLinkUnderline} />
         </Link>
       </li>
     );
@@ -121,7 +122,7 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <nav className={styles.nav}>
         <Link href={`/${locale}`} className={styles.logo}>
-          Berkah<span>Karya</span>
+          <span className={styles.logoBerkah}>Berkah</span><span className={styles.logoKarya}>Karya</span>
         </Link>
 
         {/* Desktop Nav */}

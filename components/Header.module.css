@@ -1,20 +1,34 @@
-/* ── Header: Ledger Document Header ── */
+/* ── Header: Awwwards Dark Mode ── */
+/* Fixed glassmorphism header with gradient logo, animated underline nav, glowing CTA */
 
+@import url('../styles/animations.css');
+
+/* ── Fixed Glass Header ── */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: var(--z-fixed);
-  background: var(--paper);
-  border-bottom: 2px solid var(--rule-strong);
-  transition: border-color var(--duration-base) var(--ease-out);
+  background: rgba(10, 10, 12, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition:
+    background var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
 }
 
 .header.scrolled {
-  border-bottom-color: var(--margin-red);
+  background: rgba(10, 10, 12, 0.85);
+  border-bottom-color: rgba(163, 53, 43, 0.2);
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.3),
+    0 1px 0 rgba(163, 53, 43, 0.1);
 }
 
+/* ── Nav Container ── */
 .nav {
   display: flex;
   align-items: center;
@@ -22,55 +36,96 @@
   max-width: var(--container-xl);
   margin: 0 auto;
   padding: 0 var(--section-px);
-  height: 56px;
+  height: 64px;
 }
 
+/* ── Logo with Gradient Text ── */
 .logo {
   font-family: var(--font-heading);
-  font-size: var(--text-lg);
+  font-size: var(--text-xl);
   font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   text-decoration: none;
   flex-shrink: 0;
+  position: relative;
+  display: inline-flex;
+  gap: 0.1em;
+  animation: logo-glow 4s ease-in-out infinite;
 }
 
-.logo span {
-  color: var(--margin-red);
+.logoBerkah {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Desktop Links */
+.logoKarya {
+  background: linear-gradient(135deg, var(--margin-red) 0%, #e85d4a 50%, #ff8a65 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Desktop Links ── */
 .links {
   display: flex;
   list-style: none;
-  gap: var(--space-0);
+  gap: var(--space-1);
   align-items: center;
 }
 
-.links > li > a,
-.links > li > button {
+.navLink {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--ink-muted);
-  padding: 0.5rem 0.875rem;
-  transition: color var(--duration-fast) var(--ease-out);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.625rem 1rem;
   text-decoration: none;
-  background: none;
-  border: none;
-  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
-.links > li > a:hover,
-.links > li > button:hover {
-  color: var(--ink);
+.navLinkText {
+  position: relative;
+  z-index: 1;
 }
 
-.links > li > a.active {
-  color: var(--ink);
+.navLinkUnderline {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: calc(100% - 1rem);
+  height: 2px;
+  background: linear-gradient(90deg, var(--margin-red), #ff8a65);
+  border-radius: 1px;
+  transition: transform var(--duration-base) var(--ease-out);
+  transform-origin: center;
+}
+
+.navLink:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.navLink:hover .navLinkUnderline {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.navLink.active {
+  color: rgba(255, 255, 255, 1);
   font-weight: 500;
 }
 
-/* Dropdown */
+.navLink.active .navLinkUnderline {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ── Dropdown ── */
 .dropdown {
   position: relative;
 }
@@ -79,11 +134,25 @@
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.625rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.dropdownTrigger:hover {
+  color: rgba(255, 255, 255, 1);
 }
 
 .arrow {
   font-size: 0.5rem;
   transition: transform var(--duration-fast) var(--ease-out);
+  opacity: 0.6;
 }
 
 .dropdownOpen .arrow {
@@ -92,18 +161,24 @@
 
 .dropdownMenu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   left: 0;
-  min-width: 200px;
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
-  box-shadow: var(--shadow-md);
+  min-width: 220px;
+  background: rgba(18, 18, 20, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(4px);
-  transition: all var(--duration-fast) var(--ease-out);
+  transform: translateY(8px);
+  transition: all var(--duration-base) var(--ease-out);
   list-style: none;
   z-index: var(--z-dropdown);
+  padding: var(--space-2);
 }
 
 .dropdownOpen .dropdownMenu {
@@ -114,32 +189,34 @@
 
 .dropdownMenu li a {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.625rem 1rem;
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--ink-muted);
-  transition: background var(--duration-fast) var(--ease-out);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius-md);
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
 }
 
 .dropdownMenu li a:hover {
-  background: var(--paper-3);
-  color: var(--ink);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 1);
 }
 
 .dropdownMenu li a.active {
-  color: var(--ink);
-  font-weight: 500;
-  background: var(--paper-3);
+  color: rgba(255, 255, 255, 1);
+  background: rgba(163, 53, 43, 0.15);
 }
 
 .divider {
-  padding: 0.5rem 1rem;
+  padding: 0.625rem 1rem;
   font-family: var(--font-mono);
   font-size: 0.625rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-subtle);
-  border-bottom: 1px solid var(--rule-light);
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   margin-bottom: 0.25rem;
 }
 
@@ -147,7 +224,7 @@
   margin-top: 0.25rem;
 }
 
-/* Actions */
+/* ── Actions ── */
 .actions {
   display: flex;
   align-items: center;
@@ -155,51 +232,88 @@
   flex-shrink: 0;
 }
 
+/* ── Language Toggle ── */
 .langBtn {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  background: var(--paper-2);
-  border: 1px solid var(--rule-light);
-  color: var(--ink-muted);
+  font-weight: 500;
+  padding: 0.375rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   transition: all var(--duration-fast) var(--ease-out);
+  border-radius: var(--radius-full);
+  letter-spacing: 0.05em;
 }
 
 .langBtn:hover {
-  border-color: var(--rule-strong);
-  color: var(--ink);
-  background: var(--paper-3);
+  border-color: rgba(163, 53, 43, 0.5);
+  color: rgba(255, 255, 255, 1);
+  background: rgba(163, 53, 43, 0.1);
+  box-shadow: 0 0 12px rgba(163, 53, 43, 0.2);
 }
 
+/* ── Transparency Link ── */
 .transparencyLink {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--ink-muted);
+  color: rgba(255, 255, 255, 0.6);
   padding: 0.5rem 0.75rem;
   transition: color var(--duration-fast) var(--ease-out);
+  text-decoration: none;
 }
 
 .transparencyLink:hover {
-  color: var(--margin-red);
+  color: rgba(255, 255, 255, 1);
 }
 
+/* ── CTA Button with Gradient + Glow ── */
 .ctaBtn {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.02em;
-  padding: 0.5rem 1.25rem;
-  background: var(--ink);
-  color: var(--paper);
-  transition: background var(--duration-fast) var(--ease-out);
+  padding: 0.625rem 1.5rem;
+  background: linear-gradient(135deg, var(--margin-red) 0%, #c94a3a 50%, #e85d4a 100%);
+  background-size: 200% 200%;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: var(--radius-full);
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    background-position var(--duration-slow) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.ctaBtn::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, var(--margin-red), #ff8a65, var(--margin-red));
+  background-size: 200% 200%;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
 }
 
 .ctaBtn:hover {
-  background: var(--ink-soft);
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 32px rgba(163, 53, 43, 0.4),
+    0 0 60px rgba(163, 53, 43, 0.15);
+  background-position: 100% 100%;
 }
 
-/* Mobile Menu Button */
+.ctaBtn:hover::before {
+  opacity: 1;
+}
+
+/* ── Mobile Menu Button ── */
 .menuBtn {
   display: none;
   align-items: center;
@@ -207,29 +321,33 @@
   width: 44px;
   height: 44px;
   font-size: var(--text-lg);
-  color: var(--ink-muted);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   transition: color var(--duration-fast) var(--ease-out);
+  background: none;
+  border: none;
 }
 
 .menuBtn:hover {
-  color: var(--margin-red);
+  color: rgba(255, 255, 255, 1);
 }
 
 .menuOpen {
   color: var(--margin-red);
 }
 
-/* Mobile Nav — slide-in overlay */
+/* ── Mobile Nav ── */
 .mobileNav {
   position: fixed;
-  top: 56px;
+  top: 64px;
   right: 0;
   width: 100%;
   max-width: 360px;
-  height: calc(100vh - 56px);
-  background: var(--paper);
-  border-left: 1px solid var(--rule);
+  height: calc(100vh - 64px);
+  background: rgba(10, 10, 12, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
   padding: var(--space-6);
   transform: translateX(100%);
   transition: transform var(--duration-slow) var(--ease-out);
@@ -253,24 +371,28 @@
 .mobileLinks > li > button {
   width: 100%;
   text-align: left;
-  min-height: 44px;
+  min-height: 48px;
   display: flex;
   align-items: center;
   padding: 0.75rem 0;
   font-family: var(--font-body);
   font-size: var(--text-base);
-  color: var(--ink-muted);
-  border-bottom: 1px solid var(--rule-light);
+  color: rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   transition: color var(--duration-fast) var(--ease-out);
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
 }
 
 .mobileLinks > li > a:hover,
 .mobileLinks > li > a.active {
-  color: var(--ink);
+  color: rgba(255, 255, 255, 1);
   font-weight: 500;
 }
 
-/* Mobile Dropdown */
 .mobileLinks .dropdown {
   position: static;
 }
@@ -281,13 +403,12 @@
   justify-content: space-between;
   width: 100%;
   text-align: left;
-  min-height: 44px;
+  min-height: 48px;
   padding: 0.75rem 0;
   font-family: var(--font-body);
   font-size: var(--text-base);
-  color: var(--ink-muted);
-  border-bottom: 1px solid var(--rule-light);
-  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .mobileDropdown {
@@ -302,21 +423,21 @@
   min-height: 44px;
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--ink-muted);
+  color: rgba(255, 255, 255, 0.6);
   transition: color var(--duration-fast) var(--ease-out);
 }
 
 .mobileDropdown li a:hover {
-  color: var(--ink);
+  color: rgba(255, 255, 255, 1);
 }
 
-/* Mobile Actions */
+/* ── Mobile Actions ── */
 .mobileActions {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   padding-top: var(--space-4);
-  border-top: 1px solid var(--rule-light);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .mobileCtaBtn {
@@ -329,17 +450,22 @@
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1.5rem;
-  background: var(--ink);
-  color: var(--paper);
+  background: linear-gradient(135deg, var(--margin-red) 0%, #c94a3a 50%, #e85d4a 100%);
+  color: #ffffff;
   text-decoration: none;
-  transition: background var(--duration-fast) var(--ease-out);
+  border-radius: var(--radius-full);
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+  animation: glow-pulse 3s ease-in-out infinite;
 }
 
 .mobileCtaBtn:hover {
-  background: var(--ink-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(163, 53, 43, 0.4);
 }
 
-/* Responsive */
+/* ── Responsive ── */
 @media (max-width: 1024px) {
   .links,
   .links > li > a:not(.ctaBtn),

@@ -29,6 +29,36 @@ function usePersona() {
   return [persona, update] as const;
 }
 
+/**
+ * Hook: observes element visibility and toggles `is-visible` class.
+ * Powers all `.animate-on-scroll` elements.
+ */
+function useScrollAnimations() {
+  useEffect(() => {
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: show everything
+      elements.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+}
+
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: [{ params: { locale: 'id' } }, { params: { locale: 'en' } }],
   fallback: false,
@@ -42,6 +72,9 @@ export default function HomePage({ locale }: { locale: Locale }) {
   const d = ecosystemSaasData[locale];
   const href = (h: string) => (h.startsWith('/') ? `/${locale}${h}` : h);
   const [persona, setPersona] = usePersona();
+
+  // Initialize scroll-triggered animations
+  useScrollAnimations();
 
   return (
     <Layout title={d.meta.title} description={d.meta.description} hideHeader>
@@ -70,7 +103,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         principles={[...d.story.principles]}
       />
 
-      {/* Ecosystem — products */}
+      {/* Ecosystem — products (bento grid) */}
       <EcosystemShowcase
         title={d.products.title}
         subtitle={d.products.subtitle}

@@ -22,26 +22,41 @@ export default function Footer() {
     destination_url: 'https://t.me/berkahkarya_saas_bot',
   });
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className={styles.footer}>
+      {/* Gradient border top */}
+      <div className={styles.borderTop} />
+
       <div className={styles.container}>
         {/* Brand */}
-        <div>
-          <h3>BerkahKarya</h3>
+        <div className={styles.brand}>
+          <h3 className={styles.logo}>
+            <span className={styles.logoBerkah}>Berkah</span><span className={styles.logoKarya}>Karya</span>
+          </h3>
           <p className={styles.tagline}>
             {locale === 'id'
               ? 'AI Ecosystem untuk bisnis Indonesia. Tools, automation, dan sistem AI yang langsung menghasilkan.'
               : 'AI Ecosystem for Indonesian businesses. Tools, automation, and AI systems that generate results.'}
           </p>
           <div className={styles.socials}>
-            <a href="https://wa.me/6285732740006" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" onClick={handleWAClick}>💬</a>
-            <a href="https://t.me/berkahkarya_saas_bot" target="_blank" rel="noopener noreferrer" aria-label="Telegram" onClick={handleTelegramClick}>✈️</a>
-            <a href="mailto:hello@berkahkarya.org" aria-label="Email">📧</a>
+            <a href="https://wa.me/6285732740006" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" onClick={handleWAClick} className={styles.socialIcon}>
+              <span className={styles.socialEmoji}>💬</span>
+            </a>
+            <a href="https://t.me/berkahkarya_saas_bot" target="_blank" rel="noopener noreferrer" aria-label="Telegram" onClick={handleTelegramClick} className={styles.socialIcon}>
+              <span className={styles.socialEmoji}>✈️</span>
+            </a>
+            <a href="mailto:hello@berkahkarya.org" aria-label="Email" className={styles.socialIcon}>
+              <span className={styles.socialEmoji}>📧</span>
+            </a>
           </div>
         </div>
 
         {/* Products */}
-        <div>
+        <div className={styles.column}>
           <h4>{locale === 'id' ? 'Produk' : 'Products'}</h4>
           <ul>
             <li><a href={`/${locale}/ai-video-studio`}>AI Video Studio</a></li>
@@ -53,7 +68,7 @@ export default function Footer() {
         </div>
 
         {/* Contact */}
-        <div>
+        <div className={styles.column}>
           <h4>{locale === 'id' ? 'Kontak' : 'Contact'}</h4>
           <ul>
             <li><a href="https://wa.me/6285732740006" target="_blank" rel="noopener noreferrer" onClick={handleWAClick}>📱 WhatsApp</a></li>
@@ -69,7 +84,7 @@ export default function Footer() {
         </div>
 
         {/* Office address */}
-        <div>
+        <div className={styles.column}>
           <h4>{locale === 'id' ? 'Kantor' : 'Office'}</h4>
           <div className={styles.address}>
             <p className={styles.officeName}>Vilona AI Agent</p>
@@ -98,6 +113,13 @@ export default function Footer() {
           )}
         </p>
       </div>
+
+      {/* Back to top button */}
+      <button onClick={scrollToTop} className={styles.backToTop} aria-label="Back to top">
+        <svg className={styles.backToTopIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="18 15 12 9 6 15" />
+        </svg>
+      </button>
     </footer>
   );
 }

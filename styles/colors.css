@@ -1,10 +1,11 @@
-/* ─── Open Ledger Design System ─── */
-/* Paper: EA E4 D6 | Ink: 1C 24 30 | Margin Red: A3 35 2B */
+/* ─── 1AI BerkahKarya Design System — Dark Mode Awwwards ─── */
+/* Deep blacks, vibrant blue accent, glassmorphism, mesh gradients */
+
 :root {
   /* ─── Typography ─── */
-  --font-display: 'IBM Plex Serif', Georgia, serif;
-  --font-ui: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', 'Fira Code', monospace;
+  --font-display: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-ui: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
 
   /* ─── Fluid Type Scale ─── */
   --text-xs: clamp(0.675rem, 0.6rem + 0.375vw, 0.75rem);
@@ -19,86 +20,100 @@
   --text-6xl: clamp(3.25rem, 2.5rem + 6vw, 5.5rem);
   --text-7xl: clamp(3.75rem, 3rem + 7vw, 6.5rem);
 
-  /* ─── Ledger Palette ─── */
-  --paper: #EAE4D6;
-  --paper-2: #F2EDE1;
-  --paper-3: #DFD8C7;
-  --paper-4: #D1CAB6;
-  --ink: #1C2430;
-  --ink-soft: #3A3F4B;
-  --ink-muted: #5A5E68;
-  --ink-subtle: #7C7F86;
-  --ink-ghost: #A5A8AD;
-  --margin-red: #A3352B;
-  --margin-red-soft: #B84A3F;
-  --margin-red-subtle: #C96B61;
-  --rule: #C9C1AC;
-  --rule-light: #D8D2C0;
-  --rule-strong: #B0A88F;
-  --indigo: #33456B;
-  --indigo-soft: #4B5E88;
-  --verification: #2D6A2D;
-  --stamp-red: #8B251E;
+  /* ─── Dark Palette ─── */
+  --bg: #0a0a0a;
+  --bg-elevated: #111111;
+  --bg-surface: #1a1a1a;
+  --bg-surface-hover: #222222;
+  --surface-0: var(--bg);
+  --surface-1: var(--bg-elevated);
+  --surface-2: var(--bg-surface);
+  --surface-3: var(--bg-surface-hover);
+  --surface-4: #2a2a2a;
 
-  /* ─── Brand Semantic ─── */
-  --color-primary: var(--margin-red);
-  --color-primary-hover: var(--margin-red-soft);
-  --color-primary-glow: rgba(163, 53, 43, 0.15);
-  --color-primary-strong: var(--margin-red);
-  --color-secondary: var(--indigo);
-  --color-secondary-hover: var(--indigo-soft);
-  --color-success: var(--verification);
-  --color-warning: #B8860B;
-  --color-error: var(--stamp-red);
+  /* ─── Text ─── */
+  --text: #ffffff;
+  --text-muted: #888888;
+  --text-subtle: #666666;
+  --text-ghost: #444444;
+  --ink: var(--text);
+  --ink-soft: var(--text-muted);
+  --ink-muted: var(--text-muted);
+  --ink-subtle: var(--text-subtle);
+  --ink-ghost: var(--text-ghost);
 
-  /* ─── Surface System ─── */
-  --surface-0: var(--paper);
-  --surface-1: var(--paper-2);
-  --surface-2: var(--paper-3);
-  --surface-3: var(--paper-4);
-  --surface-4: #C4BBAA;
+  /* ─── Accent ─── */
+  --accent: #4F8CFF;
+  --accent-hover: #6BA0FF;
+  --accent-glow: rgba(79, 140, 255, 0.3);
+  --accent-subtle: rgba(79, 140, 255, 0.1);
+  --color-primary: var(--accent);
+  --color-primary-hover: var(--accent-hover);
+  --color-primary-glow: var(--accent-glow);
+  --color-primary-strong: var(--accent);
 
-  /* ─── Border System ─── */
-  --border-subtle: var(--rule-light);
-  --border-default: var(--rule);
-  --border-strong: var(--rule-strong);
-  --border-focus: var(--margin-red);
+  /* ─── Secondary Accent ─── */
+  --secondary: #8B5CF6;
+  --secondary-hover: #A78BFA;
+  --secondary-glow: rgba(139, 92, 246, 0.3);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
 
-  /* ─── Text System ─── */
-  --text-default: var(--ink);
-  --text-muted: var(--ink-muted);
-  --text-subtle: var(--ink-subtle);
-  --text-ghost: var(--ink-ghost);
-  --text-light-default: var(--ink);
-  --text-light-muted: var(--ink-muted);
-  --text-light-subtle: var(--ink-subtle);
-  --text-light-ghost: var(--ink-ghost);
-  --text-primary: var(--ink);
-  --text-secondary: var(--ink-muted);
-  --text-light: var(--ink-muted);
-  --text-inverse: var(--ink);
-  --text-inverse-muted: var(--ink-muted);
-  --text-inverse-subtle: var(--ink-subtle);
+  /* ─── Borders ─── */
+  --border: #222222;
+  --border-subtle: #1a1a1a;
+  --border-default: var(--border);
+  --border-strong: #333333;
+  --border-focus: var(--accent);
+  --rule: var(--border);
+  --rule-light: var(--border-subtle);
+  --rule-strong: var(--border-strong);
 
-  /* ─── Gradient Presets ─── */
-  --gradient-primary: linear-gradient(135deg, var(--margin-red), var(--stamp-red));
-  --gradient-secondary: linear-gradient(135deg, var(--indigo), #4B5E88);
-  --gradient-hero: linear-gradient(180deg, rgba(234,228,214,0) 0%, var(--paper-2) 100%);
-  --gradient-card: linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 100%);
-  --gradient-success: linear-gradient(135deg, #2D6A2D, #3A8A3A);
+  /* ─── Semantic ─── */
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --verification: var(--color-success);
+  --stamp-red: var(--color-error);
+  --margin-red: var(--accent);
+  --margin-red-soft: var(--accent-hover);
+  --margin-red-subtle: var(--accent-subtle);
+  --indigo: var(--secondary);
+  --indigo-soft: var(--secondary-hover);
 
-  /* ─── Shadow System ─── */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.12);
-  --shadow-glow: 0 0 20px rgba(163, 53, 43, 0.08);
+  /* ─── Glassmorphism ─── */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-bg-hover: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(255, 255, 255, 0.12);
+  --glass-blur: 12px;
+  --glass-blur-strong: 24px;
 
-  /* ─── Radius System ─── */
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
+  /* ─── Mesh Gradients ─── */
+  --gradient-mesh-1: radial-gradient(ellipse at 20% 50%, rgba(79, 140, 255, 0.15) 0%, transparent 50%);
+  --gradient-mesh-2: radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+  --gradient-mesh-3: radial-gradient(ellipse at 50% 80%, rgba(79, 140, 255, 0.08) 0%, transparent 50%);
+  --gradient-hero: linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 100%);
+  --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%);
+  --gradient-primary: linear-gradient(135deg, var(--accent), var(--secondary));
+  --gradient-primary-reverse: linear-gradient(315deg, var(--accent), var(--secondary));
+  --gradient-secondary: linear-gradient(135deg, var(--secondary), #A78BFA);
+  --gradient-success: linear-gradient(135deg, #22C55E, #4ADE80);
+
+  /* ─── Shadows ─── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 20px var(--accent-glow);
+  --shadow-glow-secondary: 0 0 20px var(--secondary-glow);
+
+  /* ─── Radius ─── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
   --radius-full: 9999px;
 
   /* ─── Spacing Scale ─── */
@@ -120,9 +135,11 @@
   --space-15: 12rem;    /* 192px */
   --space-16: 16rem;    /* 256px */
 
-  /* Section Padding */
-  --section-py: clamp(3rem, 6vw, 6rem);
-  --section-px: clamp(1.5rem, 4vw, 3rem);
+  /* Section Padding — Generous */
+  --section-py: clamp(5rem, 10vw, 10rem);
+  --section-px: clamp(1.5rem, 5vw, 4rem);
+  --section-py-mobile: clamp(3rem, 6vw, 5rem);
+  --section-px-mobile: var(--space-4);
 
   /* Container */
   --container-sm: 640px;
@@ -133,11 +150,11 @@
 
   /* ─── Motion System ─── */
   --duration-instant: 0ms;
-  --duration-fast: 120ms;
-  --duration-base: 200ms;
-  --duration-slow: 320ms;
-  --duration-slower: 600ms;
-  --duration-editorial: 800ms;
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 700ms;
+  --duration-editorial: 1000ms;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
@@ -163,80 +180,77 @@
   --bp-lg: 1024px;
   --bp-xl: 1280px;
   --bp-2xl: 1536px;
-}
 
-/* ─── Legacy Aliases (for backward compat during transition) ─── */
-:root {
+  /* ─── Legacy Aliases ─── */
   --font-heading: var(--font-display);
   --font-body: var(--font-ui);
-  --teal-primary: var(--margin-red);
-  --teal-hover: var(--margin-red-soft);
-  --teal-glow: var(--color-primary-glow);
-  --violet: var(--indigo);
-  --violet-light: var(--indigo-soft);
-  --brand-teal: var(--margin-red);
-  --brand-teal-dim: var(--margin-red-soft);
-  --brand-teal-glow: var(--color-primary-glow);
-  --brand-violet: var(--indigo);
-  --brand-violet-bright: var(--indigo-soft);
-  --brand-gold: #B8860B;
+  --teal-primary: var(--accent);
+  --teal-hover: var(--accent-hover);
+  --teal-glow: var(--accent-glow);
+  --violet: var(--secondary);
+  --violet-light: var(--secondary-hover);
+  --brand-teal: var(--accent);
+  --brand-teal-dim: var(--accent-hover);
+  --brand-teal-glow: var(--accent-glow);
+  --brand-violet: var(--secondary);
+  --brand-violet-bright: var(--secondary-hover);
+  --brand-gold: #F59E0B;
   --gold: var(--brand-gold);
-  --brand-emerald: #2D6A2D;
-  --brand-coral: var(--margin-red-soft);
-  --shadow-glow-secondary: 0 0 20px rgba(51, 69, 107, 0.08);
-  --teal-glow-strong: rgba(163, 53, 43, 0.25);
-  --glass-bg: rgba(242, 237, 225, 0.8);
-  --glass-bg-hover: rgba(223, 216, 199, 0.85);
-  --glass-border: var(--rule-light);
-  --glass-border-hover: var(--rule);
-  --glass-blur: 8px;
-  --surface-light-0: var(--paper);
-  --surface-light-1: var(--paper-2);
-  --surface-light-2: var(--paper-3);
-  --surface-light-3: var(--paper-4);
-  --dark-hero: var(--paper-2);
-  --dark-secondary: var(--paper-2);
-  --dark-body: var(--paper-2);
-  --dark-card: var(--paper-3);
-  --dark-surface: var(--paper-3);
-  --dark-card-hover: var(--paper-4);
-  --dark-border: var(--rule);
-  --dark-border-hover: var(--rule-strong);
-  --light-bg: var(--paper);
-  --white: var(--paper-2);
-  --border-light: var(--rule-light);
+  --brand-emerald: #22C55E;
+  --brand-coral: var(--color-error);
+  --teal-glow-strong: var(--accent-glow);
+  --color-secondary-strong: var(--secondary-glow);
+  --success: var(--color-success);
+  --border-light-default: var(--border-subtle);
+  --border-light-strong: var(--border-strong);
+  --brand-teal-glow-strong: var(--accent-glow);
+  --paper: var(--bg);
+  --paper-2: var(--bg-elevated);
+  --paper-3: var(--bg-surface);
+  --paper-4: var(--bg-surface-hover);
+  --dark-hero: var(--bg-elevated);
+  --dark-secondary: var(--bg-elevated);
+  --dark-body: var(--bg);
+  --dark-card: var(--bg-surface);
+  --dark-surface: var(--bg-surface);
+  --dark-card-hover: var(--bg-surface-hover);
+  --dark-border: var(--border);
+  --dark-border-hover: var(--border-strong);
+  --light-bg: var(--bg);
+  --white: var(--bg-elevated);
+  --border-light: var(--border-subtle);
   --card-shadow: var(--shadow-md);
   --card-shadow-hover: var(--shadow-lg);
-  --text-white: var(--ink);
-  --text-white-85: rgba(28, 36, 48, 0.85);
-  --text-white-80: rgba(28, 36, 48, 0.80);
-  --text-white-70: rgba(28, 36, 48, 0.7);
-  --text-white-60: rgba(28, 36, 48, 0.6);
-  --text-white-50: rgba(28, 36, 48, 0.5);
-  --text-white-40: rgba(28, 36, 48, 0.40);
-  /* Migration completion: tokens referenced by components but never defined
-     (undefined vars invalidate declarations at computed-value time) */
-  --gradient-primary-reverse: linear-gradient(315deg, var(--margin-red), var(--stamp-red));
-  --border-light-default: var(--rule-light);
-  --border-light-strong: var(--rule-strong);
-  --brand-teal-glow-strong: var(--teal-glow-strong);
-  --color-secondary-strong: rgba(51, 69, 107, 0.35);
-  --glass-blur-strong: 16px;
-  --success: var(--verification);
-  --section-py-mobile: clamp(2.5rem, 6vw, 4rem);
-  --section-px-mobile: var(--space-4);
+  --text-white: var(--text);
+  --text-white-85: rgba(255, 255, 255, 0.85);
+  --text-white-80: rgba(255, 255, 255, 0.8);
+  --text-white-70: rgba(255, 255, 255, 0.7);
+  --text-white-60: rgba(255, 255, 255, 0.6);
+  --text-white-50: rgba(255, 255, 255, 0.5);
+  --text-white-40: rgba(255, 255, 255, 0.4);
+  --text-default: var(--text);
+  --text-light-default: var(--text);
+  --text-light-muted: var(--text-muted);
+  --text-light-subtle: var(--text-subtle);
+  --text-light-ghost: var(--text-ghost);
+  --text-primary: var(--text);
+  --text-secondary: var(--text-muted);
+  --text-light: var(--text-muted);
+  --text-inverse: var(--bg);
+  --text-inverse-muted: var(--text-muted);
+  --text-inverse-subtle: var(--text-subtle);
 }
 
 /* ─── Gradient Text ─── */
 .gradient-text {
-  background: linear-gradient(135deg, var(--ink) 0%, var(--indigo) 100%);
+  background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-gold {
-  background: linear-gradient(135deg, var(--margin-red) 0%, #B8860B 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -244,12 +258,132 @@
 
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--paper-2); }
-::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--rule-strong); }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
 
 /* ─── Selection ─── */
 ::selection {
-  background: var(--margin-red);
-  color: var(--paper);
+  background: var(--accent);
+  color: var(--text);
+}
+
+/* ─── Keyframe Animations ─── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(79, 140, 255, 0.15);
+  }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes mesh-move {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+/* ─── Animation Utility Classes ─── */
+.animate-fade-up {
+  animation: fade-up var(--duration-slow) var(--ease-out) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in var(--duration-slow) var(--ease-out) forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up var(--duration-slower) var(--ease-out-expo) forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in var(--duration-slow) var(--ease-spring) forwards;
+}
+
+.animate-float {
+  animation: float 6s var(--ease-in-out) infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s var(--ease-in-out) infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, var(--bg-surface) 25%, var(--bg-surface-hover) 50%, var(--bg-surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Stagger delays for sequential reveals */
+.animate-delay-1 { animation-delay: 100ms; }
+.animate-delay-2 { animation-delay: 200ms; }
+.animate-delay-3 { animation-delay: 300ms; }
+.animate-delay-4 { animation-delay: 400ms; }
+.animate-delay-5 { animation-delay: 500ms; }
+
+/* Scroll-triggered animation hook */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--duration-slower) var(--ease-out),
+              transform var(--duration-slower) var(--ease-out);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
