@@ -9,3 +9,5 @@ local/
 out-static/
 __pycache__/
 *.tsbuildinfo
+legacy_static/
+Kontraktor/

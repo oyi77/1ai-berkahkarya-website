@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /legal/
-Disallow: /generate_*.py
-
-Sitemap: https://berkahkarya.org/sitemap.xml
