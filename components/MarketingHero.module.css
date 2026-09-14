@@ -1,7 +1,7 @@
 /* ─── Marketing Hero — Awwwards 2025 mesh gradient + large typography ─── */
 
 .section {
-  background: #FAF8F3;
+  background: var(--paper);
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -185,7 +185,7 @@
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: var(--ink-subtle);
+  color: var(--text-muted);
   background: var(--paper-2);
   border: 1px solid var(--rule-light);
   padding: 6px 14px;

@@ -639,7 +639,7 @@ export default function BelajarAIPage({ locale }: { locale: Locale }) {
                     <span style={{ fontSize: '2rem' }}>{track.icon}</span>
                     <span style={{
                       fontSize: '0.65rem', fontWeight: 600,
-                      background: track.colorBg, color: track.color,
+                      background: track.colorBg, color: '#fff',
                       padding: '0.2rem 0.6rem', borderRadius: '999px',
                     }}>
                       {track.badge}

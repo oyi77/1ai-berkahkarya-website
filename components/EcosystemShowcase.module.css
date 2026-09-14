@@ -120,10 +120,10 @@
   gap: var(--space-2);
   text-decoration: none;
   color: inherit;
-  background: rgba(242, 237, 225, 0.7);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(216, 210, 192, 0.6);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.35s var(--ease-out-expo);
@@ -174,7 +174,7 @@
 }
 
 .cardStarting {
-  background: rgba(242, 237, 225, 0.5);
+  background: var(--glass-bg-hover);
 }
 
 .cardStarting .cardGlow {
@@ -309,7 +309,7 @@
 .screenshotUrl {
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  color: var(--paper-2);
+  color: var(--text);
   background: rgba(28, 36, 48, 0.7);
   backdrop-filter: blur(8px);
   padding: 4px 10px;

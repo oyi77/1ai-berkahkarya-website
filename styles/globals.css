@@ -138,7 +138,7 @@ button:focus-visible,
 
 .btn--primary {
   background: var(--accent);
-  color: var(--text);
+  color: var(--bg);
   border: none;
 }
 
@@ -173,7 +173,7 @@ button:focus-visible,
 
 .btn--stamp {
   background: var(--accent);
-  color: var(--text);
+  color: var(--bg);
 }
 
 .btn--stamp:hover {

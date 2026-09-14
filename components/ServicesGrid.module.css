@@ -1,7 +1,7 @@
 /* ─── Services Grid — redesigned with social proof + filtering ─── */
 
 .section {
-  background: #fff;
+  background: var(--paper-2);
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }

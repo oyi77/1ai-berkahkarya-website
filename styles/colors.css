@@ -236,9 +236,22 @@
   --text-primary: var(--text);
   --text-secondary: var(--text-muted);
   --text-light: var(--text-muted);
-  --text-inverse: var(--bg);
+  --text-inverse: var(--text);
   --text-inverse-muted: var(--text-muted);
   --text-inverse-subtle: var(--text-subtle);
+  --text-inverse-ghost: var(--text-muted);
+  /* ─── Dark-mode bridge: legacy light-era tokens → dark surfaces ─── */
+  --bg-white: var(--bg-elevated);
+  --bg-muted: var(--bg-surface);
+  --surface-light-0: var(--bg);
+  --surface-light-1: var(--bg-elevated);
+  --surface-light-2: var(--bg-surface);
+  --surface-light-3: var(--bg-surface-hover);
+  --max-width: var(--container-xl);
+  --radius: var(--radius-lg);
+  --mustard: var(--brand-gold);
+  --track-bg: var(--bg-surface);
+  --track-color: var(--accent);
 }
 
 /* ─── Gradient Text ─── */

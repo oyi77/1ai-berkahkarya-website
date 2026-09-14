@@ -83,7 +83,7 @@ export default function LeadForm({ serviceName, sourceUrl }: Props) {
       {error && <p style={{ color: 'var(--margin-red)', fontSize: 'var(--text-sm)', margin: 0 }}>{error}</p>}
       <button type="submit" disabled={loading} style={{
         padding: '0.7rem 1.5rem', borderRadius: 'var(--radius-lg)', border: 'none',
-        background: 'var(--margin-red)', color: '#fff', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)',
+        background: 'var(--margin-red)', color: 'var(--bg)', fontFamily: 'var(--font-ui)', fontSize: 'var(--text-base)',
         fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1,
       }}>
         {loading ? 'Mengirim...' : 'Dapatkan Penawaran'}

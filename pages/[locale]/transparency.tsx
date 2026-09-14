@@ -131,7 +131,7 @@ function TimelineEvent({ event, index, total, locale }: { event: typeof transpar
   const isLast = index === total - 1;
   const typeColors: Record<string, string> = {
     milestone: 'var(--color-primary)',
-    launch: 'var(--color-secondary)',
+    launch: 'var(--color-secondary-hover)',
     planned: 'var(--color-accent)',
   };
   const color = typeColors[event.type] || 'var(--text-inverse-subtle)';
@@ -265,7 +265,7 @@ export default function TransparencyPage({ locale }: { locale: Locale }) {
       {/* Operational Metrics */}
       <section style={{ padding: 'var(--space-12) var(--space-6)', background: 'var(--surface-1)' }}>
         <div style={{ maxWidth: 'var(--container-xl)', margin: '0 auto' }}>
-          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-secondary)', marginBottom: 'var(--space-3)' }}>
+          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-secondary-hover)', marginBottom: 'var(--space-3)' }}>
             ⚙️ {isId ? 'Metrik Operasional' : 'Operational Metrics'}
           </p>
           <h2 style={{ fontSize: 'var(--text-3xl)', fontWeight: 800, color: 'var(--text-inverse)', marginBottom: 'var(--space-10)' }}>
@@ -325,7 +325,7 @@ export default function TransparencyPage({ locale }: { locale: Locale }) {
         <div style={{ maxWidth: 'var(--container-xl)', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 'var(--space-14)', alignItems: 'start' }}>
             <div>
-              <p style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-secondary)', marginBottom: 'var(--space-3)' }}>
+              <p style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-secondary-hover)', marginBottom: 'var(--space-3)' }}>
                 👤 {isId ? 'Founder' : 'Founder'}
               </p>
               <h2 style={{ fontSize: 'var(--text-3xl)', fontWeight: 800, color: 'var(--text-inverse)', marginBottom: 'var(--space-2)' }}>

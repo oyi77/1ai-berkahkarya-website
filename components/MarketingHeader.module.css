@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   z-index: var(--z-fixed);
-  background: rgba(250, 248, 243, 0.85);
+  background: rgba(10, 10, 10, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
@@ -96,7 +96,7 @@
   font-family: var(--font-ui);
   font-size: var(--text-sm);
   font-weight: 600;
-  color: #fff;
+  color: var(--bg);
   background: var(--margin-red);
   border: 1px solid var(--margin-red);
   border-radius: var(--radius-lg);
@@ -142,7 +142,7 @@
 /* Mobile nav — slide down panel */
 .mobileNav {
   display: none;
-  background: rgba(250, 248, 243, 0.98);
+  background: rgba(10, 10, 10, 0.98);
   border-top: 1px solid var(--rule-light);
   padding: var(--space-4) var(--section-px) var(--space-6);
 }
