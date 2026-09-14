@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vilona Trade FX — AI Trading Assistant & Whitelabel Platform</title>
-<meta name="description" content="Trading dengan data, bukan emosi. AI bantu analisa market 24/7, filter signal berkualitas, dan bisa bikin bot trading sendiri.">
+<title>Vilona AI — 7 Bot Trading AI untuk Forex, Crypto, Saham, Komoditas & Binary</title>
+<meta name="description" content="Satu platform, tujuh bot trading AI. Forex & CFD, crypto, saham IDX, komoditas, binary options, Deriv synthetics, sampai rental EA. Mulai gratis lewat Telegram.">
 
 <!-- Meta Pixel Code -->
 <script>
@@ -372,6 +372,66 @@ header .container{display:flex;justify-content:space-between;align-items:center}
 .price-list li::before{content:"✓";color:var(--green);font-weight:bold}
 
 /* ═══════════════════════════════════════════════════════
+   BOT FLEET — ONE SUBSCRIPTION, MANY ENGINES
+   ═══════════════════════════════════════════════════════ */
+.bot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:900px;margin:0 auto}
+@media(max-width:768px){.bot-grid{grid-template-columns:1fr}}
+.bot-card{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:26px;display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.bot-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:0;transition:opacity 0.3s}
+.bot-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 20px 40px -10px rgba(0,0,0,0.5)}
+.bot-card:hover::before{opacity:1}
+.bot-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-right:74px}
+.bot-emoji{width:42px;height:42px;border-radius:var(--radius-sm);background:rgba(16,185,129,0.06);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;transition:all 0.3s}
+.bot-card:hover .bot-emoji{background:rgba(16,185,129,0.12);transform:scale(1.08)}
+.bot-name{font-size:1.05rem;font-weight:700;color:#fff;line-height:1.25;margin:0 0 2px}
+.bot-handle{font-family:var(--mono);font-size:0.72rem;color:var(--text-dim)}
+.bot-market{
+  position:absolute;top:16px;right:16px;font-size:0.6rem;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;padding:3px 10px;border-radius:9999px;
+  border:1px solid var(--border-hover);color:var(--text-dim);background:rgba(255,255,255,0.02);
+}
+.bot-market.forex{color:var(--green);border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.06)}
+.bot-market.crypto{color:var(--blue);border-color:rgba(59,130,246,0.3);background:rgba(59,130,246,0.06)}
+.bot-market.idx{color:var(--gold);border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.06)}
+.bot-market.binary{color:var(--red);border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.06)}
+.bot-market.deriv{color:var(--purple);border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.06)}
+.bot-desc{font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:14px}
+.bot-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.bot-chip{font-size:0.68rem;padding:3px 10px;border-radius:9999px;background:rgba(255,255,255,0.03);border:1px solid var(--border);color:var(--text-dim);white-space:nowrap}
+.bot-cta{
+  margin-top:auto;display:block;text-align:center;padding:11px 16px;
+  border-radius:var(--radius-md);font-weight:600;font-size:0.82rem;text-decoration:none;
+  background:transparent;border:1px solid var(--border);color:var(--text);
+  transition:all 0.25s cubic-bezier(0.16,1,0.3,1);
+}
+.bot-cta:hover{border-color:var(--green);color:var(--green);background:rgba(16,185,129,0.05)}
+.bot-card.core{border-color:rgba(16,185,129,0.22);background:linear-gradient(to bottom,#080b09 0%,#09090b 100%)}
+.bot-flag{display:inline-block;font-size:0.62rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.plan-strip{
+  max-width:900px;margin:28px auto 0;background:#050507;border:1px solid rgba(16,185,129,0.14);
+  border-radius:var(--radius-md);padding:22px 26px;text-align:center;font-size:0.86rem;color:var(--text-muted);
+}
+.plan-strip strong{color:#fff}
+.plan-strip .accent{color:var(--green);font-weight:700}
+
+/* Secondary pricing row — verticals with their own billing */
+.price-row-sm{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:24px auto 0}
+@media(max-width:768px){.price-row-sm{grid-template-columns:1fr}}
+.mini-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column}
+.mini-card h4{font-size:0.95rem;color:#fff;margin-bottom:4px}
+.mini-card .mini-tag{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-dim);margin-bottom:14px}
+.mini-line{font-size:0.82rem;color:var(--text-muted);display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--border)}
+.mini-line:last-of-type{border-bottom:none}
+.mini-line b{color:#fff;font-weight:600;white-space:nowrap}
+.mini-note{font-size:0.72rem;color:var(--text-dim);margin-top:12px}
+.mini-link{margin-top:16px;font-size:0.8rem;font-weight:600;color:var(--green);text-decoration:none;margin-top:auto;padding-top:14px}
+.mini-link:hover{color:var(--green-bright)}
+
+/* ═══════════════════════════════════════════════════════
    PROCESS STEPS (animated pipeline)
    ═══════════════════════════════════════════════════════ */
 .process-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:800px;margin:0 auto;text-align:center}
@@ -448,10 +508,11 @@ footer a:hover{color:#fff}
       <div class="logo-dot"></div> Vilona <span>Trade FX</span>
     </a>
     <div class="nav-links">
+      <a href="#bots">Bot</a>
       <a href="#live-demo">Demo</a>
       <a href="#cara-kerja">Cara Kerja</a>
-      <a href="#pricing">Pricing</a>
-      <a href="https://t.me/berkahkaryaforexbotbot" class="btn btn-glow" style="padding:6px 14px;font-size:0.8rem;">🤖 Mulai Gratis</a>
+      <a href="#pricing">Harga</a>
+      <a href="https://t.me/agent_1ai2_bot" class="btn btn-glow" style="padding:6px 14px;font-size:0.8rem;">🤖 Mulai Gratis</a>
     </div>
   </div>
 </header>
@@ -461,14 +522,14 @@ footer a:hover{color:#fff}
      ═══════════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="container">
-    <h1>Bukan Belajar Trading,<br>Ini Kendaraan Profit Anda</h1>
-    <p class="hero-sub">
-      Anda ingin kebebasan finansial, bukan kelelahan menatap layar. Biarkan 3 AI canggih kami yang bekerja 24/7 sebagai mesin pencetak profit Anda, sementara Anda fokus pada keluarga dan pekerjaan utama.
-    </p>
-    <div class="hero-actions">
-      <a href="https://t.me/berkahkaryaforexbotbot" class="btn btn-glow" style="padding:14px 32px;font-size:1rem;" onclick="fbq('track','Lead',{content_name:'hero_cta',value:0,currency:'IDR'},{eventID:'lead_hero_'+Date.now()})">🚀 Ambil Kendali Waktu Anda</a>
-      <a href="#live-demo" class="btn btn-outline" style="padding:14px 32px;">Lihat Bagaimana Mesin Bekerja</a>
-    </div>
+      <h1>Satu Platform AI.<br>Tujuh Mesin Trading.</h1>
+      <p class="hero-sub">
+        Forex, crypto, saham IDX, komoditas, binary, sampai Deriv synthetics — semua jalan di atas satu otak AI. Pilih market Anda, bot-nya sudah siap 24/7: analisa, sinyal, dan eksekusi otomatis langsung dari Telegram.
+      </p>
+      <div class="hero-actions">
+        <a href="#bots" class="btn btn-glow" style="padding:14px 32px;font-size:1rem;" onclick="fbq('track','Lead',{content_name:'hero_cta',value:0,currency:'IDR'},{eventID:'lead_hero_'+Date.now()})">[RUN] Lihat 7 Bot-nya</a>
+        <a href="https://t.me/agent_1ai2_bot" class="btn btn-outline" style="padding:14px 32px;">Coba Gratis di Telegram</a>
+      </div>
 
     <!-- LIVE CHART -->
     <div class="hero-chart-wrap">
@@ -485,21 +546,183 @@ footer a:hover{color:#fff}
     <!-- ANIMATED METRICS -->
     <div class="metrics-row">
       <div class="metric-item reveal stagger-1">
-        <div class="metric-num metric-glow" data-target="69.2" data-suffix="%" data-decimals="1">0</div>
-        <div class="metric-lbl">Win Rate Backtest</div>
+        <div class="metric-num metric-glow" data-target="8" data-suffix="" data-decimals="0">0</div>
+        <div class="metric-lbl">Bot dalam Satu Fleet</div>
       </div>
       <div class="metric-item reveal stagger-2">
-        <div class="metric-num metric-glow" data-target="2.03" data-suffix="" data-decimals="2">0</div>
-        <div class="metric-lbl">Profit Factor</div>
+        <div class="metric-num metric-glow" data-target="6" data-suffix="" data-decimals="0">0</div>
+        <div class="metric-lbl">Kelas Aset Tercover</div>
       </div>
       <div class="metric-item reveal stagger-3">
-        <div class="metric-num metric-glow" data-target="500" data-suffix="+" data-decimals="0">0</div>
-        <div class="metric-lbl">Signal / Bulan</div>
+        <div class="metric-num metric-glow" data-target="9" data-suffix="" data-decimals="0">0</div>
+        <div class="metric-lbl">AI Engine per Analisa</div>
       </div>
       <div class="metric-item reveal stagger-4">
-        <div class="metric-num metric-glow" data-target="4" data-suffix="" data-decimals="0">0</div>
-        <div class="metric-lbl">Whitelabel Aktif</div>
+        <div class="metric-num metric-glow" data-target="24" data-suffix="/7" data-decimals="0">0</div>
+        <div class="metric-lbl">AI Mengawasi Market</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     BOT FLEET — 7 MARKET + 1 BOT UTAMA
+     ═══════════════════════════════════════════════════════ -->
+<section class="section section-dark" id="bots">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Tujuh Mesin. Satu Akun. Satu Langganan.</h2>
+      <p>Setiap kelas aset punya bot Telegram-nya sendiri supaya tidak saling bising. Tapi empat bot trade inti berbagi satu akun yang sama — beli PRO sekali, aktif di semua.</p>
+    </div>
+
+    <div class="bot-grid">
+
+      <!-- MASTER -->
+      <div class="bot-card core reveal stagger-1">
+        <span class="bot-market">Semua</span>
+        <div class="bot-top">
+          <div class="bot-emoji">🤖</div>
+          <div>
+            <div class="bot-name">Vilona AI Trader</div>
+            <div class="bot-handle">@agent_1ai2_bot</div>
+          </div>
+        </div>
+        <span class="bot-flag">Semua Fitur</span>
+        <p class="bot-desc">Bot utama dan pintu masuk seluruh ekosistem. Semua 17 fitur aktif di sini: sinyal, analisa, auto-trade, copy-trading, grid/DCA, sampai marketplace. Mulai dari sini kalau masih bingung pilih market.</p>
+        <div class="bot-chips">
+          <span class="bot-chip">17 fitur</span><span class="bot-chip">Copy Trading</span><span class="bot-chip">Grid &amp; DCA</span><span class="bot-chip">Dashboard</span>
+        </div>
+        <a href="https://t.me/agent_1ai2_bot" class="bot-cta">Buka Bot Utama →</a>
+      </div>
+
+      <!-- FOREX -->
+      <div class="bot-card reveal stagger-2">
+        <span class="bot-market forex">Forex</span>
+        <div class="bot-top">
+          <div class="bot-emoji">📈</div>
+          <div>
+            <div class="bot-name">Vilona Trade FX</div>
+            <div class="bot-handle">@berkahkaryaforexbotbot</div>
+          </div>
+        </div>
+        <p class="bot-desc">Mesin paling matang di fleet: forex &amp; CFD dengan trailing stop, eksekusi otomatis ke MT5, dan akses sewa EA. Ini juga bot tempat langganan PRO/ELITE/LIFETIME dibeli.</p>
+        <div class="bot-chips">
+          <span class="bot-chip">Sinyal</span><span class="bot-chip">Analisa</span><span class="bot-chip">Auto-trade MT5</span><span class="bot-chip">Trailing Stop</span><span class="bot-chip">EA Rental</span>
+        </div>
+        <a href="https://t.me/berkahkaryaforexbotbot" class="bot-cta">Coba Bot Forex →</a>
+      </div>
+
+      <!-- COMMODITY -->
+      <div class="bot-card reveal stagger-3">
+        <span class="bot-market forex">Komoditas</span>
+        <div class="bot-top">
+          <div class="bot-emoji">🥇</div>
+          <div>
+            <div class="bot-name">1AI Commodity Bot</div>
+            <div class="bot-handle">@vilona_commodity_bot</div>
+          </div>
+        </div>
+        <p class="bot-desc">Fokus emas, perak, dan minyak. Memakai pola mesin forex yang sama, jadi kalau Anda sudah PRO di bot forex, bot ini langsung terbuka tanpa langganan tambahan.</p>
+        <div class="bot-chips">
+          <span class="bot-chip">Gold &amp; Silver</span><span class="bot-chip">Oil</span><span class="bot-chip">Sinyal</span><span class="bot-chip">Analisa</span>
+        </div>
+        <a href="https://t.me/vilona_commodity_bot" class="bot-cta">Coba Bot Komoditas →</a>
+      </div>
+
+      <!-- BINARY -->
+      <div class="bot-card reveal stagger-4">
+        <span class="bot-market binary">Binary</span>
+        <div class="bot-top">
+          <div class="bot-emoji">⚡</div>
+          <div>
+            <div class="bot-name">Vilona Stockity Bot</div>
+            <div class="bot-handle">@stockity_vilonabot</div>
+          </div>
+        </div>
+        <p class="bot-desc">Sinyal binary option untuk platform Stockity, lengkap dengan payout rate real-time supaya Anda tahu bayaran tiap kontrak sebelum masuk. Terbuka juga dari langganan PRO yang sama.</p>
+        <div class="bot-chips">
+          <span class="bot-chip">Binary Option</span><span class="bot-chip">Payout Rate</span><span class="bot-chip">Sinyal</span><span class="bot-chip">Analisa</span>
+        </div>
+        <a href="https://t.me/stockity_vilonabot" class="bot-cta">Coba Bot Binary →</a>
+      </div>
+
+      <!-- DERIV -->
+      <div class="bot-card reveal stagger-1">
+        <span class="bot-market deriv">Sintetis</span>
+        <div class="bot-top">
+          <div class="bot-emoji">📊</div>
+          <div>
+            <div class="bot-name">1AI Deriv Bot</div>
+            <div class="bot-handle">@vilona_deriv_bot</div>
+          </div>
+        </div>
+        <p class="bot-desc">Untuk indeks sintetis Deriv yang buka 24 jam termasuk akhir pekan. Punya arsitektur risiko sendiri: stop &amp; reverse, virtual trailing stop, dan kill switch drawdown. Masuk paket PRO yang sama.</p>
+        <div class="bot-chips">
+          <span class="bot-chip">Synthetic Index</span><span class="bot-chip">24/7</span><span class="bot-chip">Auto-trade</span><span class="bot-chip">Kill Switch</span>
+        </div>
+        <a href="https://t.me/vilona_deriv_bot" class="bot-cta">Coba Bot Deriv →</a>
+      </div>
+
+      <!-- CRYPTO -->
+      <div class="bot-card reveal stagger-2">
+        <span class="bot-market crypto">Crypto</span>
+        <div class="bot-top">
+          <div class="bot-emoji">🪙</div>
+          <div>
+            <div class="bot-name">1AI Crypto Bot</div>
+            <div class="bot-handle">@vilona_tbot</div>
+          </div>
+        </div>
+        <p class="bot-desc">Bot kripto berdiri sendiri dengan sistem langganannya sendiri, karena market-nya jalan 24/7 dan profil risikonya beda jauh dari forex. Sinyal, analisa, dan auto-execute.</p>
+        <div class="bot-chips">
+          <span class="bot-chip">BTC &amp; Altcoin</span><span class="bot-chip">24/7</span><span class="bot-chip">Sinyal</span><span class="bot-chip">Auto-execute</span>
+        </div>
+        <a href="https://t.me/vilona_tbot" class="bot-cta">Coba Bot Crypto →</a>
+      </div>
+
+      <!-- IDX -->
+      <div class="bot-card reveal stagger-3">
+        <span class="bot-market idx">Saham IDX</span>
+        <div class="bot-top">
+          <div class="bot-emoji">🇮🇩</div>
+          <div>
+            <div class="bot-name">Vilona IDX Bot</div>
+            <div class="bot-handle">@vilonidxbot</div>
+          </div>
+        </div>
+        <p class="bot-desc">Saham Bursa Efek Indonesia. Ini bot paling kaya fitur: screener, portofolio, watchlist, alert real-time, sampai analisa bandarmologi. Jalan di layanan terpisah dengan langganan terpisah.</p>
+        <div class="bot-chips">
+          <span class="bot-chip">Screener</span><span class="bot-chip">Portofolio</span><span class="bot-chip">Bandarmologi</span><span class="bot-chip">Watchlist</span><span class="bot-chip">Alert</span>
+        </div>
+        <a href="https://t.me/vilonidxbot" class="bot-cta">Coba Bot Saham →</a>
+      </div>
+
+      <!-- PIPFORGE -->
+      <div class="bot-card reveal stagger-4">
+        <span class="bot-market">EA Rental</span>
+        <div class="bot-top">
+          <div class="bot-emoji">🔧</div>
+          <div>
+            <div class="bot-name">Vilona PipForge</div>
+            <div class="bot-handle">@vilonapipforgebot</div>
+          </div>
+        </div>
+        <p class="bot-desc">Bukan bot sinyal, tapi katalog dan manajemen lisensi EA. Kalau Anda ingin menjalankan robot sendiri di MetaTrader, semua pengelolaan sewa dan lisensi EA ada di sini.</p>
+        <div class="bot-chips">
+          <span class="bot-chip">Katalog EA</span><span class="bot-chip">Lisensi</span><span class="bot-chip">Pembayaran</span>
+        </div>
+        <a href="https://t.me/vilonapipforgebot" class="bot-cta">Buka PipForge →</a>
+      </div>
+
+    </div>
+
+    <div class="plan-strip reveal">
+      <p>
+        <strong>Bagaimana langganannya bekerja:</strong> bot Forex, Komoditas, Binary, dan Deriv memakai
+        <span class="accent">satu akun yang sama</span> — jadi satu langganan PRO / ELITE / LIFETIME berlaku untuk keempatnya
+        sekaligus. Bot <strong>Saham IDX</strong> dan <strong>Crypto</strong> berdiri di sistem langganan sendiri,
+        dan <strong>PipForge</strong> dihitung per sewa EA.
+      </p>
     </div>
   </div>
 </section>
@@ -882,7 +1105,7 @@ footer a:hover{color:#fff}
   <div class="container">
     <div class="section-header reveal">
       <h2>Pilih Kendaraan Anda</h2>
-      <p>Gunakan sarana yang paling sesuai dengan target hidup yang ingin Anda capai hari ini.</p>
+      <p>Satu langganan di bawah ini membuka <strong>empat bot trade sekaligus</strong> — Forex, Komoditas, Binary, dan Deriv. Saham IDX, Crypto, dan sewa EA dihitung terpisah.</p>
     </div>
 
     <div class="price-row">
@@ -914,6 +1137,43 @@ footer a:hover{color:#fff}
         <a href="https://t.me/berkahkaryaforexbotbot?start=lifetime" class="btn btn-outline" style="width:100%;" onclick="fbq('track','Lead',{content_name:'lifetime_tier',value:1990900,currency:'IDR'},{eventID:'lead_lt_'+Date.now()})">Bebaskan Dirimu Selamanya</a>
       </div>
     </div>
+
+    <div class="section-header reveal" style="margin-top:56px;margin-bottom:0;">
+      <h2 style="font-size:1.35rem;">Langganan Terpisah</h2>
+      <p>Tiga layanan ini berjalan di sistem tagihannya masing-masing, karena profil market dan risikonya memang berbeda.</p>
+    </div>
+
+    <div class="price-row-sm">
+      <div class="mini-card reveal stagger-1">
+        <h4>Vilona IDX Bot</h4>
+        <div class="mini-tag">Saham Indonesia</div>
+        <div class="mini-line">Pro <b>Rp 79.900<span>/bln</span></b></div>
+        <div class="mini-line">Premium <b>Rp 149.900<span>/bln</span></b></div>
+        <div class="mini-line">Lifetime <b>Rp 1.999.900</b></div>
+        <div class="mini-note">Membuka screener, bandarmologi, portofolio, watchlist, dan alert real-time.</div>
+        <a href="https://t.me/vilonidxbot" class="mini-link">Kelola di @vilonidxbot →</a>
+      </div>
+
+      <div class="mini-card reveal stagger-2">
+        <h4>1AI Crypto Bot</h4>
+        <div class="mini-tag">Crypto 24/7</div>
+        <div class="mini-line">Bronze <b>$19<span>/bln</span></b></div>
+        <div class="mini-line">Platinum <b>$99<span>/bln</span></b></div>
+        <div class="mini-line">Diamond <b>$199<span>/bln</span></b></div>
+        <div class="mini-note">Berjenjang dari sinyal harian sampai auto-execute tanpa batas kuota.</div>
+        <a href="https://t.me/vilona_tbot" class="mini-link">Kelola di @vilona_tbot →</a>
+      </div>
+
+      <div class="mini-card reveal stagger-3">
+        <h4>Vilona PipForge</h4>
+        <div class="mini-tag">Sewa EA per Pair</div>
+        <div class="mini-line">EURUSD <b>dari Rp 100.000<span>/bln</span></b></div>
+        <div class="mini-line">XAUUSD <b>dari Rp 150.000<span>/bln</span></b></div>
+        <div class="mini-line">BTCUSD <b>dari Rp 200.000<span>/bln</span></b></div>
+        <div class="mini-note">Harga mengikuti pair dan jumlah akun; tersedia juga paket kuartalan dan lifetime.</div>
+        <a href="https://t.me/vilonapipforgebot" class="mini-link">Kelola di @vilonapipforgebot →</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -939,6 +1199,18 @@ footer a:hover{color:#fff}
         <summary>Mengapa saya harus memilih AI dibanding belajar manual?</summary>
         <div class="faq-content">Karena hidup terlalu singkat jika hanya dihabiskan untuk menatap layar. Biarkan mesin AI yang memproses kelelahan mental dari meneliti chart berjam-jam, agar Anda bisa punya waktu lebih untuk kehidupan pribadi yang sebenarnya.</div>
       </details>
+      <details class="faq-item">
+        <summary>Satu langganan untuk berapa bot?</summary>
+        <div class="faq-content">Satu langganan PRO, ELITE, atau LIFETIME berlaku untuk <b>empat bot sekaligus</b>: Forex, Komoditas, Binary, dan Deriv. Keempatnya berbagi satu akun dan satu basis data pengguna, jadi status Anda langsung aktif di semuanya begitu pembayaran masuk. Bot Saham IDX dan Crypto berdiri di sistem langganannya sendiri, dan PipForge dihitung per sewa EA.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Kalau belum tahu mau trading apa, sebaiknya mulai dari mana?</summary>
+        <div class="faq-content">Mulai dari bot utama <b>@agent_1ai2_bot</b>, karena di sanalah seluruh fitur aktif dan Anda bisa mengenal semua market dari satu tempat. Setelah merasa cocok di satu kelas aset, pindah ke bot khusus kelas itu supaya notifikasinya lebih rapi dan tidak bercampur dengan market lain.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Kenapa botnya banyak dan terpisah-pisah?</summary>
+        <div class="faq-content">Karena tiap kelas aset punya jam dan profil risiko yang berbeda — kripto dan indeks sintetis jalan 24 jam termasuk akhir pekan, sedangkan saham IDX hanya saat bursa buka. Memisahkannya membuat sinyal tidak saling menimpa, dan Anda bisa mematikan notifikasi market yang tidak Anda tradingkan tanpa kehilangan akses ke yang lain.</div>
+      </details>
     </div>
   </div>
 </section>
@@ -959,7 +1231,7 @@ footer a:hover{color:#fff}
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="container">
-    <p>&copy; 2026 Vilona Trade FX. Seluruh hak cipta dilindungi undang-undang.</p>
+    <p>&copy; 2026 Vilona AI — Fleet Bot Trading. Seluruh hak cipta dilindungi undang-undang.</p>
     <p style="margin-top:8px;font-size:0.75rem;color:var(--text-dim);">
       Pemberitahuan Risiko: Trading merupakan alat untuk menumbuhkan uang Anda, namun selalu ingat batasan risiko yang Anda miliki. Jangan pernah mengorbankan dana hidup harian Anda.
     </p>
