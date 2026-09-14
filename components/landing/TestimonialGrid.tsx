@@ -46,6 +46,7 @@ export default function TestimonialGrid({
                   alt={t.name}
                   className={styles.testimonialAvatar}
                   loading="lazy"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
                 />
                 <div>
                   <p className={styles.testimonialName}>{t.name}</p>

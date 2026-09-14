@@ -787,6 +787,7 @@
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
+  background: var(--section-alt);
 }
 .testimonialName {
   font-weight: 700;
