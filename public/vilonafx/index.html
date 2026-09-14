@@ -145,6 +145,16 @@ header .container{display:flex;justify-content:space-between;align-items:center}
 .nav-links{display:flex;gap:24px;font-size:0.85rem;align-items:center}
 .nav-links a{color:var(--text-muted);text-decoration:none;transition:color 0.15s}
 .nav-links a:hover{color:#fff}
+/* The link row outgrows a phone's header, so let it scroll sideways instead
+   of pushing the whole page wide. min-width:0 lets the flex item shrink below
+   its content width — without it the row still overflows the viewport. The
+   logo must not shrink, or the brand breaks onto three lines. */
+@media(max-width:768px){
+  .nav-links{gap:14px;overflow-x:auto;min-width:0;scrollbar-width:none;-ms-overflow-style:none}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{white-space:nowrap}
+  .logo{white-space:nowrap;flex-shrink:0;font-size:1rem}
+}
 
 /* ═══════════════════════════════════════════════════════
    HERO SECTION
@@ -505,7 +515,7 @@ footer a:hover{color:#fff}
 <header id="mainHeader">
   <div class="container">
     <a href="#" class="logo">
-      <div class="logo-dot"></div> Vilona <span>Trade FX</span>
+      <div class="logo-dot"></div> Vilona <span>AI</span>
     </a>
     <div class="nav-links">
       <a href="#bots">Bot</a>
@@ -571,8 +581,8 @@ footer a:hover{color:#fff}
 <section class="section section-dark" id="bots">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Tujuh Mesin. Satu Akun. Satu Langganan.</h2>
-      <p>Setiap kelas aset punya bot Telegram-nya sendiri supaya tidak saling bising. Tapi empat bot trade inti berbagi satu akun yang sama — beli PRO sekali, aktif di semua.</p>
+      <h2>Tujuh Mesin Market, Plus Satu Bot Induk</h2>
+      <p>Setiap kelas aset punya bot Telegram-nya sendiri supaya notifikasinya tidak saling bising, dan satu bot induk menjadi pintu masuk ke semuanya. Empat bot trade inti berbagi satu akun yang sama — beli PRO sekali, aktif di semuanya.</p>
     </div>
 
     <div class="bot-grid">
@@ -1224,7 +1234,7 @@ footer a:hover{color:#fff}
     <p style="margin:16px auto 32px;max-width:500px;">
       Jadikan market yang bekerja untuk Anda. Kembalikan ketenangan pikiran dan rebut kembali waktu berharga Anda sekarang juga.
     </p>
-    <a href="https://t.me/berkahkaryaforexbotbot" class="btn btn-glow" style="padding:16px 40px;font-size:1.1rem;" onclick="fbq('track','Lead',{content_name:'final_cta',value:0,currency:'IDR'},{eventID:'lead_final_'+Date.now()})">🚀 Biarkan AI yang Mengambil Alih</a>
+    <a href="https://t.me/agent_1ai2_bot" class="btn btn-glow" style="padding:16px 40px;font-size:1.1rem;" onclick="fbq('track','Lead',{content_name:'final_cta',value:0,currency:'IDR'},{eventID:'lead_final_'+Date.now()})">🚀 Biarkan AI yang Mengambil Alih</a>
   </div>
 </section>
 
