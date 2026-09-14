@@ -1,11 +1,7 @@
-import { TRACKING } from './config';
-import { trackGAEvent } from './pixels';
-import { getReferrerSource, getUserSession } from './session';
+import { getUserSession, getReferrerSource } from './session'
+import { trackPurchase } from './funnel'
+import { sendMetaCAPI, sendTikTokCAPI, trackGAEvent } from './pixels'
 
-
-
-// ============================================
-// LTV TRACKING — Customer Lifetime Value
 // ============================================
 
 export interface CustomerLTV {

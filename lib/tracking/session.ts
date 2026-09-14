@@ -1,6 +1,30 @@
-import { UserSession, generateSessionId } from './config';
+// ============================================
 
+export interface UserSession {
+  session_id: string;
+  first_touch: {
+    referrer: string;
+    landing_page: string;
+    utm_source?: string;
+    utm_medium?: string;
+    utm_campaign?: string;
+    utm_content?: string;
+    utm_term?: string;
+    timestamp: number;
+  };
+  last_touch: {
+    referrer: string;
+    page: string;
+    timestamp: number;
+  };
+  page_views: number;
+  events: string[];
+}
 
+/** Generate unique session ID */
+export function generateSessionId(): string {
+  return 'sess_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+}
 
 /** Get or create user session with referrer data */
 export function getUserSession(): UserSession {

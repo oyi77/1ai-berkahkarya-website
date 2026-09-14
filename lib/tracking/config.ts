@@ -1,6 +1,3 @@
-
-
-
 // ============================================
 // TRACKING CONFIGURATION — EDIT IDS HERE
 // ============================================
@@ -26,6 +23,7 @@ export const TRACKING = {
   // Pinterest domain verification
   PINTEREST_VERIFICATION: '9212df9ddce352a5ada074e7d33a9e77',
 } as const;
+
 // Client-side CAPI requires a server to proxy /api/* — static exports
 // (CF Pages, Netlify static) cannot serve API routes, and the calls would
 // 405 on every page load. GTM server-side (stape) covers server events there.
@@ -33,30 +31,3 @@ export const TRACKING = {
 export const CLIENT_CAPI_ENABLED = process.env.NEXT_PUBLIC_ENABLE_CLIENT_CAPI === 'true';
 
 // ============================================
-// USER SESSION & REFERRER TRACKING
-// ============================================
-
-export interface UserSession {
-  session_id: string;
-  first_touch: {
-    referrer: string;
-    landing_page: string;
-    utm_source?: string;
-    utm_medium?: string;
-    utm_campaign?: string;
-    utm_content?: string;
-    utm_term?: string;
-    timestamp: number;
-  };
-  last_touch: {
-    referrer: string;
-    page: string;
-    timestamp: number;
-  };
-  page_views: number;
-  events: string[];
-}
-/** Generate unique session ID */
-export function generateSessionId(): string {
-  return 'sess_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
-}
