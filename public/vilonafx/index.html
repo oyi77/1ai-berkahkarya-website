@@ -142,19 +142,24 @@ header .container{display:flex;justify-content:space-between;align-items:center}
 .logo span{color:var(--green)}
 .logo-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:logoPulse 2s ease-in-out infinite}
 @keyframes logoPulse{0%,100%{opacity:1;box-shadow:0 0 8px var(--green)}50%{opacity:0.5;box-shadow:0 0 2px var(--green)}}
-.nav-links{display:flex;gap:24px;font-size:0.85rem;align-items:center}
+.nav-links{display:flex;gap:24px;font-size:0.85rem;align-items:center;min-width:0}
 .nav-links a{color:var(--text-muted);text-decoration:none;transition:color 0.15s}
 .nav-links a:hover{color:#fff}
-/* The link row outgrows a phone's header, so let it scroll sideways instead
-   of pushing the whole page wide. min-width:0 lets the flex item shrink below
-   its content width — without it the row still overflows the viewport. The
-   logo must not shrink, or the brand breaks onto three lines. */
+/* On a phone the four links plus the CTA cannot share one row with the brand,
+   and a sideways-scrolling row hides links and slices the ones at the edge
+   mid-word. So the header wraps to two tiers: logo and CTA on the first, the
+   full-width link row on the second, where all four links fit without
+   clipping. overflow-x stays as a safety net for longer link sets.
+   The logo must not shrink, or the brand breaks onto three lines. */
 @media(max-width:768px){
-  .nav-links{gap:14px;overflow-x:auto;min-width:0;scrollbar-width:none;-ms-overflow-style:none}
+  header .container{flex-wrap:wrap;row-gap:10px}
+  .nav-links{order:3;flex-basis:100%;justify-content:space-between;gap:12px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
   .nav-links::-webkit-scrollbar{display:none}
   .nav-links a{white-space:nowrap}
   .logo{white-space:nowrap;flex-shrink:0;font-size:1rem}
 }
+.nav-cta{flex-shrink:0;margin-left:16px}
+@media(max-width:768px){.nav-cta{margin-left:auto}}
 
 /* ═══════════════════════════════════════════════════════
    HERO SECTION
@@ -522,8 +527,8 @@ footer a:hover{color:#fff}
       <a href="#live-demo">Demo</a>
       <a href="#cara-kerja">Cara Kerja</a>
       <a href="#pricing">Harga</a>
-      <a href="https://t.me/agent_1ai2_bot" class="btn btn-glow" style="padding:6px 14px;font-size:0.8rem;">🤖 Mulai Gratis</a>
     </div>
+    <a href="https://t.me/agent_1ai2_bot" class="btn btn-glow nav-cta" style="padding:6px 14px;font-size:0.8rem;">🤖 Mulai Gratis</a>
   </div>
 </header>
 
