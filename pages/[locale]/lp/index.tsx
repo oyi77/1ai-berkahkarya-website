@@ -31,10 +31,10 @@ export default function LPIndex({ locale, services }: Props) {
   return (
     <Layout title={isId ? 'Landing Pages | BerkahKarya' : 'Landing Pages | BerkahKarya'}>
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '3rem 1rem' }}>
-        <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+        <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--text)' }}>
           {isId ? 'Landing Pages' : 'Landing Pages'}
         </h1>
-        <p style={{ color: '#666', marginBottom: '2rem' }}>
+        <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
           {isId ? 'Pilih service untuk melihat LP variants.' : 'Select a service to view LP variants.'}
         </p>
 
@@ -43,19 +43,19 @@ export default function LPIndex({ locale, services }: Props) {
             <div
               key={svc.service}
               style={{
-                border: '1px solid #e5e7eb',
+                border: '1px solid var(--border)',
                 borderRadius: '12px',
                 padding: '1.5rem',
-                background: '#fff',
+                background: 'var(--surface-1)',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                 <span style={{ fontSize: '2rem' }}>{svc.icon}</span>
                 <div style={{ flex: 1 }}>
-                  <h2 style={{ fontSize: '1.25rem', fontWeight: 600, margin: 0 }}>
+                  <h2 style={{ fontSize: '1.25rem', fontWeight: 600, margin: 0, color: 'var(--text)' }}>
                     {isId ? svc.displayName.id : svc.displayName.en}
                   </h2>
-                  <p style={{ color: '#666', fontSize: '0.9rem', margin: '0.25rem 0 1rem' }}>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', margin: '0.25rem 0 1rem' }}>
                     {isId ? svc.description.id : svc.description.en}
                   </p>
 
@@ -67,16 +67,16 @@ export default function LPIndex({ locale, services }: Props) {
                         style={{
                           display: 'inline-block',
                           padding: '0.35rem 0.85rem',
-                          background: '#f3f4f6',
+                          background: 'var(--bg-surface)',
                           borderRadius: '8px',
                           fontSize: '0.875rem',
-                          color: '#374151',
+                          color: 'var(--text)',
                           textDecoration: 'none',
                           fontWeight: 500,
                         }}
                       >
                         LP{id}
-                        <span style={{ marginLeft: '0.4rem', color: '#9ca3af' }}>→</span>
+                        <span aria-hidden="true" style={{ marginLeft: '0.4rem', color: 'var(--text-muted)' }}>→</span>
                       </Link>
                     ))}
                   </div>
