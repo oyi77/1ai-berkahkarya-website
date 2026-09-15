@@ -120,8 +120,9 @@ function RevenueStreamCard({ stream }: { stream: typeof transparencyData.id.metr
         </span>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <p style={{ fontSize: 'var(--text-2xl)', fontWeight: 800, color: 'var(--text-inverse)' }}>{stream.monthlyRevenue}</p>
-        <span style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--color-success)' }}>+{stream.growth} MoM</span>
+        <p style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--color-success)' }}>
+          {stream.status === 'active' ? '● Live' : '○ Planned'}
+        </p>
       </div>
     </div>
   );
@@ -249,56 +250,19 @@ export default function TransparencyPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* Key Metrics Totals */}
+      {/* Verifiable strip — every product live, no invented figures */}
       <section className="dark-bg" style={{ padding: 'var(--space-10) var(--space-6)', borderTop: '1px solid var(--border-default)' }}>
         <div style={{ maxWidth: 'var(--container-xl)', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 'var(--space-6)' }}>
-            <MetricCard label={isId ? 'MRR' : 'MRR'} value={d.metrics.totals.mrr} />
-            <MetricCard label={isId ? 'ARR' : 'ARR'} value={d.metrics.totals.arr} />
-            <MetricCard label={isId ? 'YoY Growth' : 'YoY Growth'} value={d.metrics.totals.yoyGrowth} />
-            <MetricCard label={isId ? 'Profit Margin' : 'Profit Margin'} value={d.metrics.totals.profitMargin} />
-            <MetricCard label={isId ? 'Runway' : 'Runway'} value={d.metrics.totals.runway} description={isId ? 'Profitable, no burn' : 'Profitable, no burn'} />
+            <MetricCard label={isId ? 'Produk Live' : 'Live Products'} value="10" />
+            <MetricCard label="VC" value="0" />
+            <MetricCard label="Founder" value="1" />
+            <MetricCard label="Bilingual" value="ID/EN" />
+            <MetricCard label={isId ? 'Sejak' : 'Since'} value="2024" />
           </div>
         </div>
       </section>
 
-      {/* Operational Metrics */}
-      <section style={{ padding: 'var(--space-12) var(--space-6)', background: 'var(--surface-1)' }}>
-        <div style={{ maxWidth: 'var(--container-xl)', margin: '0 auto' }}>
-          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-secondary-hover)', marginBottom: 'var(--space-3)' }}>
-            ⚙️ {isId ? 'Metrik Operasional' : 'Operational Metrics'}
-          </p>
-          <h2 style={{ fontSize: 'var(--text-3xl)', fontWeight: 800, color: 'var(--text-inverse)', marginBottom: 'var(--space-10)' }}>
-            {isId ? 'Sistem yang Tak Pernah Tidur' : 'Systems That Never Sleep'}
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 'var(--space-6)' }}>
-            <MetricCard label={isId ? 'Uptime' : 'Uptime'} value={d.metrics.operational.uptime} />
-            <MetricCard label={isId ? 'Layanan Live' : 'Services Live'} value={d.metrics.operational.servicesLive.toString()} />
-            <MetricCard label={isId ? 'Agent Otonom' : 'Autonomous Agents'} value={d.metrics.operational.autonomousAgents.toString()} />
-            <MetricCard label={isId ? 'API Calls/Hari' : 'API Calls/Day'} value={d.metrics.operational.apiCallsDaily} />
-            <MetricCard label={isId ? 'Avg Response' : 'Avg Response'} value={d.metrics.operational.avgResponseTime} />
-            <MetricCard label={isId ? 'Error Rate' : 'Error Rate'} value={d.metrics.operational.errorRate} />
-          </div>
-        </div>
-      </section>
-
-      {/* Revenue Chart */}
-      <section className="dark-bg" style={{ padding: 'var(--space-12) var(--space-6)' }}>
-        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: 'var(--space-3)', textAlign: 'center' }}>
-            📈 {isId ? 'Tren Revenue' : 'Revenue Trend'}
-          </p>
-          <h2 style={{ fontSize: 'var(--text-3xl)', fontWeight: 800, color: 'var(--text-inverse)', marginBottom: 'var(--space-2)', textAlign: 'center' }}>
-            {d.revenueChart.title}
-          </h2>
-          <p style={{ fontSize: 'var(--text-lg)', color: 'var(--text-inverse-muted)', marginBottom: 'var(--space-10)', textAlign: 'center' }}>
-            {d.revenueChart.subtitle}
-          </p>
-          <div style={{ background: 'var(--surface-2)', border: '1px solid var(--border-default)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-6)' }}>
-            <RevenueChart data={d.revenueChart.data} locale={locale} />
-          </div>
-        </div>
-      </section>
 
       {/* Revenue Streams Breakdown */}
       <section style={{ padding: 'var(--space-12) var(--space-6)', background: 'var(--surface-1)' }}>

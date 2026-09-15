@@ -3,17 +3,17 @@ export const transparencyData = {
     meta: {
       title: 'Transparansi — BerkahKarya',
       description:
-        'Angka nyata, bukan pitch deck. Revenue tracking terbuka, metrik operasional, dan detail partnership untuk investor yang peduli budaya, bukan sekadar angka.',
+        'Arsitektur terbuka, metodologi, dan detail partnership untuk investor yang peduli budaya, bukan sekadar angka.',
     },
     hero: {
       eyebrow: 'TRANSPARANSI RADIKAL',
-      title: 'Angka Nyata.\nBukan Pitch Deck.',
+      title: 'Arsitektur Terbuka.\nBukan Pitch Deck.',
       description:
-        'Kami membangun untuk customer, bukan investor. Setiap metrik di bawah adalah snapshot real-time dari sistem yang berjalan 24/7. Tidak ada window dressing — ini adalah bagaimana perusahaan otonom sebenarnya terlihat dari dalam.',
+        'Kami membangun untuk customer, bukan investor. Halaman ini menjelaskan arsitektur, metodologi, dan cara verifikasi setiap produk — bukan angka revenue. Angka finansial dibagikan privat via data room.'
     },
     metrics: {
       title: 'Metrik Operasional Live',
-      subtitle: 'Data diambil dari sistem internal (1ai-hub, OmniRoute, payment gateway). Update mingguan.',
+      subtitle: 'Setiap stream adalah produk live yang bisa diklik dan diaudit. Angka finansial dibagikan via data room, bukan halaman publik.',
       revenueStreams: [
         {
           id: '1ai',
@@ -109,12 +109,10 @@ export const transparencyData = {
       subtitle: 'Proof of work, bukan title',
       bio: 'Software engineer yang membangun BerkahKarya dari nol menjadi ekosistem 13 layanan otonom — tanpa VC, tanpa co-founder, tanpa team besar. 30-60 menit per hari. Output: perusahaan yang jalan sendiri.',
       proof: [
-        { label: 'Tahun Pengalaman', value: '12+', detail: 'Full-stack, DevOps, ML engineering, distributed systems' },
-        { label: 'Repository Publik', value: '200+', detail: 'GitHub: github.com/paijo — libraries, tools, AI agents' },
-        { label: 'Kontribusi OSS', value: '500+', detail: 'Core contributor ke ecosystem AI/ML Indonesia' },
-        { label: 'Produk Live', value: '13', detail: 'Semua profitable, zero external dependencies' },
-        { label: 'Model AI Dikembangkan', value: '50+', detail: 'Fine-tuned, deployed, production-serving' },
-        { label: 'Artikel/Talk Tech', value: '80+', detail: 'Diberbagai konferensi & komunitas developer Indonesia' },
+        { label: 'Tahun Pengalaman', value: '10+', detail: 'Full-stack, DevOps, ML engineering, distributed systems' },
+        { label: 'Produk Live', value: '10', detail: 'Semua bisa diklik dan diaudit langsung' },
+        { label: 'Pendanaan VC', value: '0', detail: 'Bootstrapped penuh sejak 2024' },
+        { label: 'Tim', value: '1 + AI', detail: 'Satu founder, AI agents, network spesialis' },
       ],
       philosophy: [
         'Code > Credentials. Ship > Pitch.',
@@ -130,13 +128,13 @@ export const transparencyData = {
         { date: '2023-Q1', title: 'Konsep BerkahKarya Lahir', description: 'Ide: 1 manusia + AI agents = perusahaan full-stack. Mulai build 1ai-hub core.', type: 'milestone' },
         { date: '2023-Q3', title: 'OmniRoute v1 Live', description: 'Gateway ke 50+ provider AI. Semantic caching menghemat 70% biaya API.', type: 'launch' },
         { date: '2024-Q1', title: '1AI Launch', description: 'Produk pertama publik. 100 user pertama via organic/word-of-mouth.', type: 'launch' },
-        { date: '2024-Q2', title: '1AI-Ads Autonomous', description: 'Campaign Meta/Google jalan 24/7 tanpa human-in-the-loop. ROAS 3.4+.', type: 'milestone' },
-        { date: '2024-Q3', title: 'Revenue > $10K/bulan', description: 'Break-even achieved. Profitable sejak hari pertama launch.', type: 'milestone' },
+        { date: '2024-Q2', title: '1AI-Ads Autonomous', description: 'Campaign Meta/Google jalan 24/7 tanpa human-in-the-loop. Approval guard aktif.', type: 'milestone' },
+        { date: '2024-Q3', title: 'Ekosistem Bertumbuh', description: 'Produk-produk baru live. Semua pipeline autonomous.', type: 'milestone' },
         { date: '2024-Q4', title: 'Ekosistem 10+ Layanan', description: 'Affiliate, Content, Social, Workflow, Phonefarm, Poly-Trader live.', type: 'launch' },
-        { date: '2025-Q1', title: 'R.E.V System™ Formalized', description: 'Framework revenue generation terekam & terdokumentasi. Case study 17K+ conversions.', type: 'milestone' },
-        { date: '2025-Q2', title: 'MRR Rp 200M+', description: '6 revenue stream aktif. Team tetap 1 manusia + AI agents.', type: 'milestone' },
-        { date: '2025-Q3', title: 'Transparansi Page Live', description: 'Angka nyata dipublikasikan. Janji "revenue tracking terbuka" direalisasikan.', type: 'milestone' },
-        { date: '2025-Q4', title: 'Roadmap: 20 Layanan', description: 'Target: 20 layanan otonom, MRR Rp 500M+, expand ke SEA.', type: 'planned' },
+        { date: '2025-Q1', title: 'R.E.V System™ Formalized', description: 'Framework revenue generation terekam & terdokumentasi.', type: 'milestone' },
+        { date: '2025-Q2', title: '6 Revenue Stream Aktif', description: 'Team tetap 1 manusia + AI agents.', type: 'milestone' },
+        { date: '2025-Q3', title: 'Transparansi Page Live', description: 'Halaman transparansi live. Arsitektur dan metodologi dipublikasikan.', type: 'milestone' },
+        { date: '2025-Q4', title: 'Roadmap: 20 Layanan', description: 'Target: 20 layanan otonom, expand ke SEA.', type: 'planned' },
       ],
     },
     ask: {
@@ -182,7 +180,7 @@ export const transparencyData = {
         },
         {
           q: 'Roadmap 12 bulan?',
-          a: '(1) 20 layanan otonom (target +7), (2) MRR Rp 500M+, (3) Expand ke SG/MY/TH via localized OmniRoute, (4) Enterprise features: SSO, audit logs, SLA, (5) Agent marketplace: developer bisa deploy agents ke 1ai-hub, (6) R&D: multi-agent planning horizon 30+ hari.',
+          a: '(1) 20 layanan otonom (target +7), (2) Expand ke SG/MY/TH via localized OmniRoute, (3) Enterprise features: SSO, audit logs, SLA, (4) Agent marketplace: developer bisa deploy agents ke 1ai-hub, (5) R&D: multi-agent planning horizon 30+ hari.',
         },
         {
           q: 'Bagaimana valuation?',
@@ -190,7 +188,7 @@ export const transparencyData = {
         },
         {
           q: 'Competitive moat?',
-          a: '(1) 1ai-hub: central nervous system — 2 tahun headstart orchestrasi multi-agent, (2) OmniRoute: 160+ provider, semantic caching proprietary, (3) Data flywheel: 2.3M API calls/day → better routing → lower cost → more users, (4) Brand: "Revenue > Funding" ziehen tribe yang loyal, (5) Zero external deps = zero supply chain risk.',
+          a: '(1) 1ai-hub: central nervous system — orchestrasi multi-agent, (2) OmniRoute: multi-provider gateway dengan semantic caching, (3) Brand: "Revenue > Funding" menarik early adopter yang loyal, (4) Zero external deps = zero supply chain risk.'
         },
       ],
     },
@@ -199,7 +197,7 @@ export const transparencyData = {
     meta: {
       title: 'Transparency — BerkahKarya',
       description:
-        'Real numbers, not pitch decks. Open revenue tracking, operational metrics, and partnership details for investors who care about culture, not just returns.',
+        'Open architecture, methodology, and partnership details for investors who care about culture, not just returns.',
     },
     hero: {
       eyebrow: 'RADICAL TRANSPARENCY',
@@ -209,7 +207,7 @@ export const transparencyData = {
     },
     metrics: {
       title: 'Live Operational Metrics',
-      subtitle: 'Data pulled from internal systems (1ai-hub, OmniRoute, payment gateways). Updated weekly.',
+      subtitle: 'Every stream is a live product you can click and audit. Financial figures shared via data room, not public pages.',
       revenueStreams: [
         {
           id: '1ai',
@@ -305,12 +303,10 @@ export const transparencyData = {
       subtitle: 'Proof of work, not titles',
       bio: 'Software engineer who built BerkahKarya from zero into a 13-service autonomous ecosystem — no VC, no co-founder, no large team. 30-60 minutes/day. Output: a company that runs itself.',
       proof: [
-        { label: 'Years Experience', value: '12+', detail: 'Full-stack, DevOps, ML engineering, distributed systems' },
-        { label: 'Public Repositories', value: '200+', detail: 'GitHub: github.com/paijo — libraries, tools, AI agents' },
-        { label: 'OSS Contributions', value: '500+', detail: 'Core contributor to Indonesia AI/ML ecosystem' },
-        { label: 'Live Products', value: '13', detail: 'All profitable, zero external dependencies' },
-        { label: 'AI Models Developed', value: '50+', detail: 'Fine-tuned, deployed, production-serving' },
-        { label: 'Tech Articles/Talks', value: '80+', detail: 'Across conferences & dev communities in Indonesia' },
+        { label: 'Years Experience', value: '10+', detail: 'Full-stack, DevOps, ML engineering, distributed systems' },
+        { label: 'Live Products', value: '10', detail: 'All clickable and directly auditable' },
+        { label: 'VC Funding', value: '0', detail: 'Fully bootstrapped since 2024' },
+        { label: 'Team', value: '1 + AI', detail: 'One founder, AI agents, specialist network' },
       ],
       philosophy: [
         'Code > Credentials. Ship > Pitch.',
@@ -326,13 +322,13 @@ export const transparencyData = {
         { date: '2023-Q1', title: 'BerkahKarya Concept Born', description: 'Idea: 1 human + AI agents = full-stack company. Started building 1ai-hub core.', type: 'milestone' },
         { date: '2023-Q3', title: 'OmniRoute v1 Live', description: 'Gateway to 50+ AI providers. Semantic caching saves 70% API costs.', type: 'launch' },
         { date: '2024-Q1', title: '1AI Launch', description: 'First public product. 100 initial users via organic/word-of-mouth.', type: 'launch' },
-        { date: '2024-Q2', title: '1AI-Ads Autonomous', description: 'Meta/Google campaigns running 24/7 without human-in-the-loop. ROAS 3.4+.', type: 'milestone' },
-        { date: '2024-Q3', title: 'Revenue > $10K/month', description: 'Break-even achieved. Profitable from day one of launch.', type: 'milestone' },
+        { date: '2024-Q2', title: '1AI-Ads Autonomous', description: 'Meta/Google campaigns running 24/7 without human-in-the-loop. Approval guard active.', type: 'milestone' },
+        { date: '2024-Q3', title: 'Growing Ecosystem', description: 'New products live. All pipelines autonomous.', type: 'milestone' },
         { date: '2024-Q4', title: '10+ Service Ecosystem', description: 'Affiliate, Content, Social, Workflow, Phonefarm, Poly-Trader all live.', type: 'launch' },
-        { date: '2025-Q1', title: 'R.E.V System™ Formalized', description: 'Revenue generation framework documented. Case study: 17K+ conversions.', type: 'milestone' },
-        { date: '2025-Q2', title: 'MRR $13K+', description: '6 active revenue streams. Team still 1 human + AI agents.', type: 'milestone' },
-        { date: '2025-Q3', title: 'Transparency Page Live', description: 'Real numbers published. "Open revenue tracking" promise realized.', type: 'milestone' },
-        { date: '2025-Q4', title: 'Roadmap: 20 Services', description: 'Target: 20 autonomous services, MRR $32K+, expand to SEA.', type: 'planned' },
+        { date: '2025-Q1', title: 'R.E.V System™ Formalized', description: 'Revenue generation framework documented.', type: 'milestone' },
+        { date: '2025-Q2', title: '6 Active Revenue Streams', description: 'Team still 1 human + AI agents.', type: 'milestone' },
+        { date: '2025-Q3', title: 'Transparency Page Live', description: 'Architecture and methodology published.', type: 'milestone' },
+        { date: '2025-Q4', title: 'Roadmap: 20 Services', description: 'Target: 20 autonomous services, expand to SEA.', type: 'planned' },
       ],
     },
     ask: {
@@ -378,7 +374,7 @@ export const transparencyData = {
         },
         {
           q: '12-month roadmap?',
-          a: '(1) 20 autonomous services (target +7), (2) MRR $32K+, (3) Expand to SG/MY/TH via localized OmniRoute, (4) Enterprise features: SSO, audit logs, SLA, (5) Agent marketplace: developers deploy agents to 1ai-hub, (6) R&D: multi-agent planning horizon 30+ days.',
+          a: '(1) 20 autonomous services (target +7), (2) Expand to SG/MY/TH via localized OmniRoute, (3) Enterprise features: SSO, audit logs, SLA, (4) Agent marketplace: developers deploy agents to 1ai-hub, (5) R&D: multi-agent planning horizon 30+ days.'
         },
         {
           q: 'How valuation?',
@@ -386,7 +382,7 @@ export const transparencyData = {
         },
         {
           q: 'Competitive moat?',
-          a: '(1) 1ai-hub: central nervous system — 2yr headstart multi-agent orchestration, (2) OmniRoute: 160+ providers, proprietary semantic caching, (3) Data flywheel: 2.3M API calls/day → better routing → lower cost → more users, (4) Brand: "Revenue > Funding" attracts loyal tribe, (5) Zero external deps = zero supply chain risk.',
+          a: '(1) 1ai-hub: central nervous system — multi-agent orchestration, (2) OmniRoute: multi-provider gateway with semantic caching, (3) Brand: "Revenue > Funding" attracts loyal early adopters, (4) Zero external deps = zero supply chain risk.',
         },
       ],
     },
