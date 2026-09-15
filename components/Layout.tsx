@@ -295,6 +295,31 @@ export default function Layout({
         </main>
       )}
       {!shouldHideFooter && <Footer />}
+      <a
+        href="https://wa.me/6285732740006?text=Halo%20BerkahKarya%2C%20saya%20ingin%20konsultasi"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat WhatsApp"
+        style={{
+          position: 'fixed',
+          bottom: '2rem',
+          left: '2rem',
+          width: '52px',
+          height: '52px',
+          borderRadius: '9999px',
+          background: '#25D366',
+          color: '#fff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '1.6rem',
+          textDecoration: 'none',
+          boxShadow: '0 8px 24px rgba(37, 211, 102, 0.4)',
+          zIndex: 'var(--z-fixed)',
+        }}
+      >
+        <span aria-hidden="true">💬</span>
+      </a>
     </>
   );
 }

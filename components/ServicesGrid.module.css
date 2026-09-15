@@ -326,37 +326,6 @@
   overflow: hidden;
 }
 
-/* Social proof row */
-.socialProof {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-3);
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--rule);
-  margin-top: auto;
-}
-
-.rating,
-.clients,
-.revenue {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: var(--ink-muted);
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-}
-
-.rating {
-  color: #f59e0b;
-  font-weight: 600;
-}
-
-.revenue {
-  color: #10b981;
-  font-weight: 600;
-}
 
 /* CTA link */
 .cardLink {
@@ -414,10 +383,5 @@
 
   .filterPill {
     flex-shrink: 0;
-  }
-
-  .socialProof {
-    flex-direction: column;
-    gap: var(--space-1);
   }
 }

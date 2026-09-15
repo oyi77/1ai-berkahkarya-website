@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Layout from '@/components/Layout';
 import InvestorHero from '@/components/InvestorHero';
 import InvestorMetrics from '@/components/InvestorMetrics';
-import InvestorRevenue from '@/components/InvestorRevenue';
 import InvestorProducts from '@/components/InvestorProducts';
 import InvestorRoadmap from '@/components/InvestorRoadmap';
 import InvestorTeam from '@/components/InvestorTeam';
@@ -48,9 +47,9 @@ export default function InvestorPage({ locale }: Props) {
       '@type': 'Organization',
       name: 'BerkahKarya',
       url: 'https://berkahkarya.org',
-      description: 'Bootstrapped AI Empire — 10 Products, 0 VC',
+      description: 'Bootstrapped AI Empire — 10 Products, 0 VC, 1 Founder',
       foundingDate: '2024',
-      numberOfEmployees: 8,
+      numberOfEmployees: 1,
       sameAs: [
         'https://wa.me/6285732740006',
         'https://t.me/berkahkarya_saas_bot',
@@ -73,8 +72,6 @@ export default function InvestorPage({ locale }: Props) {
       />
 
       <InvestorMetrics metrics={d.metrics} locale={locale} />
-
-      <InvestorRevenue data={d.revenue} locale={locale} />
 
       <InvestorProducts products={d.products} locale={locale} />
 

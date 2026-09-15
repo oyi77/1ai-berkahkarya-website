@@ -56,7 +56,7 @@ export default function ServicesGrid({ locale }: Props) {
     // Sort
     switch (sort) {
       case 'popular':
-        list.sort((a, b) => b.socialProof.clients - a.socialProof.clients);
+        // Curated order = file order. No fake metrics.
         break;
       case 'newest':
         // Reverse original order = newest first
@@ -94,8 +94,8 @@ export default function ServicesGrid({ locale }: Props) {
           </h2>
           <p className={styles.subtitle}>
             {isId
-              ? 'Dari AI, konten, website, hingga konstruksi — buka penawaran lengkap dan hubungi langsung.'
-              : 'From AI and content to websites and construction — open the full offer and connect directly.'}
+              ? 'Dari AI, konten, website, hingga konstruksi — mulai Rp 49K. Buka penawaran lengkap dan hubungi langsung.'
+              : 'From AI and content to websites and construction — from Rp 49K. Open the full offer and connect directly.'}
           </p>
         </div>
 
@@ -166,7 +166,6 @@ export default function ServicesGrid({ locale }: Props) {
               const badge = CATEGORY_BADGE[svc.category];
               const name = isId ? svc.displayName.id : svc.displayName.en;
               const desc = isId ? svc.description.id : svc.description.en;
-              const { rating, clients, revenue } = svc.socialProof;
 
               return (
                 <Link
@@ -185,17 +184,6 @@ export default function ServicesGrid({ locale }: Props) {
                   <div className={styles.cardBody}>
                     <h3 className={styles.cardName}>{name}</h3>
                     <p className={styles.cardDesc}>{desc}</p>
-                  </div>
-                  <div className={styles.socialProof}>
-                    <span className={styles.rating} title={`${rating}/5`}>
-                      <span aria-hidden="true">⭐</span> {rating.toFixed(1)}
-                    </span>
-                    <span className={styles.clients}>
-                      {clients.toLocaleString('id-ID')}+ {isId ? 'klien' : 'clients'}
-                    </span>
-                    <span className={styles.revenue}>
-                      {revenue}+ {isId ? 'revenue' : 'revenue'}
-                    </span>
                   </div>
                   <span className={styles.cardLink}>
                     {isId ? 'Lihat Penawaran' : 'View Offer'} →
