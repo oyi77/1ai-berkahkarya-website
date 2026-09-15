@@ -5,7 +5,7 @@ import Layout from '@/components/Layout';
 import UrgencyBanner, { type UrgencyBannerProps } from './UrgencyBanner';
 import PricingCard, { type PricingTier } from './PricingCard';
 import FAQSection, { type FAQItem } from './FAQSection';
-import TestimonialGrid, { type Testimonial } from './TestimonialGrid';
+import type { Testimonial } from './TestimonialGrid';
 import CompareTable, { type CompareRow } from './CompareTable';
 import LeadForm from '@/components/LeadForm';
 import b from './_lp-base.module.css';
@@ -208,14 +208,8 @@ export default function ServiceLP({ content, locale = 'id' }: ServiceLPProps) {
           </section>
         )}
 
-        {/* ── Testimonials ── */}
-        {content.testimonials && (
-          <TestimonialGrid
-            locale={locale}
-            testimonials={content.testimonials.items}
-            title={content.testimonials.title}
-          />
-        )}
+        {/* Testimonials removed — avatars 404, names unverified.
+            Proof-led landing: live products are the evidence. */}
 
         {/* ── FAQ ── */}
         {content.faq && (

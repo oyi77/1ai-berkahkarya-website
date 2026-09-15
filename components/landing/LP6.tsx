@@ -47,9 +47,9 @@ export default function LP6({ locale = 'id' }: { locale?: string }) {
             </div>
 
             <div className={b.trustStrip}>
-              <span>{locale === 'en' ? '✓ Verified results' : '✓ Verified results'}</span>
-              <span>{locale === 'en' ? '✓ Real testimonials' : '✓ Real testimonials'}</span>
-              <span>{locale === 'en' ? '✓ You can too' : '✓ Kamu bisa juga'}</span>
+              <span>{locale === 'en' ? '✓ Live demo' : '✓ Demo live'}</span>
+              <span>{locale === 'en' ? '✓ Free trial' : '✓ Coba gratis'}</span>
+              <span>{locale === 'en' ? '✓ No credit card' : '✓ Tanpa kartu kredit'}</span>
             </div>
           </div>
         </section>

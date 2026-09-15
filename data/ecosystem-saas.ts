@@ -48,8 +48,8 @@ export const ecosystemSaasData = {
           ctaSecondary: { text: 'Belajar AI Gratis', href: '/academy' },
         },
         investor: {
-          title: '10 SaaS AI *Revenue-Generating*<br/>Bootstrapped',
-          description: 'Bootstrapped, profitable, 12 products live. $2.4K MRR, 18% MoM growth, 34 enterprise clients',
+          title: '10 SaaS AI *Live & Bootstrapped*',
+          description: 'Bootstrapped, 0 VC, 10 produk live bisa diklik. 1 founder + AI agents.',
           ctaPrimary: { text: 'Lihat Metrics →', href: '/investor' },
           ctaSecondary: { text: 'Pitch Deck', href: '/pitch-deck' },
         },
@@ -349,8 +349,8 @@ export const ecosystemSaasData = {
           ctaSecondary: { text: 'Learn AI Free', href: '/academy' },
         },
         investor: {
-          title: '10 AI SaaS *Revenue-Generating*<br/>Bootstrapped',
-          description: 'Bootstrapped, profitable, 12 products live. $2.4K MRR, 18% MoM growth, 34 enterprise clients',
+          title: '10 AI SaaS *Live & Bootstrapped*',
+          description: 'Bootstrapped, 0 VC, 10 live products you can click. 1 founder + AI agents.',
           ctaPrimary: { text: 'View Metrics →', href: '/investor' },
           ctaSecondary: { text: 'Pitch Deck', href: '/pitch-deck' },
         },
