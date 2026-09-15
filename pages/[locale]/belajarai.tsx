@@ -702,11 +702,8 @@ export default function BelajarAIPage({ locale }: { locale: Locale }) {
 
       <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)' }} />
 
-      {/* Testimonials */}
-      <TestimonialSection
-        title={isId ? 'Apa Kata Mereka yang Sudah Belajar?' : 'What Our Learners Say'}
-        items={testimonials}
-      />
+      {/* Testimonials removed — names unverified. Course content is the proof. */}
+
 
       {/* Pricing */}
       <PricingTable tiers={pricingPlans} onPay={handlePay} />

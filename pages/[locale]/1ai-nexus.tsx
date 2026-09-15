@@ -73,8 +73,7 @@ export default function AINexusPage({ locale }: { locale: Locale }) {
         <StatsRow items={[...d.stats.items]} />
       </section>
 
-      {/* ── Testimonials ── */}
-      <TestimonialSection title={d.testimonials.title} items={[...d.testimonials.items]} />
+      {/* Testimonials removed — names unverified. Live terminal is the proof. */}
 
       {/* ── Pricing ── */}
       <PricingTable
