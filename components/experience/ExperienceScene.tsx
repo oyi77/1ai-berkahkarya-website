@@ -77,7 +77,7 @@ function Wizard() {
   });
 
   return (
-    <group ref={group} position={[-4.1, 0, -6]} scale={0.95} rotation={[0, 1.2, 0]}>
+    <group ref={group} position={[-1.6, 0, -3.6]} scale={1.1} rotation={[0, 0.7, 0]}>
       <primitive object={scene} />
     </group>
   );
@@ -124,9 +124,9 @@ function Pillars() {
   useFrame(() => {
     if (!group.current) return;
     const lift = THREE.MathUtils.clamp((scrollProgress - 0.78) / 0.22, 0, 1);
-    group.current.position.y = lift * 8;
+    group.current.position.y = lift * 14;
     group.current.children.forEach((c, i) => {
-      c.position.y = lift * (i % 3) * 1.5;
+      c.position.y = lift * (i % 3) * 2.5;
     });
   });
 
@@ -217,15 +217,43 @@ function Vortex({ count = 900 }: { count?: number }) {
   );
 }
 
+type Vec3 = [number, number, number];
+interface CamStop { p: number; pos: Vec3; look: Vec3; }
+
+/* Waypoints — camera dwells on each zone's subject instead of flying past. */
+const STOPS: CamStop[] = [
+  { p: 0.0, pos: [0, 0.6, 6], look: [-1.2, 0.4, -8] },
+  { p: 0.16, pos: [-0.8, 0.6, 1], look: [-2.8, 0.6, -5] },
+  { p: 0.36, pos: [0, 0.8, -5], look: [0, 1.2, -14] },
+  { p: 0.53, pos: [0.5, 1.2, -6], look: [-7, 1.0, -20] },
+  { p: 0.7, pos: [0, 0.8, -26], look: [0, 0, -38] },
+  { p: 0.87, pos: [0, 3.5, -27], look: [0, 10, -40] },
+];
+
 function CameraRig() {
   const { camera } = useThree();
+  const lookCur = useRef(new THREE.Vector3(0, 0, -8));
 
   useFrame(() => {
-    const p = scrollProgress;
-    camera.position.z = -p * 46;
-    camera.position.y = Math.sin(p * Math.PI) * 3;
-    camera.position.x += (pointerX * 2 - camera.position.x) * 0.05;
-    camera.lookAt(0, Math.sin(p * Math.PI) * 1.5, -p * 46 - 12);
+    const p = THREE.MathUtils.clamp(scrollProgress, 0, 1);
+    let i = 0;
+    while (i < STOPS.length - 2 && p >= STOPS[i + 1].p) i++;
+    const a = STOPS[i];
+    const b = STOPS[i + 1];
+    const raw = THREE.MathUtils.clamp((p - a.p) / (b.p - a.p), 0, 1);
+    const t = raw * raw * (3 - 2 * raw);
+    const px = a.pos[0] + (b.pos[0] - a.pos[0]) * t + pointerX * 1.2;
+    const py = a.pos[1] + (b.pos[1] - a.pos[1]) * t + (pointerY - 0.5) * 0.8;
+    const pz = a.pos[2] + (b.pos[2] - a.pos[2]) * t;
+    camera.position.x += (px - camera.position.x) * 0.08;
+    camera.position.y += (py - camera.position.y) * 0.08;
+    camera.position.z += (pz - camera.position.z) * 0.08;
+    lookCur.current.set(
+      a.look[0] + (b.look[0] - a.look[0]) * t,
+      a.look[1] + (b.look[1] - a.look[1]) * t,
+      a.look[2] + (b.look[2] - a.look[2]) * t,
+    );
+    camera.lookAt(lookCur.current);
   });
 
   return null;
