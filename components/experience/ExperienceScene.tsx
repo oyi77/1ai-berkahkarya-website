@@ -1,7 +1,8 @@
 'use client';
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useAnimations, useGLTF } from '@react-three/drei';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 /* Scroll + pointer store shared with the frame loop. */
@@ -41,6 +42,44 @@ function Dust({ count = 1200 }: { count?: number }) {
       </bufferGeometry>
       <pointsMaterial size={0.09} color="#8a8a8a" transparent opacity={0.55} sizeAttenuation depthWrite={false} />
     </points>
+  );
+}
+
+/* The Operator — Quaternius Animated Wizard (CC-BY), darkened to a saint silhouette. */
+function Wizard() {
+  const group = useRef<THREE.Group>(null);
+  const { scene, animations } = useGLTF('/models/wizard.glb');
+  const { actions } = useAnimations(animations, group);
+
+  useEffect(() => {
+    // cloak everything in shadow — hide cartoon colors, keep silhouette + walk
+    scene.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      if (mesh.isMesh) {
+        const m = mesh.material as THREE.MeshStandardMaterial;
+        if (m && 'color' in m) {
+          m.color.set('#17171c');
+          m.roughness = 0.95;
+          m.metalness = 0;
+          if ('emissive' in m) m.emissive.set('#000000');
+        }
+      }
+    });
+    const walk = actions['CharacterArmature|Walk'];
+    walk?.reset().play();
+    return () => { walk?.stop(); };
+  }, [scene, actions]);
+
+  useFrame((state) => {
+    if (!group.current) return;
+    const t = state.clock.elapsedTime;
+    group.current.position.y = -2.2 + Math.abs(Math.sin(t * 3.2)) * 0.06;
+  });
+
+  return (
+    <group ref={group} position={[-4.1, 0, -6]} scale={0.95} rotation={[0, 1.2, 0]}>
+      <primitive object={scene} />
+    </group>
   );
 }
 
@@ -321,7 +360,9 @@ export default function ExperienceScene() {
 
         <Background />
         <CameraRig />
-        <Dust />
+        <Suspense fallback={null}>
+          <Wizard />
+        </Suspense>
         <Monolith />
         <Pillars />
         <PourStream />
