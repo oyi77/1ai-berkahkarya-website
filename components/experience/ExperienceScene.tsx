@@ -56,7 +56,7 @@ function Operator() {
     const t = state.clock.elapsedTime;
     const ph = t * 3.2;
     if (group.current) {
-      group.current.position.y = -2.6 + Math.abs(Math.sin(ph)) * 0.2;
+      group.current.position.y = -1.4 + Math.abs(Math.sin(ph)) * 0.2;
       group.current.rotation.z = Math.sin(ph) * 0.04;
     }
     if (armL.current) armL.current.rotation.x = Math.sin(ph) * 0.5;
@@ -66,7 +66,7 @@ function Operator() {
   });
 
   return (
-    <group ref={group} position={[2.4, 0, -3.5]}>
+    <group ref={group} position={[-3.4, -1.4, -5.5]} scale={0.72}>
       <mesh>
         <coneGeometry args={[1.1, 3.6, 14]} />
         <meshStandardMaterial color="#161616" roughness={0.9} />
