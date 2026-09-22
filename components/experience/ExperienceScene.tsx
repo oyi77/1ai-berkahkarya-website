@@ -13,64 +13,8 @@ export function setExperienceProgress(p: number) {
   scrollProgress = p;
 }
 
-/* ────────────────────────────────────────────────────────────
-   Hatching ink shader — the Santioni comic signature.
-   Toon banding + two-axis crosshatch, grey → warm color rhythm.
-──────────────────────────────────────────────────────────── */
-const HATCH_VERT = /* glsl */ `
-  varying vec3 vNormal;
-  varying vec3 vViewPos;
-  void main() {
-    vNormal = normalize(mat3(modelMatrix) * normal);
-    vec4 mv = modelViewMatrix * vec4(position, 1.0);
-    vViewPos = mv.xyz;
-    gl_Position = projectionMatrix * mv;
-  }
-`;
-
-const HATCH_FRAG = /* glsl */ `
-  uniform vec3 uCold;
-  uniform vec3 uWarm;
-  uniform float uMix;
-  varying vec3 vNormal;
-  varying vec3 vViewPos;
-
-  float hatchLine(vec2 uv, float density) {
-    float a = step(0.5, fract(uv.x * density + uv.y * density));
-    float b = step(0.5, fract(uv.x * density - uv.y * density));
-    return min(a, b);
-  }
-
-  void main() {
-    vec3 N = normalize(vNormal);
-    vec3 L = normalize(vec3(0.5, 1.0, 0.35));
-    float d = clamp(dot(N, L), 0.0, 1.0);
-    // 4-band toon
-    float band = floor(d * 4.0) / 4.0;
-    float shade = 1.0 - band;
-    // crosshatch denser in shadow
-    vec2 uv = vViewPos.xy * 2.2;
-    float ink = 1.0 - (hatchLine(uv, 40.0) * 0.55 + hatchLine(uv + 0.5, 40.0) * 0.35) * shade;
-    vec3 base = mix(uCold, uWarm, uMix);
-    vec3 col = base * (0.28 + 0.72 * band) * ink;
-    gl_FragColor = vec4(col, 1.0);
-  }
-`;
-
-const hatchMaterial = new THREE.ShaderMaterial({
-  vertexShader: HATCH_VERT,
-  fragmentShader: HATCH_FRAG,
-  uniforms: {
-    uCold: { value: new THREE.Color('#2a2a2e') },
-    uWarm: { value: new THREE.Color('#3a1620') },
-    uMix: { value: 0 },
-  },
-});
-
-/* ────────────────────────────────────────────────────────────
-   Dust field — wasteland atmosphere.
-──────────────────────────────────────────────────────────── */
-function Dust({ count = 1400 }: { count?: number }) {
+/* Dust field — wasteland atmosphere. */
+function Dust({ count = 1200 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
@@ -100,9 +44,7 @@ function Dust({ count = 1400 }: { count?: number }) {
   );
 }
 
-/* ────────────────────────────────────────────────────────────
-   The Operator — hooded figure with arms, staff, stepping legs.
-──────────────────────────────────────────────────────────── */
+/* The Operator — hooded figure with swinging arms and stepping legs. */
 function Operator() {
   const group = useRef<THREE.Group>(null);
   const armL = useRef<THREE.Group>(null);
@@ -125,51 +67,51 @@ function Operator() {
 
   return (
     <group ref={group} position={[2.4, 0, -3.5]}>
-      {/* robe */}
-      <mesh material={hatchMaterial}>
+      <mesh>
         <coneGeometry args={[1.1, 3.6, 14]} />
+        <meshStandardMaterial color="#161616" roughness={0.9} />
       </mesh>
-      {/* hooded head */}
-      <mesh material={hatchMaterial} position={[0, 1.9, 0]}>
+      <mesh position={[0, 1.9, 0]}>
         <sphereGeometry args={[0.56, 20, 16]} />
+        <meshStandardMaterial color="#0e0e0e" roughness={0.9} />
       </mesh>
-      {/* hood peak */}
-      <mesh material={hatchMaterial} position={[0, 2.14, -0.22]} rotation={[0.5, 0, 0]}>
+      <mesh position={[0, 2.14, -0.22]} rotation={[0.5, 0, 0]}>
         <coneGeometry args={[0.6, 0.85, 12]} />
+        <meshStandardMaterial color="#0e0e0e" roughness={0.9} />
       </mesh>
-      {/* arms — swing opposite to legs */}
       <group ref={armL} position={[-0.75, 1.0, 0]}>
-        <mesh material={hatchMaterial} position={[0, -0.7, 0]}>
+        <mesh position={[0, -0.7, 0]}>
           <cylinderGeometry args={[0.13, 0.16, 1.5, 8]} />
+          <meshStandardMaterial color="#141414" roughness={0.9} />
         </mesh>
       </group>
       <group ref={armR} position={[0.75, 1.0, 0]}>
-        <mesh material={hatchMaterial} position={[0, -0.7, 0]}>
+        <mesh position={[0, -0.7, 0]}>
           <cylinderGeometry args={[0.13, 0.16, 1.5, 8]} />
+          <meshStandardMaterial color="#141414" roughness={0.9} />
         </mesh>
       </group>
-      {/* staff in right hand */}
-      <mesh material={hatchMaterial} position={[0.9, 0.4, 0]} rotation={[0, 0, -0.15]}>
+      <mesh position={[0.9, 0.4, 0]} rotation={[0, 0, -0.15]}>
         <cylinderGeometry args={[0.05, 0.05, 4.2, 6]} />
+        <meshStandardMaterial color="#1a1a1a" roughness={0.8} />
       </mesh>
-      {/* stepping legs beneath robe */}
       <group ref={legL} position={[-0.3, -1.7, 0]}>
-        <mesh material={hatchMaterial} position={[0, -0.35, 0]}>
+        <mesh position={[0, -0.35, 0]}>
           <cylinderGeometry args={[0.16, 0.2, 0.7, 8]} />
+          <meshStandardMaterial color="#101010" roughness={0.9} />
         </mesh>
       </group>
       <group ref={legR} position={[0.3, -1.7, 0]}>
-        <mesh material={hatchMaterial} position={[0, -0.35, 0]}>
+        <mesh position={[0, -0.35, 0]}>
           <cylinderGeometry args={[0.16, 0.2, 0.7, 8]} />
+          <meshStandardMaterial color="#101010" roughness={0.9} />
         </mesh>
       </group>
     </group>
   );
 }
 
-/* ────────────────────────────────────────────────────────────
-   Monolith + circular portal.
-──────────────────────────────────────────────────────────── */
+/* Monolith + circular portal. */
 function Monolith() {
   const ring = useRef<THREE.Mesh>(null);
 
@@ -181,8 +123,9 @@ function Monolith() {
 
   return (
     <group position={[0, 0, -14]}>
-      <mesh material={hatchMaterial}>
+      <mesh>
         <boxGeometry args={[3.4, 9, 1.6]} />
+        <meshStandardMaterial color="#1c1c1c" roughness={0.85} metalness={0.25} />
       </mesh>
       <mesh ref={ring} position={[0, 1.1, 0.85]}>
         <torusGeometry args={[1.25, 0.07, 16, 64]} />
@@ -196,9 +139,7 @@ function Monolith() {
   );
 }
 
-/* ────────────────────────────────────────────────────────────
-   Cathedral pillars — rise skyward in the final act.
-──────────────────────────────────────────────────────────── */
+/* Cathedral pillars — rise skyward in the final act. */
 const PILLARS: Array<[number, number, number]> = [
   [-6, 0, -26], [-3, 0, -28], [0, 0, -30], [3, 0, -28], [6, 0, -26],
   [-6, 0, -34], [6, 0, -34], [0, 0, -38],
@@ -219,51 +160,45 @@ function Pillars() {
   return (
     <group ref={group}>
       {PILLARS.map((p, i) => (
-        <mesh key={i} position={p} material={hatchMaterial}>
+        <mesh key={i} position={p}>
           <cylinderGeometry args={[0.5, 0.7, 14, 12]} />
+          <meshStandardMaterial color="#262626" roughness={0.9} metalness={0.1} />
         </mesh>
       ))}
     </group>
   );
 }
 
-/* ────────────────────────────────────────────────────────────
-   Pour stream — liquid falling into the vortex, then swirling.
-──────────────────────────────────────────────────────────── */
-function PourStream({ count = 500 }: { count?: number }) {
+/* Pour stream — liquid falling into the vortex (elapsed-time driven, no getDelta). */
+function PourStream({ count = 400 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
-  const positions = useMemo(() => {
-    const arr = new Float32Array(count * 3);
+  const seeds = useMemo(() => {
+    const arr = new Float32Array(count * 4);
     for (let i = 0; i < count; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 0.4;
-      arr[i * 3 + 1] = Math.random() * 8;
-      arr[i * 3 + 2] = (Math.random() - 0.5) * 0.4;
+      arr[i * 4] = (Math.random() - 0.5) * 0.4;
+      arr[i * 4 + 1] = Math.random() * 10;
+      arr[i * 4 + 2] = (Math.random() - 0.5) * 0.4;
+      arr[i * 4 + 3] = 3 + Math.random() * 5;
     }
     return arr;
   }, [count]);
-  const velocities = useMemo(() => {
-    const arr = new Float32Array(count);
-    for (let i = 0; i < count; i++) arr[i] = 3 + Math.random() * 5;
-    return arr;
-  }, [count]);
+  const positions = useMemo(() => new Float32Array(count * 3), [count]);
 
   useFrame((state) => {
     if (!ref.current) return;
     const active = THREE.MathUtils.clamp((scrollProgress - 0.6) / 0.15, 0, 1);
     const mat = ref.current.material as THREE.PointsMaterial;
     mat.opacity = active * 0.9;
-    const attr = ref.current.geometry.getAttribute('position') as THREE.BufferAttribute;
-    const dt = state.clock.getDelta();
+    const t = state.clock.elapsedTime;
     for (let i = 0; i < count; i++) {
-      let y = attr.getY(i) - velocities[i] * dt;
-      if (y < -2) {
-        y = 8;
-        // feed into swirl: move outward and rotate
-      }
-      attr.setY(i, y);
+      const speed = seeds[i * 4 + 3];
+      const fall = (t * speed + seeds[i * 4 + 1]) % 10;
+      positions[i * 3] = seeds[i * 4];
+      positions[i * 3 + 1] = 8 - fall;
+      positions[i * 3 + 2] = seeds[i * 4 + 2];
     }
-    attr.needsUpdate = true;
-    ref.current.rotation.y = state.clock.elapsedTime * 0.8;
+    ref.current.geometry.getAttribute('position').needsUpdate = true;
+    ref.current.rotation.y = t * 0.8;
   });
 
   return (
@@ -276,9 +211,7 @@ function PourStream({ count = 500 }: { count?: number }) {
   );
 }
 
-/* ────────────────────────────────────────────────────────────
-   Vortex — swirling burst, the red night heart.
-──────────────────────────────────────────────────────────── */
+/* Vortex — swirling burst. */
 function Vortex({ count = 900 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
   const positions = useMemo(() => {
@@ -311,9 +244,6 @@ function Vortex({ count = 900 }: { count?: number }) {
   );
 }
 
-/* ────────────────────────────────────────────────────────────
-   Camera rig + shared uniform updates.
-──────────────────────────────────────────────────────────── */
 function CameraRig() {
   const { camera } = useThree();
 
@@ -323,8 +253,6 @@ function CameraRig() {
     camera.position.y = Math.sin(p * Math.PI) * 3;
     camera.position.x += (pointerX * 2 - camera.position.x) * 0.05;
     camera.lookAt(0, Math.sin(p * Math.PI) * 1.5, -p * 46 - 12);
-    // drive hatch color rhythm
-    hatchMaterial.uniforms.uMix.value = THREE.MathUtils.clamp((p - 0.55) / 0.45, 0, 1);
   });
 
   return null;
@@ -341,9 +269,7 @@ function Background() {
   return null;
 }
 
-/* ────────────────────────────────────────────────────────────
-   Ambient audio — synthesized drone + footsteps. No asset files.
-──────────────────────────────────────────────────────────── */
+/* Ambient audio — synthesized drone + footsteps. No asset files. */
 function useAmbientAudio() {
   const [muted, setMuted] = useState(false);
   const ctxRef = useRef<AudioContext | null>(null);
@@ -355,7 +281,6 @@ function useAmbientAudio() {
         ctxRef.current.resume();
         return;
       }
-      // webkitAudioContext is Safari's non-standard alias for AudioContext.
       const wk = (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
       const Ctx = window.AudioContext ?? wk;
       if (!Ctx) return;
@@ -364,7 +289,6 @@ function useAmbientAudio() {
       master.gain.value = 0.5;
       master.connect(ctx.destination);
 
-      // low drone: two detuned oscillators through a slow lowpass
       const o1 = ctx.createOscillator();
       o1.type = 'sawtooth';
       o1.frequency.value = 55;
@@ -379,7 +303,6 @@ function useAmbientAudio() {
       o1.connect(lp); o2.connect(lp); lp.connect(g); g.connect(master);
       o1.start(); o2.start();
 
-      // wind bed: filtered noise
       const buf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
       const ch = buf.getChannelData(0);
       for (let i = 0; i < ch.length; i++) ch[i] = Math.random() * 2 - 1;
@@ -395,8 +318,6 @@ function useAmbientAudio() {
       masterRef.current = master;
     };
 
-    // footsteps: scheduled thumps tied to the walk rhythm
-    let step = 0;
     const footTimer = setInterval(() => {
       const ctx = ctxRef.current;
       if (!ctx || !masterRef.current || scrollProgress > 0.35) return;
@@ -410,7 +331,6 @@ function useAmbientAudio() {
       fg.gain.exponentialRampToValueAtTime(0.0001, t + 0.15);
       osc.connect(fg); fg.connect(masterRef.current);
       osc.start(t); osc.stop(t + 0.16);
-      step++;
     }, 620);
 
     const onFirst = () => { ensure(); window.removeEventListener('pointerdown', onFirst); };
@@ -431,9 +351,6 @@ function useAmbientAudio() {
   return { muted, toggle: () => setMuted((m) => !m) };
 }
 
-/* ────────────────────────────────────────────────────────────
-   Full scene.
-──────────────────────────────────────────────────────────── */
 export default function ExperienceScene() {
   const { muted, toggle } = useAmbientAudio();
 
@@ -478,7 +395,6 @@ export default function ExperienceScene() {
         <Vortex />
       </Canvas>
 
-      {/* Audio toggle — fixed, above the canvas */}
       <button
         onClick={toggle}
         aria-label={muted ? 'Unmute ambient audio' : 'Mute ambient audio'}
