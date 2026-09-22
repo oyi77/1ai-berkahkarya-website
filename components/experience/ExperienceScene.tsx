@@ -1,6 +1,7 @@
 'use client';
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Outlines } from '@react-three/drei';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 
@@ -16,9 +17,18 @@ export function setExperienceProgress(p: number) {
   scrollProgress = p;
 }
 
+/* Comic toon banding — 4-step luminance ramp for flat "brute ink" shading. */
+const TOON_RAMP = (() => {
+  const data = new Uint8Array([72, 140, 205, 255]);
+  const tex = new THREE.DataTexture(data, 4, 1, THREE.RedFormat);
+  tex.minFilter = THREE.NearestFilter;
+  tex.magFilter = THREE.NearestFilter;
+  tex.needsUpdate = true;
+  return tex;
+})();
+
 /* ────────────────────────────────────────────────────────────
-   Dust field — the "wasteland" atmosphere. 1500 drifting points,
-   color lerped grey → warm as the journey progresses.
+   Dust field — the "wasteland" atmosphere.
 ──────────────────────────────────────────────────────────── */
 function Dust({ count = 1400 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
@@ -36,7 +46,6 @@ function Dust({ count = 1400 }: { count?: number }) {
     if (!ref.current) return;
     ref.current.rotation.y = state.clock.elapsedTime * 0.015;
     const mat = ref.current.material as THREE.PointsMaterial;
-    // grey → warm as color breaks (progress > 0.6)
     const warm = THREE.MathUtils.clamp((scrollProgress - 0.55) / 0.45, 0, 1);
     mat.color.setRGB(0.55 + 0.25 * warm, 0.55 - 0.1 * warm, 0.55 - 0.3 * warm);
   });
@@ -48,6 +57,50 @@ function Dust({ count = 1400 }: { count?: number }) {
       </bufferGeometry>
       <pointsMaterial size={0.09} color="#8a8a8a" transparent opacity={0.55} sizeAttenuation depthWrite={false} />
     </points>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────
+   The Operator — a procedural hooded figure, walking in the wasteland.
+   The saint analogue: no face, long robe, bare feet. Walk-cycle via code.
+──────────────────────────────────────────────────────────── */
+function Operator() {
+  const group = useRef<THREE.Group>(null);
+  const robe = useRef<THREE.Mesh>(null);
+
+  useFrame((state) => {
+    if (!group.current) return;
+    const t = state.clock.elapsedTime;
+    // stride bob + sway
+    group.current.position.y = -2.4 + Math.abs(Math.sin(t * 3.4)) * 0.22;
+    group.current.rotation.z = Math.sin(t * 3.4) * 0.05;
+    group.current.rotation.x = -0.08;
+    if (robe.current) {
+      // robe hem flutter
+      robe.current.scale.y = 1 + Math.sin(t * 3.4) * 0.02;
+    }
+  });
+
+  return (
+    <group ref={group} position={[2.2, 0, -3.5]}>
+      {/* long robe */}
+      <mesh ref={robe}>
+        <coneGeometry args={[1.05, 3.6, 12]} />
+        <meshToonMaterial color="#161616" gradientMap={TOON_RAMP} />
+        <Outlines thickness={0.04} color="#000000" />
+      </mesh>
+      {/* hooded head */}
+      <mesh position={[0, 1.85, 0]}>
+        <sphereGeometry args={[0.55, 20, 16]} />
+        <meshToonMaterial color="#0e0e0e" gradientMap={TOON_RAMP} />
+        <Outlines thickness={0.04} color="#000000" />
+      </mesh>
+      {/* hood peak */}
+      <mesh position={[0, 2.1, -0.2]} rotation={[0.5, 0, 0]}>
+        <coneGeometry args={[0.58, 0.85, 12]} />
+        <meshToonMaterial color="#0e0e0e" gradientMap={TOON_RAMP} />
+      </mesh>
+    </group>
   );
 }
 
@@ -65,10 +118,11 @@ function Monolith() {
 
   return (
     <group position={[0, 0, -14]}>
-      {/* slab */}
+      {/* slab — comic ink outline */}
       <mesh>
         <boxGeometry args={[3.4, 9, 1.6]} />
-        <meshStandardMaterial color="#1c1c1c" roughness={0.85} metalness={0.25} />
+        <meshToonMaterial color="#1c1c1c" gradientMap={TOON_RAMP} />
+        <Outlines thickness={0.05} color="#000000" />
       </mesh>
       {/* circular portal */}
       <mesh ref={ring} position={[0, 1.1, 0.85]}>
@@ -97,7 +151,6 @@ function Pillars() {
 
   useFrame(() => {
     if (!group.current) return;
-    // lift in the red-sky act (progress > 0.8)
     const lift = THREE.MathUtils.clamp((scrollProgress - 0.78) / 0.22, 0, 1);
     group.current.position.y = lift * 8;
     group.current.children.forEach((c, i) => {
@@ -110,7 +163,7 @@ function Pillars() {
       {PILLARS.map((p, i) => (
         <mesh key={i} position={p}>
           <cylinderGeometry args={[0.5, 0.7, 14, 12]} />
-          <meshStandardMaterial color="#262626" roughness={0.9} metalness={0.1} />
+          <meshToonMaterial color="#262626" gradientMap={TOON_RAMP} />
         </mesh>
       ))}
     </group>
@@ -161,10 +214,8 @@ function CameraRig() {
 
   useFrame(() => {
     const p = scrollProgress;
-    // travel 0 → -46 along z, gentle vertical arc
     camera.position.z = -p * 46;
     camera.position.y = Math.sin(p * Math.PI) * 3;
-    // mouse parallax, smoothed
     camera.position.x += (pointerX * 2 - camera.position.x) * 0.05;
     camera.position.y += (pointerY * 1.2 - camera.position.y * 0.1) * 0.03;
     camera.lookAt(0, Math.sin(p * Math.PI) * 1.5, -p * 46 - 12);
@@ -224,6 +275,7 @@ export default function ExperienceScene() {
       <Background />
       <CameraRig />
       <Dust />
+      <Operator />
       <Monolith />
       <Pillars />
       <Vortex />
