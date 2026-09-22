@@ -185,6 +185,19 @@
   transform: scale(1);
 }
 
+/* ─── Story Beats — immersive scrollytelling (/experience) ─── */
+.story-beat {
+  opacity: 0;
+  transform: translateY(60px) scale(0.98);
+  transition: opacity var(--duration-slower) var(--ease-out-expo),
+              transform var(--duration-slower) var(--ease-out-expo);
+}
+
+.story-beat.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 /* ─── Intersection Observer JS Hook ─── */
 /* Add this script to your page to enable scroll animations:
   
@@ -273,7 +286,8 @@
 
 /* ─── Reduced Motion ─── */
 @media (prefers-reduced-motion: reduce) {
-  .animate-on-scroll {
+  .animate-on-scroll,
+  .story-beat {
     opacity: 1;
     transform: none;
     transition: none;

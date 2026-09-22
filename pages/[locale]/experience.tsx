@@ -6,32 +6,42 @@ import { experienceData } from '@/data/experience';
 type Locale = 'id' | 'en';
 
 /**
- * Hook: observes element visibility and toggles `is-visible` class.
- * Powers all `.animate-on-scroll` elements. Copied from index.tsx.
+ * Story engine: reveal on scroll + parallax drift + progress bar.
+ * Pure CSS/IO — no WebGL, no new deps. Text stays SSR for SEO.
  */
-function useScrollAnimations() {
+function useStoryEngine() {
   useEffect(() => {
-    const elements = document.querySelectorAll('.animate-on-scroll');
+    const els = document.querySelectorAll('.story-beat');
     if (!('IntersectionObserver' in window)) {
-      // Fallback: show everything
-      elements.forEach((el) => el.classList.add('is-visible'));
+      els.forEach((el) => el.classList.add('is-visible'));
       return;
     }
-
-    const observer = new IntersectionObserver(
+    const io = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
     );
+    els.forEach((el) => io.observe(el));
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const bar = document.getElementById('story-progress');
+    const onScroll = () => {
+      if (!bar) return;
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = `scaleX(${max > 0 ? h.scrollTop / max : 0})`;
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      io.disconnect();
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 }
 
@@ -46,13 +56,27 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
 
 export default function ExperiencePage({ locale }: { locale: Locale }) {
   const d = experienceData[locale];
-
-  // Initialize scroll-triggered animations
-  useScrollAnimations();
+  useStoryEngine();
 
   return (
     <Layout title={d.meta.title} description={d.meta.description}>
-      {/* Sticky CTA — visible from act 1, unlike Santioni */}
+      {/* Progress bar — the journey meter */}
+      <div
+        id="story-progress"
+        aria-hidden
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 3,
+          background: 'var(--gradient-primary)',
+          transform: 'scaleX(0)',
+          transformOrigin: '0 50%',
+          zIndex: 60,
+        }}
+      />
+      {/* Sticky CTA — visible from the start, unlike Santioni */}
       <a
         href={d.stickyCta.href}
         className="btn btn--primary"
@@ -61,48 +85,116 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
         {d.stickyCta.text}
       </a>
 
-      {d.acts.map((act, i) => {
-        const isHero = act.id === 'tuang' || act.id === 'pour';
-        const isFinale = i === d.acts.length - 1;
+      {/* Intro — the title card */}
+      <section
+        className="section"
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <div className="container story-beat is-visible">
+          <p className="eyebrow" style={{ justifyContent: 'center' }}>
+            {d.intro.kicker}
+          </p>
+          <h1
+            className="glow-text"
+            style={{ fontSize: 'var(--text-7xl)', lineHeight: 1, margin: 'var(--space-4) 0' }}
+          >
+            {d.intro.title}
+          </h1>
+          <p style={{ color: 'var(--text-muted)', fontSize: 'var(--text-lg)' }}>{d.intro.sub}</p>
+          <p
+            aria-hidden
+            style={{
+              marginTop: 'var(--space-8)',
+              fontSize: 'var(--text-3xl)',
+              animation: 'bounce-subtle 2s ease-in-out infinite',
+            }}
+          >
+            ↓
+          </p>
+        </div>
+      </section>
+
+      {/* Acts — comic panels, mono → color */}
+      {d.acts.map((act: (typeof d.acts)[number]) => {
+        const color = act.mood === 'color';
         return (
           <section
             key={act.id}
             id={act.id}
             className="section"
-            style={{ minHeight: '100vh', display: 'flex', alignItems: 'center' }}
+            style={{
+              minHeight: '110vh',
+              display: 'flex',
+              alignItems: 'center',
+              background: color ? 'var(--gradient-hero)' : 'transparent',
+              borderTop: '1px solid var(--border-subtle)',
+            }}
           >
-            <div className="container animate-on-scroll fade-up">
-              <p className="eyebrow">{act.eyebrow}</p>
-              <h1
-                className={isHero ? 'glow-text' : undefined}
+            <div className="container story-beat">
+              <div
+                className="card"
                 style={{
-                  fontSize: 'var(--text-6xl)',
-                  lineHeight: 1.05,
-                  whiteSpace: 'pre-line',
-                  margin: 'var(--space-4) 0',
+                  padding: 'clamp(2rem, 6vw, 4.5rem)',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  filter: color ? 'none' : 'grayscale(1)',
                 }}
               >
-                {act.title}
-              </h1>
-              <p
-                style={{
-                  color: 'var(--text-muted)',
-                  fontSize: 'var(--text-lg)',
-                  maxWidth: '38rem',
-                }}
-              >
-                {act.desc}
-              </p>
-              <p style={{ marginTop: 'var(--space-4)' }}>
-                <span className="tag">{act.proof}</span>
-              </p>
-              {isFinale && (
-                <p style={{ marginTop: 'var(--space-6)' }}>
-                  <a href={d.stickyCta.href} className="btn btn--primary">
-                    {d.stickyCta.text}
-                  </a>
+                {/* Giant act number — the comic panel mark */}
+                <span
+                  aria-hidden
+                  style={{
+                    position: 'absolute',
+                    top: '-0.25em',
+                    right: '0.1em',
+                    fontSize: 'clamp(6rem, 20vw, 14rem)',
+                    fontWeight: 800,
+                    lineHeight: 1,
+                    color: 'transparent',
+                    WebkitTextStroke: color
+                      ? '2px var(--accent)'
+                      : '2px var(--border-strong)',
+                    opacity: 0.5,
+                    userSelect: 'none',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  {act.no}
+                </span>
+                <p className="eyebrow">{act.eyebrow}</p>
+                <h2
+                  className={color ? 'text-gradient' : undefined}
+                  style={{
+                    fontSize: 'var(--text-5xl)',
+                    lineHeight: 1.05,
+                    whiteSpace: 'pre-line',
+                    margin: 'var(--space-4) 0',
+                  }}
+                >
+                  {act.title}
+                </h2>
+                <p
+                  className="lead"
+                  style={{ maxWidth: '40rem', whiteSpace: 'pre-line' }}
+                >
+                  {act.body}
                 </p>
-              )}
+                <p style={{ marginTop: 'var(--space-5)' }}>
+                  <span className="tag">{act.caption}</span>
+                </p>
+                {'cta' in act && act.cta && (
+                  <p style={{ marginTop: 'var(--space-6)' }}>
+                    <a href={act.cta.href} className="btn btn--primary">
+                      {act.cta.text}
+                    </a>
+                  </p>
+                )}
+              </div>
             </div>
           </section>
         );
