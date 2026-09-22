@@ -44,72 +44,6 @@ function Dust({ count = 1200 }: { count?: number }) {
   );
 }
 
-/* The Operator — hooded figure with swinging arms and stepping legs. */
-function Operator() {
-  const group = useRef<THREE.Group>(null);
-  const armL = useRef<THREE.Group>(null);
-  const armR = useRef<THREE.Group>(null);
-  const legL = useRef<THREE.Group>(null);
-  const legR = useRef<THREE.Group>(null);
-
-  useFrame((state) => {
-    const t = state.clock.elapsedTime;
-    const ph = t * 3.2;
-    if (group.current) {
-      group.current.position.y = -1.4 + Math.abs(Math.sin(ph)) * 0.2;
-      group.current.rotation.z = Math.sin(ph) * 0.04;
-    }
-    if (armL.current) armL.current.rotation.x = Math.sin(ph) * 0.5;
-    if (armR.current) armR.current.rotation.x = -Math.sin(ph) * 0.5;
-    if (legL.current) legL.current.rotation.x = -Math.sin(ph) * 0.5;
-    if (legR.current) legR.current.rotation.x = Math.sin(ph) * 0.5;
-  });
-
-  return (
-    <group ref={group} position={[-3.4, -1.4, -5.5]} scale={0.72}>
-      <mesh>
-        <coneGeometry args={[1.1, 3.6, 14]} />
-        <meshStandardMaterial color="#161616" roughness={0.9} />
-      </mesh>
-      <mesh position={[0, 1.9, 0]}>
-        <sphereGeometry args={[0.56, 20, 16]} />
-        <meshStandardMaterial color="#0e0e0e" roughness={0.9} />
-      </mesh>
-      <mesh position={[0, 2.14, -0.22]} rotation={[0.5, 0, 0]}>
-        <coneGeometry args={[0.6, 0.85, 12]} />
-        <meshStandardMaterial color="#0e0e0e" roughness={0.9} />
-      </mesh>
-      <group ref={armL} position={[-0.75, 1.0, 0]}>
-        <mesh position={[0, -0.7, 0]}>
-          <cylinderGeometry args={[0.13, 0.16, 1.5, 8]} />
-          <meshStandardMaterial color="#141414" roughness={0.9} />
-        </mesh>
-      </group>
-      <group ref={armR} position={[0.75, 1.0, 0]}>
-        <mesh position={[0, -0.7, 0]}>
-          <cylinderGeometry args={[0.13, 0.16, 1.5, 8]} />
-          <meshStandardMaterial color="#141414" roughness={0.9} />
-        </mesh>
-      </group>
-      <mesh position={[0.9, 0.4, 0]} rotation={[0, 0, -0.15]}>
-        <cylinderGeometry args={[0.05, 0.05, 4.2, 6]} />
-        <meshStandardMaterial color="#1a1a1a" roughness={0.8} />
-      </mesh>
-      <group ref={legL} position={[-0.3, -1.7, 0]}>
-        <mesh position={[0, -0.35, 0]}>
-          <cylinderGeometry args={[0.16, 0.2, 0.7, 8]} />
-          <meshStandardMaterial color="#101010" roughness={0.9} />
-        </mesh>
-      </group>
-      <group ref={legR} position={[0.3, -1.7, 0]}>
-        <mesh position={[0, -0.35, 0]}>
-          <cylinderGeometry args={[0.16, 0.2, 0.7, 8]} />
-          <meshStandardMaterial color="#101010" roughness={0.9} />
-        </mesh>
-      </group>
-    </group>
-  );
-}
 
 /* Monolith + circular portal. */
 function Monolith() {
@@ -388,7 +322,6 @@ export default function ExperienceScene() {
         <Background />
         <CameraRig />
         <Dust />
-        <Operator />
         <Monolith />
         <Pillars />
         <PourStream />
