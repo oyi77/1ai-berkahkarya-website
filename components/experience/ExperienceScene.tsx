@@ -124,9 +124,12 @@ function Pillars() {
   useFrame(() => {
     if (!group.current) return;
     const lift = THREE.MathUtils.clamp((scrollProgress - 0.78) / 0.22, 0, 1);
-    group.current.position.y = lift * 14;
+    group.current.position.y = lift * 26;
     group.current.children.forEach((c, i) => {
-      c.position.y = lift * (i % 3) * 2.5;
+      c.position.y = lift * (i % 3) * 3;
+      c.position.x += Math.sin(lift * Math.PI + i) * 0.02;
+      c.rotation.z = lift * (i % 2 === 0 ? 0.25 : -0.25);
+      c.rotation.x = lift * 0.15 * (i % 3);
     });
   });
 
@@ -227,7 +230,7 @@ const STOPS: CamStop[] = [
   { p: 0.36, pos: [0, 0.8, -5], look: [0, 1.2, -14] },
   { p: 0.53, pos: [0.5, 1.2, -6], look: [-7, 1.0, -20] },
   { p: 0.7, pos: [0, 0.8, -26], look: [0, 0, -38] },
-  { p: 0.87, pos: [0, 3.5, -27], look: [0, 10, -40] },
+  { p: 0.87, pos: [0, 1.2, -27], look: [0, 14, -40] },
 ];
 
 function CameraRig() {
