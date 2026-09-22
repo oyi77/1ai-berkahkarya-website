@@ -1,14 +1,19 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import Layout from '@/components/Layout';
 import { experienceData } from '@/data/experience';
 
 type Locale = 'id' | 'en';
 
 /**
- * Story engine: reveal on scroll + parallax drift + progress bar.
- * Pure CSS/IO — no WebGL, no new deps. Text stays SSR for SEO.
+ * WebGL scene — client-only (R3F), lazy-loaded so SSR/static export stays clean.
+ * Text content stays server-rendered for SEO; the 3D canvas mounts behind it.
  */
+const ExperienceScene = dynamic(() => import('@/components/experience/ExperienceScene'), {
+  ssr: false,
+});
+
 function useStoryEngine() {
   useEffect(() => {
     const els = document.querySelectorAll('.story-beat');
@@ -60,7 +65,10 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
 
   return (
     <Layout title={d.meta.title} description={d.meta.description}>
-      {/* Progress bar — the journey meter */}
+      {/* 3D scene behind everything */}
+      <ExperienceScene />
+
+      {/* Progress bar */}
       <div
         id="story-progress"
         aria-hidden
@@ -85,7 +93,7 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
         {d.stickyCta.text}
       </a>
 
-      {/* Intro — the title card */}
+      {/* Intro — title card floating over the wasteland */}
       <section
         className="section"
         style={{
@@ -93,9 +101,11 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
           display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
-        <div className="container story-beat is-visible">
+        <div className="container story-beat is-visible" style={{ pointerEvents: 'none' }}>
           <p className="eyebrow" style={{ justifyContent: 'center' }}>
             {d.intro.kicker}
           </p>
@@ -119,7 +129,7 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* Acts — comic panels, mono → color */}
+      {/* Acts — text floats over the living 3D scene */}
       {d.acts.map((act: (typeof d.acts)[number]) => {
         const color = act.mood === 'color';
         return (
@@ -128,11 +138,11 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
             id={act.id}
             className="section"
             style={{
-              minHeight: '110vh',
+              minHeight: '120vh',
               display: 'flex',
               alignItems: 'center',
-              background: color ? 'var(--gradient-hero)' : 'transparent',
-              borderTop: '1px solid var(--border-subtle)',
+              position: 'relative',
+              zIndex: 1,
             }}
           >
             <div className="container story-beat">
@@ -142,10 +152,11 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
                   padding: 'clamp(2rem, 6vw, 4.5rem)',
                   position: 'relative',
                   overflow: 'hidden',
-                  filter: color ? 'none' : 'grayscale(1)',
+                  background: 'var(--glass-bg)',
+                  backdropFilter: 'blur(6px)',
+                  border: '1px solid var(--glass-border)',
                 }}
               >
-                {/* Giant act number — the comic panel mark */}
                 <span
                   aria-hidden
                   style={{
@@ -156,10 +167,8 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
                     fontWeight: 800,
                     lineHeight: 1,
                     color: 'transparent',
-                    WebkitTextStroke: color
-                      ? '2px var(--accent)'
-                      : '2px var(--border-strong)',
-                    opacity: 0.5,
+                    WebkitTextStroke: color ? '2px var(--accent)' : '2px var(--border-strong)',
+                    opacity: 0.45,
                     userSelect: 'none',
                     pointerEvents: 'none',
                   }}
@@ -178,10 +187,7 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
                 >
                   {act.title}
                 </h2>
-                <p
-                  className="lead"
-                  style={{ maxWidth: '40rem', whiteSpace: 'pre-line' }}
-                >
+                <p className="lead" style={{ maxWidth: '40rem', whiteSpace: 'pre-line' }}>
                   {act.body}
                 </p>
                 <p style={{ marginTop: 'var(--space-5)' }}>
