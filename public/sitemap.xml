@@ -429,6 +429,22 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://berkahkarya.org/id/experience</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://berkahkarya.org/id/experience"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berkahkarya.org/en/experience"/>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://berkahkarya.org/en/experience</loc>
+    <xhtml:link rel="alternate" hreflang="id" href="https://berkahkarya.org/id/experience"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://berkahkarya.org/en/experience"/>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://berkahkarya.org/id/one-ai</loc>
     <xhtml:link rel="alternate" hreflang="id" href="https://berkahkarya.org/id/one-ai"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://berkahkarya.org/en/one-ai"/>
