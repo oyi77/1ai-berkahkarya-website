@@ -205,6 +205,9 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
           </section>
         );
       })}
+      <p style={{ textAlign: 'center', color: 'var(--text-subtle)', fontSize: 'var(--text-xs)', paddingBottom: 'var(--space-6)', position: 'relative', zIndex: 1 }}>
+        {d.credit}
+      </p>
     </Layout>
   );
 }

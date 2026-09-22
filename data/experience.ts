@@ -6,6 +6,7 @@ export const experienceData = {
         'Seorang operator berjalan sendirian di gurun konten yang mahal dan lambat — hingga ia menemukan portal, katedral mesin, dan satu tuangan yang mengubah segalanya. Kisah imersif BerkahKarya.',
     },
     stickyCta: { text: 'Chat WhatsApp →', href: '/id/contact' },
+    credit: 'Karakter 3D: Animated Wizard oleh Quaternius (CC-BY 3.0)',
     intro: {
       kicker: 'Sebuah kisah dalam 5 babak',
       title: 'Sang Operator',
@@ -67,6 +68,7 @@ export const experienceData = {
         'An operator walks alone through a wasteland of slow, expensive content — until he finds a portal, a machine cathedral, and one pour that changes everything. The immersive BerkahKarya tale.',
     },
     stickyCta: { text: 'Chat WhatsApp →', href: '/en/contact' },
+    credit: '3D character: Animated Wizard by Quaternius (CC-BY 3.0)',
     intro: {
       kicker: 'A tale in 5 acts',
       title: 'The Operator',
