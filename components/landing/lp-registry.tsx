@@ -80,6 +80,7 @@ register('jasa-design', '1', JasaDesignLP1);
 // ══════════════════════════════════════
 import VilonaFXLP1 from './vilonafx/LP1';
 register('vilonafx', '1', VilonaFXLP1);
+register('vilonafx', '2', VilonaFXLP1);
 
 // ══════════════════════════════════════
 // Jasa Kontraktor LP (custom)
