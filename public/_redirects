@@ -20,9 +20,9 @@
 /belajar                /id/belajarai              301
 
 # ── LP short URLs ──
-/vilonafx               /id/lp/vilonafx/1          301
-/id/vilonafx             /id/lp/vilonafx/1          301
-/en/vilonafx             /en/lp/vilonafx/1          301
+/vilonafx               /id/lp/vilonafx/2          301
+/id/vilonafx             /id/lp/vilonafx/2          301
+/en/vilonafx             /en/lp/vilonafx/2          301
 # ── Root → locale (middleware doesn't work with static export) ──
 /                        /id/                            301
 # ── Pre-existing 404 fixes (broken nav links, common aliases) ──
@@ -84,7 +84,7 @@
 /kontraktor              /id/lp/jasa-kontraktor/1   301
 /bangun-rumah            /id/lp/jasa-kontraktor/1   301
 /desain-interior         /id/lp/jasa-design/1       301
-/vilona                 /id/lp/vilonafx/1           301
+/vilona                 /id/lp/vilonafx/2           301
 /ai-gateway              /id/lp/one-ai/1            301
 /adforge                /id/lp/adforge-ai/1         301
 /ai-agent               /id/lp/ai-agent-pro/1       301
