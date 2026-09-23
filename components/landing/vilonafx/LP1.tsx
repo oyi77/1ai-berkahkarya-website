@@ -62,7 +62,7 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
               AI Trading Assistant — 24/7
             </div>
             <h1 className={s.title}>
-              Sinyal XAUUSD Berbasis Konsensus AI,<br />
+              Sinyal AI XAUUSD, Forex & Kripto,<br />
               <span className={s.gradientText}>Entry, SL & TP Selalu Jelas</span>
             </h1>
             <p className={s.subtitle}>
@@ -121,7 +121,7 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
               </div>
               <div className={s.terminalBody}>
                 <div>
-                  <span className={s.terminalStatus}>●</span> AI sedang menganalisis XAUUSD...
+                  <span className={s.terminalStatus}>●</span> AI sedang menganalisis XAUUSD · EURUSD · GBPUSD · BTCUSDT...
                 </div>
                 <div style={{ marginTop: '0.75rem', color: s.signalSell || '#ef4444' }}>
                   🔴 <strong>XAUUSD — SELL SIGNAL</strong> London Open
@@ -132,6 +132,15 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
                 <div className={s.signalMeta}>Take Profit 2: $4,030.00 (50 pips)</div>
                 <div className={s.signalMeta}>Rasio RR: 1:1.5</div>
                 <div className={s.signalMeta}>Analisa AI: DeepSeek + GPT-4o (2/3 Voters setuju)</div>
+                <div style={{ marginTop: '0.75rem', color: s.signalBuy || '#22c55e' }}>
+                  🟢 <strong>EURUSD — BUY SIGNAL</strong> London Open
+                </div>
+                <div className={s.signalEntry}>Zone Entry: 1.0845 — 1.0855</div>
+                <div className={s.signalMeta}>Stop Loss: 1.0820 (25 pips)</div>
+                <div className={s.signalMeta}>Take Profit 1: 1.0900 (45 pips)</div>
+                <div className={s.signalMeta}>Take Profit 2: 1.0940 (85 pips)</div>
+                <div className={s.signalMeta}>Rasio RR: 1:1.5</div>
+                <div className={s.signalMeta}>Analisa AI: GPT-4o + Claude (3/3 Voters setuju)</div>
               </div>
             </div>
           </div>
@@ -378,107 +387,6 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
                 Rp 25.400.000 / Bulan
               </span>{' '}
               passive income nyata tanpa pusing mikir modal operasional.
-            </div>
-          </div>
-        </section>
-
-        {/* Broker Partners */}
-        <section className={s.section}>
-          <div className={s.container}>
-            <h2 className={s.sectionTitle}>Infrastruktur Terbaik untuk Dana Anda</h2>
-            <p className={s.sectionSub}>
-              Kami hanya menghubungkan kendaraan AI ini ke jalan tol paling aman: broker-broker
-              berlisensi global dengan eksekusi milidetik.
-            </p>
-            <div className={s.brokerGrid}>
-              {/* Exness */}
-              <div className={s.brokerCard}>
-                <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🏆</div>
-                <h3>Exness</h3>
-                <div className={s.brokerTagline}>Broker Forex &amp; CFD — Global</div>
-                <div className={s.brokerBadge}>
-                  🔥 Bebas Rasa Khawatir • Deposit mulai $10 • Penarikan Instan
-                </div>
-                <p className={s.brokerDesc}>
-                  Pilihan paling masuk akal bagi trader yang mencari ketenangan. Tarik dana kapan
-                  saja, bebas komisi tersembunyi, dan diawasi oleh badan regulasi tingkat dunia.
-                </p>
-                <ul className={s.brokerFeatures}>
-                  <li>Penarikan instan ke bank lokal Anda kapan saja</li>
-                  <li>Akun Cent mulai $1 untuk memulai tanpa tekanan</li>
-                  <li>Eksekusi super cepat agar profit tidak terlewat</li>
-                  <li>Support MT4 &amp; MT5 untuk koneksi AI lancar</li>
-                </ul>
-                <a
-                  href="https://one.exnessonelink.com/a/l9jwml125i"
-                  target="_blank"
-                  rel="noopener"
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    textAlign: 'center',
-                    padding: '0.75rem 1.5rem',
-                    borderRadius: '0.5rem',
-                    fontWeight: 700,
-                    fontSize: '0.9rem',
-                    textDecoration: 'none',
-                    cursor: 'pointer',
-                    border: 'none',
-                    background: 'linear-gradient(135deg, #f59e0b, #d97706)',
-                    color: '#000',
-                  }}
-                >
-                  Amankan Dana di Exness Gratis →
-                </a>
-              </div>
-
-              {/* IC Markets */}
-              <div className={s.brokerCard}>
-                <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>⚡</div>
-                <h3>IC Markets</h3>
-                <div className={s.brokerTagline}>ECN Broker — Institutional Grade</div>
-                <div className={s.brokerBadge}>
-                  🔥 Likuiditas Kelas Atas • Spread 0.0 pip • Tanpa Requote
-                </div>
-                <p className={s.brokerDesc}>
-                  Bagi Anda yang menginginkan standar institusi. Terhubung langsung ke bank-bank
-                  besar global untuk memastikan order Anda dieksekusi tanpa gangguan sama sekali.
-                </p>
-                <ul className={s.brokerFeatures}>
-                  <li>Akses langsung tanpa manipulasi broker (ECN)</li>
-                  <li>Lebih dari 110+ instrumen keuangan tersedia</li>
-                  <li>Regulasi ketat dari ASIC &amp; CySEC</li>
-                  <li>Cocok untuk eksekusi bot kecepatan tinggi</li>
-                </ul>
-                <a
-                  href="https://icmarkets-vnt.com/?camp=93258"
-                  target="_blank"
-                  rel="noopener"
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    textAlign: 'center',
-                    padding: '0.75rem 1.5rem',
-                    borderRadius: '0.5rem',
-                    fontWeight: 700,
-                    fontSize: '0.9rem',
-                    textDecoration: 'none',
-                    cursor: 'pointer',
-                    border: 'none',
-                    background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
-                    color: '#fff',
-                  }}
-                >
-                  Buka Akun IC Markets Gratis →
-                </a>
-              </div>
-            </div>
-
-            <div className={s.trustStrip}>
-              <span>🔒 Keamanan Dana Terjamin</span>
-              <span>💰 Akses Mudah Diakses</span>
-              <span>⚡ Tanpa Hambatan Teknisi</span>
-              <span>🏦 Didukung Bank Lokal</span>
             </div>
           </div>
         </section>
