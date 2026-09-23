@@ -448,7 +448,7 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
             >
               <span style={{ color: 'var(--gold)' }}>GAMBARAN POTENSI BISNIS:</span>
               <br />
-              Hanya dengan 100 Pelanggan berlangganan di brand Anda × Rp 79.900/bulan ={' '}
+              Hanya dengan 100 Pelanggan berlangganan di brand Anda × Rp 254.000/bulan ={' '}
               <span
                 style={{
                   color: 'var(--accent)',
@@ -456,7 +456,7 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
                   fontSize: '1.1rem',
                 }}
               >
-                Rp 7.990.000 / Bulan
+                Rp 25.400.000 / Bulan
               </span>{' '}
               passive income nyata tanpa pusing mikir modal operasional.
             </div>
@@ -580,37 +580,6 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
                 marginTop: '2rem',
               }}
             >
-              {/* PRO */}
-              <div className={s.pricingCard} style={{ maxWidth: '320px', margin: 0, flex: '1 1 280px' }}>
-                <div className={s.pricingName}>PRO</div>
-                <div className={s.pricingDesc}>Untuk Ketenangan Pribadi</div>
-                <div className={s.pricingPrice}>Rp 79.900</div>
-                <div className={s.pricingPeriod}>/bulan</div>
-                <ul className={s.pricingFeatures}>
-                  <li>
-                    <span className={s.pricingCheck}>✓</span> Asisten AI Pengirim Sinyal
-                  </li>
-                  <li>
-                    <span className={s.pricingCheck}>✓</span> Bebas Stres Analisa Manual
-                  </li>
-                  <li>
-                    <span className={s.pricingCheck}>✓</span> Terproteksi SL/TP Otomatis
-                  </li>
-                  <li>
-                    <span className={s.pricingCheck}>✓</span> Disiplin Menjaga Modal Anda
-                  </li>
-                </ul>
-                <TrackedCTA
-                  className={s.btnPrimary}
-                  href="https://t.me/berkahkaryaforexbotbot?start=pro"
-                  productName="VilonaFX - Pricing"
-                  value={79900}
-                  currency="IDR"
-                >
-                  Ambil Kendali Waktu Anda
-                </TrackedCTA>
-              </div>
-
               {/* ELITE — Featured */}
               <div
                 className={`${s.pricingCard} ${s.pricingPopular}`}
@@ -619,11 +588,11 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
                 <div className={s.popularBadge}>PALING MASUK AKAL</div>
                 <div className={s.pricingName}>ELITE</div>
                 <div className={s.pricingDesc}>Otomatisasi &amp; Passive Income</div>
-                <div className={s.pricingPrice}>Rp 149.900</div>
+                <div className={s.pricingPrice}>Rp 254.000</div>
                 <div className={s.pricingPeriod}>/bulan</div>
                 <ul className={s.pricingFeatures}>
                   <li>
-                    <span className={s.pricingCheck}>✓</span> Semua Akses Ketenangan PRO
+                    <span className={s.pricingCheck}>✓</span> Sinyal AI lengkap + Entry/SL/TP + Auto-trade
                   </li>
                   <li>
                     <span className={s.pricingCheck}>✓</span> 1 Hak Akses Whitelabel Bot
@@ -639,7 +608,7 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
                   className={s.btnPrimary}
                   href="https://t.me/berkahkaryaforexbotbot?start=elite"
                   productName="VilonaFX - Pricing"
-                  value={149900}
+                  value={254000}
                   currency="IDR"
                 >
                   Mulai Ekosistem Anda
@@ -676,6 +645,25 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
                   Bebaskan Dirimu Selamanya
                 </TrackedCTA>
               </div>
+            </div>
+            <div
+              style={{
+                border: '1px solid var(--gold)',
+                borderRadius: '0.75rem',
+                padding: '1.25rem',
+                marginTop: '1.5rem',
+                textAlign: 'center',
+                maxWidth: '36rem',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              }}
+            >
+              <span style={{ color: 'var(--gold)', fontWeight: 700 }}>🎁 PROMO IB — DISKON 50%</span>
+              <br />
+              Daftar di bawah IB kami dengan deposit min $100, klaim diskon ELITE/LIFETIME via admin:{' '}
+              <a href="https://t.me/alwayscuanterus" style={{ color: 'var(--accent)', fontWeight: 700 }}>@alwayscuanterus</a>
+              {' '}atau{' '}
+              <a href="https://t.me/codergaboets" style={{ color: 'var(--accent)', fontWeight: 700 }}>@codergaboets</a>
             </div>
           </div>
         </section>
