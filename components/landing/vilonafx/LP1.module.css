@@ -537,6 +537,43 @@
   color: var(--accent);
 }
 
+/* ── Spec table (institutional pricing) ── */
+.specTable {
+  max-width: 860px;
+  margin: 2rem auto 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  font-size: 0.9rem;
+}
+.specRow {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 1rem;
+  padding: 0.8rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.specRow:last-child { border-bottom: none; }
+.specRow:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+.specHead {
+  background: rgba(245, 158, 11, 0.08);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+}
+.specYes { color: var(--accent); font-weight: 600; }
+.specRow strong { font-family: var(--mono, monospace); font-size: 0.95rem; }
+.specCta { background: transparent; }
+.specCta .btnPrimary { justify-self: stretch; text-align: center; }
+.specFoot { font-size: 0.82rem; color: var(--text-secondary); }
+.specFoot span:first-child { grid-column: 1 / -1; text-align: center; }
+.specFoot span:nth-child(n+2) { display: none; }
+@media (max-width: 640px) {
+  .specRow { grid-template-columns: 1fr 1fr 1fr; font-size: 0.78rem; padding: 0.7rem 0.75rem; gap: 0.5rem; }
+}
+
 /* ── Whitelabel ── */
 .whitelabelSection {
   background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.06) 0%, transparent 70%);

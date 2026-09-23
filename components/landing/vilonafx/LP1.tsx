@@ -490,39 +490,59 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
             <p className={s.sectionSub}>
               Dua paket. Tanpa tier tersembunyi. Upgrade dan kelola via bot Telegram.
             </p>
-            <div
-              style={{
-                display: 'flex',
-                gap: '1.5rem',
-                justifyContent: 'center',
-                flexWrap: 'wrap',
-                marginTop: '2rem',
-              }}
-            >
-              {/* ELITE — Featured */}
-              <div
-                className={`${s.pricingCard} ${s.pricingPopular}`}
-                style={{ maxWidth: '320px', margin: 0, flex: '1 1 280px' }}
-              >
-                <div className={s.popularBadge}>PALING MASUK AKAL</div>
-                <div className={s.pricingName}>ELITE</div>
-                <div className={s.pricingDesc}>Otomatisasi &amp; Passive Income</div>
-                <div className={s.pricingPrice}>Rp 254.000</div>
-                <div className={s.pricingPeriod}>/bulan</div>
-                <ul className={s.pricingFeatures}>
-                  <li>
-                    <span className={s.pricingCheck}>✓</span> Sinyal AI lengkap + Entry/SL/TP + Auto-trade
-                  </li>
-                  <li>
-                    <span className={s.pricingCheck}>✓</span> 1 Hak Akses Whitelabel Bot
-                  </li>
-                  <li>
-                    <span className={s.pricingCheck}>✓</span> Jalan Pintas Bisnis Sinyal
-                  </li>
-                  <li>
-                    <span className={s.pricingCheck}>✓</span> Otomatisasi Eksekusi ke MT5
-                  </li>
-                </ul>
+            <div className={s.specTable} role="table" aria-label="Perbandingan paket">
+              <div className={s.specRow + ' ' + s.specHead} role="row">
+                <span role="columnheader">Spesifikasi</span>
+                <span role="columnheader">ELITE</span>
+                <span role="columnheader">LIFETIME</span>
+              </div>
+              <div className={s.specRow} role="row">
+                <span>Harga</span>
+                <strong>Rp 254.000/bln</strong>
+                <strong>Rp 1.990.900 sekali</strong>
+              </div>
+              <div className={s.specRow} role="row">
+                <span>Sinyal AI</span>
+                <span>Unlimited · 40+/minggu</span>
+                <span>Unlimited · 40+/minggu</span>
+              </div>
+              <div className={s.specRow} role="row">
+                <span>Entry / SL / TP</span>
+                <span className={s.specYes}>✓ Selalu tercantum</span>
+                <span className={s.specYes}>✓ Selalu tercantum</span>
+              </div>
+              <div className={s.specRow} role="row">
+                <span>Validasi engine</span>
+                <span>Konsensus 3 AI</span>
+                <span>Konsensus 3 AI</span>
+              </div>
+              <div className={s.specRow} role="row">
+                <span>RR minimum</span>
+                <span>1:1.5</span>
+                <span>1:1.5</span>
+              </div>
+              <div className={s.specRow} role="row">
+                <span>Auto-eksekusi MT5</span>
+                <span className={s.specYes}>✓ Bridge + EA</span>
+                <span className={s.specYes}>✓ Bridge + EA</span>
+              </div>
+              <div className={s.specRow} role="row">
+                <span>Whitelabel bot</span>
+                <span>1 lisensi</span>
+                <span>3 lisensi</span>
+              </div>
+              <div className={s.specRow} role="row">
+                <span>Support</span>
+                <span>Prioritas 24/7</span>
+                <span>VIP + konsultasi</span>
+              </div>
+              <div className={s.specRow} role="row">
+                <span>Masa aktif</span>
+                <span>30 hari, perpanjang</span>
+                <span>Permanen</span>
+              </div>
+              <div className={s.specRow + ' ' + s.specCta} role="row">
+                <span />
                 <TrackedCTA
                   className={s.btnPrimary}
                   href="https://t.me/berkahkaryaforexbotbot?start=elite"
@@ -530,30 +550,8 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
                   value={254000}
                   currency="IDR"
                 >
-                  Aktifkan ELITE via Bot
+                  Aktifkan ELITE
                 </TrackedCTA>
-              </div>
-
-              {/* LIFETIME */}
-              <div className={s.pricingCard} style={{ maxWidth: '320px', margin: 0, flex: '1 1 280px' }}>
-                <div className={s.pricingName}>LIFETIME</div>
-                <div className={s.pricingDesc}>Kebebasan Tanpa Beban Tagihan</div>
-                <div className={s.pricingPrice}>Rp 1.990.900</div>
-                <div className={s.pricingPeriod}>sekali bayar</div>
-                <ul className={s.pricingFeatures}>
-                  <li>
-                    <span className={s.pricingCheck}>✓</span> Semua Fitur Mesin ELITE
-                  </li>
-                  <li>
-                    <span className={s.pricingCheck}>✓</span> Akses Berlaku Selamanya
-                  </li>
-                  <li>
-                    <span className={s.pricingCheck}>✓</span> 3 Hak Cabang Bot Whitelabel
-                  </li>
-                  <li>
-                    <span className={s.pricingCheck}>✓</span> Jalur Konsultasi Prioritas VIP
-                  </li>
-                </ul>
                 <TrackedCTA
                   className={s.btnPrimary}
                   href="https://t.me/berkahkaryaforexbotbot?start=lifetime"
@@ -561,28 +559,14 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
                   value={1990900}
                   currency="IDR"
                 >
-                  Aktifkan LIFETIME via Bot
+                  Aktifkan LIFETIME
                 </TrackedCTA>
               </div>
-            </div>
-            <div
-              style={{
-                border: '1px solid var(--gold)',
-                borderRadius: '0.75rem',
-                padding: '1.25rem',
-                marginTop: '1.5rem',
-                textAlign: 'center',
-                maxWidth: '36rem',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-              }}
-            >
-              <span style={{ color: 'var(--gold)', fontWeight: 700 }}>🎁 PROMO IB — DISKON 50%</span>
-              <br />
-              Daftar di bawah IB kami dengan deposit min $100, klaim diskon ELITE/LIFETIME via admin:{' '}
-              <a href="https://t.me/alwayscuanterus" style={{ color: 'var(--accent)', fontWeight: 700 }}>@alwayscuanterus</a>
-              {' '}atau{' '}
-              <a href="https://t.me/codergaboets" style={{ color: 'var(--accent)', fontWeight: 700 }}>@codergaboets</a>
+              <div className={s.specRow + ' ' + s.specFoot} role="row">
+                <span>🎁 PROMO IB — diskon 50% ELITE/LIFETIME. Deposit min $100 di bawah IB kami, klaim via <a href="https://t.me/alwayscuanterus">@alwayscuanterus</a> atau <a href="https://t.me/codergaboets">@codergaboets</a>.</span>
+                <span />
+                <span />
+              </div>
             </div>
           </div>
         </section>
