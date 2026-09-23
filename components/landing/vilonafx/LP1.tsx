@@ -27,69 +27,19 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
     setOpenFaqs((prev) => ({ ...prev, [i]: (e.target as HTMLDetailsElement).open }));
   };
 
-  const testimonials = [
-    {
-      img: '/vilonafx/user-using-1.webp',
-      badge: 'USER AKTIF',
-      name: 'Trader Mobile',
-      desc: 'Monitoring posisi dari mana saja — cukup lewat smartphone.',
-      stat: '212%',
-      label: 'roi bulanan',
-    },
-    {
-      img: '/vilonafx/user-using-2.webp',
-      badge: 'USER AKTIF',
-      name: 'Dashboard Desktop',
-      desc: 'Tampilan lengkap untuk analisis mendalam dan manajemen posisi multi-pair.',
-      stat: '189%',
-      label: 'roi bulanan',
-    },
-    {
-      img: '/vilonafx/user-using-3.webp',
-      badge: 'USER AKTIF',
-      name: 'Interface Bersih',
-      desc: 'Navigasi intuitif — semua fitur terpenting terlihat dalam satu layar.',
-      stat: '164%',
-      label: 'roi bulanan',
-    },
-    {
-      img: '/vilonafx/trade-result-1.webp',
-      badge: 'BUKTI PROFIT',
-      name: 'Profit Konsisten',
-      desc: 'Rekam jejak performa yang terbukti menghasilkan di berbagai kondisi pasar.',
-      stat: '312%',
-      label: 'total return',
-    },
-    {
-      img: '/vilonafx/trade-result-2.webp',
-      badge: 'BUKTI PROFIT',
-      name: 'Equity Growth',
-      desc: 'Pertumbuhan modal yang stabil — target tercapai tanpa drawdown berlebihan.',
-      stat: '245%',
-      label: 'total return',
-    },
-    {
-      img: '/vilonafx/trade-result-3.webp',
-      badge: 'BUKTI PROFIT',
-      name: 'Track Record',
-      desc: 'Data transparan — setiap entry dan exit tercatat untuk evaluasi Anda.',
-      stat: '198%',
-      label: 'total return',
-    },
-  ];
 
   const faqs = [
     {
       q: 'Saya tidak paham trading teknikal sama sekali, apakah ini cocok?',
-      a: 'Sangat cocok. Anda tidak perlu paham mesin untuk bisa menyetir mobil. Sinyal yang diberikan asisten AI sudah berupa petunjuk jadi (Entry, Profit, Stop Loss) yang menjaga Anda agar tidak menabrak batas risiko.',
+      a: 'Cocok. Setiap sinyal berisi entry, SL, dan TP yang eksplisit — Anda mengeksekusi tanpa perlu paham indikator di baliknya.',
     },
     {
       q: 'Apakah ada jaminan uang saya pasti bertambah terus menerus?',
-      a: 'Tidak ada jaminan ajaib. Mesin ini menyajikan probabilitas terbaik dengan penjagaan risiko yang sangat ketat agar modal Anda tidak habis dalam semalam. Pada akhirnya, ini adalah alat pengaman, keputusan eksekusi tetap ada di tangan Anda.',
+      a: 'Tidak ada. Setiap setup mencantumkan RR dan confidence agar Anda bisa menolak setup yang tidak sesuai toleransi risiko Anda. Riwayat masa lalu bukan janji hasil masa depan.',
     },
     {
       q: 'Mengapa saya harus memilih AI dibanding belajar manual?',
-      a: 'Karena hidup terlalu singkat jika hanya dihabiskan untuk menatap layar. Biarkan mesin AI yang memproses kelelahan mental dari meneliti chart berjam-jam, agar Anda bisa punya waktu lebih untuk kehidupan pribadi yang sebenarnya.',
+      a: 'Karena satu analis manusia tidak bisa memantau 6+ pair 24/7 tanpa bias. Tiga engine memvalidasi setiap setup; yang tidak mencapai konsensus tidak dikirim.',
     },
   ];
 
@@ -98,23 +48,7 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
       title="Vilona Trade FX — AI Trading Assistant & Whitelabel Platform"
       description="Trading dengan data, bukan emosi. AI bantu analisa market 24/7, filter signal berkualitas, dan bisa bikin bot trading sendiri."
     >
-      {/* Ticker */}
-      <div className={s.ticker}>
-        {[
-          { pair: 'XAUUSD', price: '3,247.85', chg: '+1.2%', up: true },
-          { pair: 'EURUSD', price: '1.0842', chg: '-0.3%', up: false },
-          { pair: 'GBPUSD', price: '1.2715', chg: '+0.5%', up: true },
-          { pair: 'BTCUSD', price: '108,420', chg: '+2.8%', up: true },
-          { pair: 'ETHUSD', price: '2,547', chg: '+1.1%', up: true },
-          { pair: 'USDJPY', price: '148.32', chg: '-0.4%', up: false },
-        ].map((item) => (
-          <div key={item.pair} className={s.tickerItem}>
-            <span className={s.tickerPair}>{item.pair}</span>
-            <span className={s.tickerPrice}>{item.price}</span>
-            <span className={item.up ? s.tickerUp : s.tickerDown}>{item.chg}</span>
-          </div>
-        ))}
-      </div>
+      {/* Ticker removed 2026-09-23: static prices rot within hours; pro traders verify live */}
 
       <div className={s.wrapper}>
         {/* Scroll Progress */}
@@ -128,13 +62,13 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
               AI Trading Assistant — 24/7
             </div>
             <h1 className={s.title}>
-              Bukan Belajar Trading,<br />
-              <span className={s.gradientText}>Ini Kendaraan Profit Anda</span>
+              Sinyal XAUUSD Berbasis Konsensus AI,<br />
+              <span className={s.gradientText}>Entry, SL & TP Selalu Jelas</span>
             </h1>
             <p className={s.subtitle}>
-              Anda ingin kebebasan finansial, bukan kelelahan menatap layar. Biarkan 3 AI canggih
-              kami yang bekerja 24/7 sebagai mesin pencetak profit Anda, sementara Anda fokus pada
-              keluarga dan pekerjaan utama.
+              Tiga engine independen (DeepSeek · GPT · Claude) memvalidasi setiap setup sebelum
+              dikirim ke Telegram Anda — lengkap dengan zona entry, stop-loss, dan take-profit.
+              Bukan jaminan profit; ini disiplin berbasis data.
             </p>
             <div className={s.ctaRow}>
               <TrackedCTA
@@ -142,29 +76,29 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
                 href="https://t.me/berkahkaryaforexbotbot"
                 productName="VilonaFX - Hero"
               >
-                🚀 Ambil Kendali Waktu Anda
+                Lihat Contoh Sinyal di Telegram
               </TrackedCTA>
               <a href="#live-demo" className={s.btnSecondary}>
-                Lihat Bagaimana Mesin Bekerja
+                Cara Kerja Engine
               </a>
             </div>
 
             <div className={s.statsRow}>
               <div className={s.stat}>
-                <span className={s.statNum}>0</span>
-                <span className={s.statLabel}>Win Rate Backtest</span>
+                <span className={s.statNum}>3</span>
+                <span className={s.statLabel}>Engine AI Independen</span>
               </div>
               <div className={s.stat}>
-                <span className={s.statNum}>0</span>
-                <span className={s.statLabel}>Profit Factor</span>
+                <span className={s.statNum}>40+</span>
+                <span className={s.statLabel}>Sinyal / Minggu</span>
               </div>
               <div className={s.stat}>
-                <span className={s.statNum}>0</span>
-                <span className={s.statLabel}>Signal / Bulan</span>
+                <span className={s.statNum}>24/7</span>
+                <span className={s.statLabel}>Monitoring Market</span>
               </div>
               <div className={s.stat}>
-                <span className={s.statNum}>0</span>
-                <span className={s.statLabel}>Whitelabel Aktif</span>
+                <span className={s.statNum}>1:1.5</span>
+                <span className={s.statLabel}>RR Minimum per Setup</span>
               </div>
             </div>
           </div>
@@ -173,10 +107,9 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
         {/* Live Demo */}
         <section className={s.demoSection} id="live-demo">
           <div className={s.container}>
-            <h2 className={s.sectionTitle}>Lihat Bagaimana Mesin Ini Bekerja Untuk Anda</h2>
+            <h2 className={s.sectionTitle}>Format Sinyal yang Anda Terima</h2>
             <p className={s.sectionSub}>
-              Kami mengubah algoritma rumit menjadi panduan instan yang dikirim langsung ke Telegram
-              Anda.
+              Contoh nyata struktur setup: zona, SL/TP, RR, dan voters AI yang menyetujuinya.
             </p>
             <div className={s.terminal}>
               <div className={s.terminalHeader}>
@@ -207,10 +140,9 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
         {/* Pain Points */}
         <section className={`${s.section} ${s.painSection}`}>
           <div className={s.container}>
-            <h2 className={s.sectionTitle}>Apa yang Membuat Anda Frustrasi Selama Ini?</h2>
+            <h2 className={s.sectionTitle}>Masalah yang Diselesaikan Engine Ini</h2>
             <p className={s.sectionSub}>
-              Bukan karena Anda kurang pintar, tapi karena Anda melakukan pekerjaan yang seharusnya
-              dikerjakan oleh mesin.
+              Empat kegagalan paling umum pada trader manual — dan bagaimana setiap sinyal mencegahnya.
             </p>
             <div className={s.painGrid}>
               {[
@@ -248,10 +180,9 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
         {/* AI Benefits */}
         <section className={s.section}>
           <div className={s.container}>
-            <h2 className={s.sectionTitle}>AI Adalah Jembatan, Bukan Tujuan</h2>
+            <h2 className={s.sectionTitle}>Tiga Lapisan Validasi per Setup</h2>
             <p className={s.sectionSub}>
-              Keahlian coding, algoritma DeepSeek, dan GPT-4o kami hanyalah sarana. Tujuannya satu:
-              Mengembalikan ketenangan dan waktu berharga Anda.
+              Setiap setup lolos konsensus multi-engine sebelum sampai ke Anda. Tanpa konsensus, tanpa sinyal.
             </p>
             <div className={s.grid3}>
               {[
@@ -294,10 +225,9 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
         {/* How It Works */}
         <section className={`${s.section} ${s.painSection}`}>
           <div className={s.container}>
-            <h2 className={s.sectionTitle}>Jalan Pintas yang Sangat Sederhana</h2>
+            <h2 className={s.sectionTitle}>Mulai dalam Tiga Langkah</h2>
             <p className={s.sectionSub}>
-              Anda tidak perlu paham bahasa teknis rumit di baliknya. Cukup terima hasilnya dan
-              biarkan sistem bekerja.
+              Tanpa instalasi indikator. Tanpa template MT5. Cukup Telegram.
             </p>
             <div className={s.steps}>
               {[
@@ -330,9 +260,9 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
         {/* Comparison */}
         <section className={`${s.section} ${s.painSection}`}>
           <div className={s.container}>
-            <h2 className={s.sectionTitle}>Berhenti Mengandalkan Tebakan Manusia</h2>
+            <h2 className={s.sectionTitle}>Manual vs Konsensus AI</h2>
             <p className={s.sectionSub}>
-              Inilah alasan mengapa beralih ke asisten berbasis data jauh lebih menenangkan.
+              Perbandingan langsung: grup sinyal manual vs pipeline Vilona.
             </p>
             <div className={s.compareGrid}>
               <div className={s.compareOld}>
@@ -348,55 +278,46 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
               </div>
               <div className={s.compareNew}>
                 <div className={s.compareHeader}>
-                  <h3>✅ Kendaraan Vilona AI</h3>
+                  <h3>✅ Pipeline Vilona</h3>
                 </div>
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                   <li>Bekerja 24/7 tanpa kenal lelah</li>
                   <li>Dihitung objektif oleh 3 model AI</li>
-                  <li>Disiplin ketat dengan rasio RR 1:1.5</li>
-                  <li>Auto-eksekusi — bebas lepas tangan</li>
+                  <li>RR minimum 1:1.5, SL selalu terdefinisi</li>
+                  <li>Auto-eksekusi opsional via MT5 bridge</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Social Proof / Testimonials */}
+        {/* Spesifikasi Engine */}
         <section className={`${s.section} ${s.testiSection}`}>
           <div className={s.container}>
             <h2 className={s.sectionTitle}>
-              Pengguna <span style={{ color: 'var(--accent)' }}>Nyata</span>, Hasil{' '}
-              <span style={{ color: 'var(--gold)' }}>Nyata</span>
+              Apa yang Anda <span style={{ color: 'var(--accent)' }}>Dapat</span> di Setiap{' '}
+              <span style={{ color: 'var(--gold)' }}>Sinyal</span>
             </h2>
             <p className={s.sectionSub}>
-              Rasakan sendiri bagaimana Vilona AI mengubah cara mereka bertransaksi setiap hari.
+              Format tetap. Setiap setup mencakup seluruh field di bawah — tanpa pengecualian.
             </p>
             <div className={s.testiGrid}>
-              {testimonials.map((t, i) => (
+              {[
+                { h: 'Zona Entry', d: 'Rentang harga masuk yang dihitung dari struktur H1 + bias D1.' },
+                { h: 'Stop-Loss', d: 'Batas risiko eksplisit per setup. Tidak ada setup tanpa SL.' },
+                { h: 'Take-Profit 1 & 2', d: 'Dua target bertingkat dengan rasio RR minimum 1:1.5.' },
+                { h: 'Skor Confidence', d: 'Persentase keyakinan engine + alasan teknikal singkat.' },
+                { h: 'Konteks Sesi', d: 'Label sesi (Asia/London/NY) dan status spread saat sinyal dibuat.' },
+                { h: 'Mode Sensor', d: 'User gratis menerima arah + confidence; level angka terbuka setelah upgrade.' },
+              ].map((f, i) => (
                 <div key={i} className={s.testiCard}>
-                  <div className={s.testiStats}>
-                    <span className={s.testiLabel}>{t.badge}</span>
-                  </div>
-                  <img
-                    src={t.img}
-                    alt={t.name}
-                    loading="lazy"
-                    width={420}
-                    height={912}
-                    style={{ width: '100%', height: 'auto', display: 'block' }}
-                  />
                   <div style={{ padding: '1.25rem' }}>
                     <strong style={{ display: 'block', marginBottom: '0.35rem', color: '#fff' }}>
-                      {t.name}
+                      {f.h}
                     </strong>
                     <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                      {t.desc}
+                      {f.d}
                     </p>
-                    <div className={s.testiAuthor}>
-                      <span>
-                        ▲ {t.stat} <span style={{ color: 'var(--text-secondary)' }}>{t.label}</span>
-                      </span>
-                    </div>
                   </div>
                 </div>
               ))}
@@ -408,12 +329,10 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
         <section className={`${s.section} ${s.whitelabelSection}`}>
           <div className={s.container}>
             <h2 className={s.sectionTitle} style={{ color: 'var(--gold)' }}>
-              🏢 Wujudkan Mimpi Punya Bisnis Sinyal Sendiri
+              Whitelabel: Bot Sinyal atas Brand Anda
             </h2>
             <p className={s.sectionSub}>
-              Banyak yang ingin punya bisnis digital pasif tapi terhalang skill IT. Jadikan
-              infrastruktur AI kami sebagai &quot;karyawan&quot; Anda. Pasang nama brand Anda,
-              dapatkan komisi, tanpa perlu pusing coding atau sewa server mahal.
+              Infrastruktur sinyal yang sama, atas nama brand Anda. Tanpa coding, tanpa server.
             </p>
             <div className={s.whitelabelGrid}>
               <div className={s.card}>
@@ -567,9 +486,9 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
         {/* Pricing / CTA */}
         <section className={s.finalCta}>
           <div className={s.container}>
-            <h2 className={s.sectionTitle}>Pilih Kendaraan Anda</h2>
+            <h2 className={s.sectionTitle}>Pilih Akses Anda</h2>
             <p className={s.sectionSub}>
-              Gunakan sarana yang paling sesuai dengan target hidup yang ingin Anda capai hari ini.
+              Dua paket. Tanpa tier tersembunyi. Upgrade dan kelola via bot Telegram.
             </p>
             <div
               style={{
@@ -611,7 +530,7 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
                   value={254000}
                   currency="IDR"
                 >
-                  Mulai Ekosistem Anda
+                  Aktifkan ELITE via Bot
                 </TrackedCTA>
               </div>
 
@@ -642,7 +561,7 @@ export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
                   value={1990900}
                   currency="IDR"
                 >
-                  Bebaskan Dirimu Selamanya
+                  Aktifkan LIFETIME via Bot
                 </TrackedCTA>
               </div>
             </div>
