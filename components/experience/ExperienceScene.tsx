@@ -5,16 +5,42 @@ import { useAnimations, useGLTF } from '@react-three/drei';
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
-/* Scroll + pointer store shared with the frame loop. */
-let scrollProgress = 0;
-let pointerX = 0;
-let pointerY = 0;
+/* ── Shared scroll + pointer state ────────────────────────────────────────── */
+/* Raw scroll target (written on scroll) → time-damped progress read by every
+   channel, so camera, character, and scene stay synchronized. */
+let scrollTarget = 0;
+let smoothed = 0;
+let pointerX = 0.5;
+let pointerY = 0.5;
 
 export function setExperienceProgress(p: number) {
-  scrollProgress = p;
+  scrollTarget = Math.min(1, Math.max(0, p));
 }
 
-/* Dust field — wasteland atmosphere. */
+/* One damped value, elapsed-time decay — survives reverse scroll, anchor jumps,
+   and hidden-tab resume without a time-step jump. */
+function Damp() {
+  useFrame((_, delta) => {
+    const dt = Math.min(0.05, delta);
+    smoothed += (scrollTarget - smoothed) * (1 - Math.exp(-14 * dt));
+  }, -1);
+  return null;
+}
+
+/* ── The Operator's path ──────────────────────────────────────────────────── */
+/* He walks forward (-Z) through the world. Landmarks are re-spaced so the walk
+   lands on the 5 acts: wasteland → portal → cathedral → pour → sky. */
+const CHAR_START_Z = 3;
+const CHAR_HOLD_Z = -24;
+
+function charPose(p: number) {
+  const walk = THREE.MathUtils.clamp(p / 0.72, 0, 1);
+  const z = THREE.MathUtils.lerp(CHAR_START_Z, CHAR_HOLD_Z, walk);
+  const x = THREE.MathUtils.lerp(-1.9, -0.2, walk) + Math.sin(walk * Math.PI * 2) * 0.12;
+  return { x, z };
+}
+
+/* ── Dust field — wasteland atmosphere ────────────────────────────────────── */
 function Dust({ count = 1200 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
   const positions = useMemo(() => {
@@ -31,7 +57,7 @@ function Dust({ count = 1200 }: { count?: number }) {
     if (!ref.current) return;
     ref.current.rotation.y = state.clock.elapsedTime * 0.015;
     const mat = ref.current.material as THREE.PointsMaterial;
-    const warm = THREE.MathUtils.clamp((scrollProgress - 0.55) / 0.45, 0, 1);
+    const warm = THREE.MathUtils.clamp((smoothed - 0.6) / 0.4, 0, 1);
     mat.color.setRGB(0.55 + 0.25 * warm, 0.55 - 0.1 * warm, 0.55 - 0.3 * warm);
   });
 
@@ -45,14 +71,14 @@ function Dust({ count = 1200 }: { count?: number }) {
   );
 }
 
-/* The Operator — Quaternius Animated Wizard (CC-BY), darkened to a saint silhouette. */
+/* ── The Operator — Quaternius Animated Wizard (CC-BY), a walking silhouette ─ */
 function Wizard() {
   const group = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF('/models/wizard.glb');
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    // cloak everything in shadow — hide cartoon colors, keep silhouette + walk
+    // Cloak in shadow — hide cartoon colors, keep silhouette + walk weight.
     scene.traverse((o) => {
       const mesh = o as THREE.Mesh;
       if (mesh.isMesh) {
@@ -70,21 +96,25 @@ function Wizard() {
     return () => { walk?.stop(); };
   }, [scene, actions]);
 
-  useFrame((state) => {
+  useFrame(() => {
     if (!group.current) return;
-    const t = state.clock.elapsedTime;
-    group.current.position.y = -2.2 + Math.abs(Math.sin(t * 3.2)) * 0.06;
+    const { x, z } = charPose(smoothed);
+    // Feet stay planted; the walk cycle supplies the weight transfer.
+    group.current.position.set(x, -2.2, z);
+    // Face the direction of travel. Model forward is +Z (Blender -Y front → glTF +Z).
+    const a = charPose(Math.max(0, smoothed - 0.03));
+    const b = charPose(Math.min(1, smoothed + 0.03));
+    group.current.rotation.y = Math.atan2(b.x - a.x, b.z - a.z);
   });
 
   return (
-    <group ref={group} position={[-1.6, 0, -3.6]} scale={1.1} rotation={[0, 0.7, 0]}>
+    <group ref={group} position={[0, -2.2, CHAR_START_Z]} scale={1.1}>
       <primitive object={scene} />
     </group>
   );
 }
 
-
-/* Monolith + circular portal. */
+/* ── Monolith + circular portal (act 2) ───────────────────────────────────── */
 function Monolith() {
   const ring = useRef<THREE.Mesh>(null);
 
@@ -95,7 +125,7 @@ function Monolith() {
   });
 
   return (
-    <group position={[0, 0, -14]}>
+    <group position={[0, 0, -6]}>
       <mesh>
         <boxGeometry args={[3.4, 9, 1.6]} />
         <meshStandardMaterial color="#1c1c1c" roughness={0.85} metalness={0.25} />
@@ -112,10 +142,10 @@ function Monolith() {
   );
 }
 
-/* Cathedral pillars — rise skyward in the final act. */
+/* ── Cathedral pillars (acts 3–5) — rise skyward in the finale ────────────── */
 const PILLARS: Array<[number, number, number]> = [
-  [-6, 0, -26], [-3, 0, -28], [0, 0, -30], [3, 0, -28], [6, 0, -26],
-  [-6, 0, -34], [6, 0, -34], [0, 0, -38],
+  [-5, 0, -12], [-2.5, 0, -14], [0, 0, -16], [2.5, 0, -14], [5, 0, -12],
+  [-5, 0, -18], [5, 0, -18], [0, 0, -22],
 ];
 
 function Pillars() {
@@ -123,7 +153,7 @@ function Pillars() {
 
   useFrame(() => {
     if (!group.current) return;
-    const lift = THREE.MathUtils.clamp((scrollProgress - 0.78) / 0.22, 0, 1);
+    const lift = THREE.MathUtils.clamp((smoothed - 0.8) / 0.2, 0, 1);
     group.current.position.y = lift * 26;
     group.current.children.forEach((c, i) => {
       c.position.y = lift * (i % 3) * 3;
@@ -145,7 +175,7 @@ function Pillars() {
   );
 }
 
-/* Pour stream — liquid falling into the vortex (elapsed-time driven, no getDelta). */
+/* ── Pour stream — liquid falling into the vortex (act 4) ─────────────────── */
 function PourStream({ count = 400 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
   const seeds = useMemo(() => {
@@ -162,7 +192,7 @@ function PourStream({ count = 400 }: { count?: number }) {
 
   useFrame((state) => {
     if (!ref.current) return;
-    const active = THREE.MathUtils.clamp((scrollProgress - 0.6) / 0.15, 0, 1);
+    const active = THREE.MathUtils.clamp((smoothed - 0.62) / 0.15, 0, 1);
     const mat = ref.current.material as THREE.PointsMaterial;
     mat.opacity = active * 0.9;
     const t = state.clock.elapsedTime;
@@ -178,7 +208,7 @@ function PourStream({ count = 400 }: { count?: number }) {
   });
 
   return (
-    <points ref={ref} position={[0, -1, -36]}>
+    <points ref={ref} position={[0, -1, -24]}>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
@@ -187,7 +217,7 @@ function PourStream({ count = 400 }: { count?: number }) {
   );
 }
 
-/* Vortex — swirling burst. */
+/* ── Vortex — swirling burst (act 4) ──────────────────────────────────────── */
 function Vortex({ count = 900 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
   const positions = useMemo(() => {
@@ -205,13 +235,13 @@ function Vortex({ count = 900 }: { count?: number }) {
   useFrame((state) => {
     if (!ref.current) return;
     ref.current.rotation.y = state.clock.elapsedTime * 0.6;
-    ref.current.scale.setScalar(1 + scrollProgress * 2);
+    ref.current.scale.setScalar(1 + smoothed * 2);
     const mat = ref.current.material as THREE.PointsMaterial;
-    mat.opacity = THREE.MathUtils.clamp((scrollProgress - 0.6) / 0.2, 0, 0.9);
+    mat.opacity = THREE.MathUtils.clamp((smoothed - 0.62) / 0.2, 0, 0.9);
   });
 
   return (
-    <points ref={ref} position={[0, 0, -40]}>
+    <points ref={ref} position={[0, 0, -26]}>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
@@ -220,43 +250,21 @@ function Vortex({ count = 900 }: { count?: number }) {
   );
 }
 
-type Vec3 = [number, number, number];
-interface CamStop { p: number; pos: Vec3; look: Vec3; }
-
-/* Waypoints — camera dwells on each zone's subject instead of flying past. */
-const STOPS: CamStop[] = [
-  { p: 0.0, pos: [0, 0.6, 6], look: [-1.2, 0.4, -8] },
-  { p: 0.16, pos: [-0.8, 0.6, 1], look: [-2.8, 0.6, -5] },
-  { p: 0.36, pos: [0, 0.8, -5], look: [0, 1.2, -14] },
-  { p: 0.53, pos: [0.5, 1.2, -6], look: [-7, 1.0, -20] },
-  { p: 0.7, pos: [0, 0.8, -26], look: [0, 0, -38] },
-  { p: 0.87, pos: [0, 1.2, -27], look: [0, 14, -40] },
-];
-
+/* ── Follow camera — trails the operator, looks ahead ─────────────────────── */
 function CameraRig() {
   const { camera } = useThree();
-  const lookCur = useRef(new THREE.Vector3(0, 0, -8));
+  const look = useRef(new THREE.Vector3(0, 1.2, -8));
 
   useFrame(() => {
-    const p = THREE.MathUtils.clamp(scrollProgress, 0, 1);
-    let i = 0;
-    while (i < STOPS.length - 2 && p >= STOPS[i + 1].p) i++;
-    const a = STOPS[i];
-    const b = STOPS[i + 1];
-    const raw = THREE.MathUtils.clamp((p - a.p) / (b.p - a.p), 0, 1);
-    const t = raw * raw * (3 - 2 * raw);
-    const px = a.pos[0] + (b.pos[0] - a.pos[0]) * t + pointerX * 1.2;
-    const py = a.pos[1] + (b.pos[1] - a.pos[1]) * t + (pointerY - 0.5) * 0.8;
-    const pz = a.pos[2] + (b.pos[2] - a.pos[2]) * t;
-    camera.position.x += (px - camera.position.x) * 0.08;
-    camera.position.y += (py - camera.position.y) * 0.08;
-    camera.position.z += (pz - camera.position.z) * 0.08;
-    lookCur.current.set(
-      a.look[0] + (b.look[0] - a.look[0]) * t,
-      a.look[1] + (b.look[1] - a.look[1]) * t,
-      a.look[2] + (b.look[2] - a.look[2]) * t,
-    );
-    camera.lookAt(lookCur.current);
+    const { x, z } = charPose(smoothed);
+    const tx = x + 2.0 + (pointerX - 0.5) * 1.6;
+    const ty = 2.1 + (pointerY - 0.5) * 0.7;
+    const tz = z + 5.4;
+    camera.position.x += (tx - camera.position.x) * 0.06;
+    camera.position.y += (ty - camera.position.y) * 0.06;
+    camera.position.z += (tz - camera.position.z) * 0.06;
+    look.current.set(x, 1.15, z - 4);
+    camera.lookAt(look.current);
   });
 
   return null;
@@ -265,15 +273,14 @@ function CameraRig() {
 function Background() {
   const { scene } = useThree();
   useFrame(() => {
-    const p = scrollProgress;
     const grey = new THREE.Color('#101014');
     const red = new THREE.Color('#2a0a10');
-    scene.background = grey.lerp(red, THREE.MathUtils.clamp((p - 0.55) / 0.45, 0, 1)).clone();
+    scene.background = grey.lerp(red, THREE.MathUtils.clamp((smoothed - 0.6) / 0.4, 0, 1)).clone();
   });
   return null;
 }
 
-/* Ambient audio — synthesized drone + footsteps. No asset files. */
+/* ── Ambient audio — synthesized drone + footsteps, no asset files ────────── */
 function useAmbientAudio() {
   const [muted, setMuted] = useState(false);
   const ctxRef = useRef<AudioContext | null>(null);
@@ -324,7 +331,7 @@ function useAmbientAudio() {
 
     const footTimer = setInterval(() => {
       const ctx = ctxRef.current;
-      if (!ctx || !masterRef.current || scrollProgress > 0.35) return;
+      if (!ctx || !masterRef.current || smoothed > 0.35) return;
       const t = ctx.currentTime;
       const osc = ctx.createOscillator();
       osc.type = 'sine';
@@ -381,7 +388,7 @@ export default function ExperienceScene() {
     <>
       <Canvas
         dpr={[1, 1.75]}
-        camera={{ fov: 55, near: 0.1, far: 120, position: [0, 0, 6] }}
+        camera={{ fov: 55, near: 0.1, far: 120, position: [0, 2.1, 8.4] }}
         gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
         style={{ position: 'fixed', inset: 0, zIndex: 0 }}
       >
@@ -389,6 +396,7 @@ export default function ExperienceScene() {
         <pointLight position={[0, 2, -12]} intensity={60} color="#4F8CFF" distance={40} />
         <directionalLight position={[6, 10, 4]} intensity={0.9} color="#ffffff" />
 
+        <Damp />
         <Background />
         <CameraRig />
         <Suspense fallback={null}>
@@ -405,8 +413,8 @@ export default function ExperienceScene() {
         aria-label={muted ? 'Unmute ambient audio' : 'Mute ambient audio'}
         style={{
           position: 'fixed',
-          bottom: 24,
-          left: 24,
+          bottom: '6rem',
+          left: '2rem',
           zIndex: 55,
           width: 44,
           height: 44,

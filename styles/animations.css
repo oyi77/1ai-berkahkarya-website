@@ -292,4 +292,7 @@
     transform: none;
     transition: none;
   }
+  .scroll-hint {
+    animation: none !important;
+  }
 }

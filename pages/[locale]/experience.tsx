@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useEffect } from 'react';
+import { Component, ReactNode, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Layout from '@/components/Layout';
 import { experienceData } from '@/data/experience';
@@ -13,6 +13,27 @@ type Locale = 'id' | 'en';
 const ExperienceScene = dynamic(() => import('@/components/experience/ExperienceScene'), {
   ssr: false,
 });
+
+/* Catch WebGL/runtime failures → degrade to the static gradient behind the text. */
+class SceneBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  componentDidCatch() {}
+  render() {
+    return this.state.failed ? null : this.props.children;
+  }
+}
+
+function webglAvailable() {
+  try {
+    const c = document.createElement('canvas');
+    return !!(c.getContext('webgl2') || c.getContext('webgl'));
+  } catch {
+    return false;
+  }
+}
 
 function useStoryEngine() {
   useEffect(() => {
@@ -61,30 +82,60 @@ export const getStaticProps: GetStaticProps = async ({ params }) => ({
 
 export default function ExperiencePage({ locale }: { locale: Locale }) {
   const d = experienceData[locale];
+  const [reduced, setReduced] = useState(false);
+  const [webgl, setWebgl] = useState(true);
   useStoryEngine();
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReduced(mq.matches);
+    update();
+    setWebgl(webglAvailable());
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  const showScene = !reduced && webgl;
 
   return (
     <Layout title={d.meta.title} description={d.meta.description}>
-      {/* 3D scene behind everything */}
-      <ExperienceScene />
+      {/* 3D scene behind everything — or a static gradient when reduced/no-WebGL */}
+      {showScene ? (
+        <SceneBoundary>
+          <ExperienceScene />
+        </SceneBoundary>
+      ) : (
+        <div
+          aria-hidden
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 0,
+            background: 'radial-gradient(ellipse at 50% 30%, #14141a 0%, #0a0a0a 60%)',
+          }}
+        />
+      )}
 
-      {/* Progress bar */}
-      <div
-        id="story-progress"
-        aria-hidden
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 3,
-          background: 'var(--gradient-primary)',
-          transform: 'scaleX(0)',
-          transformOrigin: '0 50%',
-          zIndex: 60,
-        }}
-      />
-      {/* Sticky CTA — visible from the start, unlike Santioni */}
+      {/* Progress bar — hidden under reduced motion (no scrub to track) */}
+      {!reduced && (
+        <div
+          id="story-progress"
+          aria-hidden
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 3,
+            background: 'var(--gradient-primary)',
+            transform: 'scaleX(0)',
+            transformOrigin: '0 50%',
+            zIndex: 60,
+          }}
+        />
+      )}
+
+      {/* Sticky CTA — reachable from the start */}
       <a
         href={d.stickyCta.href}
         className="btn btn--primary"
@@ -97,7 +148,7 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
       <section
         className="section"
         style={{
-          minHeight: '100vh',
+          minHeight: reduced ? undefined : '100vh',
           display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
@@ -118,6 +169,7 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
           <p style={{ color: 'var(--text-muted)', fontSize: 'var(--text-lg)' }}>{d.intro.sub}</p>
           <p
             aria-hidden
+            className="scroll-hint"
             style={{
               marginTop: 'var(--space-8)',
               fontSize: 'var(--text-3xl)',
@@ -138,7 +190,7 @@ export default function ExperiencePage({ locale }: { locale: Locale }) {
             id={act.id}
             className="section"
             style={{
-              minHeight: '120vh',
+              minHeight: reduced ? undefined : '120vh',
               display: 'flex',
               alignItems: 'center',
               position: 'relative',
