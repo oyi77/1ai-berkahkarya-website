@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { trackAddToCart, trackInitiateCheckout } from '@/lib/tracking';
+import { pushLPEvent } from './LPVariantTracker';
 
 interface TrackedCTAProps {
   href: string;
@@ -57,6 +58,21 @@ export default function TrackedCTA({
         content_id: productId,
         value: value,
         currency: currency,
+      });
+    }
+
+    // A/B monitor: ctaClicked (variant derived from productName "… - LP{n} - …")
+    const m = /LP(\d)/i.exec(productName);
+    if (m) {
+      const svc = /VilonaFX/i.test(productName)
+        ? 'vilonafx'
+        : (productId?.split('-')[0] ?? 'unknown');
+      pushLPEvent({
+        event: 'ctaClicked',
+        lpVariant: parseInt(m[1], 10),
+        service: svc,
+        placement: productName,
+        url: href,
       });
     }
 

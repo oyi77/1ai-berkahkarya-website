@@ -18,16 +18,34 @@ interface EventStats {
   ctr: number;
 }
 
-const LP_NAMES: Record<number, string> = {
-  1: 'Konten Ini Bikin Laku',
-  2: 'Serius Sesimpel Ini?',
-  3: 'Masih Edit Manual?',
-  4: 'Tinggal Upload Doang',
-  5: 'Ini Cara Baru',
-  6: 'Hasil Nyata Seller',
+const LP_NAMES: Record<string, Record<number, string>> = {
+  legacy: {
+    1: 'Konten Ini Bikin Laku',
+    2: 'Serius Sesimpel Ini?',
+    3: 'Masih Edit Manual?',
+    4: 'Tinggal Upload Doang',
+    5: 'Ini Cara Baru',
+    6: 'Hasil Nyata Seller',
+  },
+  vilonafx: {
+    1: 'AI Swarm (canvas)',
+    2: 'Mission Control (pipeline)',
+    3: 'Direct (clean-fast)',
+  },
+};
+const SERVICE_VARIANTS: Record<string, number[]> = {
+  legacy: [1, 2, 3, 4, 5, 6],
+  vilonafx: [1, 2, 3],
+  all: [1, 2, 3, 4, 5, 6],
+};
+const SERVICE_LINKS: Record<string, string> = {
+  legacy: '/id/ai-video-studio',
+  vilonafx: '/id/lp/vilonafx',
+  all: '/id/lp',
 };
 
 export default function ABTestMonitor() {
+  const [service, setService] = useState<string>('vilonafx');
   const [events, setEvents] = useState<AnalyticsEvent[]>([]);
   const [stats, setStats] = useState<Record<number, EventStats>>({});
   const [lastUpdate, setLastUpdate] = useState<string>('');
@@ -36,7 +54,8 @@ export default function ABTestMonitor() {
     if (typeof window === 'undefined') return;
 
     try {
-      const storedEvents = JSON.parse(window.localStorage.getItem('berkahkarya_events') || '[]');
+      const allEvents: AnalyticsEvent[] = JSON.parse(window.localStorage.getItem('berkahkarya_events') || '[]');
+      const storedEvents = service === 'all' ? allEvents : allEvents.filter((e) => (e.service || 'legacy') === service);
       setEvents(storedEvents);
 
       const variantStats: Record<number, EventStats> = {};
@@ -51,6 +70,7 @@ export default function ABTestMonitor() {
       storedEvents.forEach((event: AnalyticsEvent) => {
         if (!event.lpVariant) return;
         const v = event.lpVariant;
+        if (!variantStats[v]) variantStats[v] = { lpViewed: 0, ctaClicked: 0, ctr: 0 };
         if (event.event === 'lpViewed') variantStats[v].lpViewed += 1;
         if (event.event === 'ctaClicked') variantStats[v].ctaClicked += 1;
       });
@@ -72,7 +92,7 @@ export default function ABTestMonitor() {
     loadAnalytics();
     const interval = setInterval(loadAnalytics, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [service]);
 
   const totalViews = Object.values(stats).reduce((sum, s) => sum + s.lpViewed, 0);
   const totalClicks = Object.values(stats).reduce((sum, s) => sum + s.ctaClicked, 0);
@@ -82,7 +102,15 @@ export default function ABTestMonitor() {
     <div style={{ minHeight: '100vh', background: '#0f0f1e', color: '#fff', padding: '40px 20px', fontFamily: 'monospace' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <h1>📊 A/B Test Monitor</h1>
-        <p style={{ color: '#aaa' }}>Real-time analytics for AI Video Studio landing pages</p>
+        <p style={{ color: '#aaa' }}>Real-time analytics for landing page tests (localStorage)</p>
+        <div style={{ marginBottom: '15px' }}>
+          <label style={{ color: '#aaa', fontSize: '12px', marginRight: '8px' }}>Service:</label>
+          <select value={service} onChange={(e) => setService(e.target.value)} style={{ background: '#1a1a2e', color: '#fff', padding: '6px 10px', borderRadius: '6px', border: '1px solid #333' }}>
+            <option value="vilonafx">vilonafx</option>
+            <option value="legacy">legacy (tanpa service)</option>
+            <option value="all">all</option>
+          </select>
+        </div>
         <p style={{ color: '#888', fontSize: '12px' }}>Last update: {lastUpdate} | Events: {events.length}</p>
 
         <div style={{ marginBottom: '30px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px' }}>
@@ -106,14 +134,15 @@ export default function ABTestMonitor() {
 
         <h2>Performance by Variant</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginBottom: '30px' }}>
-          {[1, 2, 3, 4, 5, 6].map((variant) => {
+          {(SERVICE_VARIANTS[service] || [1, 2, 3]).map((variant) => {
             const s = stats[variant] || { lpViewed: 0, ctaClicked: 0, ctr: 0 };
+            const names = LP_NAMES[service] || LP_NAMES.legacy;
             return (
               <div key={variant} style={{ background: '#1a1a2e', padding: '15px', borderRadius: '8px' }}>
                 <div style={{ marginBottom: '10px' }}>
-                  <strong>LP{variant}: {LP_NAMES[variant]}</strong>
+                  <strong>LP{variant}: {names[variant] || ('Variant ' + variant)}</strong>
                   <br />
-                  <a href={`/id/ai-video-studio?lp=${variant}`} style={{ color: '#3b82f6', fontSize: '12px', textDecoration: 'none' }}>
+                  <a href={`${SERVICE_LINKS[service] || SERVICE_LINKS.legacy}/${variant}/`} style={{ color: '#3b82f6', fontSize: '12px', textDecoration: 'none' }}>
                     View →
                   </a>
                 </div>
@@ -132,7 +161,7 @@ export default function ABTestMonitor() {
         <div style={{ background: '#0a0a14', padding: '15px', borderRadius: '8px', fontSize: '12px', maxHeight: '400px', overflowY: 'auto' }}>
           {events.slice().reverse().slice(0, 30).map((event, idx) => (
             <div key={idx} style={{ padding: '5px 0', borderBottom: '1px solid #333', color: '#aaa' }}>
-              {new Date(event.timestamp).toLocaleTimeString()} | {event.event} | LP{event.lpVariant}
+              {new Date(event.timestamp).toLocaleTimeString()} | {event.event} | {event.service || 'legacy'}/LP{event.lpVariant} | {event.placement || ''}
             </div>
           ))}
         </div>

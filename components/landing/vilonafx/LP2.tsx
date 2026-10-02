@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Layout from '@/components/Layout';
 import s from './LP2.module.css';
 import TrackedCTA from '../TrackedCTA';
+import LPVariantTracker from '../LPVariantTracker';
 import { useEngagementTracking } from '@/hooks/useEngagementTracking';
 
 const CHANNEL = 'https://t.me/vilonaaichanel';
@@ -44,6 +45,7 @@ export default function VilonaFxlp2({ locale = 'id' }: { locale?: string }) {
       description="Intip ruang komando Vilona: 3 AI memindai, berdebat, voting. Yang lolos masuk channel Telegram gratis."
     >
       <div className={s.wrapper}>
+        <LPVariantTracker variant={2} service="vilonafx" />
         <div className={s.progress} id="lp2Progress" />
 
         <section className={s.hero}>

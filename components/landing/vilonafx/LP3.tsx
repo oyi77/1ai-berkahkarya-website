@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Layout from '@/components/Layout';
 import s from './LP3.module.css';
 import TrackedCTA from '../TrackedCTA';
+import LPVariantTracker from '../LPVariantTracker';
 import { useEngagementTracking } from '@/hooks/useEngagementTracking';
 
 const CHANNEL = 'https://t.me/vilonaaichanel';
@@ -29,6 +30,7 @@ export default function VilonaFxlp3({ locale = 'id' }: { locale?: string }) {
       description="Gabung channel Telegram Vilona gratis: contoh sinyal Entry/SL/TP, edukasi market, tanpa kartu kredit."
     >
       <div className={s.wrapper}>
+        <LPVariantTracker variant={3} service="vilonafx" />
         <div className={s.progress} id="lp3Progress" />
 
         <section className={s.hero}>
