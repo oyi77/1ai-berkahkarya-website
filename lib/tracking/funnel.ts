@@ -80,6 +80,55 @@ export function trackAddToCart(params: {
 }
 
 // ============================================
+// LEAD — CompleteRegistration: user menyelesaikan pendaftaran / join channel.
+// Objective iklan "Menyelesaikan Pendaftaran" optimasi ke event ini.
+// JANGAN pakai AddToCart untuk join channel — itu merusak optimasi Meta.
+// ============================================
+
+export function trackLead(params: {
+  content_name: string;       // e.g., "VilonaFX - LP1 - Hero Join"
+  content_id?: string;
+  destination: string;        // e.g., "telegram_channel"
+  destination_url: string;
+}) {
+  const session = getUserSession();
+  const referrerSource = getReferrerSource(session.first_touch.referrer);
+
+  const eventData = {
+    content_name: params.content_name,
+    content_ids: [params.content_id || params.content_name],
+    content_category: 'registration',
+    destination: params.destination,
+    destination_url: params.destination_url,
+    session_id: session.session_id,
+    referrer_source: referrerSource,
+    utm_source: session.first_touch.utm_source,
+    utm_medium: session.first_touch.utm_medium,
+    utm_campaign: session.first_touch.utm_campaign,
+    landing_page: session.first_touch.landing_page,
+  };
+
+  addEventToJourney('Lead');
+
+  // GA4 — generate_lead (standar)
+  trackGAEvent('generate_lead', {
+    currency: 'IDR',
+    value: 0,
+    ...eventData,
+  });
+
+  // Meta Pixel — Lead (= "Menyelesaikan Pendaftaran" di Ads Manager)
+  trackMetaEvent('Lead', eventData);
+  sendMetaCAPI('Lead', eventData);
+
+  // TikTok Pixel — CompleteRegistration
+  trackTikTokEvent('CompleteRegistration', eventData);
+  sendTikTokCAPI('CompleteRegistration', eventData);
+
+  console.log('[Tracking] Lead:', eventData);
+}
+
+// ============================================
 // INITIATE CHECKOUT — Before redirect to payment/WA
 // ============================================
 
@@ -205,13 +254,20 @@ export function trackCTAClick(ctaName: string, destination: string) {
   const isWhatsApp = destination.includes('wa.me') || destination.includes('whatsapp');
   const isTelegram = destination.includes('t.me') || destination.includes('telegram');
   
-  if (isExternal || isWhatsApp || isTelegram) {
-    // External CTA → Track as AddToCart
+  // Channel join (Telegram/WhatsApp) = PENDAFTARAN → Lead (CompleteRegistration).
+  // JANGAN AddToCart — itu untuk niat beli (/subscribe), bukan join gratis.
+  if (isTelegram || isWhatsApp) {
+    trackLead({
+      content_name: ctaName,
+      content_id: ctaName.toLowerCase().replace(/\s+/g, '-'),
+      destination: isTelegram ? 'telegram_channel' : 'whatsapp_chat',
+      destination_url: destination,
+    });
+  } else if (isExternal) {
+    // External CTA (SaaS trial, checkout) → niat beli = AddToCart
     let destinationType = 'external';
-    if (isWhatsApp) destinationType = 'whatsapp';
-    else if (isTelegram) destinationType = 'telegram';
-    else if (destination.includes('aitradepulse')) destinationType = 'saas_app';
-    
+    if (destination.includes('aitradepulse')) destinationType = 'saas_app';
+
     trackAddToCart({
       content_name: ctaName,
       content_id: ctaName.toLowerCase().replace(/\s+/g, '-'),
