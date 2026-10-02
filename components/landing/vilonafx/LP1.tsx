@@ -1,515 +1,266 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Layout from '@/components/Layout';
-import b from '../_lp-base.module.css';
 import s from './LP1.module.css';
 import TrackedCTA from '../TrackedCTA';
 import { useEngagementTracking } from '@/hooks/useEngagementTracking';
 
+const CHANNEL = 'https://t.me/vilonaaichanel';
+
+const FEED = [
+  { who: 'DeepSeek', color: '#22d3ee', text: 'XAUUSD H1: struktur bearish, momentum turun…' },
+  { who: 'GPT-4o', color: '#a78bfa', text: 'Konfirmasi: London open, spread normal, bias selaras D1.' },
+  { who: 'Claude', color: '#34d399', text: 'Risiko: RR 1:1.5 valid. SL terdefinisi. Layak kirim.' },
+  { who: 'Konsensus', color: '#f59e0b', text: '✓ 3/3 setuju → sinyal diteruskan ke channel.' },
+  { who: 'DeepSeek', color: '#22d3ee', text: 'EURUSD M15: pola bertentangan — butuh konfirmasi H1.' },
+  { who: 'Claude', color: '#34d399', text: 'Tahan dulu. Tanpa konsensus, tanpa sinyal. ❌' },
+];
+
+const AGENTS = [
+  { name: 'DeepSeek', role: 'Struktur & Level', color: '#22d3ee', desc: 'Membaca struktur market, momentum, dan zona harga kunci di 5 timeframe.' },
+  { name: 'GPT-4o', role: 'Konteks & Sesi', color: '#a78bfa', desc: 'Menilai konteks sesi, spread, dan keselarasan bias harian.' },
+  { name: 'Claude', role: 'Risiko & Validasi', color: '#34d399', desc: 'Memastikan RR minimum, SL eksplisit, dan menolak setup lemah.' },
+];
+
 export default function VilonaFxlp1({ locale = 'id' }: { locale?: string }) {
-  useEngagementTracking('Vilona FX - LP1', '0', 'vilonafx-lp1');
+  useEngagementTracking('Vilona FX - LP1 Swarm', '0', 'vilonafx-lp1');
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [feedIdx, setFeedIdx] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const [openFaqs, setOpenFaqs] = useState<Record<number, boolean>>({});
-
+  // scroll progress
   useEffect(() => {
-    const el = document.getElementById('scrollProgress');
+    const el = document.getElementById('lp1Progress');
     if (!el) return;
     const onScroll = () => {
-      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
-      el.style.width = pct + '%';
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      el.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleFaqToggle = (i: number) => (e: React.SyntheticEvent<HTMLDetailsElement>) => {
-    setOpenFaqs((prev) => ({ ...prev, [i]: (e.target as HTMLDetailsElement).open }));
-  };
+  // rotating agent feed
+  useEffect(() => {
+    const t = setInterval(() => setFeedIdx((i) => (i + 1) % FEED.length), 2400);
+    return () => clearInterval(t);
+  }, []);
 
+  // swarm canvas: 3 hubs + particle links
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    let raf = 0;
+    let w = 0;
+    let h = 0;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const resize = () => {
+      const r = canvas.getBoundingClientRect();
+      w = r.width; h = r.height;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const parts = Array.from({ length: 42 }, () => ({
+      x: Math.random(), y: Math.random(),
+      vx: (Math.random() - 0.5) * 0.0016, vy: (Math.random() - 0.5) * 0.0016,
+      r: 0.8 + Math.random() * 1.8,
+    }));
+    const hubs = [
+      { x: 0.5, y: 0.30, c: '#22d3ee' },
+      { x: 0.28, y: 0.68, c: '#a78bfa' },
+      { x: 0.72, y: 0.68, c: '#34d399' },
+    ];
+    let t = 0;
+    const draw = () => {
+      t += 0.008;
+      ctx.clearRect(0, 0, w, h);
+      const hp = hubs.map((hb, i) => ({
+        ...hb,
+        x: (hb.x + Math.sin(t + i * 2.1) * 0.02) * w,
+        y: (hb.y + Math.cos(t * 1.2 + i * 1.7) * 0.02) * h,
+      }));
+      // hub links
+      ctx.lineWidth = 1;
+      for (let i = 0; i < hp.length; i++) {
+        for (let j = i + 1; j < hp.length; j++) {
+          const g = ctx.createLinearGradient(hp[i].x, hp[i].y, hp[j].x, hp[j].y);
+          g.addColorStop(0, hp[i].c + '55'); g.addColorStop(1, hp[j].c + '55');
+          ctx.strokeStyle = g;
+          ctx.beginPath(); ctx.moveTo(hp[i].x, hp[i].y); ctx.lineTo(hp[j].x, hp[j].y); ctx.stroke();
+        }
+      }
+      // particles drift + link to nearest hub
+      for (const p of parts) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > 1) p.vx *= -1;
+        if (p.y < 0 || p.y > 1) p.vy *= -1;
+        const px = p.x * w; const py = p.y * h;
+        let best = hp[0]; let bd = 1e9;
+        for (const hb of hp) {
+          const d = (hb.x - px) ** 2 + (hb.y - py) ** 2;
+          if (d < bd) { bd = d; best = hb; }
+        }
+        if (bd < 130 * 130) {
+          ctx.strokeStyle = best.c + '22';
+          ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(best.x, best.y); ctx.stroke();
+        }
+        ctx.fillStyle = 'rgba(148,163,184,0.5)';
+        ctx.beginPath(); ctx.arc(px, py, p.r, 0, Math.PI * 2); ctx.fill();
+      }
+      // hubs glow
+      for (const hb of hp) {
+        const g = ctx.createRadialGradient(hb.x, hb.y, 0, hb.x, hb.y, 34);
+        g.addColorStop(0, hb.c); g.addColorStop(1, hb.c + '00');
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(hb.x, hb.y, 34, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.beginPath(); ctx.arc(hb.x, hb.y, 5, 0, Math.PI * 2); ctx.fill();
+      }
+      raf = requestAnimationFrame(draw);
+    };
+    raf = requestAnimationFrame(draw);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); };
+  }, []);
 
   const faqs = [
-    {
-      q: 'Saya tidak paham trading teknikal sama sekali, apakah ini cocok?',
-      a: 'Cocok. Setiap sinyal berisi entry, SL, dan TP yang eksplisit — Anda mengeksekusi tanpa perlu paham indikator di baliknya.',
-    },
-    {
-      q: 'Apakah ada jaminan uang saya pasti bertambah terus menerus?',
-      a: 'Tidak ada. Setiap setup mencantumkan RR dan confidence agar Anda bisa menolak setup yang tidak sesuai toleransi risiko Anda. Riwayat masa lalu bukan janji hasil masa depan.',
-    },
-    {
-      q: 'Mengapa saya harus memilih AI dibanding belajar manual?',
-      a: 'Karena satu analis manusia tidak bisa memantau 6+ pair 24/7 tanpa bias. Tiga engine memvalidasi setiap setup; yang tidak mencapai konsensus tidak dikirim.',
-    },
+    { q: 'Apa yang saya dapat di channel?', a: 'Contoh format sinyal (zona entry, SL, TP, RR, confidence), edukasi struktur market, dan update engine. Gratis — tanpa kartu, keluar kapan saja.' },
+    { q: 'Apakah ini jaminan profit?', a: 'Tidak. Trading berisiko dan setiap setup bisa salah. Channel ini alat bantu disiplin berbasis data, bukan janji hasil. Mulai dari demo.' },
+    { q: 'Saya pemula, cocok?', a: 'Cocok untuk observasi. Setiap sinyal mencantumkan entry/SL/TP eksplisit plus alasan teknikal singkat, jadi Anda belajar sambil melihat formatnya.' },
   ];
 
   return (
     <Layout
-      title="Vilona Trade FX — AI Trading Assistant & Whitelabel Platform"
-      description="Trading dengan data, bukan emosi. AI bantu analisa market 24/7, filter signal berkualitas, dan bisa bikin bot trading sendiri."
+      title="Vilona AI Swarm — 3 AI Bekerja, Sinyal Masuk Channel"
+      description="Lihat 3 AI berdebat sebelum satu sinyal dikirim ke Telegram. Gabung channel Vilona gratis."
     >
-      {/* Ticker removed 2026-09-23: static prices rot within hours; pro traders verify live */}
-
       <div className={s.wrapper}>
-        {/* Scroll Progress */}
-        <div className={s.scrollProgress} id="scrollProgress" />
+        <div className={s.progress} id="lp1Progress" />
 
-        {/* Hero */}
+        {/* HERO */}
         <section className={s.hero}>
+          <canvas ref={canvasRef} className={s.swarm} aria-hidden="true" />
           <div className={s.heroInner}>
-            <div className={s.badge}>
-              <span className={s.badgeDot} />
-              AI Trading Assistant — 24/7
-            </div>
+            <div className={s.badge}><span className={s.dot} />VILONA AI SWARM — LIVE</div>
             <h1 className={s.title}>
-              Sinyal AI XAUUSD, Forex & Kripto,<br />
-              <span className={s.gradientText}>Entry, SL & TP Selalu Jelas</span>
+              3 AI Berdebat.<br /><span className={s.grad}>Kamu Dapat Keputusannya.</span>
             </h1>
-            <p className={s.subtitle}>
-              Tiga engine independen (DeepSeek · GPT · Claude) memvalidasi setiap setup sebelum
-              dikirim ke Telegram Anda — lengkap dengan zona entry, stop-loss, dan take-profit.
-              Bukan jaminan profit; ini disiplin berbasis data.
+            <p className={s.sub}>
+              DeepSeek membaca struktur. GPT-4o menilai konteks. Claude menjaga risiko.
+              Hanya setup yang lolos <strong>konsensus 3 AI</strong> yang diteruskan ke channel Telegram.
             </p>
             <div className={s.ctaRow}>
-              <TrackedCTA
-                className={s.btnPrimary}
-                href="https://t.me/berkahkaryaforexbotbot"
-                productName="VilonaFX - Hero"
-              >
-                Lihat Contoh Sinyal di Telegram
+              <TrackedCTA className={s.btnPrimary} href={CHANNEL} productName="VilonaFX - LP1 - Hero Join">
+                ✈️ Gabung Channel Gratis
               </TrackedCTA>
-              <a href="#live-demo" className={s.btnSecondary}>
-                Cara Kerja Engine
-              </a>
+              <a href="#cara" className={s.btnGhost}>Lihat cara kerja ↓</a>
             </div>
-
-            <div className={s.statsRow}>
-              <div className={s.stat}>
-                <span className={s.statNum}>3</span>
-                <span className={s.statLabel}>Engine AI Independen</span>
-              </div>
-              <div className={s.stat}>
-                <span className={s.statNum}>40+</span>
-                <span className={s.statLabel}>Sinyal / Minggu</span>
-              </div>
-              <div className={s.stat}>
-                <span className={s.statNum}>24/7</span>
-                <span className={s.statLabel}>Monitoring Market</span>
-              </div>
-              <div className={s.stat}>
-                <span className={s.statNum}>1:1.5</span>
-                <span className={s.statLabel}>RR Minimum per Setup</span>
-              </div>
+            <p className={s.micro}>Gratis · Tanpa kartu kredit · Keluar kapan saja</p>
+            {/* live feed */}
+            <div className={s.feed} aria-live="polite">
+              <span className={s.feedLive}>● LIVE</span>
+              <span className={s.feedWho} style={{ color: FEED[feedIdx].color }}>{FEED[feedIdx].who}</span>
+              <span className={s.feedText}>{FEED[feedIdx].text}</span>
             </div>
           </div>
         </section>
 
-        {/* Live Demo */}
-        <section className={s.demoSection} id="live-demo">
+        {/* AGENTS */}
+        <section className={s.section} id="cara">
           <div className={s.container}>
-            <h2 className={s.sectionTitle}>Format Sinyal yang Anda Terima</h2>
-            <p className={s.sectionSub}>
-              Contoh nyata struktur setup: zona, SL/TP, RR, dan voters AI yang menyetujuinya.
-            </p>
-            <div className={s.terminal}>
-              <div className={s.terminalHeader}>
-                <span className={s.terminalDot} style={{ background: '#ef4444' }} />
-                <span className={s.terminalDot} style={{ background: '#f59e0b' }} />
-                <span className={s.terminalDot} style={{ background: '#22c55e' }} />
-                <span style={{ marginLeft: '0.5rem' }}>VILONA EXECUTION CONSOLE v2.0</span>
-                <span style={{ marginLeft: 'auto', color: '#6366f1', fontSize: '0.75rem' }}>▌</span>
-              </div>
-              <div className={s.terminalBody}>
-                <div>
-                  <span className={s.terminalStatus}>●</span> AI sedang menganalisis XAUUSD · EURUSD · GBPUSD · BTCUSDT...
-                </div>
-                <div style={{ marginTop: '0.75rem', color: s.signalSell || '#ef4444' }}>
-                  🔴 <strong>XAUUSD — SELL SIGNAL</strong> London Open
-                </div>
-                <div className={s.signalEntry}>Zone Entry: $4,076.50 — $4,080.00</div>
-                <div className={s.signalMeta}>Stop Loss: $4,090.00 (30 pips)</div>
-                <div className={s.signalMeta}>Take Profit 1: $4,050.00 (30 pips)</div>
-                <div className={s.signalMeta}>Take Profit 2: $4,030.00 (50 pips)</div>
-                <div className={s.signalMeta}>Rasio RR: 1:1.5</div>
-                <div className={s.signalMeta}>Analisa AI: DeepSeek + GPT-4o (2/3 Voters setuju)</div>
-                <div style={{ marginTop: '0.75rem', color: s.signalBuy || '#22c55e' }}>
-                  🟢 <strong>EURUSD — BUY SIGNAL</strong> London Open
-                </div>
-                <div className={s.signalEntry}>Zone Entry: 1.0845 — 1.0855</div>
-                <div className={s.signalMeta}>Stop Loss: 1.0820 (25 pips)</div>
-                <div className={s.signalMeta}>Take Profit 1: 1.0900 (45 pips)</div>
-                <div className={s.signalMeta}>Take Profit 2: 1.0940 (85 pips)</div>
-                <div className={s.signalMeta}>Rasio RR: 1:1.5</div>
-                <div className={s.signalMeta}>Analisa AI: GPT-4o + Claude (3/3 Voters setuju)</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Pain Points */}
-        <section className={`${s.section} ${s.painSection}`}>
-          <div className={s.container}>
-            <h2 className={s.sectionTitle}>Masalah yang Diselesaikan Engine Ini</h2>
-            <p className={s.sectionSub}>
-              Empat kegagalan paling umum pada trader manual — dan bagaimana setiap sinyal mencegahnya.
-            </p>
-            <div className={s.painGrid}>
-              {[
-                {
-                  icon: '⏰',
-                  title: 'Waktu Habis Tersita',
-                  desc: 'Begadang menatap pergerakan harga hingga mengorbankan waktu tidur, kesehatan, dan keluarga Anda.',
-                },
-                {
-                  icon: '😰',
-                  title: 'Stres & Trauma Mental',
-                  desc: 'Jantung berdebar saat floating minus, berujung pada keputusan emosional yang merusak saldo.',
-                },
-                {
-                  icon: '🔁',
-                  title: 'Terjebak Rutinitas',
-                  desc: 'Selalu ketinggalan momen emas di market karena Anda sedang sibuk bekerja atau bisnis utama.',
-                },
-                {
-                  icon: '📚',
-                  title: 'Lelah Belajar Teori',
-                  desc: 'Pusing dengan ratusan indikator dan strategi yang pada akhirnya tetap membuat Anda rugi.',
-                },
-              ].map((p) => (
-                <div key={p.title} className={s.painCard}>
-                  <div className={s.painIcon}>{p.icon}</div>
-                  <h4>{p.title}</h4>
-                  <p>{p.desc}</p>
+            <p className={s.eyebrow}>CARA KERJA SWARM</p>
+            <h2 className={s.h2}>Tiga otak. Satu standar: <span className={s.grad}>tanpa konsensus, tanpa sinyal.</span></h2>
+            <div className={s.grid3}>
+              {AGENTS.map((a) => (
+                <div key={a.name} className={s.agentCard} style={{ ['--ac' as string]: a.color }}>
+                  <div className={s.agentHead}><span className={s.agentOrb} />{a.name}</div>
+                  <div className={s.agentRole}>{a.role}</div>
+                  <p>{a.desc}</p>
                 </div>
               ))}
             </div>
+            <div className={s.consensus}>
+              <span>KONSENSUS</span>
+              <div className={s.bar}><i style={{ width: '100%' }} /></div>
+              <span>3/3 → KIRIM</span>
+            </div>
           </div>
         </section>
 
-        {/* AI Benefits */}
+        {/* SIGNAL FORMAT */}
         <section className={s.section}>
           <div className={s.container}>
-            <h2 className={s.sectionTitle}>Tiga Lapisan Validasi per Setup</h2>
-            <p className={s.sectionSub}>
-              Setiap setup lolos konsensus multi-engine sebelum sampai ke Anda. Tanpa konsensus, tanpa sinyal.
-            </p>
-            <div className={s.grid3}>
-              {[
-                {
-                  icon: '🔍',
-                  title: 'Tidur Lebih Nyenyak',
-                  desc: 'Titipkan beban analisa Anda. Biarkan asisten AI kami yang memantau market 24/7 selagi Anda beristirahat.',
-                },
-                {
-                  icon: '🎯',
-                  title: 'Keputusan Tanpa Ragu',
-                  desc: 'Peluang diverifikasi oleh tiga otak AI berbeda. Anda hanya menerima sinyal matang tanpa perlu menebak-nebak lagi.',
-                },
-                {
-                  icon: '⚡',
-                  title: 'Bebas Repot',
-                  desc: 'Sistem akan menghubungkan keputusan langsung ke akun Anda. Tidak perlu lagi mengetik order manual.',
-                },
-              ].map((b) => (
-                <div key={b.title} className={s.card}>
-                  <div className={s.cardIcon}>{b.icon}</div>
-                  <h3>{b.title}</h3>
-                  <p>{b.desc}</p>
-                </div>
-              ))}
+            <p className={s.eyebrow}>ISI CHANNEL</p>
+            <h2 className={s.h2}>Format sinyal yang kamu terima</h2>
+            <p className={s.sectionSub}>Contoh struktur — bukan rekomendasi, bukan janji hasil.</p>
+            <div className={s.phone}>
+              <div className={s.phoneHead}>✈️ Vilona AI Channel</div>
+              <div className={s.msg}>
+                <strong>🔴 XAUUSD — SELL (contoh)</strong><br />
+                Entry: 4.076,50 – 4.080,00<br />
+                SL: 4.090,00 · TP1: 4.050,00 · TP2: 4.030,00<br />
+                RR 1:1,5 · Confidence 78%<br />
+                <span className={s.voters}>Voters: DeepSeek + GPT-4o + Claude (3/3)</span>
+              </div>
+              <div className={s.msgDim}>❌ EURUSD — DITAHAN (voters 1/3, tanpa konsensus)</div>
             </div>
-            <div
-              style={{
-                textAlign: 'center',
-                marginTop: '1rem',
-                fontSize: '0.85rem',
-                color: 'var(--text-secondary)',
-              }}
-            >
-              Mesin Pekerja Anda — DeepSeek · GPT-4o · Claude — Bekerja paralel mengamankan dana
+            <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+              <TrackedCTA className={s.btnPrimary} href={CHANNEL} productName="VilonaFX - LP1 - Mid Join">
+                Lihat Sinyal Asli di Channel →
+              </TrackedCTA>
             </div>
           </div>
         </section>
 
-        {/* How It Works */}
-        <section className={`${s.section} ${s.painSection}`}>
+        {/* STEPS */}
+        <section className={s.section}>
           <div className={s.container}>
-            <h2 className={s.sectionTitle}>Mulai dalam Tiga Langkah</h2>
-            <p className={s.sectionSub}>
-              Tanpa instalasi indikator. Tanpa template MT5. Cukup Telegram.
-            </p>
+            <p className={s.eyebrow}>MULAI 1 MENIT</p>
+            <h2 className={s.h2}>Gabung dalam 3 ketuk</h2>
             <div className={s.steps}>
               {[
-                {
-                  num: '01',
-                  title: 'Koneksikan Akun',
-                  desc: 'Tautkan Telegram atau akun MT5 Anda dalam hitungan menit tanpa prosedur yang memusingkan.',
-                },
-                {
-                  num: '02',
-                  title: 'Mesin Bekerja',
-                  desc: 'Kecerdasan Buatan kami mengambil alih beban memikirkan pergerakan arah pasar untuk Anda.',
-                },
-                {
-                  num: '03',
-                  title: 'Nikmati Kehidupan',
-                  desc: 'Dapatkan laporan keuntungan harian. Habiskan waktu untuk hal yang benar-benar penting bagi Anda.',
-                },
-              ].map((step) => (
-                <div key={step.num} className={s.stepCard}>
-                  <div className={s.stepNum}>{step.num}</div>
-                  <h3>{step.title}</h3>
-                  <p>{step.desc}</p>
-                </div>
+                { n: '01', t: 'Ketuk tombol gabung', d: 'Buka channel @vilonaaichanel di Telegram.' },
+                { n: '02', t: 'Tekan Join', d: 'Satu ketuk. Tidak ada formulir, tidak ada biaya.' },
+                { n: '03', t: 'Amati formatnya', d: 'Lihat sinyal + edukasi. Upgrade hanya jika cocok.' },
+              ].map((st) => (
+                <div key={st.n} className={s.step}><span>{st.n}</span><h3>{st.t}</h3><p>{st.d}</p></div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Comparison */}
-        <section className={`${s.section} ${s.painSection}`}>
-          <div className={s.container}>
-            <h2 className={s.sectionTitle}>Manual vs Konsensus AI</h2>
-            <p className={s.sectionSub}>
-              Perbandingan langsung: grup sinyal manual vs pipeline Vilona.
-            </p>
-            <div className={s.compareGrid}>
-              <div className={s.compareOld}>
-                <div className={s.compareHeader}>
-                  <h3>❌ Grup Sinyal Biasa</h3>
-                </div>
-                <ul style={{ listStyle: 'none', padding: 0 }}>
-                  <li>Bergantung mood &amp; waktu luang admin</li>
-                  <li>Keputusan berdasarkan emosi &amp; FOMO</li>
-                  <li>Sering tahan floating tanpa batas</li>
-                  <li>Wajib stand-by HP setiap saat</li>
-                </ul>
-              </div>
-              <div className={s.compareNew}>
-                <div className={s.compareHeader}>
-                  <h3>✅ Pipeline Vilona</h3>
-                </div>
-                <ul style={{ listStyle: 'none', padding: 0 }}>
-                  <li>Bekerja 24/7 tanpa kenal lelah</li>
-                  <li>Dihitung objektif oleh 3 model AI</li>
-                  <li>RR minimum 1:1.5, SL selalu terdefinisi</li>
-                  <li>Auto-eksekusi opsional via MT5 bridge</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Spesifikasi Engine */}
-        <section className={`${s.section} ${s.testiSection}`}>
-          <div className={s.container}>
-            <h2 className={s.sectionTitle}>
-              Apa yang Anda <span style={{ color: 'var(--accent)' }}>Dapat</span> di Setiap{' '}
-              <span style={{ color: 'var(--gold)' }}>Sinyal</span>
-            </h2>
-            <p className={s.sectionSub}>
-              Format tetap. Setiap setup mencakup seluruh field di bawah — tanpa pengecualian.
-            </p>
-            <div className={s.testiGrid}>
-              {[
-                { h: 'Zona Entry', d: 'Rentang harga masuk yang dihitung dari struktur H1 + bias D1.' },
-                { h: 'Stop-Loss', d: 'Batas risiko eksplisit per setup. Tidak ada setup tanpa SL.' },
-                { h: 'Take-Profit 1 & 2', d: 'Dua target bertingkat dengan rasio RR minimum 1:1.5.' },
-                { h: 'Skor Confidence', d: 'Persentase keyakinan engine + alasan teknikal singkat.' },
-                { h: 'Konteks Sesi', d: 'Label sesi (Asia/London/NY) dan status spread saat sinyal dibuat.' },
-                { h: 'Mode Sensor', d: 'User gratis menerima arah + confidence; level angka terbuka setelah upgrade.' },
-              ].map((f, i) => (
-                <div key={i} className={s.testiCard}>
-                  <div style={{ padding: '1.25rem' }}>
-                    <strong style={{ display: 'block', marginBottom: '0.35rem', color: '#fff' }}>
-                      {f.h}
-                    </strong>
-                    <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                      {f.d}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Whitelabel */}
-        <section className={`${s.section} ${s.whitelabelSection}`}>
-          <div className={s.container}>
-            <h2 className={s.sectionTitle} style={{ color: 'var(--gold)' }}>
-              Whitelabel: Bot Sinyal atas Brand Anda
-            </h2>
-            <p className={s.sectionSub}>
-              Infrastruktur sinyal yang sama, atas nama brand Anda. Tanpa coding, tanpa server.
-            </p>
-            <div className={s.whitelabelGrid}>
-              <div className={s.card}>
-                <div className={s.cardIcon}>🏷️</div>
-                <h3>Otoritas Penuh</h3>
-                <p>Pelanggan Anda hanya tahu bahwa ini adalah bot canggih milik bisnis Anda sendiri.</p>
-              </div>
-              <div className={s.card}>
-                <div className={s.cardIcon}>🔌</div>
-                <h3>Bebas Beban Teknis</h3>
-                <p>Lupakan urusan server error. Kami yang menjaga mesin agar tetap menyala sempurna.</p>
-              </div>
-              <div className={s.card}>
-                <div className={s.cardIcon}>💰</div>
-                <h3>Keran Penghasilan Baru</h3>
-                <p>Ubah keahlian marketing Anda menjadi passive income rutin yang stabil setiap bulan.</p>
-              </div>
-            </div>
-            <div
-              style={{
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border)',
-                borderRadius: '0.75rem',
-                padding: '1.5rem',
-                marginTop: '2rem',
-                fontFamily: 'var(--mono, monospace)',
-                textAlign: 'center',
-                maxWidth: '36rem',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-              }}
-            >
-              <span style={{ color: 'var(--gold)' }}>GAMBARAN POTENSI BISNIS:</span>
-              <br />
-              Hanya dengan 100 Pelanggan berlangganan di brand Anda × Rp 254.000/bulan ={' '}
-              <span
-                style={{
-                  color: 'var(--accent)',
-                  fontWeight: 700,
-                  fontSize: '1.1rem',
-                }}
-              >
-                Rp 25.400.000 / Bulan
-              </span>{' '}
-              passive income nyata tanpa pusing mikir modal operasional.
-            </div>
-          </div>
-        </section>
-
-        {/* Pricing / CTA */}
-        <section className={s.finalCta}>
-          <div className={s.container}>
-            <h2 className={s.sectionTitle}>Pilih Akses Anda</h2>
-            <p className={s.sectionSub}>
-              Dua paket. Tanpa tier tersembunyi. Upgrade dan kelola via bot Telegram.
-            </p>
-            <div className={s.specTable} role="table" aria-label="Perbandingan paket">
-              <div className={s.specRow + ' ' + s.specHead} role="row">
-                <span role="columnheader">Spesifikasi</span>
-                <span role="columnheader">ELITE</span>
-                <span role="columnheader">LIFETIME</span>
-              </div>
-              <div className={s.specRow} role="row">
-                <span>Harga</span>
-                <strong>Rp 254.000/bln</strong>
-                <strong>Rp 1.990.900 sekali</strong>
-              </div>
-              <div className={s.specRow} role="row">
-                <span>Sinyal AI</span>
-                <span>Unlimited · 40+/minggu</span>
-                <span>Unlimited · 40+/minggu</span>
-              </div>
-              <div className={s.specRow} role="row">
-                <span>Entry / SL / TP</span>
-                <span className={s.specYes}>✓ Selalu tercantum</span>
-                <span className={s.specYes}>✓ Selalu tercantum</span>
-              </div>
-              <div className={s.specRow} role="row">
-                <span>Validasi engine</span>
-                <span>Konsensus 3 AI</span>
-                <span>Konsensus 3 AI</span>
-              </div>
-              <div className={s.specRow} role="row">
-                <span>RR minimum</span>
-                <span>1:1.5</span>
-                <span>1:1.5</span>
-              </div>
-              <div className={s.specRow} role="row">
-                <span>Auto-eksekusi MT5</span>
-                <span className={s.specYes}>✓ Bridge + EA</span>
-                <span className={s.specYes}>✓ Bridge + EA</span>
-              </div>
-              <div className={s.specRow} role="row">
-                <span>Whitelabel bot</span>
-                <span>1 lisensi</span>
-                <span>3 lisensi</span>
-              </div>
-              <div className={s.specRow} role="row">
-                <span>Support</span>
-                <span>Prioritas 24/7</span>
-                <span>VIP + konsultasi</span>
-              </div>
-              <div className={s.specRow} role="row">
-                <span>Masa aktif</span>
-                <span>30 hari, perpanjang</span>
-                <span>Permanen</span>
-              </div>
-              <div className={s.specRow + ' ' + s.specCta} role="row">
-                <span />
-                <TrackedCTA
-                  className={s.btnPrimary}
-                  href="https://t.me/berkahkaryaforexbotbot?start=elite"
-                  productName="VilonaFX - Pricing"
-                  value={254000}
-                  currency="IDR"
-                >
-                  Aktifkan ELITE
-                </TrackedCTA>
-                <TrackedCTA
-                  className={s.btnPrimary}
-                  href="https://t.me/berkahkaryaforexbotbot?start=lifetime"
-                  productName="VilonaFX - Pricing"
-                  value={1990900}
-                  currency="IDR"
-                >
-                  Aktifkan LIFETIME
-                </TrackedCTA>
-              </div>
-              <div className={s.specRow + ' ' + s.specFoot} role="row">
-                <span>🎁 PROMO IB — diskon 50% ELITE/LIFETIME. Deposit min $100 di bawah IB kami, klaim via <a href="https://t.me/alwayscuanterus">@alwayscuanterus</a> atau <a href="https://t.me/codergaboets">@codergaboets</a>.</span>
-                <span />
-                <span />
-              </div>
             </div>
           </div>
         </section>
 
         {/* FAQ */}
         <section className={s.section}>
-          <div className={s.container}>
-            <h2 className={s.sectionTitle}>Jawaban Untuk Keraguan Anda</h2>
-            <p className={s.sectionSub}>
-              Mengerti batasan kendaraan ini agar Anda tiba di tujuan finansial dengan selamat.
-            </p>
-            <div className={s.faqWrap}>
-              {faqs.map((faq, i) => (
-                <details
-                  key={i}
-                  className={s.faqItem}
-                  onToggle={handleFaqToggle(i)}
-                >
-                  <summary className={s.faqSummary}>
-                    {faq.q}
-                    <span
-                      className={s.faqArrow}
-                      style={{
-                        transform: openFaqs[i] ? 'rotate(45deg)' : 'rotate(0deg)',
-                      }}
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <div className={s.faqContent}>{faq.a}</div>
-                </details>
+          <div className={s.container} style={{ maxWidth: 720 }}>
+            <h2 className={s.h2}>Masih ragu? Wajar.</h2>
+            <div>
+              {faqs.map((f, i) => (
+                <div key={i} className={s.faq}>
+                  <button onClick={() => setOpenFaq(openFaq === i ? null : i)}>{f.q}<span>{openFaq === i ? '−' : '+'}</span></button>
+                  {openFaq === i && <p>{f.a}</p>}
+                </div>
               ))}
             </div>
           </div>
         </section>
+
+        {/* FINAL */}
+        <section className={s.final}>
+          <h2>Masuk ke channel.<br /><span className={s.grad}>Lihat swarm bekerja.</span></h2>
+          <TrackedCTA className={s.btnPrimary} href={CHANNEL} productName="VilonaFX - LP1 - Final Join">
+            ✈️ Gabung @vilonaaichanel — Gratis
+          </TrackedCTA>
+          <p className={s.risk}>Trading berisiko. Tidak ada jaminan profit. Mulai dari akun demo. Jangan bagikan OTP/password.</p>
+        </section>
+
+        <div className={s.sticky}>
+          <TrackedCTA href={CHANNEL} productName="VilonaFX - LP1 - Sticky Join">✈️ Gabung Channel Gratis</TrackedCTA>
+        </div>
       </div>
     </Layout>
   );
