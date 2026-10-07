@@ -10,14 +10,10 @@ export function HeroSection() {
         display: 'flex',
         alignItems: 'center',
         paddingTop: '64px',
-        background: 'linear-gradient(135deg, #FFFAF0 0%, #FFFFFF 50%, #F7F7FC 100%)',
-        overflow: 'hidden',
+        background: '#FFFAF0',
         position: 'relative',
       }}
     >
-      {/* Decorative blobs */}
-      <div style={{ position: 'absolute', top: '-20%', right: '-10%', width: '500px', height: '500px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: '-10%', left: '-5%', width: '400px', height: '400px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(78,205,196,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
       <div style={innerBase}>
         <div

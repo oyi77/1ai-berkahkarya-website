@@ -17,16 +17,16 @@
   --text-white-85: rgba(255,255,255,0.85);
   --accent: #f97316;
   --accent-secondary: #ef4444;
-  --accent-gradient: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 50%, #dc2626 100%);
-  --hero-gradient: radial-gradient(ellipse at top, #1c1917 0%, var(--bg-primary) 70%);
+  --accent-gradient: var(--accent);
+  --hero-gradient: var(--bg-primary);
   --badge-bg: rgba(249,115,22,0.1);
   --badge-border: rgba(249,115,22,0.3);
   --badge-text: #f97316;
   --badge-dot: #f97316;
-  --cta-gradient: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  --cta-gradient: var(--accent);
   --cta-shadow: rgba(249,115,22,0.3);
   --cta-text: #0a0a0a;
-  --final-cta-gradient: radial-gradient(ellipse at bottom, #1c1917 0%, var(--bg-primary) 70%);
+  --final-cta-gradient: var(--bg-primary);
   --gradient-text-bg: var(--accent-gradient);
   overflow-x: hidden;
 }
@@ -87,11 +87,7 @@
 }
 
 .gradientText {
-  background: var(--gradient-text-bg);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 80px rgba(249,115,22,0.5);
+  color: var(--accent);
 }
 
 /* ── Subtitle ── */
@@ -436,11 +432,8 @@
 
 .statNum {
   font-size: 2.5rem;
-  font-weight: 900;
-  background: var(--gradient-text-bg);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 600;
+  color: var(--accent);
 }
 
 .statLabel {
@@ -541,7 +534,7 @@
 
 /* ── Urgency Banner ── */
 .urgencyBanner {
-  background: linear-gradient(90deg, #dc2626, #b91c1c);
+  background: #dc2626;
   color: #fff;
   text-align: center;
   padding: 0.75rem 1rem;

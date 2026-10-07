@@ -43,10 +43,7 @@
 
 .titleEm {
   font-style: italic;
-  background-image: linear-gradient(135deg, var(--margin-red), var(--indigo));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--margin-red);
 }
 
 .subtitle {
@@ -95,15 +92,14 @@
 }
 
 .filterPillActive {
-  background: linear-gradient(135deg, var(--margin-red), var(--indigo));
+  background: var(--margin-red);
   color: #fff;
-  border-color: transparent;
-  box-shadow: 0 2px 8px rgba(229, 57, 53, 0.25);
+  border-color: var(--margin-red);
 }
 
 .filterPillActive:hover {
   color: #fff;
-  background: linear-gradient(135deg, var(--margin-red), var(--indigo));
+  background: var(--margin-red);
   opacity: 0.92;
 }
 
@@ -244,21 +240,14 @@
   outline-offset: 2px;
 }
 
-/* Gradient accent on top */
+/* Editorial accent rule on top */
 .cardGradient {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--margin-red), var(--indigo), var(--margin-red));
-  background-size: 200% 100%;
-  animation: gradientShift 4s ease infinite;
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  height: 2px;
+  background: var(--margin-red);
 }
 
 /* Card head: icon + badge */
@@ -278,7 +267,7 @@
   font-size: 1.75rem;
   line-height: 1;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--paper-3), var(--paper-2));
+  background: var(--paper-3);
   border: 1px solid var(--rule);
   flex-shrink: 0;
 }
@@ -290,10 +279,10 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 4px 10px;
-  border-radius: var(--radius-full);
-  background: linear-gradient(135deg, rgba(229, 57, 53, 0.1), rgba(63, 81, 181, 0.1));
+  border-radius: var(--radius-sm);
+  background: transparent;
   color: var(--margin-red);
-  border: 1px solid rgba(229, 57, 53, 0.2);
+  border: 1px solid var(--margin-red);
   white-space: nowrap;
 }
 

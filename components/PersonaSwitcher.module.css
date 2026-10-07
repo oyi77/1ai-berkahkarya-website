@@ -14,7 +14,7 @@
   width: 100%;
   max-width: 800px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-default), transparent);
+  background: var(--border);
 }
 
 .container {
@@ -130,7 +130,7 @@
   align-items: flex-end;
   justify-content: flex-end;
   padding: var(--space-4);
-  background: linear-gradient(180deg, transparent 50%, rgba(5,8,13,0.9) 100%);
+  background: rgba(10, 10, 10, 0.45);
   pointer-events: none;
 }
 
@@ -185,23 +185,23 @@
 .cta.primary {
   background: var(--gradient-primary);
   color: var(--surface-0);
-  box-shadow: var(--shadow-md), var(--shadow-glow);
+  box-shadow: var(--shadow-md), var(--shadow-md);
 }
 
 .cta.primary:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  box-shadow: var(--shadow-lg), var(--shadow-md);
 }
 
 .cta.secondary {
   background: var(--gradient-primary-reverse);
   color: var(--surface-0);
-  box-shadow: var(--shadow-md), var(--shadow-glow-secondary);
+  box-shadow: var(--shadow-md), var(--shadow-md);
 }
 
 .cta.secondary:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg), var(--shadow-glow-secondary);
+  box-shadow: var(--shadow-lg), var(--shadow-md);
 }
 
 /* Responsive */

@@ -2,7 +2,7 @@
 
 .stats {
   padding: 4rem 1.5rem;
-  background: linear-gradient(180deg, var(--dark-hero) 0%, var(--dark-surface) 100%);
+  background: var(--dark-surface);
 }
 
 .statsGrid {

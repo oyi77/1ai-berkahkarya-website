@@ -69,12 +69,8 @@
 
 .metricValue {
   font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text-white);
-  background: linear-gradient(135deg, var(--margin-red), var(--stamp-red));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 600;
+  color: var(--margin-red);
 }
 
 .metricLabel {
@@ -98,12 +94,12 @@
   color: var(--surface-0);
   border-radius: 8px;
   text-decoration: none;
-  box-shadow: var(--shadow-md), var(--shadow-glow);
+  box-shadow: var(--shadow-md), var(--shadow-md);
   transition: box-shadow 0.2s, transform 0.15s;
 }
 
 .cta:hover {
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  box-shadow: var(--shadow-lg), var(--shadow-md);
   transform: translateY(-2px);
 }
 

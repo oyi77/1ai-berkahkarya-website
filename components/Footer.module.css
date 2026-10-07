@@ -1,5 +1,5 @@
-/* ── Footer: Awwwards Dark Mode ── */
-/* Dark footer with gradient border top, grid layout, social glow, back-to-top */
+/* ── Footer: Editorial ── */
+/* Near-black footer, flat hairline top, solid logo, plain back-to-top */
 
 @import url('../styles/animations.css');
 
@@ -11,24 +11,14 @@
   position: relative;
 }
 
-/* ── Gradient Border Top ── */
+/* ── Rule Top — flat hairline ── */
 .borderTop {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--margin-red) 20%,
-    #e85d4a 40%,
-    #ff8a65 60%,
-    var(--margin-red) 80%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: border-shimmer 4s ease-in-out infinite;
+  height: 1px;
+  background: var(--border);
 }
 
 /* ── Grid Layout ── */
@@ -57,17 +47,13 @@
 }
 
 .logoBerkah {
-  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text);
 }
 
 .logoKarya {
-  background: linear-gradient(135deg, var(--margin-red) 0%, #e85d4a 50%, #ff8a65 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--margin-red);
+  font-style: italic;
+  font-weight: 400;
 }
 
 .tagline {
@@ -102,10 +88,10 @@
 }
 
 .socialIcon:hover {
-  background: rgba(163, 53, 43, 0.15);
+  background: rgba(241, 241, 239, 0.15);
   color: #fff;
-  border-color: rgba(163, 53, 43, 0.4);
-  box-shadow: 0 0 20px rgba(163, 53, 43, 0.3), 0 0 40px rgba(163, 53, 43, 0.1);
+  border-color: rgba(241, 241, 239, 0.4);
+  box-shadow: 0 0 20px rgba(241, 241, 239, 0.3), 0 0 40px rgba(241, 241, 239, 0.1);
   transform: translateY(-2px);
 }
 
@@ -260,10 +246,8 @@
   right: 2rem;
   width: 48px;
   height: 48px;
-  background: rgba(163, 53, 43, 0.2);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(163, 53, 43, 0.3);
+  background: rgba(10, 10, 10, 0.75);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-full);
   color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
@@ -276,9 +260,9 @@
 }
 
 .backToTop:hover {
-  background: rgba(163, 53, 43, 0.4);
-  border-color: rgba(163, 53, 43, 0.6);
-  box-shadow: 0 0 30px rgba(163, 53, 43, 0.4);
+  background: var(--border);
+  border-color: var(--border-strong);
+  color: var(--text);
   transform: translateY(-4px);
 }
 

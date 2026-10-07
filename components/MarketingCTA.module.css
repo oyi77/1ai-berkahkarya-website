@@ -1,30 +1,8 @@
-/* ─── Marketing CTA — Gradient background + glow ─── */
+/* ─── Marketing CTA — flat elevated panel ─── */
 
 .section {
   position: relative;
-  background: linear-gradient(135deg, var(--bg-elevated), #2a3447);
-  overflow: hidden;
-}
-
-/* Animated glow orb */
-.section::before {
-  content: '';
-  position: absolute;
-  top: -20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 400px;
-  background: radial-gradient(ellipse, rgba(163, 53, 43, 0.4), transparent 70%);
-  filter: blur(80px);
-  animation: float 6s ease-in-out infinite alternate;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes float {
-  0% { transform: translateX(-50%) translateY(0); }
-  100% { transform: translateX(-50%) translateY(-20px); }
+  background: var(--bg-elevated);
 }
 
 .inner {
@@ -78,7 +56,7 @@
   border-color: var(--margin-red);
   color: var(--paper-2);
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(163, 53, 43, 0.4);
+  box-shadow: 0 12px 32px rgba(241, 241, 239, 0.4);
 }
 
 .button:focus-visible {

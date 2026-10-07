@@ -5,25 +5,11 @@ export function HeroSection({ scrollToCourses }: { scrollToCourses: () => void }
     <section
       style={{
         padding: '6rem 1.5rem 5rem',
-        background: 'linear-gradient(135deg, #0a0a1a 0%, #14142b 50%, #0a0a1a 100%)',
+        background: '#0a0a1a',
         textAlign: 'center',
         position: 'relative',
-        overflow: 'hidden',
       }}
     >
-      {/* Background glow */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '-30%',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '600px',
-          height: '600px',
-          background: 'radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }}
-      />
 
       <div style={{ ...innerStyle, position: 'relative', zIndex: 1 }}>
         <div
@@ -54,7 +40,7 @@ export function HeroSection({ scrollToCourses }: { scrollToCourses: () => void }
           }}
         >
           Kuasai Skill Digital Paling Dibutuhkan{' '}
-          <span style={{ background: 'linear-gradient(135deg, #6366f1, #a78bfa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          <span style={{ color: '#a5b4fc' }}>
             Saat Ini
           </span>
           , Langsung dari Praktisi.

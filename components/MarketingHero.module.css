@@ -1,125 +1,58 @@
-/* ─── Marketing Hero — Awwwards 2025 mesh gradient + large typography ─── */
+/* ─── Marketing Hero — Editorial (RE: Framer community templates) ─── */
+/* No mesh orbs, no blur glow, no gradient text. Flat base, hairline rule,
+   huge whitespace, restrained type. */
 
 .section {
   background: var(--paper);
   width: 100%;
   position: relative;
-  overflow: hidden;
+  border-bottom: 1px solid var(--rule);
 }
 
-/* Animated mesh gradient orbs — 3-layer ambient background */
-.section::before,
-.section::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.section::before {
-  width: 600px;
-  height: 600px;
-  top: -200px;
-  right: -150px;
-  background: radial-gradient(circle at 30% 30%, rgba(163, 53, 43, 0.18), rgba(163, 53, 43, 0) 70%);
-  animation: heroOrbA 14s ease-in-out infinite alternate;
-}
-
-.section::after {
-  width: 550px;
-  height: 550px;
-  bottom: -200px;
-  left: -140px;
-  background: radial-gradient(circle at 60% 40%, rgba(51, 69, 107, 0.2), rgba(51, 69, 107, 0) 70%);
-  animation: heroOrbB 18s ease-in-out infinite alternate;
-}
-
-/* Third mesh orb via extra element is in JSX */
-.meshOrbExtra {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  top: 30%;
-  left: 40%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(184, 134, 11, 0.1), transparent 70%);
-  filter: blur(60px);
-  pointer-events: none;
-  z-index: 0;
-  animation: heroOrbC 22s ease-in-out infinite alternate;
-}
-
-@keyframes heroOrbA {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-40px, 30px) scale(1.08); }
-}
-
-@keyframes heroOrbB {
-  0% { transform: translate(0, 0) scale(1.05); }
-  100% { transform: translate(50px, -30px) scale(0.96); }
-}
-
-@keyframes heroOrbC {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(60px, -40px) scale(1.1); }
-}
-
-/* Keep content above orbs */
 .wrap {
   position: relative;
-  z-index: 1;
   max-width: var(--container-xl);
   margin: 0 auto;
-  padding: var(--section-py) var(--section-px);
+  padding: clamp(5rem, 11vw, 9rem) var(--section-px) clamp(4rem, 8vw, 7rem);
 }
 
-/* Eyebrow — small uppercase mono chip */
+/* Eyebrow — plain uppercase mono, no pill, no border, no fill */
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  display: block;
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--margin-red);
-  border: 1px solid rgba(163, 53, 43, 0.2);
-  background: rgba(163, 53, 43, 0.06);
-  padding: 8px 16px;
-  border-radius: var(--radius-full);
-  margin-bottom: var(--space-5);
+  color: var(--text-subtle);
+  margin-bottom: var(--space-6);
 }
 
-/* Title — large serif display heading */
+/* Title — restrained weight, tight but readable leading */
 .title {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 700;
+  font-size: clamp(2.25rem, 5.5vw, 4rem);
+  font-weight: 600;
   color: var(--ink);
-  margin: 0 0 var(--space-5);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  margin: 0 0 var(--space-6);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  max-width: 20ch;
 }
 
-/* Gradient text accent for emphasized words */
+/* Emphasised word — italic only, no gradient */
 .titleEm {
   font-style: italic;
-  background: linear-gradient(135deg, var(--margin-red), var(--indigo));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 400;
 }
 
 .description {
   font-family: var(--font-body);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   color: var(--ink-muted);
-  line-height: 1.7;
-  margin: 0 0 var(--space-7);
-  max-width: 640px;
+  line-height: 1.6;
+  margin: 0 0 var(--space-8);
+  max-width: 52ch;
 }
 
 /* ─── CTA Row ─── */
@@ -127,8 +60,9 @@
 .ctaRow {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-4);
-  margin-bottom: var(--space-8);
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-9);
 }
 
 .btn {
@@ -136,67 +70,62 @@
   align-items: center;
   gap: var(--space-2);
   font-family: var(--font-ui);
-  font-size: var(--text-base);
-  font-weight: 600;
-  padding: var(--space-3) var(--space-6);
-  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
   text-decoration: none;
-  transition: all 0.25s var(--ease-out);
+  transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
 }
 
 .btnPrimary {
-  background: var(--margin-red);
-  color: var(--paper-2);
-  box-shadow: 0 4px 16px rgba(163, 53, 43, 0.25);
+  background: var(--ink);
+  color: var(--bg);
+  border: 1px solid var(--ink);
 }
 
 .btnPrimary:hover {
-  background: var(--margin-red-soft);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(163, 53, 43, 0.35);
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
 .btnSecondary {
   background: transparent;
   color: var(--ink);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--rule-strong);
 }
 
 .btnSecondary:hover {
-  background: rgba(163, 53, 43, 0.06);
-  border-color: var(--margin-red);
+  background: var(--glass-bg-hover);
+  border-color: var(--ink);
 }
 
 
-/* ─── Trust Strip ─── */
+/* ─── Trust Strip — hairline separated, no pills ─── */
 
 .trustStrip {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-5);
   list-style: none;
-  margin: 0 0 var(--space-8);
-  padding: 0;
+  margin: 0 0 var(--space-9);
+  padding: var(--space-5) 0 0;
+  border-top: 1px solid var(--rule-light);
 }
 
 .trustItem {
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-  background: var(--paper-2);
-  border: 1px solid var(--rule-light);
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-subtle);
 }
 
 .trustNote {
   font-family: var(--font-body);
   font-size: var(--text-sm);
   color: var(--ink-muted);
-  font-style: italic;
 }
 
 /* ─── Stats Area ─── */
@@ -215,27 +144,23 @@
   gap: 8px;
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--verification);
-  background: rgba(45, 106, 45, 0.08);
-  border: 1px solid rgba(45, 106, 45, 0.2);
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
+  color: var(--text-muted);
 }
 
 .liveDot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--verification);
-  animation: livePulse 2s ease-in-out infinite;
+  animation: livePulse 2.4s ease-in-out infinite;
 }
 
 @keyframes livePulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
 }
 
 .statsRow {
@@ -247,13 +172,13 @@
 .stat {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .statValue {
   font-family: var(--font-heading);
-  font-size: var(--text-3xl);
-  font-weight: 700;
+  font-size: var(--text-2xl);
+  font-weight: 600;
   color: var(--ink);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -263,32 +188,32 @@
   font-family: var(--font-body);
   font-size: var(--text-sm);
   color: var(--ink-muted);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 /* ─── Persona Toggle ─── */
 
 .personaToggle {
   display: inline-flex;
-  gap: 4px;
-  background: var(--paper-2);
-  border: 1px solid var(--rule-light);
-  border-radius: var(--radius-full);
-  padding: 4px;
-  margin-bottom: var(--space-6);
+  gap: 2px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  padding: 3px;
+  margin-bottom: var(--space-7);
 }
 
 .personaBtn {
   font-family: var(--font-ui);
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--ink-muted);
   background: transparent;
   border: none;
-  padding: 8px 20px;
-  border-radius: var(--radius-full);
+  padding: 7px 16px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background 0.2s ease;
 }
 
 .personaBtn:hover {
@@ -296,25 +221,25 @@
 }
 
 .personaBtnActive {
-  background: var(--margin-red);
-  color: var(--paper-2);
+  background: var(--glass-bg-hover);
+  color: var(--ink);
 }
 
 .personaBtnActive:hover {
-  color: var(--paper-2);
+  color: var(--ink);
 }
 
 /* ─── Fade + slide animation for copy switch ─── */
 
 .title,
 .description {
-  animation: personaFadeIn 0.4s ease;
+  animation: personaFadeIn 0.35s var(--ease-out);
 }
 
 @keyframes personaFadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -326,19 +251,20 @@
 
 @media (max-width: 640px) {
   .title {
-    font-size: clamp(2rem, 8vw, 2.5rem);
+    font-size: clamp(1.875rem, 8vw, 2.5rem);
   }
 
   .statsRow {
-    gap: var(--space-5);
+    gap: var(--space-6);
   }
 
   .statValue {
-    font-size: var(--text-2xl);
+    font-size: var(--text-xl);
   }
 
   .ctaRow {
     flex-direction: column;
+    align-items: stretch;
   }
 
   .btn {

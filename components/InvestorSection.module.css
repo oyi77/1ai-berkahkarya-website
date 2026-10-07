@@ -1,19 +1,8 @@
-/* ── Investor Section: Dark Premium ── */
+/* ── Investor Section: Editorial ── */
 .wrap {
   position: relative;
   overflow: hidden;
   background: var(--surface-0);
-}
-
-.wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 70% 50% at 30% 20%, var(--brand-teal-glow) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 60% at 70% 40%, rgba(124, 58, 237, 0.10) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 50% at 50% 80%, rgba(0, 217, 255, 0.06) 0%, transparent 70%);
-  pointer-events: none;
 }
 
 .container {
@@ -39,7 +28,7 @@
 }
 
 .accentLineViolet {
-  background: var(--brand-violet);
+  background: var(--accent-alt);
 }
 
 .accentLineGold {
@@ -111,9 +100,8 @@
   text-align: center;
   padding: var(--space-6);
   background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(var(--glass-blur));
   transition:
     opacity var(--duration-slower) var(--ease-out),
     transform var(--duration-slower) var(--ease-out),
@@ -128,11 +116,8 @@
 .metricValue {
   font-family: var(--font-display);
   font-size: var(--text-3xl);
-  font-weight: 800;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 600;
+  color: var(--accent);
   line-height: 1.1;
   margin-bottom: var(--space-1);
 }
@@ -168,9 +153,8 @@
   gap: var(--space-4);
   padding: var(--space-6);
   background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(var(--glass-blur));
   transition:
     opacity var(--duration-slower) var(--ease-out),
     transform var(--duration-slower) var(--ease-out),
@@ -184,7 +168,7 @@
 }
 
 .bmCard:hover {
-  border-color: var(--glass-border-hover);
+  border-color: var(--border-strong);
   box-shadow: var(--shadow-lg);
 }
 
@@ -192,7 +176,8 @@
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(0, 217, 255, 0.12) 0%, rgba(124, 58, 237, 0.1) 100%);
+  background: var(--glass-bg-hover);
+  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,10 +209,9 @@
 .archCard {
   padding: var(--space-8);
   background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--border);
   border-left: 3px solid var(--brand-teal);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(var(--glass-blur));
   text-align: center;
   transition:
     opacity var(--duration-slower) var(--ease-out),
@@ -272,9 +256,8 @@
   gap: var(--space-4);
   padding: var(--space-5);
   background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(var(--glass-blur));
   transition:
     opacity var(--duration-slower) var(--ease-out),
     transform var(--duration-slower) var(--ease-out),
@@ -287,7 +270,7 @@
 }
 
 .recordCard:hover {
-  border-color: var(--glass-border-hover);
+  border-color: var(--border-strong);
 }
 
 .checkIcon {
@@ -319,9 +302,8 @@
   text-align: center;
   padding: var(--space-10) var(--space-6);
   background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
-  backdrop-filter: blur(var(--glass-blur-strong));
   position: relative;
   overflow: hidden;
   transition:
@@ -332,15 +314,6 @@
 .ctaWrap.hidden {
   opacity: 0;
   transform: translateY(32px);
-}
-
-.ctaWrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0, 217, 255, 0.05) 0%, transparent 65%);
-  pointer-events: none;
 }
 
 .ctaTitle {

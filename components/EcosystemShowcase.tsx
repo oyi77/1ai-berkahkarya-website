@@ -13,13 +13,6 @@ interface Props {
 export default function EcosystemShowcase({ title, subtitle, items }: Props) {
   return (
     <section className={styles.section} id="produk" aria-labelledby="ecosystem-title">
-      {/* Animated mesh gradient background */}
-      <div className={styles.meshBg} aria-hidden="true">
-        <div className={styles.meshOrb1} />
-        <div className={styles.meshOrb2} />
-        <div className={styles.meshOrb3} />
-      </div>
-
       <div className={styles.wrap}>
         <div className={`animate-on-scroll ${styles.heading}`} data-animate="fade-up">
           <span className={styles.eyebrow}>LIVE PRODUCTS</span>
@@ -44,9 +37,6 @@ export default function EcosystemShowcase({ title, subtitle, items }: Props) {
                 style={{ animationDelay: `${idx * 80}ms` }}
                 onClick={() => trackCTAClick('ecosystem_showcase', item.url)}
               >
-                {/* Glow border on hover */}
-                <span className={styles.cardGlow} aria-hidden="true" />
-
                 {item.status === 'starting' && (
                   <span className={`${styles.badge} ${styles.badgeStarting}`}>
                     <span className={styles.badgeDot} /> STARTING

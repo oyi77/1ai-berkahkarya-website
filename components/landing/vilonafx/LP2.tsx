@@ -8,13 +8,22 @@ import LPVariantTracker from '../LPVariantTracker';
 import { useEngagementTracking } from '@/hooks/useEngagementTracking';
 
 const CHANNEL = 'https://t.me/vilonaaichanel';
+const BOT = 'https://t.me/berkahkaryaforexbotbot';
 
-const STAGES = ['SCAN', 'DEBAT', 'VOTE', 'FILTER', 'KIRIM'];
+// Verified live-bot facts (2026-10-06): FREE 3 sinyal Gold/hari + 3 analisa AI/hari;
+// ELITE Rp254.000/bln; LIFETIME Rp1.990.900 sekali bayar.
+const STAGES = ['SCAN', 'STRUKTUR', 'KILLER ZONE', 'RISIKO', 'KIRIM'];
 const NODES = [
-  { name: 'DEEPSEEK', task: 'struktur H1–D1', pct: 82, on: true },
-  { name: 'GPT-4o', task: 'konteks sesi London', pct: 76, on: true },
-  { name: 'CLAUDE', task: 'risiko RR ≥ 1:1.5', pct: 91, on: true },
-  { name: 'FILTER', task: 'tolak tanpa 3/3', pct: 100, on: false },
+  { name: 'SMC / LIQUIDITY', task: 'BOS, CHoCH, liquidity grab multi-timeframe', pct: 88, on: true },
+  { name: 'S-TIER', task: 'grade setup + SBR/BRS Killer Zone', pct: 74, on: true },
+  { name: 'AHZ RADAR', task: 'validasi RR ≥ 1:1.5 & SL eksplisit', pct: 91, on: true },
+  { name: 'FILTER', task: 'tolak setup di bawah standar', pct: 100, on: false },
+];
+
+const TIERS = [
+  { name: '🆓 FREE', price: 'Rp0 — selamanya', feats: '3 sinyal Gold/hari (Grade B/C) · 3 analisa AI/hari · aktif via /start' },
+  { name: '🥈 ELITE', price: 'Rp254.000/bulan', feats: 'Unlimited signals (40+/minggu) · S-TIER + SBR Killer Zone · multi-asset · AI unlimited · priority 24/7 · EA Auto-Sync' },
+  { name: '🥇 LIFETIME', price: 'Rp1.990.900 sekali bayar', feats: 'Semua ELITE selamanya · private signals 5 menit lebih awal · semua update gratis' },
 ];
 
 export default function VilonaFxlp2({ locale = 'id' }: { locale?: string }) {
@@ -41,8 +50,8 @@ export default function VilonaFxlp2({ locale = 'id' }: { locale?: string }) {
 
   return (
     <Layout
-      title="Vilona Mission Control — Pipeline Sinyal 3 AI"
-      description="Intip ruang komando Vilona: 3 AI memindai, berdebat, voting. Yang lolos masuk channel Telegram gratis."
+      title="Vilona Mission Control — Pipeline Sinyal 9 Engines"
+      description="Intip ruang komando Vilona: 9 AI engines memindai, menilai, voting. Yang lolos masuk channel Telegram gratis."
     >
       <div className={s.wrapper}>
         <LPVariantTracker variant={2} service="vilonafx" />
@@ -53,8 +62,8 @@ export default function VilonaFxlp2({ locale = 'id' }: { locale?: string }) {
             <div className={s.badge}><span className={s.dot} />MISSION CONTROL — ONLINE</div>
             <h1 className={s.title}>Ruang Komando <span className={s.grad}>di Balik Setiap Sinyal.</span></h1>
             <p className={s.sub}>
-              Tidak ada satu AI yang memutuskan sendiri. Setiap kandidat setup melewati
-              pipeline <strong>5 tahap</strong> — dan hanya yang lolos voting bulat masuk channel.
+              Tidak ada satu engine yang memutuskan sendiri. Setiap kandidat setup melewati
+              pipeline <strong>5 tahap</strong> — dan hanya yang lolos konsensus 9 engines masuk channel.
             </p>
 
             {/* pipeline */}
@@ -81,7 +90,7 @@ export default function VilonaFxlp2({ locale = 'id' }: { locale?: string }) {
         <section className={s.section}>
           <div className={s.container}>
             <p className={s.eyebrow}>UNIT AKTIF</p>
-            <h2 className={s.h2}>4 node. Masing-masing punya <span className={s.grad}>hak veto.</span></h2>
+            <h2 className={s.h2}>4 divisi. Masing-masing punya <span className={s.grad}>hak veto.</span></h2>
             <div className={s.grid2}>
               {NODES.map((n) => (
                 <div key={n.name} className={s.unit}>
@@ -95,7 +104,7 @@ export default function VilonaFxlp2({ locale = 'id' }: { locale?: string }) {
                 </div>
               ))}
             </div>
-            <p className={s.note}>Satu saja menolak → setup dibuang. Standar ini yang menjaga channel dari sinyal asal-asalan.</p>
+            <p className={s.note}>Satu divisi menolak → setup dibuang. Standar ini yang menjaga channel dari sinyal asal-asalan.</p>
           </div>
         </section>
 
@@ -111,7 +120,7 @@ export default function VilonaFxlp2({ locale = 'id' }: { locale?: string }) {
               </div>
               <div className={s.new}>
                 <h3>Via channel Vilona</h3>
-                <ul><li>3 AI lintas-periksa</li><li>Setup lemah otomatis ditolak</li><li>Entry/SL/TP selalu eksplisit</li></ul>
+                <ul><li>9 engines lintas-periksa</li><li>Setup lemah otomatis ditolak</li><li>Entry/SL/TP selalu eksplisit</li></ul>
               </div>
             </div>
             <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
@@ -119,6 +128,27 @@ export default function VilonaFxlp2({ locale = 'id' }: { locale?: string }) {
                 Bandingkan Sendiri — Gabung Gratis →
               </TrackedCTA>
             </div>
+          </div>
+        </section>
+
+        {/* pricing */}
+        <section className={s.section}>
+          <div className={s.container}>
+            <p className={s.eyebrow}>HARGA JUJUR</p>
+            <h2 className={s.h2}>Channel gratis. Premium opsional.</h2>
+            <div className={s.grid2}>
+              {TIERS.map((t) => (
+                <div key={t.name} className={s.unit}>
+                  <div className={s.unitTop}><span className={s.unitName}>{t.name}</span></div>
+                  <div className={s.unitTask} style={{ fontWeight: 700, color: 'var(--ac)' }}>{t.price}</div>
+                  <p className={s.note} style={{ marginTop: 0 }}>{t.feats}</p>
+                </div>
+              ))}
+            </div>
+            <p className={s.note}>
+              Upgrade via bot <a href={BOT} style={{ textDecoration: 'underline' }}>@berkahkaryaforexbotbot</a> → /subscribe.
+              Bayar QRIS/VA/transfer, aktif otomatis.
+            </p>
           </div>
         </section>
 
@@ -144,8 +174,9 @@ export default function VilonaFxlp2({ locale = 'id' }: { locale?: string }) {
           <div className={s.container} style={{ maxWidth: 720 }}>
             <h2 className={s.h2}>Pertanyaan jujur</h2>
             {[
-              { q: 'Berapa sinyal per hari?', a: 'Tidak ditarget. Sistem hanya mengirim yang lolos voting 3/3 — di hari sepi bisa nol. Itu fitur, bukan bug: diam lebih baik daripada sinyal lemah.' },
+              { q: 'Berapa sinyal per hari?', a: 'Tidak ditarget. Sistem hanya mengirim yang lolos konsensus 9 engines — di hari sepi bisa nol. Itu fitur, bukan bug: diam lebih baik daripada sinyal lemah.' },
               { q: 'Apakah dijamin profit?', a: 'Tidak. Setiap setup bisa salah; SL ada untuk itu. Channel ini alat disiplin, bukan janji hasil. Mulai dari demo.' },
+              { q: 'Apa bedanya FREE dan ELITE?', a: 'FREE: 3 sinyal Gold/hari (Grade B/C) + 3 analisa AI/hari. ELITE Rp254.000/bulan: unlimited signals, S-TIER + SBR Killer Zone, multi-asset, EA Auto-Sync. LIFETIME Rp1.990.900 sekali bayar + private signals 5 menit lebih awal.' },
             ].map((f, i) => (
               <div key={i} className={s.faq}>
                 <button onClick={() => setOpenFaq(openFaq === i ? null : i)}>{f.q}<span>{openFaq === i ? '−' : '+'}</span></button>

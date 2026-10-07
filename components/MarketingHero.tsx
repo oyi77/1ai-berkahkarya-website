@@ -33,7 +33,7 @@ interface Props {
 
 /**
  * Render the title, wrapping odd-indexed *asterisk* segments in an <em>
- * with gradient text. Non-em segments pass through as-is so `<br/>` works.
+ * (italic, no gradient). Non-em segments pass through as-is so `<br/>` works.
  */
 function renderTitle(title: string) {
   const html = title
@@ -67,8 +67,6 @@ export default function MarketingHero({
     : { pemula: 'Beginner', investor: 'Investor' };
   return (
     <section className={styles.section} aria-labelledby="marketing-hero-title">
-      {/* Animated mesh gradient background */}
-      <div className={styles.meshOrbExtra} aria-hidden="true" />
       <div className={styles.wrap}>
         {personaCopy && (
           <div

@@ -55,7 +55,7 @@
     box-shadow: 0 0 20px var(--accent-glow);
   }
   50% {
-    box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(79, 140, 255, 0.15);
+    box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(241, 241, 239, 0.15);
   }
 }
 
@@ -115,18 +115,15 @@
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, var(--bg-surface) 25%, var(--bg-surface-hover) 50%, var(--bg-surface) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 2s linear infinite;
+  /* no-op: shimmer gradient removed — use .skeleton below for loading */
 }
 
 .animate-rotate {
-  animation: rotate-slow 20s linear infinite;
+  /* no-op: background rotation is an AI-slop tell */
 }
 
 .animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 5s ease infinite;
+  /* no-op: gradient shift is an AI-slop tell */
 }
 
 /* ─── Stagger Delays ─── */
@@ -244,11 +241,11 @@
 
 /* ─── Glow on Hover ─── */
 .hover-glow {
-  transition: box-shadow var(--duration-base) var(--ease-out);
+  transition: border-color var(--duration-base) var(--ease-out);
 }
 
 .hover-glow:hover {
-  box-shadow: var(--shadow-glow);
+  border-color: var(--border-strong);
 }
 
 /* ─── Magnetic Effect (requires JS) ─── */
@@ -256,19 +253,9 @@
   transition: transform var(--duration-fast) var(--ease-out);
 }
 
-/* ─── Text Gradient Animation ─── */
+/* ─── Text Gradient Animation — removed (AI-slop) ─── */
 .text-gradient-animated {
-  background: linear-gradient(
-    90deg,
-    var(--accent),
-    var(--secondary),
-    var(--accent)
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 4s linear infinite;
+  color: var(--text);
 }
 
 /* ─── Skeleton Loading ─── */
