@@ -56,7 +56,6 @@
   border-color: var(--margin-red);
   color: var(--paper-2);
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(241, 241, 239, 0.4);
 }
 
 .button:focus-visible {

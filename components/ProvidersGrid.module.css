@@ -23,5 +23,5 @@
 }
 .chip:hover {
   border-color: var(--teal-primary);
-  background: rgba(0,217,255,0.04);
+  background: rgba(241,241,239,0.04);
 }

@@ -37,8 +37,8 @@
   gap: 0.5rem;
   padding: 0.5rem 1.25rem;
   border-radius: 999px;
-  background: rgba(0,217,255,0.1);
-  border: 1px solid rgba(0,217,255,0.25);
+  background: rgba(241,241,239,0.1);
+  border: 1px solid rgba(241,241,239,0.25);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -369,8 +369,8 @@
 }
 
 .compareNew {
-  background: rgba(0,217,255,0.05);
-  border: 1px solid rgba(0,217,255,0.25);
+  background: rgba(241,241,239,0.05);
+  border: 1px solid rgba(241,241,239,0.25);
 }
 
 .compareOld h3,

@@ -20,8 +20,8 @@
 /* Glow effect */
 .glow {
   box-shadow:
-    0 0 20px rgba(0, 217, 255, 0.3),
-    0 0 60px rgba(0, 217, 255, 0.1);
+    0 0 20px rgba(241,241,239, 0.3),
+    0 0 60px rgba(241,241,239, 0.1);
 }
 
 /* Float animation */

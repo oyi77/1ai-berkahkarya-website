@@ -61,7 +61,7 @@
   border-radius: 50%;
   background: var(--accent);
   border: 3px solid var(--dark-hero);
-  box-shadow: 0 0 0 2px var(--accent), 0 0 12px rgba(0,217,255,0.3);
+  box-shadow: 0 0 0 2px var(--accent), 0 0 12px rgba(241,241,239,0.3);
   z-index: 2;
 }
 

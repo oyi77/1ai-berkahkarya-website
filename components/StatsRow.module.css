@@ -107,13 +107,12 @@
 .ctaLink:hover {
   background: var(--margin-red);
   color: var(--surface-0);
-  box-shadow: 0 0 24px rgba(0, 217, 255, 0.3);
 }
 
 .ctaLink:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 3px rgba(0, 217, 255, 0.3),
+    0 0 0 3px rgba(241,241,239, 0.3),
     0 0 0 1px var(--margin-red);
 }
 

@@ -40,8 +40,8 @@
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-white);
-  background: rgba(0,217,255,0.08);
-  border: 1px solid rgba(0,217,255,0.2);
+  background: rgba(241,241,239,0.08);
+  border: 1px solid rgba(241,241,239,0.2);
   border-radius: 12px;
   padding: 1.25rem 2rem;
   line-height: 1.6;
