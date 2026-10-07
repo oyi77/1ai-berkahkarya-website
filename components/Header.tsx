@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState, useRef } from 'react';
 import styles from './Header.module.css';
-import { trackAddToCart } from '@/lib/tracking';
+import { trackGAEvent } from '@/lib/tracking';
 
 interface NavItem {
   slug: string;
@@ -137,14 +137,14 @@ export default function Header() {
           <a
             href={`/${locale}/transparency`}
             className={styles.transparencyLink}
-            onClick={() => trackAddToCart({content_name:'Header Transparency',content_id:'header-transparency',content_type:'transparency',destination:'/transparency',destination_url:`/${locale}/transparency`})}
+            onClick={() => trackGAEvent('nav_transparency', { nav: 'header' })}
           >
             {locale === 'id' ? 'Transparansi' : 'Transparency'}
           </a>
           <a
             href={`/${locale}#persona-switcher`}
             className={styles.ctaBtn}
-            onClick={() => trackAddToCart({content_name:'Header CTA Mulai',content_id:'header-cta-mulai',content_type:'cta_mulai',destination:'/#persona-switcher',destination_url:`/${locale}#persona-switcher`})}
+            onClick={() => trackGAEvent('cta_mulai', { placement: 'header' })}
           >
             {locale === 'id' ? 'Mulai Sekarang' : 'Get Started'}
           </a>
@@ -171,14 +171,14 @@ export default function Header() {
           <a
             href={`/${locale}/transparency`}
             className={styles.transparencyLink}
-            onClick={() => trackAddToCart({content_name:'Mobile Transparency',content_id:'mobile-transparency',content_type:'transparency',destination:'/transparency',destination_url:`/${locale}/transparency`})}
+            onClick={() => trackGAEvent('nav_transparency', { nav: 'mobile_menu' })}
           >
             {locale === 'id' ? 'Transparansi' : 'Transparency'}
           </a>
           <a
             href={`/${locale}#persona-switcher`}
             className={styles.mobileCtaBtn}
-            onClick={() => trackAddToCart({content_name:'Mobile CTA Mulai',content_id:'mobile-cta-mulai',content_type:'cta_mulai',destination:'/#persona-switcher',destination_url:`/${locale}#persona-switcher`})}
+            onClick={() => trackGAEvent('cta_mulai', { placement: 'mobile_menu' })}
           >
             {locale === 'id' ? 'Mulai Sekarang' : 'Get Started'}
           </a>

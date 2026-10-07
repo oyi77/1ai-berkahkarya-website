@@ -1,16 +1,7 @@
 .section {
   padding: 5rem 1.5rem;
-  background: linear-gradient(180deg, #0a0a0a 0%, #0f0a00 100%);
+  background: var(--bg);
   position: relative;
-  overflow: hidden;
-}
-.section::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 50%; transform: translateX(-50%);
-  width: 600px; height: 600px;
-  background: radial-gradient(ellipse, rgba(196,163,90,0.06) 0%, transparent 70%);
-  pointer-events: none;
 }
 .container {
   max-width: 760px;
@@ -140,7 +131,7 @@
 .compareList li.bad { color: #444; }
 .compareList li.good { color: #bbb; }
 .offerBox {
-  background: linear-gradient(135deg, rgba(196,163,90,0.08), rgba(196,163,90,0.03));
+  background: rgba(196,163,90,0.06);
   border: 1px solid rgba(196,163,90,0.25);
   border-radius: 4px;
   padding: 2rem;
@@ -219,7 +210,6 @@
 }
 .ctaBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(196,163,90,0.3);
 }
 .ctaSecondary {
   display: flex;

@@ -11,7 +11,7 @@
 
 /* ============ HERO ============ */
 .hero {
-  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  background: var(--paper);
   text-align: center;
   padding: clamp(4rem, 10vw, 7rem) var(--section-px);
   border-bottom: 1px solid var(--rule-light);
@@ -24,7 +24,7 @@
   text-transform: uppercase;
   color: var(--margin-red);
   font-weight: 600;
-  background: rgba(163, 53, 43, 0.08);
+  background: rgba(241, 241, 239, 0.08);
   padding: 0.35rem 0.9rem;
   border-radius: 999px;
   margin-bottom: var(--space-4);
@@ -182,13 +182,13 @@
 }
 
 .badgeBeta {
-  background: rgba(184, 134, 11, 0.15);
+  background: rgba(214, 211, 205, 0.15);
   color: var(--brand-gold);
 }
 
 .badgeStarting {
-  background: rgba(51, 69, 107, 0.12);
-  color: var(--indigo);
+  background: rgba(38, 38, 38, 0.12);
+  color: var(--accent-alt);
 }
 
 /* ============ ROADMAP ============ */
@@ -229,7 +229,7 @@
 
 .timelineItem.current .timelineDot {
   background: var(--margin-red);
-  box-shadow: 0 0 0 4px rgba(163, 53, 43, 0.15);
+  box-shadow: 0 0 0 4px rgba(241, 241, 239, 0.15);
 }
 
 .timelineQuarter {
@@ -328,7 +328,7 @@
 
 /* ============ CTA ============ */
 .cta {
-  background: linear-gradient(180deg, var(--paper-2) 0%, var(--paper-3) 100%);
+  background: var(--paper-2);
   text-align: center;
 }
 

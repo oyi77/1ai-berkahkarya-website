@@ -1,5 +1,7 @@
-/* ─── 1AI BerkahKarya Design System — Dark Mode Awwwards ─── */
-/* Deep blacks, vibrant blue accent, glassmorphism, mesh gradients */
+/* ─── 1AI BerkahKarya Design System — Editorial Neutral ─── */
+/* RE'd from Framer community templates (Nubo / Optivio / Powder / Kern).
+   1 font family · 1 accent used sparingly · neutral base · 1px borders
+   instead of glow · NO mesh gradients, NO orbs, NO purple/blue gradient. */
 
 :root {
   /* ─── Typography ─── */
@@ -42,20 +44,20 @@
   --ink-subtle: var(--text-subtle);
   --ink-ghost: var(--text-ghost);
 
-  /* ─── Accent ─── */
-  --accent: #4F8CFF;
-  --accent-hover: #6BA0FF;
-  --accent-glow: rgba(79, 140, 255, 0.3);
-  --accent-subtle: rgba(79, 140, 255, 0.1);
+  /* ─── Accent: single neutral ember (Framer restraint) ─── */
+  --accent: #f1f1ef;
+  --accent-hover: #ffffff;
+  --accent-glow: rgba(241, 241, 239, 0.1);
+  --accent-subtle: rgba(241, 241, 239, 0.06);
   --color-primary: var(--accent);
   --color-primary-hover: var(--accent-hover);
   --color-primary-glow: var(--accent-glow);
   --color-primary-strong: var(--accent);
 
-  /* ─── Secondary Accent ─── */
-  --secondary: #8B5CF6;
-  --secondary-hover: #A78BFA;
-  --secondary-glow: rgba(139, 92, 246, 0.3);
+  /* ─── Secondary Accent — same neutral family, not a second hue ─── */
+  --secondary: #d6d3cd;
+  --secondary-hover: #efece4;
+  --secondary-glow: rgba(214, 211, 205, 0.1);
   --color-secondary: var(--secondary);
   --color-secondary-hover: var(--secondary-hover);
 
@@ -81,39 +83,39 @@
   --indigo: var(--secondary);
   --indigo-soft: var(--secondary-hover);
 
-  /* ─── Glassmorphism ─── */
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-bg-hover: rgba(255, 255, 255, 0.06);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-hover: rgba(255, 255, 255, 0.12);
-  --glass-blur: 12px;
-  --glass-blur-strong: 24px;
+  /* ─── Glassmorphism — REMOVED (flat surfaces; border does the work) ─── */
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-bg-hover: rgba(255, 255, 255, 0.04);
+  --glass-border: var(--border);
+  --glass-border-hover: var(--border-strong);
+  --glass-blur: 0px;
+  --glass-blur-strong: 0px;
 
-  /* ─── Mesh Gradients ─── */
-  --gradient-mesh-1: radial-gradient(ellipse at 20% 50%, rgba(79, 140, 255, 0.15) 0%, transparent 50%);
-  --gradient-mesh-2: radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-  --gradient-mesh-3: radial-gradient(ellipse at 50% 80%, rgba(79, 140, 255, 0.08) 0%, transparent 50%);
-  --gradient-hero: linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 100%);
-  --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%);
-  --gradient-primary: linear-gradient(135deg, var(--accent), var(--secondary));
-  --gradient-primary-reverse: linear-gradient(315deg, var(--accent), var(--secondary));
-  --gradient-secondary: linear-gradient(135deg, var(--secondary), #A78BFA);
-  --gradient-success: linear-gradient(135deg, #22C55E, #4ADE80);
+  /* ─── Gradients — flattened. Mesh/orb layers deleted. ─── */
+  --gradient-mesh-1: none;
+  --gradient-mesh-2: none;
+  --gradient-mesh-3: none;
+  --gradient-hero: linear-gradient(180deg, var(--bg) 0%, var(--bg) 100%);
+  --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, rgba(255,255,255,0) 100%);
+  --gradient-primary: var(--accent);
+  --gradient-primary-reverse: var(--accent);
+  --gradient-secondary: var(--secondary);
+  --gradient-success: var(--color-success);
 
   /* ─── Shadows ─── */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
   --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 20px var(--accent-glow);
-  --shadow-glow-secondary: 0 0 20px var(--secondary-glow);
+  --shadow-glow: none;
+  --shadow-glow-secondary: none;
 
-  /* ─── Radius ─── */
+  /* ─── Radius — 8 card / 4 control / pill ─── */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
-  --radius-2xl: 24px;
+  --radius-2xl: 20px;
   --radius-full: 9999px;
 
   /* ─── Spacing Scale ─── */
@@ -254,20 +256,9 @@
   --track-color: var(--accent);
 }
 
-/* ─── Gradient Text ─── */
-.gradient-text {
-  background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-gold {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+/* ─── Gradient Text — flattened to solid ─── */
+.gradient-text { color: var(--text); }
+.gradient-text-gold { color: var(--text); }
 
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -277,8 +268,8 @@
 
 /* ─── Selection ─── */
 ::selection {
-  background: var(--accent);
-  color: var(--text);
+  background: var(--border);
+  color: var(--bg);
 }
 
 /* ─── Keyframe Animations ─── */
@@ -312,42 +303,12 @@
 @keyframes scale-in {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.96);
   }
   to {
     opacity: 1;
     transform: scale(1);
   }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px var(--accent-glow);
-  }
-  50% {
-    box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(79, 140, 255, 0.15);
-  }
-}
-
-@keyframes rotate-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes mesh-move {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.05); }
-  66% { transform: translate(-20px, 20px) scale(0.95); }
 }
 
 /* ─── Animation Utility Classes ─── */
@@ -364,21 +325,7 @@
 }
 
 .animate-scale-in {
-  animation: scale-in var(--duration-slow) var(--ease-spring) forwards;
-}
-
-.animate-float {
-  animation: float 6s var(--ease-in-out) infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s var(--ease-in-out) infinite;
-}
-
-.animate-shimmer {
-  background: linear-gradient(90deg, var(--bg-surface) 25%, var(--bg-surface-hover) 50%, var(--bg-surface) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 2s linear infinite;
+  animation: scale-in var(--duration-slow) var(--ease-out) forwards;
 }
 
 /* Stagger delays for sequential reveals */

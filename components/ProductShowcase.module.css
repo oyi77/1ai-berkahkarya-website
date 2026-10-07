@@ -16,7 +16,7 @@
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #0a6e6e;
+  color: var(--accent);
   background: rgba(10,110,110,0.08);
   padding: 0.3rem 0.9rem;
   border-radius: 20px;
@@ -57,10 +57,10 @@
   color: #555;
   transition: all 0.15s;
 }
-.tab:hover { border-color: #0a6e6e; color: #0a6e6e; }
+.tab:hover { border-color: var(--accent); color: var(--accent); }
 .tabActive {
-  background: #0a6e6e;
-  border-color: #0a6e6e;
+  background: var(--accent);
+  border-color: var(--accent);
   color: #fff;
 }
 
@@ -85,7 +85,7 @@
   position: relative;
 }
 .card:hover {
-  border-color: #0a6e6e;
+  border-color: var(--accent);
   box-shadow: 0 8px 30px rgba(0,0,0,0.1);
   transform: translateY(-3px);
 }
@@ -121,7 +121,7 @@
 }
 .cardTagline {
   font-size: 0.78rem;
-  color: #0a6e6e;
+  color: var(--accent);
   font-weight: 600;
   margin-bottom: 0.6rem;
 }
@@ -146,7 +146,7 @@
   gap: 0.45rem;
 }
 .checkIcon {
-  color: #0a6e6e;
+  color: var(--accent);
   font-weight: 700;
   flex-shrink: 0;
   margin-top: 0.05rem;
@@ -185,7 +185,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  background: #0a6e6e;
+  background: var(--accent);
   color: #fff;
   font-size: 0.78rem;
   font-weight: 700;
@@ -206,7 +206,7 @@
 }
 .cardFeaturedRight {
   min-width: 280px;
-  background: linear-gradient(135deg, #0a6e6e, #064d4d);
+  background: var(--accent);
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -232,7 +232,7 @@
   align-items: center;
   gap: 0.4rem;
   background: #fff;
-  color: #0a6e6e;
+  color: var(--accent);
   font-size: 0.85rem;
   font-weight: 800;
   padding: 0.75rem 1.5rem;

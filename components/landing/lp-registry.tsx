@@ -79,8 +79,11 @@ register('jasa-design', '1', JasaDesignLP1);
 // VilonaFX LP (custom)
 // ══════════════════════════════════════
 import VilonaFXLP1 from './vilonafx/LP1';
+import VilonaFXLP2 from './vilonafx/LP2';
+import VilonaFXLP3 from './vilonafx/LP3';
 register('vilonafx', '1', VilonaFXLP1);
-register('vilonafx', '2', VilonaFXLP1);
+register('vilonafx', '2', VilonaFXLP2);
+register('vilonafx', '3', VilonaFXLP3);
 
 // ══════════════════════════════════════
 // Jasa Kontraktor LP (custom)
@@ -238,7 +241,7 @@ export const SERVICE_METADATA: ServiceMeta[] = [
     icon: '🤖',
     displayName: { id: 'Vilona Trade FX', en: 'Vilona Trade FX' },
     description: { id: 'AI Trading Assistant — sinyal trading akurat, auto-eksekusi, whitelabel.', en: 'AI Trading Assistant — accurate signals, auto-execution, whitelabel platform.' },
-    lps: ['1'],
+    lps: ['1', '2', '3'],
   },
   {
     service: 'jasa-kontraktor',

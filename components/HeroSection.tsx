@@ -45,7 +45,7 @@ interface HeroProps {
 }
 
 /**
- * Render the title, wrapping segments between *asterisks* in a gradient span.
+ * Render the title, wrapping segments between *asterisks* in an italic span.
  * Supports <br/> tags for line breaks.
  */
 function renderTitle(title: string) {
@@ -129,32 +129,6 @@ export default function HeroSection({
       aria-labelledby="hero-title"
       data-dark={dark}
     >
-      {/* Animated mesh gradient background */}
-      <div className={styles.meshGradient}>
-        <div className={styles.meshOrb1} />
-        <div className={styles.meshOrb2} />
-        <div className={styles.meshOrb3} />
-      </div>
-
-      {/* Grid pattern overlay */}
-      <div className={styles.gridPattern} />
-
-      {/* Floating particles */}
-      <div className={styles.particles} aria-hidden="true">
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div
-            key={i}
-            className={styles.particle}
-            style={{
-              '--delay': `${Math.random() * 8}s`,
-              '--x': `${Math.random() * 100}%`,
-              '--size': `${2 + Math.random() * 4}px`,
-              '--duration': `${10 + Math.random() * 20}s`,
-            } as React.CSSProperties}
-          />
-        ))}
-      </div>
-
       <div className={styles.container}>
         <div className={styles.content}>
           {/* Eyebrow with live indicator */}
@@ -282,7 +256,6 @@ export default function HeroSection({
         {/* Character illustration */}
         {character && !stats && !metrics && (
           <div className={styles.characterWrap}>
-            <div className={styles.glowOrb} />
             <img src={character.src} alt={character.alt} className={styles.characterImg} />
           </div>
         )}

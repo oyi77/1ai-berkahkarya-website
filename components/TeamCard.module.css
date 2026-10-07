@@ -29,8 +29,8 @@
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 0.75rem;
-  box-shadow: 0 0 20px rgba(0, 217, 255, 0.2), 0 4px 16px rgba(0,0,0,0.1);
-  border: 3px solid rgba(0, 217, 255, 0.15);
+  box-shadow: 0 0 20px rgba(241,241,239, 0.2), 0 4px 16px rgba(0,0,0,0.1);
+  border: 3px solid rgba(241,241,239, 0.15);
 }
 .photo {
   width: 100%;
@@ -43,23 +43,23 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--dark-hero), var(--dark-secondary));
+  background: var(--dark-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 800;
-  color: var(--teal-primary);
+  color: var(--accent);
   margin-bottom: 0.75rem;
-  border: 3px solid rgba(0, 217, 255, 0.15);
+  border: 3px solid rgba(241,241,239, 0.15);
 }
 
 .name { font-size: 1.1rem; font-weight: 800; }
 .role {
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--teal-primary);
+  color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }

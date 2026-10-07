@@ -3,17 +3,6 @@
   background: var(--surface-light-0);
   padding: var(--section-py) var(--section-px);
   position: relative;
-  overflow: hidden;
-}
-
-.section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 20% 40%, rgba(0, 217, 255, 0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 80% 60%, rgba(124, 58, 237, 0.04) 0%, transparent 55%);
-  pointer-events: none;
 }
 
 .container {
@@ -91,8 +80,8 @@
 
 /* Featured card */
 .featured {
-  border-color: var(--brand-teal);
-  box-shadow: 0 0 30px var(--brand-teal-glow);
+  border-color: var(--margin-red);
+  box-shadow: 0 0 30px var(--glass-bg-hover);
 }
 
 @media (min-width: 1024px) {
@@ -293,7 +282,7 @@
   }
 
   .featured {
-    box-shadow: 0 0 30px var(--brand-teal-glow);
+    box-shadow: 0 0 30px var(--glass-bg-hover);
   }
 
   .header h2 {

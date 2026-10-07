@@ -30,8 +30,8 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--margin-red);
-  background: rgba(163, 53, 43, 0.06);
-  border: 1px solid rgba(163, 53, 43, 0.2);
+  background: rgba(241, 241, 239, 0.06);
+  border: 1px solid rgba(241, 241, 239, 0.2);
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-full);
   margin-bottom: var(--space-4);
@@ -49,10 +49,7 @@
 
 .titleEm {
   font-style: italic;
-  background-image: linear-gradient(135deg, var(--margin-red), var(--indigo));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--margin-red);
 }
 
 .subtitle {
@@ -265,7 +262,7 @@
   height: 56px;
   font-size: 1.8rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(163, 53, 43, 0.12), rgba(51, 69, 107, 0.12));
+  background: var(--glass-bg-hover);
   border: 1px solid var(--rule);
   flex-shrink: 0;
 }

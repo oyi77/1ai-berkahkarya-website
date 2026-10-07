@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { trackAddToCart, trackInitiateCheckout } from '@/lib/tracking';
+import { trackAddToCart, trackInitiateCheckout, trackLead } from '@/lib/tracking';
+import { pushLPEvent } from './LPVariantTracker';
 
 interface TrackedCTAProps {
   href: string;
@@ -39,24 +40,50 @@ export default function TrackedCTA({
       destinationType = 'saas_app';
     }
 
-    // Track AddToCart for external links
-    trackAddToCart({
-      content_name: productName,
-      content_id: productId || productName.toLowerCase().replace(/\s+/g, '-'),
-      content_type: 'product',
-      value: value,
-      currency: currency,
-      destination: destinationType,
-      destination_url: href,
-    });
-
-    // If there's a value, also track InitiateCheckout
-    if (value && value > 0) {
-      trackInitiateCheckout({
+    // Channel join (Telegram/WhatsApp) = PENDAFTARAN → Lead.
+    // JANGAN AddToCart — itu untuk niat beli, bukan join gratis.
+    if (destinationType === 'telegram' || destinationType === 'whatsapp') {
+      trackLead({
         content_name: productName,
-        content_id: productId,
+        content_id: productId || productName.toLowerCase().replace(/\s+/g, '-'),
+        destination: destinationType === 'telegram' ? 'telegram_channel' : 'whatsapp_chat',
+        destination_url: href,
+      });
+    } else {
+      // External (SaaS/checkout) → niat beli = AddToCart
+      trackAddToCart({
+        content_name: productName,
+        content_id: productId || productName.toLowerCase().replace(/\s+/g, '-'),
+        content_type: 'product',
         value: value,
         currency: currency,
+        destination: destinationType,
+        destination_url: href,
+      });
+
+      // If there's a value, also track InitiateCheckout
+      if (value && value > 0) {
+        trackInitiateCheckout({
+          content_name: productName,
+          content_id: productId,
+          value: value,
+          currency: currency,
+        });
+      }
+    }
+
+    // A/B monitor: ctaClicked (variant derived from productName "… - LP{n} - …")
+    const m = /LP(\d)/i.exec(productName);
+    if (m) {
+      const svc = /VilonaFX/i.test(productName)
+        ? 'vilonafx'
+        : (productId?.split('-')[0] ?? 'unknown');
+      pushLPEvent({
+        event: 'ctaClicked',
+        lpVariant: parseInt(m[1], 10),
+        service: svc,
+        placement: productName,
+        url: href,
       });
     }
 

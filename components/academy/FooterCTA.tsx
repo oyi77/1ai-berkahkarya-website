@@ -7,7 +7,7 @@ export function FooterCTA({ courses }: { courses: Course[] }) {
     <section
       style={{
         padding: '4rem 1.5rem',
-        background: 'linear-gradient(135deg, #14142b, #1a1a3e)',
+        background: '#14142b',
         textAlign: 'center',
       }}
     >

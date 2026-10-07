@@ -7,7 +7,7 @@ export const TRACKING = {
   GA_ID: 'G-V9C14XZ9SG',
 
   // Meta (Facebook) Pixel
-  META_PIXEL_ID: '771021905629860',
+  META_PIXEL_ID: '619475190242307',
 
   // TikTok Pixel
   TIKTOK_PIXEL_ID: 'D6IA84RC77UCTB9KG9OG',

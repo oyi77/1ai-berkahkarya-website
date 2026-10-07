@@ -1,5 +1,4 @@
-/* ─── Ecosystem Showcase — Bento Grid with Glassmorphism ─── */
-/* Awwwards 2025 pattern: varied-size cards, mesh gradient bg, scroll animations */
+/* ─── Ecosystem Showcase — Editorial grid ─── */
 
 .section {
   position: relative;
@@ -8,52 +7,7 @@
   overflow: hidden;
 }
 
-/* ─── Animated Mesh Gradient Background ─── */
-.meshBg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.meshOrb1,
-.meshOrb2,
-.meshOrb3 {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
-  will-change: transform;
-}
-
-.meshOrb1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(163, 53, 43, 0.2), transparent 70%);
-  top: -200px;
-  left: -100px;
-  animation: meshGradient 20s ease-in-out infinite;
-}
-
-.meshOrb2 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(51, 69, 107, 0.15), transparent 70%);
-  top: 50%;
-  right: -150px;
-  animation: meshGradient 25s ease-in-out infinite reverse;
-}
-
-.meshOrb3 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(184, 134, 11, 0.1), transparent 70%);
-  bottom: -100px;
-  left: 30%;
-  animation: meshGradient 18s ease-in-out infinite 5s;
-}
-
+/* ─── Wrap ─── */
 .wrap {
   position: relative;
   z-index: 1;
@@ -76,8 +30,8 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--margin-red);
-  border: 1px solid rgba(163, 53, 43, 0.2);
-  background: rgba(163, 53, 43, 0.06);
+  border: 1px solid rgba(241, 241, 239, 0.2);
+  background: rgba(241, 241, 239, 0.06);
   padding: 6px 14px;
   border-radius: var(--radius-full);
   margin-bottom: var(--space-3);
@@ -121,12 +75,10 @@
   text-decoration: none;
   color: inherit;
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--rule);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.35s var(--ease-out-expo);
+  transition: border-color 0.25s ease, background 0.25s ease;
   overflow: hidden;
   opacity: 0;
   transform: translateY(32px);
@@ -147,30 +99,13 @@
 .card:nth-child(7) { transition-delay: 0ms, 480ms, 0ms, 0ms, 0ms; }
 .card:nth-child(8) { transition-delay: 0ms, 560ms, 0ms, 0ms, 0ms; }
 
-/* Glow border effect on hover */
+/* Glow border — flattened to hairline, opacity no-op kept for compat */
 .cardGlow {
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    rgba(163, 53, 43, 0.4),
-    rgba(51, 69, 107, 0.3),
-    rgba(163, 53, 43, 0.2)
-  );
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 0.4s ease;
-}
-
-.card:hover .cardGlow {
-  opacity: 1;
+  display: none;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(163, 53, 43, 0.1);
-  border-color: rgba(163, 53, 43, 0.2);
+  border-color: var(--rule-strong);
 }
 
 .cardStarting {
@@ -178,12 +113,7 @@
 }
 
 .cardStarting .cardGlow {
-  background: linear-gradient(
-    135deg,
-    rgba(184, 134, 11, 0.4),
-    rgba(163, 53, 43, 0.2),
-    rgba(184, 134, 11, 0.2)
-  );
+  display: none;
 }
 
 /* Bento sizing variations */
@@ -219,11 +149,11 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-warning);
-  background: rgba(184, 134, 11, 0.1);
-  border: 1px solid rgba(184, 134, 11, 0.25);
+  color: var(--text-subtle);
+  background: rgba(214, 211, 205, 0.06);
+  border: 1px solid var(--rule);
   padding: 4px 10px;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
 }
 
 .badgeDot {
@@ -243,7 +173,7 @@
   width: 56px;
   height: 56px;
   font-size: 1.5rem;
-  background: linear-gradient(135deg, rgba(163, 53, 43, 0.08), rgba(51, 69, 107, 0.06));
+  background: var(--glass-bg-hover);
   border: 1px solid var(--rule-light);
   border-radius: var(--radius-lg);
   margin-bottom: var(--space-2);
@@ -251,7 +181,7 @@
 }
 
 .iconTileStarting {
-  background: linear-gradient(135deg, rgba(184, 134, 11, 0.12), rgba(163, 53, 43, 0.08));
+  background: var(--glass-bg-hover);
 }
 
 .iconDot {
@@ -310,8 +240,7 @@
   font-family: var(--font-mono);
   font-size: 0.65rem;
   color: var(--text);
-  background: rgba(28, 36, 48, 0.7);
-  backdrop-filter: blur(8px);
+  background: rgba(10, 10, 10, 0.75);
   padding: 4px 10px;
   border-radius: var(--radius-sm);
   white-space: nowrap;
@@ -420,18 +349,6 @@
 
 /* ─── Keyframes ─── */
 
-@keyframes meshGradient {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(30px, -20px) scale(1.05);
-  }
-  66% {
-    transform: translate(-20px, 15px) scale(0.95);
-  }
-}
-
 @keyframes livePulse {
   0%, 100% {
     opacity: 1;
@@ -449,13 +366,7 @@
   .card {
     opacity: 1;
     transform: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .meshOrb1,
-  .meshOrb2,
-  .meshOrb3 {
-    animation: none;
+    transition: border-color 0.25s ease, background 0.25s ease;
   }
 }
 

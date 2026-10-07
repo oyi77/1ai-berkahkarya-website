@@ -1,24 +1,22 @@
 import { useRouter } from 'next/router';
 import styles from './Footer.module.css';
-import { trackAddToCart } from '@/lib/tracking';
+import { trackLead } from '@/lib/tracking';
 
 export default function Footer() {
   const router = useRouter();
   const locale = (router.query.locale as string) || 'id';
 
-  const handleWAClick = () => trackAddToCart({
+  const handleWAClick = () => trackLead({
     content_name: 'WhatsApp Contact Footer',
     content_id: 'footer-wa',
-    content_type: 'contact',
-    destination: 'whatsapp',
+    destination: 'whatsapp_chat',
     destination_url: 'https://wa.me/6285732740006',
   });
 
-  const handleTelegramClick = () => trackAddToCart({
+  const handleTelegramClick = () => trackLead({
     content_name: 'Telegram Bot Footer',
     content_id: 'footer-telegram',
-    content_type: 'cta_telegram',
-    destination: 'telegram',
+    destination: 'telegram_bot',
     destination_url: 'https://t.me/berkahkarya_saas_bot',
   });
 
