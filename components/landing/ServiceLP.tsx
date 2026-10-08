@@ -8,6 +8,8 @@ import FAQSection, { type FAQItem } from './FAQSection';
 import type { Testimonial } from './TestimonialGrid';
 import CompareTable, { type CompareRow } from './CompareTable';
 import LeadForm from '@/components/LeadForm';
+import TrackedCTA from './TrackedCTA';
+import LPVariantTracker from './LPVariantTracker';
 import b from './_lp-base.module.css';
 
 export interface LPContent {
@@ -87,6 +89,7 @@ export default function ServiceLP({ content, locale = 'id' }: ServiceLPProps) {
       noindex={content.noindex}
       jsonLd={content.jsonLd}
     >
+      <LPVariantTracker variant={1} service={content.serviceName} />
       {/* ── Urgency Banner ── */}
       {content.urgency && <UrgencyBanner locale={locale} {...content.urgency} />}
 
@@ -105,9 +108,16 @@ export default function ServiceLP({ content, locale = 'id' }: ServiceLPProps) {
             </h1>
             <p className={b.subtitle}>{t(content.hero.subtitle)}</p>
             <div className={b.ctaRow}>
-              <a href={content.hero.ctaLink} className={b.btnPrimary}>
+              <TrackedCTA
+                href={content.hero.ctaLink}
+                className={b.btnPrimary}
+                productName={`${content.serviceName} - LP1 Hero`}
+                productId={`${content.serviceName}-lp1`}
+                service={content.serviceName}
+                lpVariant={1}
+              >
                 {t(content.hero.cta)}
-              </a>
+              </TrackedCTA>
             </div>
             <div className={b.trustStrip}>
               {(locale === 'id' ? content.hero.trustItems.id : content.hero.trustItems.en).map((item, i) => (
@@ -201,7 +211,7 @@ export default function ServiceLP({ content, locale = 'id' }: ServiceLPProps) {
               <h2 className={b.sectionTitle}>{t(content.pricing.title)}</h2>
               <div className={b.pricingGrid}>
                 {content.pricing.tiers.map((tier, i) => (
-                  <PricingCard key={i} tier={tier} locale={locale} />
+                  <PricingCard key={i} tier={tier} locale={locale} serviceName={content.serviceName} />
                 ))}
               </div>
             </div>
@@ -226,9 +236,16 @@ export default function ServiceLP({ content, locale = 'id' }: ServiceLPProps) {
             <h2 className={b.sectionTitle}>{t(content.finalCta.title)}</h2>
             <p className={b.subtitle}>{t(content.finalCta.subtitle)}</p>
             <div className={b.ctaRow}>
-              <a href={content.finalCta.ctaLink} className={b.btnPrimary}>
+              <TrackedCTA
+                href={content.finalCta.ctaLink}
+                className={b.btnPrimary}
+                productName={`${content.serviceName} - LP1 Final CTA`}
+                productId={`${content.serviceName}-lp1`}
+                service={content.serviceName}
+                lpVariant={1}
+              >
                 {t(content.finalCta.cta)}
-              </a>
+              </TrackedCTA>
             </div>
             {content.finalCta.guarantee && (
               <div className={b.guarantee}>
@@ -257,9 +274,15 @@ export default function ServiceLP({ content, locale = 'id' }: ServiceLPProps) {
 
       {/* ── Mobile Sticky CTA ── */}
       <div className={b.mobileStickyCta}>
-        <a href={content.hero.ctaLink}>
+        <TrackedCTA
+          href={content.hero.ctaLink}
+          productName={`${content.serviceName} - LP1 Sticky CTA`}
+          productId={`${content.serviceName}-lp1`}
+          service={content.serviceName}
+          lpVariant={1}
+        >
           {t(content.hero.cta)}
-        </a>
+        </TrackedCTA>
         <small>{locale === 'id' ? 'Respons cepat 24 jam' : 'Fast response 24/7'}</small>
       </div>
     </Layout>

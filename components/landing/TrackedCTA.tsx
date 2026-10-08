@@ -10,6 +10,10 @@ interface TrackedCTAProps {
   className?: string;
   productName: string;
   productId?: string;
+  /** LP service slug for A/B ctaClicked attribution (falls back to productId prefix). */
+  service?: string;
+  /** LP variant number for A/B ctaClicked attribution (falls back to LP{n} in productName). */
+  lpVariant?: number;
   value?: number;
   currency?: string;
   variant?: 'primary' | 'secondary';
@@ -25,6 +29,8 @@ export default function TrackedCTA({
   className,
   productName,
   productId,
+  service,
+  lpVariant,
   value,
   currency = 'IDR',
   variant = 'primary',
@@ -72,16 +78,19 @@ export default function TrackedCTA({
       }
     }
 
-    // A/B monitor: ctaClicked (variant derived from productName "… - LP{n} - …")
+    // A/B monitor: ctaClicked (explicit service/lpVariant props win;
+    // otherwise derive from productName "… - LP{n} - …" + VilonaFX check,
+    // else productId prefix). Skips plain <TrackedCTA> without attribution.
     const m = /LP(\d)/i.exec(productName);
-    if (m) {
-      const svc = /VilonaFX/i.test(productName)
-        ? 'vilonafx'
-        : (productId?.split('-')[0] ?? 'unknown');
+    const variantNum = lpVariant ?? (m ? parseInt(m[1], 10) : undefined);
+    const svcName =
+      service ??
+      (/VilonaFX/i.test(productName) ? 'vilonafx' : productId?.split('-')[0]);
+    if (variantNum !== undefined && svcName) {
       pushLPEvent({
         event: 'ctaClicked',
-        lpVariant: parseInt(m[1], 10),
-        service: svc,
+        lpVariant: variantNum,
+        service: svcName,
         placement: productName,
         url: href,
       });
