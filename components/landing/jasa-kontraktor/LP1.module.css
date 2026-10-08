@@ -819,7 +819,7 @@
 
 .rabRowFill.mat { background: #f59e0b; }
 .rabRowFill.upah { background: #3b82f6; }
-.rabRowFill.alat { background: #8b5cf6; }
+.rabRowFill.alat { background: var(--accent); }
 .rabRowFill.overhead { background: #10b981; }
 .rabRowFill.cont { background: #f97316; }
 .rabRowFill.ppn { background: #ef4444; }
