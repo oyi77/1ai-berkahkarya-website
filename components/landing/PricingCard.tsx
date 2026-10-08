@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { trackInitiateCheckout } from '@/lib/tracking';
+import TrackedCTA from './TrackedCTA';
 import styles from './_lp-base.module.css';
 
 export interface PricingTier {
@@ -21,9 +23,10 @@ export interface PricingTier {
 interface PricingCardProps {
   tier: PricingTier;
   locale?: string;
+  serviceName?: string;
 }
 
-export default function PricingCard({ tier, locale = 'id' }: PricingCardProps) {
+export default function PricingCard({ tier, locale = 'id', serviceName }: PricingCardProps) {
   const [checkoutError, setCheckoutError] = useState('');
   const [checking, setChecking] = useState(false);
   const name = locale === 'id' ? tier.name.id : tier.name.en;
@@ -60,6 +63,11 @@ export default function PricingCard({ tier, locale = 'id' }: PricingCardProps) {
           style={{ border: 'none', cursor: checking ? 'not-allowed' : 'pointer', opacity: checking ? 0.7 : 1 }}
           onClick={async () => {
             setChecking(true); setCheckoutError('');
+            trackInitiateCheckout({
+              content_name: name,
+              content_id: (tier.checkoutProduct || name).toLowerCase().replace(/\s+/g, '-'),
+              value: tier.checkoutAmount,
+            });
             try {
               const res = await fetch('/api/checkout', {
                 method: 'POST',
@@ -88,9 +96,16 @@ export default function PricingCard({ tier, locale = 'id' }: PricingCardProps) {
           {checking ? (locale === 'id' ? 'Memproses...' : 'Processing...') : cta}
         </button>
       ) : (
-        <a href={tier.ctaLink} className={styles.pricingCta}>
+        <TrackedCTA
+          href={tier.ctaLink}
+          className={styles.pricingCta}
+          productName={`${serviceName ?? 'lp'} - LP1 Pricing - ${name}`}
+          productId={serviceName ? `${serviceName}-lp1` : undefined}
+          service={serviceName}
+          lpVariant={1}
+        >
           {cta}
-        </a>
+        </TrackedCTA>
       )}
       {checkoutError && (
         <p style={{ color: '#dc2626', fontSize: '0.8rem', marginTop: '0.5rem', textAlign: 'center' }}>

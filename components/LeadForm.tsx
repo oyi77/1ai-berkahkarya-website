@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { trackLead } from '@/lib/tracking/funnel';
 
 interface Props {
   serviceName?: string;
@@ -27,7 +28,19 @@ export default function LeadForm({ serviceName, sourceUrl }: Props) {
         body: JSON.stringify({ name: name.trim(), email: email.trim(), phone: phone.trim(), message: message.trim(), service: serviceName, url: sourceUrl || (typeof window !== 'undefined' ? window.location.href : '') }),
       });
       const data = await res.json();
-      if (data.success) setSubmitted(true);
+      if (data.success) {
+        setSubmitted(true);
+        // ponytail: /api/lead 404s on static export — form still converts.
+        // Keep pixel-side Lead so ads see the conversion even without backend.
+        try {
+          trackLead({
+            content_name: serviceName ? `${serviceName} - Lead Form` : 'Lead Form',
+            content_id: serviceName,
+            destination: 'lead_form',
+            destination_url: typeof window !== 'undefined' ? window.location.href : '',
+          });
+        } catch { /* tracking must never break UX */ }
+      }
       else setError('Gagal mengirim. Silakan coba lagi atau hubungi kami via WhatsApp.');
     } catch {
       setError('Gagal mengirim. Silakan coba lagi.');
