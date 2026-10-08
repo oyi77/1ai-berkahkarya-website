@@ -14,7 +14,6 @@
   --gold: #d4a84b;
   --gold-light: #f0d48a;
   --gold-dim: rgba(212, 168, 75, 0.1);
-  --gold-glow: rgba(212, 168, 75, 0.2);
   --gold-border: rgba(212, 168, 75, 0.2);
   --surface: #141414;
   --border: rgba(255, 255, 255, 0.06);
@@ -128,7 +127,6 @@
 
 .btnPrimary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px var(--gold-glow);
 }
 
 .btnSecondary {

@@ -37,7 +37,7 @@ export default function DaftarPage({ locale }: { locale: Locale }) {
           <a href={`/${locale}/belajar/kurikulum`} style={{ color: 'var(--teal-primary)', textDecoration: 'none', fontSize: '0.9rem', display: 'inline-block', marginBottom: '1.5rem' }}>{t.back}</a>
           <h1 style={{ fontSize: '2.5rem', fontWeight: 800, fontFamily: 'var(--font-heading)', marginBottom: '0.75rem' }}>{t.h1}</h1>
           <p style={{ color: 'var(--text-white-60)', fontSize: '1.1rem', marginBottom: '2rem' }}>{t.p}</p>
-          <a href={`/${locale}/belajarai#pricing`} style={{ display: 'inline-block', padding: '1rem 2.5rem', background: 'linear-gradient(135deg, var(--teal-primary), var(--violet-light))', color: '#fff', borderRadius: '12px', fontWeight: 700, fontSize: '1.1rem', textDecoration: 'none' }}>
+          <a href={`/${locale}/belajarai#pricing`} style={{ display: 'inline-block', padding: '1rem 2.5rem', background: 'var(--accent)', color: '#000', borderRadius: '12px', fontWeight: 700, fontSize: '1.1rem', textDecoration: 'none' }}>
             {isId ? '💰 Lihat Paket & Harga' : '💰 View Plans & Pricing'}
           </a>
         </div>
@@ -57,7 +57,7 @@ export default function DaftarPage({ locale }: { locale: Locale }) {
               { num: '4', title: isId ? 'Join Komunitas' : 'Join Community', desc: isId ? 'Akses grup Telegram eksklusif. Tanya jawab dengan Paijo & sesama siswa.' : 'Access exclusive Telegram group. Q&A with Paijo & fellow students.' },
             ].map((step) => (
               <div key={step.num} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '1rem', padding: '1.5rem', textAlign: 'center', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'linear-gradient(135deg, var(--teal-primary), var(--violet-light))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.1rem', margin: '0 auto 0.75rem', color: '#000' }}>{step.num}</div>
+                <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.1rem', margin: '0 auto 0.75rem', color: '#000' }}>{step.num}</div>
                 <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.4rem' }}>{step.title}</h3>
                 <p style={{ color: 'var(--text-white-60)', fontSize: '0.85rem', lineHeight: 1.5 }}>{step.desc}</p>
               </div>

@@ -2,7 +2,7 @@
 .wrapper {
   --bg: #070b14; --panel: #0c1322; --card: #101a2e;
   --ink: #eef2f7; --mut: #93a0b8;
-  --ac: #22d3ee; --vio: #a78bfa; --grn: #34d399; --gold: #f59e0b;
+  --ac: var(--accent); --vio: var(--accent); --grn: #34d399; --gold: #f59e0b;
   --line: rgba(148, 163, 184, 0.14);
   background: var(--bg); color: var(--ink); min-height: 100vh;
   font-family: Inter, system-ui, -apple-system, sans-serif;
@@ -14,9 +14,9 @@
 .heroInner { position: relative; max-width: 860px; margin: 0 auto; padding: 0 1.25rem; text-align: center; }
 .badge { display: inline-flex; align-items: center; gap: .5rem; font-size: .75rem; letter-spacing: .14em;
   border: 1px solid var(--line); border-radius: 999px; padding: .35rem 1rem; color: var(--ac);
-  background: rgba(34,211,238,.07); margin-bottom: 1.25rem; }
+  background: rgba(255,255,255,.05); margin-bottom: 1.25rem; }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ac);
-  box-shadow: 0 0 12px var(--ac); animation: blink 1.6s infinite; }
+  animation: blink 1.6s infinite; }
 @keyframes blink { 50% { opacity: .35; } }
 .title { font-size: clamp(2rem, 5.4vw, 3.4rem); font-weight: 800; line-height: 1.12; letter-spacing: -.02em; margin: 0 0 1rem; }
 .grad { color: var(--ac); }
@@ -25,8 +25,8 @@
 .ctaRow { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin-bottom: .8rem; }
 .btnPrimary { display: inline-flex; align-items: center; gap: .5rem;
   background: var(--ac); color: #fff; font-weight: 700;
-  padding: .9rem 2rem; border-radius: 14px; font-size: 1rem; text-decoration: none; transition: transform .2s, box-shadow .2s; }
-.btnPrimary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(139,92,246,.45); }
+  padding: .9rem 2rem; border-radius: 14px; font-size: 1rem; text-decoration: none; transition: transform .2s; }
+.btnPrimary:hover { transform: translateY(-2px); }
 .btnGhost { display: inline-flex; align-items: center; padding: .9rem 1.5rem; border-radius: 14px;
   border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-weight: 600; }
 .btnGhost:hover { border-color: var(--ac); }
@@ -57,9 +57,9 @@
 .consensus .bar i { display: block; height: 100%;
   background: var(--ac); }
 .phone { max-width: 430px; margin: 0 auto; background: #0b1220; border: 1px solid var(--line);
-  border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+  border-radius: 20px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,.25); }
 .phoneHead { padding: .9rem 1.2rem; font-weight: 700; border-bottom: 1px solid var(--line);
-  background: rgba(34,211,238,.06); }
+  background: rgba(255,255,255,.04); }
 .msg { margin: 1rem; background: #16213a; border-radius: 4px 14px 14px; padding: 1rem 1.1rem;
   font-size: .9rem; line-height: 1.8; border-left: 3px solid var(--grn); }
 .msgDim { margin: 0 1rem 1.2rem; font-size: .85rem; color: var(--mut);
