@@ -71,15 +71,15 @@ export default function KurikulumPage({ locale }: { locale: Locale }) {
           ))}
 
           {/* Technical Track */}
-          <div style={{ background: 'linear-gradient(135deg, rgba(124,58,237,0.1), rgba(0,217,255,0.05))', borderRadius: '1rem', padding: '2rem', marginTop: '2.5rem', border: '1px solid rgba(124,58,237,0.2)' }}>
+          <div style={{ background: 'var(--bg-surface)', borderRadius: '1rem', padding: '2rem', marginTop: '2.5rem', border: '1px solid var(--border)' }}>
             <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '1rem', textAlign: 'center' }}>{t.techTitle}</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem' }}>
               {t.techs.map((item: string) => (
-                <div key={item} style={{ background: 'rgba(124,58,237,0.1)', borderRadius: '0.75rem', padding: '1rem', textAlign: 'center', fontSize: '0.9rem', fontWeight: 600, color: 'var(--violet-light)' }}>{item}</div>
+                <div key={item} style={{ background: 'var(--bg-surface-hover)', borderRadius: '0.75rem', padding: '1rem', textAlign: 'center', fontSize: '0.9rem', fontWeight: 600, color: 'var(--text)' }}>{item}</div>
               ))}
             </div>
             <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-              <a href={`/${locale}/belajarai#pricing`} style={{ display: 'inline-block', padding: '0.85rem 2rem', background: 'linear-gradient(135deg, #7C3AED, #00D9FF)', color: '#fff', borderRadius: '10px', fontWeight: 700, textDecoration: 'none' }}>{t.cta}</a>
+              <a href={`/${locale}/belajarai#pricing`} style={{ display: 'inline-block', padding: '0.85rem 2rem', background: 'var(--accent)', color: '#000', borderRadius: '10px', fontWeight: 700, textDecoration: 'none' }}>{t.cta}</a>
             </div>
           </div>
         </div>

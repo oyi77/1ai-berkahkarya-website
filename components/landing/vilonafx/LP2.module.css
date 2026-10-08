@@ -10,9 +10,9 @@
 .heroInner { max-width: 880px; margin: 0 auto; padding: 0 1.25rem; }
 .badge { display: inline-flex; align-items: center; gap: .5rem; font-size: .75rem; letter-spacing: .16em;
   border: 1px solid var(--line); border-radius: 999px; padding: .35rem 1rem; color: var(--ac);
-  background: rgba(245,158,11,.07); margin-bottom: 1.25rem; }
+  background: rgba(255,255,255,.04); margin-bottom: 1.25rem; }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--grn);
-  box-shadow: 0 0 12px var(--grn); animation: blink 1.6s infinite; }
+  animation: blink 1.6s infinite; }
 @keyframes blink { 50% { opacity: .3; } }
 .title { font-size: clamp(2rem, 5.4vw, 3.4rem); font-weight: 800; line-height: 1.12; margin: 0 0 1rem; }
 .grad { color: var(--ac); }
@@ -23,7 +23,7 @@
   border: 1px solid var(--line); border-radius: 10px; color: var(--mut); background: var(--panel);
   transition: all .4s; }
 .node.active { color: #05070d; background: var(--ac); border-color: var(--ac);
-  box-shadow: 0 0 24px rgba(245,158,11,.5); }
+ }
 .node.done { color: var(--grn); border-color: var(--grn); }
 .link { width: 26px; height: 2px; background: var(--line); }
 .link.lit { background: var(--grn); }
@@ -32,7 +32,7 @@
 .btnPrimary { display: inline-flex; align-items: center; gap: .5rem;
   background: var(--ac); color: #fff; font-weight: 700;
   padding: .9rem 2rem; border-radius: 14px; font-size: 1rem; text-decoration: none;
-  box-shadow: 0 6px 32px rgba(245,158,11,.35); transition: transform .2s; }
+  transition: transform .2s; }
 .btnPrimary:hover { transform: translateY(-2px); }
 .micro { font-size: .82rem; color: var(--mut); margin: 0; }
 .section { padding: 3.5rem 0; }

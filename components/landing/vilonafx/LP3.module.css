@@ -18,8 +18,8 @@
 .btnPrimary { display: inline-flex; align-items: center; gap: .5rem;
   background: var(--ac); color: #1a1000; font-weight: 800;
   padding: .95rem 2.2rem; border-radius: 14px; font-size: 1.02rem; text-decoration: none;
-  box-shadow: 0 8px 28px rgba(245,185,66,.35); transition: transform .15s, box-shadow .15s; }
-.btnPrimary:hover { transform: translateY(-1px); box-shadow: 0 12px 36px rgba(245,185,66,.45); }
+  transition: transform .15s; }
+.btnPrimary:hover { transform: translateY(-1px); }
 .micro { font-size: .83rem; color: var(--mut); margin: 1rem 0 2rem; }
 .proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
 .proofItem { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 1.1rem .8rem; }
@@ -34,7 +34,7 @@
 .card h3 { margin: 0 0 .5rem; font-size: 1.02rem; color: var(--ink); }
 .card p { color: var(--mut); font-size: .9rem; line-height: 1.7; margin: 0; }
 .phone { background: #0a101d; border: 1px solid var(--line); border-radius: 20px; overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+  box-shadow: 0 4px 16px rgba(0,0,0,.25); }
 .phoneHead { padding: .9rem 1.2rem; font-weight: 700; color: var(--ink);
   border-bottom: 1px solid var(--line); background: rgba(245,185,66,.07);
   display: flex; justify-content: space-between; }

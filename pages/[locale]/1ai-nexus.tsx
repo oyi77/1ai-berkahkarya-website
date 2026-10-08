@@ -39,7 +39,7 @@ export default function AINexusPage({ locale }: { locale: Locale }) {
       {/* ── Compare Grid: Pain vs Gain ── */}
       <section className={styles.section} style={{ background: 'var(--surface-0)' }}>
         <div className={styles.container}>
-          <span className={styles.eyebrow}>⚡ Perbandingan</span>
+          <span className={styles.eyebrow}>Perbandingan</span>
           <h2 className={styles.sectionTitle}>{d.compare.title}</h2>
           <div className={styles.compareGrid}>
             <div className={styles.compareOld}>
