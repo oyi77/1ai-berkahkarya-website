@@ -81,10 +81,12 @@ register('jasa-design', '1', JasaDesignLP1);
 import VilonaFXLP1 from './vilonafx/LP1';
 import VilonaFXLP2 from './vilonafx/LP2';
 import VilonaFXLP3 from './vilonafx/LP3';
+import VilonaFxSales from './vilonafx/Sales';
 register('vilonafx', '1', VilonaFXLP1);
 register('vilonafx', '2', VilonaFXLP2);
 register('vilonafx', '3', VilonaFXLP3);
-
+// Lifetime Rp254rb promo sales page → /{locale}/lp/vilonafx/sales
+register('vilonafx', 'sales', VilonaFxSales);
 // ══════════════════════════════════════
 // Jasa Kontraktor LP (custom)
 // ══════════════════════════════════════
