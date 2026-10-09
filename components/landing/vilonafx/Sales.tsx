@@ -39,6 +39,25 @@ const VS = [
   { label: 'Harga: Rp254rb SEKALI, selamanya', us: true, them: 'Rp300–500rb PER BULAN' },
 ];
 
+const PIPE = [
+  { icon: '📡', t: 'Harga live', d: 'Tick MT5 + DXY + sesi/killzone dibaca tiap detik.' },
+  { icon: '⚙️', t: '7 engine paralel', d: 'S-TIER · SBR/BRS · Conf3 · Multi-TF · SMC · RAG · AI Consensus — pemenang prioritas maju.' },
+  { icon: '🛡️', t: 'Filter pengaman', d: 'RR minimum, SL eksplisit, anti-spam 2/jam, pair-lock, duplicate-window.' },
+  { icon: '📲', t: 'Kirim ke Telegram', d: 'Entry + SL + TP + confidence + grade. Premium DM + channel.' },
+  { icon: '🤖', t: 'EA eksekusi', d: 'Bridge POST ke EA kamu — entry otomatis dalam detik.' },
+];
+
+const STRATS = [
+  { key: 'S-TIER Zone', wr: 'Grade A', risk: 'rendah', sym: 'XAUUSD · EURUSD', desc: 'Hanya setup probabilitas tertinggi yang lolos. Sisanya ditolak.' },
+  { key: 'SBR / BRS Killer', wr: 'Grade A', risk: 'sedang', sym: 'XAUUSD · EURUSD', desc: 'Entry presisi di zona supply-demand institusi.' },
+  { key: 'SMC Scalper', wr: '±60%', risk: 'sedang', sym: 'XAUUSD · EURUSD', desc: 'BOS, CHoCH, liquidity grab, order block — scalping struktur.' },
+  { key: 'Conf3 Trend', wr: '69,5%', risk: 'rendah', sym: 'Semua pair', desc: '6 detektor SMC + filter SMA200. WR terukur, naik harian.' },
+  { key: 'XAU Hedging', wr: '62%', risk: 'sedang', sym: 'XAUUSD', desc: 'Hedging emas sadar sesi — gratis, cocok pemula.' },
+  { key: 'FVG Detector', wr: '63%', risk: 'rendah', sym: 'XAUUSD · BTCUSD', desc: 'Entry di Fair Value Gap. Risiko terkecil di katalog.' },
+  { key: 'Grid Trading', wr: '58%', risk: 'tinggi', sym: 'XAUUSD · EURUSD · GBPUSD', desc: 'Mean-reversion grid untuk market sideways.' },
+  { key: 'HFT Scalper', wr: '65%', risk: 'tinggi', sym: 'XAUUSD · BTCUSD', desc: 'Order-book frekuensi tinggi. Khusus ELITE.' },
+];
+
 const STEPS = [
   { n: '1', t: 'Klik tombol & bayar', d: 'Checkout lynk.id (QRIS/VA/e-wallet), 1 menit. Link aktif 24 jam.' },
   { n: '2', t: 'Tier aktif otomatis', d: 'Bot verifikasi pembayaran lalu upgrade tier kamu ke LIFETIME.' },
@@ -49,6 +68,8 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
   useEngagementTracking('Vilona FX - Sales Lifetime 254rb', '0', 'vilonafx-sales');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [spots, setSpots] = useState(17);
+  const [step, setStep] = useState(0);        // pipeline autoplay
+  const [strat, setStrat] = useState(0);      // strategy simulator
 
   useEffect(() => {
     trackViewContent('VilonaFX - Sales - Lifetime 254rb', 'sales_page');
@@ -87,6 +108,13 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+
+
+  // ── Pipeline autoplay: tiap langkah maju otomatis, looping ──
+  useEffect(() => {
+    const t = setInterval(() => setStep((v) => (v + 1) % PIPE.length), 2200);
+    return () => clearInterval(t);
+  }, []);
 
   const onCheckout = () => {
     trackInitiateCheckout({
@@ -198,6 +226,72 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
               <div className={s.card} key={st.n}><div className={s.stepN}>{st.n}</div><b>{st.t}</b><p>{st.d}</p></div>
             ))}
           </div>
+        </section>
+
+        {/* ── AI PIPELINE (animasi) ── */}
+        <section className={s.section}>
+          <h2>Bagaimana AI Bekerja di Balik Layar</h2>
+          <p className={s.center}>Lihat alur nyata: dari tick harga sampai EA kamu open posisi. Tiap 2 detik langkah berikutnya menyala.</p>
+          <div className={s.pipeline}>
+            {PIPE.map((p, i) => (
+              <div key={p.t} className={`${s.pipeStep} ${i <= step ? s.pipeOn : ''} ${i === step ? s.pipeNow : ''}`}>
+                <div className={s.pipeIcon}>{p.icon}</div>
+                <div className={s.pipeT}>{p.t}</div>
+                <div className={s.pipeD}>{p.d}</div>
+                {i < PIPE.length - 1 && <span className={s.pipeArrow}>&#8594;</span>}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── SIMULATOR STRATEGI ── */}
+        <section className={s.section}>
+          <h2>Bikin Sinyal Sendiri dari 8+ Strategi</h2>
+          <p className={s.center}>Pilih strategi yang cocok gaya trading kamu. Satu klik /strategy di bot, aktif langsung — tanpa coding, tanpa VPS.</p>
+          <div className={s.sim}>
+            <div className={s.simTabs}>
+              {STRATS.map((st, i) => (
+                <button
+                  key={st.key}
+                  className={`${s.simTab} ${i === strat ? s.simTabOn : ''}`}
+                  onClick={() => setStrat(i)}
+                >
+                  {st.key}
+                </button>
+              ))}
+            </div>
+            <div className={s.simBody}>
+              <div className={s.simLeft}>
+                <div className={s.simWin}>WR <b>{STRATS[strat].wr}</b></div>
+                <div className={s.simRisk} data-r={STRATS[strat].risk}>Risiko: {STRATS[strat].risk}</div>
+                <div className={s.simSym}>{STRATS[strat].sym}</div>
+                <p className={s.simDesc}>{STRATS[strat].desc}</p>
+                <div className={s.simCmd}>/strategy {STRATS[strat].key.toLowerCase().replace(/[^a-z0-9]+/g, '_')}</div>
+              </div>
+              <div className={s.simRight}>
+                <div className={s.simMsgHead}>&#128202; Sinyal preview</div>
+                <div className={s.simMsg}>
+                  <div className={s.simMsgTitle}>{STRATS[strat].key} &#8594; XAUUSD BUY</div>
+                  <div>&#128204; Entry: 4110.00</div>
+                  <div>&#128683; SL: 4030.00</div>
+                  <div>&#127942; TP1: 4230.00 (RR 1:2)</div>
+                  <div className={s.simMsgFoot}>Grade: A &#183; Confidence: 82% &#183; auto-exec: ON</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── EA AUTO-EXEC ── */}
+        <section className={s.section}>
+          <h2>EA Eksekusi Sendiri. Kamu Duduk Manis.</h2>
+          <div className={s.eaSteps}>
+            <div className={s.eaStep}><span>&#9989;</span><b>1. Hubungkan</b><p>/connect &amp; masukkan license key EA ke MT5. Sekali setel, selamanya nyambung.</p></div>
+            <div className={s.eaStep}><span>&#9889;</span><b>2. Sinyal datang</b><p>Bridge push sinyal ke EA via WebSocket/HTTP. Entry dalam hitungan detik — bukan "ingat lagi".</p></div>
+            <div className={s.eaStep}><span>&#128176;</span><b>3. Posisi open otomatis</b><p>SL &amp; TP terpasang dari sinyal. Trailing stop auto ikut setelah breakeven.</p></div>
+            <div className={s.eaStep}><span>&#128737;</span><b>4. Kamu pegang kendali</b><p>Kapan pun: /autoexecute off (stop entry), /trailing on|off, mini-app PAUSE &amp; PANIC (tutup semua posisi).</p></div>
+          </div>
+          <div className={s.eaNote}>&#128161; Tidak ada software pihak ketiga, tidak ada VPS wajib. EA jalan di MT5 HP/PC kamu sendiri.</div>
         </section>
 
         {/* ── HARGA ── */}
