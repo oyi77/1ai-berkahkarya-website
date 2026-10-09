@@ -98,3 +98,56 @@
   .ctaRow { flex-direction: column; align-items: stretch; }
   .ctaPrimary { justify-content: center; }
 }
+
+/* -- AI PIPELINE (animasi autoplay) -- */
+.pipeline { display: flex; align-items: stretch; gap: .2rem; }
+.pipeStep { position: relative; flex: 1; background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; padding: 1.1rem .8rem; text-align: center;
+  opacity: .35; transform: scale(.97); transition: opacity .5s, transform .5s, box-shadow .5s; }
+.pipeOn { opacity: 1; transform: scale(1); }
+.pipeNow { box-shadow: 0 0 0 2px var(--ac), 0 0 24px rgba(245,185,66,.25); }
+.pipeIcon { font-size: 1.6rem; display: block; margin-bottom: .4rem; }
+.pipeT { font-weight: 800; font-size: .88rem; margin-bottom: .3rem; }
+.pipeD { color: var(--mut); font-size: .78rem; line-height: 1.6; }
+.pipeArrow { position: absolute; right: -.85rem; top: 50%; transform: translateY(-50%);
+  color: var(--ac); font-weight: 900; font-size: 1.2rem; z-index: 2; }
+.pipeStep:last-child .pipeArrow { display: none; }
+
+/* -- SIMULATOR STRATEGI -- */
+.sim { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
+.simTabs { display: flex; flex-wrap: wrap; gap: .4rem; padding: 1rem 1rem 0; }
+.simTab { background: var(--card); border: 1px solid var(--line); color: var(--mut);
+  border-radius: 999px; padding: .45rem .95rem; font-size: .83rem; cursor: pointer; transition: all .2s; }
+.simTabOn { background: var(--ac); color: #1a1000; border-color: var(--ac); font-weight: 800; }
+.simBody { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; padding: 1.2rem; }
+.simWin { font-size: 1.6rem; font-weight: 900; color: var(--grn); margin-bottom: .3rem; }
+.simWin b { color: var(--ac); }
+.simRisk { font-size: .85rem; color: var(--mut); margin-bottom: .3rem; }
+.simRisk[data-r="tinggi"] { color: var(--red); }
+.simRisk[data-r="rendah"] { color: var(--grn); }
+.simSym { font-size: .8rem; color: var(--mut); margin-bottom: .6rem; }
+.simDesc { font-size: .9rem; line-height: 1.7; color: var(--ink); margin: 0 0 .8rem; }
+.simCmd { display: inline-block; background: #080b13; border: 1px solid var(--line);
+  border-radius: 8px; padding: .45rem .8rem; font-family: monospace; font-size: .82rem; color: var(--ac); }
+.simRight { display: flex; flex-direction: column; }
+.simMsgHead { font-size: .8rem; font-weight: 700; color: var(--mut); margin-bottom: .5rem; }
+.simMsg { background: #0a101d; border: 1px solid var(--line); border-left: 4px solid var(--grn);
+  border-radius: 4px 14px 14px; padding: 1rem 1.1rem; font-size: .88rem; line-height: 2; }
+.simMsgTitle { font-weight: 800; color: var(--ink); margin-bottom: .3rem; }
+.simMsgFoot { color: var(--mut); font-size: .78rem; margin-top: .4rem; }
+
+/* -- EA AUTO-EXEC -- */
+.eaSteps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.eaStep { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1.3rem; }
+.eaStep span { font-size: 1.7rem; display: block; margin-bottom: .5rem; }
+.eaStep b { display: block; margin-bottom: .4rem; }
+.eaStep p { color: var(--mut); font-size: .85rem; line-height: 1.7; margin: 0; }
+.eaNote { text-align: center; color: var(--ac); margin-top: 1.2rem; font-size: .92rem; }
+
+@media (max-width: 720px) {
+  .pipeline { flex-direction: column; }
+  .pipeArrow { right: auto; left: 50%; top: auto; bottom: -.95rem;
+    transform: translateX(-50%) rotate(90deg); }
+  .simBody { grid-template-columns: 1fr; }
+  .eaSteps { grid-template-columns: 1fr 1fr; }
+}
