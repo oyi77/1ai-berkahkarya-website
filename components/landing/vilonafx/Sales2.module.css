@@ -1,0 +1,107 @@
+/* ── VilonaFX Sales2 — Fear/Loss-aversion variant (Dark Red-Black urgency) ── */
+.wrapper { --bg: #0d0608; --panel: #180b0e; --card: #211016;
+  --ink: #f9f1f2; --mut: #c9a9ae; --ac: #ef2d3c; --ac-deep: #b91c29; --gold: #f5b942;
+  --grn: #34d399; --red: #ff5c6a; --line: rgba(239, 45, 60, 0.18);
+  background: var(--bg); color: var(--ink); min-height: 100vh;
+  font-family: Inter, system-ui, -apple-system, sans-serif; }
+.progress { position: fixed; top: 0; left: 0; height: 3px; width: 0;
+  background: var(--ac); z-index: 60; }
+
+/* hero */
+.hero { max-width: 760px; margin: 0 auto; padding: 4.5rem 1.25rem 3rem; text-align: center; }
+.badge { display: inline-block; font-size: .78rem; font-weight: 800; letter-spacing: .12em;
+  color: #fff; background: linear-gradient(135deg, var(--ac-deep), var(--ac)); border-radius: 999px;
+  padding: .5rem 1.3rem; margin-bottom: 1.2rem; border: 1px solid rgba(255,255,255,.2); }
+.tick { font-variant-numeric: tabular-nums; color: var(--gold); }
+.hero h1 { font-size: clamp(1.9rem, 5vw, 3rem); font-weight: 800; line-height: 1.15;
+  margin: 0 0 1rem; letter-spacing: -.02em; }
+.red { color: var(--red); }
+.sub { color: var(--mut); font-size: 1.03rem; line-height: 1.75; max-width: 620px; margin: 0 auto 1.6rem; }
+.sub b { color: var(--ink); }
+
+/* price */
+.price { margin: 1.6rem 0; }
+.priceOld { color: var(--mut); text-decoration: line-through; font-size: 1.3rem; }
+.priceNew { font-size: clamp(3rem, 9vw, 4.5rem); font-weight: 900; color: var(--ac); line-height: 1.1; }
+.rb { font-size: 1.6rem; }
+.priceNote { color: var(--mut); font-size: .9rem; margin-top: .4rem; }
+
+/* cta */
+.ctaRow { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin: 1.4rem 0 .8rem; }
+.ctaPrimary { display: inline-flex; align-items: center; gap: .5rem;
+  background: linear-gradient(135deg, var(--ac-deep), var(--ac)); color: #fff; font-weight: 800;
+  padding: 1rem 2.4rem; border-radius: 14px; font-size: 1.05rem; text-decoration: none;
+  transition: transform .15s; }
+.ctaPrimary:hover { transform: translateY(-1px); }
+.trust { font-size: .83rem; color: var(--mut); margin: .6rem 0 0; }
+
+/* sections */
+.section { max-width: 960px; margin: 0 auto; padding: 3rem 1.25rem; }
+.section h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; margin: 0 0 1rem;
+  letter-spacing: -.015em; text-align: center; }
+.center { text-align: center; color: var(--mut); max-width: 640px; margin: 0 auto 1.8rem; line-height: 1.75; }
+.cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1.4rem; }
+.card b { display: block; margin-bottom: .5rem; font-size: 1.02rem; }
+.card p { color: var(--mut); font-size: .9rem; line-height: 1.7; margin: 0; }
+
+/* loss calculator */
+.calc { max-width: 620px; margin: 0 auto; background: var(--panel);
+  border: 2px solid var(--ac-deep); border-radius: 20px; padding: 2rem 1.6rem; text-align: center; }
+.calcLabel { display: block; text-align: left; font-size: .92rem; color: var(--mut); margin-bottom: 1.2rem; }
+.calcLabel b { color: var(--ink); }
+.slider { width: 100%; margin-top: .6rem; accent-color: var(--ac); }
+.numInput { display: block; width: 100%; margin-top: .6rem; background: var(--card);
+  border: 1px solid var(--line); border-radius: 10px; color: var(--ink);
+  font-size: 1.1rem; padding: .7rem .9rem; }
+.calcOut { background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 1.2rem; margin: 1.2rem 0; text-align: left; }
+.calcRow { display: flex; justify-content: space-between; gap: 1rem; padding: .5rem 0;
+  font-size: .92rem; border-bottom: 1px solid var(--line); }
+.calcRow:last-child { border-bottom: none; }
+.calcRow span { color: var(--mut); }
+.calcRow b { color: var(--ink); white-space: nowrap; }
+.green { color: var(--grn); }
+.calcNote { font-size: .8rem; color: var(--mut); line-height: 1.7; margin: 0 0 1.4rem; }
+
+/* engines */
+.engines { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; }
+.engine { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 1.2rem; }
+.eicon { font-size: 1.5rem; display: block; margin-bottom: .5rem; }
+.engine b { display: block; margin-bottom: .4rem; font-size: .95rem; }
+.engine p { color: var(--mut); font-size: .83rem; line-height: 1.65; margin: 0; }
+
+/* guarantee */
+.guarantee { display: flex; gap: 1.2rem; align-items: flex-start; max-width: 720px; margin: 0 auto 1.6rem;
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1.6rem; }
+.guarIcon { font-size: 2.4rem; }
+.guarantee b { display: block; margin-bottom: .5rem; font-size: 1.05rem; }
+.guarantee p { color: var(--mut); font-size: .9rem; line-height: 1.75; margin: 0; }
+
+/* faq */
+.faq { border: 1px solid var(--line); border-radius: 12px; margin-bottom: .7rem; overflow: hidden;
+  background: var(--card); max-width: 760px; margin-left: auto; margin-right: auto; }
+.faqQ { width: 100%; background: transparent; border: none; color: var(--ink); text-align: left;
+  font-size: .98rem; font-weight: 600; padding: 1rem 1.2rem; cursor: pointer;
+  display: flex; justify-content: space-between; gap: 1rem; }
+.faqA { color: var(--mut); line-height: 1.75; margin: 0; padding: 0 1.2rem 1.1rem; font-size: .9rem; }
+
+/* final + sticky */
+.final { text-align: center; padding: 3.5rem 1.25rem 6rem; max-width: 760px; margin: 0 auto; }
+.final h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; margin: 0 0 .8rem; }
+.final p { color: var(--mut); margin: 0 0 1.6rem; }
+.sticky { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+  padding: .7rem .9rem calc(.7rem + env(safe-area-inset-bottom));
+  background: rgba(13,6,8,.94); border-top: 1px solid var(--line); }
+.stickyCta { display: block; text-align: center; background: linear-gradient(135deg, var(--ac-deep), var(--ac));
+  color: #fff; font-weight: 800; border-radius: 12px; padding: .9rem; text-decoration: none;
+  font-variant-numeric: tabular-nums; }
+.stickyCta s { font-weight: 400; opacity: .7; margin-left: .4rem; }
+
+@media (max-width: 720px) {
+  .cards3, .engines { grid-template-columns: 1fr; }
+  .ctaRow { flex-direction: column; align-items: stretch; }
+  .ctaPrimary { justify-content: center; }
+  .guarantee { flex-direction: column; }
+  .calcRow { flex-direction: column; gap: .2rem; }
+}
