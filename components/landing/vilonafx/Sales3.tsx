@@ -17,10 +17,10 @@ const PROMO = 254000;
 const SAVED = NORMAL - PROMO;
 
 const STEPS = [
-  { icon: '🔌', t: 'Connect EA ke MT5', d: 'Sekali setup, beres. Tinggal ikuti panduan.' },
-  { icon: '📡', t: 'Sinyal datang dari 9 engine + AI', d: '5 model LLM voting tiap sinyal.' },
+  { icon: '🔌', t: 'Connect EA ke MT5', d: 'Sekali setup, beres. Ikuti panduan 5 menit.' },
+  { icon: '📡', t: 'Sinyal dari 9 engine + AI', d: '5 model LLM voting tiap sinyal.' },
   { icon: '⚡', t: 'Posisi open otomatis', d: 'SL & TP langsung terpasang sendiri.' },
-  { icon: '🛡️', t: 'Trailing stop setelah breakeven', d: 'Lock profit, minim intervensi.' },
+  { icon: '🛡️', t: 'Trailing stop otomatis', d: 'Lock profit, minim intervensi.' },
 ];
 
 const FEATURES = [
@@ -33,22 +33,10 @@ const FEATURES = [
 ];
 
 const FAQS = [
-  {
-    q: 'Gaptek banget, bisa pakai?',
-    a: 'Bisa. Setup EA cukup sekali, ikuti panduan PDF/video. Sinyal open & close sendiri di MT5. Kalau bingung, chat admin via tombol di bawah.',
-  },
-  {
-    q: 'Perlu VPS atau coding?',
-    a: 'Tidak. EA jalan di MT5 kamu langsung. Tanpa VPS, tanpa coding, tanpa konfigurasi rumit.',
-  },
-  {
-    q: 'Sinyal datang berapa kali sehari?',
-    a: 'Tergantung pasar. Anti-spam filter batas 2 sinyal/jam per pair. Pair-lock mencegah duplikat. Kualitas dulu, bukan kuantitas.',
-  },
-  {
-    q: 'Lifetime itu apa?',
-    a: 'Sekali bayar Rp254rb, akses selamanya. Semua update engine, semua strategi baru, tanpa tagihan bulanan lagi.',
-  },
+  { q: 'Saya gaptek, apakah bisa pakai EA?', a: 'Bisa. Panduan setup tersedia langkah demi langkah, dan CS @alwayscuanterus siap bantu sampai EA kamu jalan. Rata-rata setup pertama hanya 5–10 menit.' },
+  { q: 'Apakah butuh VPS atau komputer mahal?', a: 'Tidak. EA jalan di MT5 HP atau PC kamu sendiri. Tidak ada software pihak ketiga, tidak ada biaya VPS.' },
+  { q: 'Lifetime benar-benar selamanya?', a: 'Ya. Sekali bayar Rp254.000, semua sinyal + EA + update engine selamanya. Tanpa biaya bulanan.' },
+  { q: 'Apakah dijamin profit?', a: 'Tidak ada yang bisa menjamin profit di trading. Yang kami jamin: SL eksplisit, RR minimum, dan disiplin sistem — bukan emosi.' },
 ];
 
 export default function VilonaFxSales3({ locale = 'id' }: { locale?: string }) {
@@ -68,13 +56,39 @@ export default function VilonaFxSales3({ locale = 'id' }: { locale?: string }) {
       <div className={s.wrapper}>
         {/* ── HERO ── */}
         <section className={s.hero}>
-          <span className={s.badge}>◆ LIFETIME MEMBER — SEKALI BAYAR</span>
+          <span className={s.badge}>◆ EA AUTO-EXECUTE · LIFETIME</span>
           <h1 className={s.h1}>
             Sinyal Masuk. Posisi Open. <span className={s.grad}>Kamu Tidur.</span>
           </h1>
           <p className={s.sub}>
-            EA auto-eksekusi langsung di MT5. 9 engine + AI voting tiap sinyal. Tanpa VPS, tanpa coding.
+            EA auto-eksekusi langsung di MT5. <b>9 engine + AI voting</b> tiap sinyal. Tanpa VPS, tanpa coding, tanpa begadang.
           </p>
+
+          {/* ── EA TERMINAL CARD ── */}
+          <div className={s.eaCard}>
+            <div className={s.eaHead}>
+              <span className={s.eaTitle}>EA MT5 — AUTO MODE</span>
+              <span className={s.eaStatus}>ONLINE</span>
+            </div>
+            <div className={s.eaBody}>
+              <div className={s.eaCell}>
+                <span>POSISI</span>
+                <b>XAUUSD BUY</b>
+              </div>
+              <div className={s.eaCell}>
+                <span>STOP LOSS</span>
+                <b>Auto ✓</b>
+              </div>
+              <div className={s.eaCell}>
+                <span>TAKE PROFIT</span>
+                <b>Auto ✓</b>
+              </div>
+            </div>
+            <div className={s.eaFoot}>
+              <span>Status: <b>Berjalan tanpa kamu pantau</b></span>
+              <span>Confidence 88%</span>
+            </div>
+          </div>
 
           <div className={s.price}>
             <span className={s.priceOld}>Rp{NORMAL.toLocaleString('id-ID')}</span>
@@ -104,13 +118,17 @@ export default function VilonaFxSales3({ locale = 'id' }: { locale?: string }) {
               ✈️ Intip Dulu
             </TrackedCTA>
           </div>
-          <p className={s.trust}>9 engine · AI consensus · SL/TP otomatis</p>
+          <p className={s.trust}>
+            <span>🔌 Tanpa VPS</span>
+            <span>⚡ SL/TP otomatis</span>
+            <span>👑 Akses selamanya</span>
+          </p>
         </section>
 
         {/* ── CARA KERJA EA ── */}
         <section className={s.section}>
-          <h2 className={s.h2}>Cara Kerja EA</h2>
-          <p className={s.center}>Dari sinyal ke posisi — semuanya otomatis.</p>
+          <h2 className={s.h2}>Cara Kerja EA — Semuanya Otomatis</h2>
+          <p className={s.center}>Dari sinyal ke posisi terbuka tanpa kamu sentuh satu tombol pun.</p>
           <div className={s.steps}>
             {STEPS.map((st, i) => (
               <div key={i} className={s.step}>
@@ -178,8 +196,11 @@ export default function VilonaFxSales3({ locale = 'id' }: { locale?: string }) {
           variant="secondary"
           className={s.tgFloat}
         >
-          <span className={s.tgIcon}>💬</span>
-          <span className={s.tgLabel}>Tanya Dulu</span>
+          <span>
+            <span className={s.tgIcon}>💬</span>
+            <span className={s.tgLabel}>Tanya Dulu</span>
+            <span className={s.tgHint}>Gaptek? CS bantu setup gratis</span>
+          </span>
         </TrackedCTA>
       </div>
     </Layout>

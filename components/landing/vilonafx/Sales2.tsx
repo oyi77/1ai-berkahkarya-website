@@ -72,7 +72,6 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
     return () => clearInterval(t);
   }, []);
 
-  // Back redirect → channel.
   useEffect(() => {
     let fired = false;
     window.history.pushState({ sales2: true }, '', window.location.href);
@@ -91,7 +90,6 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
     return () => window.removeEventListener('popstate', onPop);
   }, []);
 
-  // Scroll progress.
   useEffect(() => {
     const el = document.getElementById('sales2Progress');
     if (!el) return;
@@ -117,7 +115,7 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
 
         {/* ── HERO ── */}
         <section className={s.hero}>
-          <div className={s.badge}>⏳ HARGA NAIK DALAM <span className={s.tick}>{fmtCountdown(left)}</span></div>
+          <div className={s.urgentBadge}>🔥 HARGA NAIK DALAM <span className={s.tick}>{fmtCountdown(left)}</span></div>
           <h1>Setiap Hari Tanpa SL = <span className={s.burn}>Uang Terbakar.</span></h1>
           <p className={s.sub}>
             MC tanpa SL hapus <b>bulanan profit</b>. Entry telat rusak RR. Langganan bulanan menguras dompet.
@@ -135,7 +133,11 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
               ✈️ Lihat Dulu
             </TrackedCTA>
           </div>
-          <p className={s.trust}>✅ Tanpa kartu kredit · ✅ Garansi tier aktif · ✅ Update selamanya</p>
+          <p className={s.trust}>
+            <span>✅ Tanpa kartu kredit</span>
+            <span>✅ Garansi tier aktif</span>
+            <span>✅ Update selamanya</span>
+          </p>
         </section>
 
         {/* ── CALCULATOR ── */}
@@ -151,9 +153,14 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
               <div className={s.calcRow}><span>Vilona lifetime (sekali bayar)</span><b className={s.grn}>Rp{PROMO.toLocaleString('id-ID')}</b></div>
               <div className={s.calcRow}><span>Selisih</span><b className={s.red}>+Rp{diff.toLocaleString('id-ID')} (lebih mahal langganan)</b></div>
             </div>
-            <TrackedCTA href={CHECKOUT} className={s.ctaPrimary} productName={`${PRODUCT} - Calc Checkout`} productId="vilonafx-sales2-checkout" service="vilonafx" lpVariant={92} value={PROMO} variant="primary">
-              🛑 Stop Bayar Bulanan — Rp254rb
-            </TrackedCTA>
+            <div className={s.burnDiff}>
+              💸 Rp{diff.toLocaleString('id-ID')} yang bisa kamu simpan — langsung masuk modal trading.
+            </div>
+            <div className={s.ctaRow}>
+              <TrackedCTA href={CHECKOUT} className={s.ctaPrimary} productName={`${PRODUCT} - Calc Checkout`} productId="vilonafx-sales2-checkout" service="vilonafx" lpVariant={92} value={PROMO} variant="primary">
+                🛑 Stop Bayar Bulanan — Rp254rb
+              </TrackedCTA>
+            </div>
           </div>
         </section>
 
