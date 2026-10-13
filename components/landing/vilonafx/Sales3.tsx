@@ -60,7 +60,10 @@ export default function VilonaFxSales3({ locale = 'id' }: { locale?: string }) {
   }, []);
 
   return (
-    <Layout>
+    <Layout
+      title="Vilona AI — Trading Otomatis, Sinyal Masuk Posisi Open (Lifetime Rp254rb)"
+      description="EA auto-eksekusi MT5 + 9 engine AI voting. Sinyal Entry/SL/TP eksplisit, tanpa VPS, tanpa coding. Lifetime Rp254.000 sekali bayar."
+    >
       <LPVariantTracker variant={3} service="vilonafx" />
       <div className={s.wrapper}>
         {/* ── HERO ── */}
