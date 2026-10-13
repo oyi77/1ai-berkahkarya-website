@@ -1,153 +1,129 @@
-/* ── VilonaFX Sales — Lifetime 254rb promo (Midnight Gold, mobile-first) ── */
+/* ── VilonaFX Sales1 — BUKTI NYATA (Midnight Gold, mobile-first) ── */
 .wrapper { --bg: #080b13; --panel: #0d1424; --card: #111b30;
   --ink: #f1f5fb; --mut: #a3b0c7; --ac: #f5b942; --ac-deep: #d99a1f; --grn: #34d399;
-  --red: #f87171; --line: rgba(148, 163, 184, 0.16);
+  --red: #f87171; --line: rgba(148,163,184,0.16);
   background: var(--bg); color: var(--ink); min-height: 100vh;
-  font-family: Inter, system-ui, -apple-system, sans-serif; }
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  padding-bottom: 4.5rem; }
 .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0;
-  background: var(--ac); z-index: 60; }
+  background: var(--ac); z-index: 60; transition: width .1s; }
 
 /* hero */
-.hero { max-width: 760px; margin: 0 auto; padding: 4.5rem 1.25rem 3rem; text-align: center; }
-.badge { display: inline-block; font-size: .75rem; font-weight: 800; letter-spacing: .14em;
+.hero { max-width: 720px; margin: 0 auto; padding: 3.5rem 1.25rem 2rem; text-align: center; }
+.badge { display: inline-block; font-size: .72rem; font-weight: 800; letter-spacing: .12em;
   color: #1a1000; background: var(--ac); border-radius: 999px;
-  padding: .45rem 1.2rem; margin-bottom: 1.2rem; }
-.hero h1 { font-size: clamp(1.9rem, 5vw, 3rem); font-weight: 800; line-height: 1.15;
-  margin: 0 0 1rem; letter-spacing: -.02em; }
+  padding: .4rem 1.1rem; margin-bottom: 1rem; }
+.hero h1 { font-size: clamp(1.7rem, 5vw, 2.6rem); font-weight: 800; line-height: 1.2;
+  margin: 0 0 .8rem; letter-spacing: -.02em; }
 .grad { color: var(--ac); }
-.sub { color: var(--mut); font-size: 1.03rem; line-height: 1.75; max-width: 620px; margin: 0 auto 1.6rem; }
+.sub { color: var(--mut); font-size: .98rem; line-height: 1.65; max-width: 540px; margin: 0 auto 1.4rem; }
 .sub b { color: var(--ink); }
 
 /* price */
-.price { margin: 1.6rem 0; }
-.priceOld { color: var(--mut); text-decoration: line-through; font-size: 1.3rem; }
-.priceNew { font-size: clamp(3rem, 9vw, 4.5rem); font-weight: 900; color: var(--ac); line-height: 1.1; }
-.rb { font-size: 1.6rem; }
-.priceNote { color: var(--mut); font-size: .9rem; margin-top: .4rem; }
+.price { margin: 1.2rem 0; }
+.priceOld { color: var(--mut); text-decoration: line-through; font-size: 1.15rem; }
+.priceNew { font-size: clamp(2.6rem, 8vw, 3.8rem); font-weight: 900; color: var(--ac); line-height: 1.1; }
+.rb { font-size: 1.3rem; }
+.priceNote { color: var(--mut); font-size: .82rem; margin-top: .3rem; }
 .priceNote b { color: var(--red); }
 
 /* cta */
-.ctaRow { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin: 1.4rem 0 .8rem; }
-.ctaPrimary { display: inline-flex; align-items: center; gap: .5rem;
+.ctaRow { display: flex; gap: .7rem; justify-content: center; flex-wrap: wrap; margin: 1.2rem 0 .6rem; }
+.ctaPrimary { display: inline-flex; align-items: center; gap: .5rem; justify-content: center;
   background: var(--ac); color: #1a1000; font-weight: 800;
-  padding: 1rem 2.4rem; border-radius: 14px; font-size: 1.05rem; text-decoration: none;
+  padding: .9rem 2rem; border-radius: 12px; font-size: 1rem; text-decoration: none;
   transition: transform .15s; }
 .ctaPrimary:hover { transform: translateY(-1px); }
-.trust { font-size: .83rem; color: var(--mut); margin: .6rem 0 0; }
+.trust { font-size: .78rem; color: var(--mut); margin: .5rem 0 0; }
 
 /* sections */
-.section { max-width: 960px; margin: 0 auto; padding: 3rem 1.25rem; }
-.section h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; margin: 0 0 1rem;
+.section { max-width: 880px; margin: 0 auto; padding: 2.5rem 1.25rem; }
+.section h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 800; margin: 0 0 .8rem;
   letter-spacing: -.015em; text-align: center; }
-.center { text-align: center; color: var(--mut); max-width: 640px; margin: 0 auto 1.8rem; line-height: 1.75; }
-.cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1.4rem; }
-.card b { display: block; margin-bottom: .5rem; font-size: 1.02rem; }
-.card p { color: var(--mut); font-size: .9rem; line-height: 1.7; margin: 0; }
-.stepN { width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--ac); color: #1a1000;
-  font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
-  margin-bottom: .8rem; }
+.center { text-align: center; color: var(--mut); max-width: 560px; margin: 0 auto 1.4rem; line-height: 1.65; font-size: .9rem; }
+
+/* signal cards (telegram-style) */
+.signals { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+.sigCard { background: #0a101d; border: 1px solid var(--line); border-left: 3px solid var(--grn);
+  border-radius: 4px 14px 14px; padding: 1rem; }
+.sigHead { display: flex; align-items: center; gap: .5rem; margin-bottom: .6rem; }
+.sigPair { font-weight: 800; font-size: .95rem; }
+.sigDir { font-weight: 700; font-size: .75rem; padding: .15rem .5rem; border-radius: 4px; }
+.buy { color: #1a1000; background: var(--grn); }
+.sell { color: #fff; background: var(--red); }
+.sigTime { margin-left: auto; font-size: .72rem; color: var(--mut); }
+.sigBody { margin-bottom: .6rem; }
+.sigRow { font-size: .82rem; color: var(--mut); line-height: 1.9; }
+.sigRow b { color: var(--ink); }
+.sigFoot { display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: .5rem; }
+.sigGrade { font-size: .75rem; font-weight: 700; color: var(--ac); }
+.sigConf { font-size: .75rem; color: var(--grn); }
 
 /* engines */
-.engines { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; }
-.engine { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 1.2rem; }
-.eicon { font-size: 1.5rem; display: block; margin-bottom: .5rem; }
-.engine b { display: block; margin-bottom: .4rem; font-size: .95rem; }
-.engine p { color: var(--mut); font-size: .83rem; line-height: 1.65; margin: 0; }
+.engines { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+.engine { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1rem; }
+.eicon { font-size: 1.3rem; display: block; margin-bottom: .3rem; }
+.engine b { display: block; margin-bottom: .3rem; font-size: .88rem; }
+.engine p { color: var(--mut); font-size: .78rem; line-height: 1.5; margin: 0; }
 
 /* vs table */
-.vsTable { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-.vsHead, .vsRow { display: grid; grid-template-columns: 1.4fr .7fr 1.3fr; gap: .5rem;
-  padding: .9rem 1.1rem; align-items: center; }
-.vsHead { background: var(--panel); font-weight: 800; font-size: .85rem; }
-.vsRow { border-top: 1px solid var(--line); font-size: .88rem; }
+.vsTable { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.vsHead, .vsRow { display: grid; grid-template-columns: 1.4fr .6fr 1.3fr; gap: .5rem;
+  padding: .8rem 1rem; align-items: center; }
+.vsHead { background: var(--panel); font-weight: 800; font-size: .82rem; }
+.vsRow { border-top: 1px solid var(--line); font-size: .85rem; }
 .vsRow span:first-child { color: var(--ink); }
 .vsUs { text-align: center; color: var(--grn); font-weight: 700; }
-.vsThem { color: var(--mut); font-size: .82rem; }
 .vsHead .vsUs { color: var(--ac); }
+.vsThem { color: var(--mut); font-size: .78rem; }
 
-/* price box */
-.priceBox { max-width: 560px; margin: 0 auto; background: var(--panel);
-  border: 2px solid var(--ac); border-radius: 20px; padding: 2.2rem 1.8rem; text-align: center; }
-.feats { list-style: none; padding: 0; margin: 1.4rem 0; text-align: left; }
-.feats li { padding: .45rem 0; font-size: .93rem; border-bottom: 1px solid var(--line); }
-.feats li:last-child { border-bottom: none; }
+/* steps */
+.steps3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+.stepCard { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 1.3rem; }
+.stepN { width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--ac); color: #1a1000;
+  font-weight: 900; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+  margin-bottom: .7rem; }
+.stepCard b { display: block; margin-bottom: .3rem; font-size: .95rem; }
+.stepCard p { color: var(--mut); font-size: .83rem; line-height: 1.6; margin: 0; }
 
 /* faq */
-.faq { border: 1px solid var(--line); border-radius: 12px; margin-bottom: .7rem; overflow: hidden;
-  background: var(--card); max-width: 760px; margin-left: auto; margin-right: auto; }
+.faq { border: 1px solid var(--line); border-radius: 10px; margin-bottom: .6rem; overflow: hidden;
+  background: var(--card); max-width: 700px; margin-left: auto; margin-right: auto; }
 .faqQ { width: 100%; background: transparent; border: none; color: var(--ink); text-align: left;
-  font-size: .98rem; font-weight: 600; padding: 1rem 1.2rem; cursor: pointer;
+  font-size: .92rem; font-weight: 600; padding: .9rem 1.1rem; cursor: pointer;
   display: flex; justify-content: space-between; gap: 1rem; }
-.faqA { color: var(--mut); line-height: 1.75; margin: 0; padding: 0 1.2rem 1.1rem; font-size: .9rem; }
+.faqQ span { color: var(--ac); font-weight: 800; font-size: 1.2rem; }
+.faqA { color: var(--mut); line-height: 1.65; margin: 0; padding: 0 1.1rem 1rem; font-size: .85rem; }
 
-/* final + sticky */
-.final { text-align: center; padding: 3.5rem 1.25rem 6rem; }
-.final h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; margin: 0 0 .8rem; }
-.final p { color: var(--mut); margin: 0 0 1.6rem; }
-.sticky { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
-  padding: .7rem .9rem calc(.7rem + env(safe-area-inset-bottom));
-  background: rgba(8,11,19,.94); border-top: 1px solid var(--line); }
-.stickyCta { display: block; text-align: center; background: var(--ac);
-  color: #1a1000; font-weight: 800; border-radius: 12px; padding: .9rem; text-decoration: none; }
-.stickyCta s { font-weight: 400; opacity: .7; margin-left: .4rem; }
+/* final */
+.final { text-align: center; padding: 3rem 1.25rem 5rem; }
+.final h2 { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800; margin: 0 0 .6rem; }
+.final p { color: var(--mut); margin: 0 0 1.4rem; font-size: .9rem; }
 
-@media (max-width: 720px) {
-  .cards3, .engines { grid-template-columns: 1fr; }
-  .vsHead, .vsRow { grid-template-columns: 1fr .4fr 1fr; font-size: .8rem; }
-  .ctaRow { flex-direction: column; align-items: stretch; }
-  .ctaPrimary { justify-content: center; }
+/* floating telegram */
+.tgFloat { position: fixed; bottom: 1.2rem; right: 1.2rem; z-index: 55;
+  background: #0088cc; color: #fff; font-weight: 700; font-size: .9rem;
+  padding: .75rem 1.3rem; border-radius: 999px; box-shadow: 0 4px 20px rgba(0,136,204,.4);
+  display: inline-flex; align-items: center; gap: .4rem;
+  animation: tgPulse 2s infinite; }
+@keyframes tgPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(0,136,204,.4); }
+  50% { box-shadow: 0 4px 30px rgba(0,136,204,.7); }
 }
 
-/* -- AI PIPELINE (animasi autoplay) -- */
-.pipeline { display: flex; align-items: stretch; gap: .2rem; }
-.pipeStep { position: relative; flex: 1; background: var(--card); border: 1px solid var(--line);
-  border-radius: 14px; padding: 1.1rem .8rem; text-align: center;
-  opacity: .35; transform: scale(.97); transition: opacity .5s, transform .5s, box-shadow .5s; }
-.pipeOn { opacity: 1; transform: scale(1); }
-.pipeNow { box-shadow: 0 0 0 2px var(--ac), 0 0 24px rgba(245,185,66,.25); }
-.pipeIcon { font-size: 1.6rem; display: block; margin-bottom: .4rem; }
-.pipeT { font-weight: 800; font-size: .88rem; margin-bottom: .3rem; }
-.pipeD { color: var(--mut); font-size: .78rem; line-height: 1.6; }
-.pipeArrow { position: absolute; right: -.85rem; top: 50%; transform: translateY(-50%);
-  color: var(--ac); font-weight: 900; font-size: 1.2rem; z-index: 2; }
-.pipeStep:last-child .pipeArrow { display: none; }
+/* sticky cta */
+.sticky { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+  padding: .6rem .8rem calc(.6rem + env(safe-area-inset-bottom));
+  background: rgba(8,11,19,.95); border-top: 1px solid var(--line); }
+.stickyCta { display: block; text-align: center; background: var(--ac);
+  color: #1a1000; font-weight: 800; border-radius: 10px; padding: .8rem; text-decoration: none; font-size: .95rem; }
+.stickyCta s { font-weight: 400; opacity: .6; margin-left: .3rem; font-size: .8rem; }
 
-/* -- SIMULATOR STRATEGI -- */
-.sim { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
-.simTabs { display: flex; flex-wrap: wrap; gap: .4rem; padding: 1rem 1rem 0; }
-.simTab { background: var(--card); border: 1px solid var(--line); color: var(--mut);
-  border-radius: 999px; padding: .45rem .95rem; font-size: .83rem; cursor: pointer; transition: all .2s; }
-.simTabOn { background: var(--ac); color: #1a1000; border-color: var(--ac); font-weight: 800; }
-.simBody { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; padding: 1.2rem; }
-.simWin { font-size: 1.6rem; font-weight: 900; color: var(--grn); margin-bottom: .3rem; }
-.simWin b { color: var(--ac); }
-.simRisk { font-size: .85rem; color: var(--mut); margin-bottom: .3rem; }
-.simRisk[data-r="tinggi"] { color: var(--red); }
-.simRisk[data-r="rendah"] { color: var(--grn); }
-.simSym { font-size: .8rem; color: var(--mut); margin-bottom: .6rem; }
-.simDesc { font-size: .9rem; line-height: 1.7; color: var(--ink); margin: 0 0 .8rem; }
-.simCmd { display: inline-block; background: #080b13; border: 1px solid var(--line);
-  border-radius: 8px; padding: .45rem .8rem; font-family: monospace; font-size: .82rem; color: var(--ac); }
-.simRight { display: flex; flex-direction: column; }
-.simMsgHead { font-size: .8rem; font-weight: 700; color: var(--mut); margin-bottom: .5rem; }
-.simMsg { background: #0a101d; border: 1px solid var(--line); border-left: 4px solid var(--grn);
-  border-radius: 4px 14px 14px; padding: 1rem 1.1rem; font-size: .88rem; line-height: 2; }
-.simMsgTitle { font-weight: 800; color: var(--ink); margin-bottom: .3rem; }
-.simMsgFoot { color: var(--mut); font-size: .78rem; margin-top: .4rem; }
-
-/* -- EA AUTO-EXEC -- */
-.eaSteps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-.eaStep { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1.3rem; }
-.eaStep span { font-size: 1.7rem; display: block; margin-bottom: .5rem; }
-.eaStep b { display: block; margin-bottom: .4rem; }
-.eaStep p { color: var(--mut); font-size: .85rem; line-height: 1.7; margin: 0; }
-.eaNote { text-align: center; color: var(--ac); margin-top: 1.2rem; font-size: .92rem; }
-
+/* mobile */
 @media (max-width: 720px) {
-  .pipeline { flex-direction: column; }
-  .pipeArrow { right: auto; left: 50%; top: auto; bottom: -.95rem;
-    transform: translateX(-50%) rotate(90deg); }
-  .simBody { grid-template-columns: 1fr; }
-  .eaSteps { grid-template-columns: 1fr 1fr; }
+  .signals, .engines, .steps3 { grid-template-columns: 1fr; }
+  .vsHead, .vsRow { grid-template-columns: 1fr .4fr 1fr; font-size: .78rem; }
+  .ctaRow { flex-direction: column; align-items: stretch; }
+  .ctaPrimary { justify-content: center; }
+  .tgFloat { bottom: 4.5rem; right: .8rem; font-size: .82rem; padding: .6rem 1rem; }
 }

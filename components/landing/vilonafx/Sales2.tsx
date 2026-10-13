@@ -6,27 +6,39 @@ import s from './Sales2.module.css';
 import TrackedCTA from '../TrackedCTA';
 import LPVariantTracker from '../LPVariantTracker';
 import { useEngagementTracking } from '@/hooks/useEngagementTracking';
-import { trackLead, trackInitiateCheckout, trackViewContent } from '@/lib/tracking';
+import { trackLead, trackViewContent } from '@/lib/tracking';
 
 const CHANNEL = 'https://t.me/vilonaaichanel';
 const CHECKOUT = 'https://lynk.id/jendralbot/ox33n8n04792';
-const PRODUCT = 'VilonaFX - Sales2 Fear - Lifetime 254rb';
-
+const TELEGRAM_CHAT = 'https://t.me/alwayscuanterus?text=Halo+kak,+saya+mau+tanya+tentang+VilonaFX+bot+tradingnya';
+const PRODUCT = 'VilonaFX - Sales2 Burn - Lifetime 254rb';
 const NORMAL = 1990900;
 const PROMO = 254000;
 const SAVED = NORMAL - PROMO;
+const SUB_MO = 400000;
 
-// Same engine facts as Sales.tsx — compact wall, no new claims.
 const ENGINES = [
   { name: 'S-TIER Zone', desc: 'Hanya grade terbaik yang lolos.', icon: '⚡' },
   { name: 'SBR / BRS Killer', desc: 'Entry di titik institusi masuk.', icon: '🎯' },
-  { name: 'SMC Scalper', desc: 'BOS, CHoCH, liquidity grab, order block.', icon: '📐' },
-  { name: 'Conf3 Trend', desc: 'WR terukur 69,5% dan naik tiap hari.', icon: '📊' },
+  { name: 'SMC Scalper', desc: 'BOS, CHoCH, liquidity grab.', icon: '📐' },
+  { name: 'Conf3 Trend', desc: 'WR terukur 69,5%.', icon: '📊' },
   { name: 'Multi-TF Supertrend', desc: 'Sinkronisasi semua timeframe.', icon: '🔄' },
   { name: 'Quasimodo + RAG', desc: 'Tidak mengulang kesalahan lama.', icon: '🧠' },
-  { name: 'AI Consensus', desc: 'Ensemble 5 model LLM voting tiap sinyal.', icon: '🤖' },
+  { name: 'AI Consensus', desc: '5 model LLM voting tiap sinyal.', icon: '🤖' },
   { name: 'AHZ Radar', desc: 'RR minimum, SL eksplisit.', icon: '🛡️' },
   { name: 'Guardian + Validator', desc: 'Anti-spam 2/jam, pair-lock.', icon: '🔒' },
+];
+
+const PAINS = [
+  { icon: '💥', title: 'MC tanpa SL', body: '"BUY sekarang!" tanpa stop loss. Sekali salah arah, margin call hapus akun.' },
+  { icon: '⏰', title: 'Entry selalu telat', body: 'Sinyal manual dibaca 30 menit kemudian. Harga sudah jalan, RR rusak.' },
+  { icon: '🩸', title: 'Langganan abadi', body: 'Bayar tiap bulan, berhenti = sinyal stop. Uang hilang, ilmu tidak nempel.' },
+];
+
+const FAQS = [
+  { q: 'Kenapa semurah ini? Rp254rb lifetime, apa jebakannya?', a: 'Tidak ada jebakan. Rp254.000 = harga 1 bulan ELITE. Promo launching agar channel cepat penuh 1.000 member pertama — setelah kuota habis, lifetime kembali Rp1.990.900. Yang terkunci harga promo selamanya, tanpa biaya lanjutan.' },
+  { q: 'Bedanya dengan grup sinyal gratis?', a: 'Grup gratis = 1 admin, feeling, tanpa SL/TP, spam. Vilona = 9 engine voting + AI consensus 5 model LLM + SL/TP eksplisit tiap sinyal + EA auto-eksekusi MT5. Free tier kami saja (3 sinyal/hari) sudah lebih ketat dari kebanyakan grup berbayar.' },
+  { q: 'Lifetime beneran selamanya? Termasuk update?', a: 'Ya. Sekali bayar Rp254.000: semua sinyal + semua fitur ELITE + semua update engine selamanya. Tidak ada biaya bulanan, tahunan, atau biaya server.' },
 ];
 
 function msToMidnight(): number {
@@ -46,17 +58,15 @@ function fmtCountdown(ms: number): string {
 }
 
 export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
-  useEngagementTracking('Vilona FX - Sales2 Fear Lifetime 254rb', '0', 'vilonafx-sales2');
+  useEngagementTracking('Vilona FX - Sales2 Burn Lifetime 254rb', '0', 'vilonafx-sales2');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [left, setLeft] = useState(msToMidnight());
-  const [lot, setLot] = useState(0.5);
   const [months, setMonths] = useState(6);
 
   useEffect(() => {
     trackViewContent('VilonaFX - Sales2 - Lifetime 254rb', 'sales_page');
   }, []);
 
-  // Countdown to local midnight.
   useEffect(() => {
     const t = setInterval(() => setLeft(msToMidnight()), 1000);
     return () => clearInterval(t);
@@ -70,7 +80,7 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
       if (fired) return;
       fired = true;
       trackLead({
-        content_name: `${PRODUCT} - Back Redirect Join`,
+        content_name: `${PRODUCT} - Back Redirect`,
         content_id: 'vilonafx-sales2-back',
         destination: 'telegram_channel',
         destination_url: CHANNEL,
@@ -93,38 +103,13 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const onCheckout = () => {
-    trackInitiateCheckout({
-      content_name: PRODUCT,
-      content_id: 'vilonafx-lifetime-254k',
-      value: PROMO,
-      currency: 'IDR',
-      num_items: 1,
-    });
-  };
-
-  // Channel joins ride TrackedCTA internal trackLead (no onClick prop exists).
-
-  // Loss calculator — pure client math, assumptions labelled.
-  // Asumsi tengah Rp400rb/bln (rentang pasar Rp300–500rb/bln).
-  const subBurn = months * 400000;
+  const subBurn = months * SUB_MO;
   const diff = subBurn - PROMO;
-  // Ilustrasi: ~5 setup/minggu × 4 minggu — asumsi, bukan janji profit.
-  const missedSetups = months * 20;
-
-  const faqs = [
-    { q: 'Kenapa semurah ini? Rp254rb lifetime, apa jebakannya?', a: 'Tidak ada jebakan. Rp254.000 = harga 1 bulan ELITE. Ini promo launching agar channel cepat penuh 1.000 member pertama — setelah kuota habis, lifetime kembali Rp1.990.900. Yang terkunci harga promo selamanya, tanpa biaya lanjutan.' },
-    { q: 'Bedanya dengan grup sinyal gratis di Telegram?', a: 'Grup gratis = 1 admin, feeling, tanpa SL/TP, spam. Vilona = 9 engine voting + AI consensus 5 model LLM + SL/TP eksplisit tiap sinyal + EA yang eksekusi otomatis ke MT5 kamu. Free tier kami saja (3 sinyal/hari) sudah lebih ketat dari kebanyakan grup berbayar.' },
-    { q: 'Saya gaptek / tidak punya VPS. Bisa ikut?', a: 'Bisa. Sinyal masuk Telegram — tinggal baca Entry/SL/TP. Mau otomatis? EA kami jalan di MT5 HP/PC biasa, tanpa VPS. Setup 5 menit, ada panduan + admin bantu.' },
-    { q: 'Bagaimana pembayarannya? Aman?', a: 'Checkout via lynk.id (QRIS, virtual account semua bank, e-wallet). Link berlaku 24 jam. Setelah bayar, bot verifikasi otomatis dan tier LIFETIME aktif — garansi: tidak aktif = uang kembali via admin @codergaboets.' },
-    { q: 'Apakah ini jaminan profit?', a: 'Tidak — dan waspada pada yang berani menjamin. Yang kami jamin: setiap sinyal punya SL eksplisit (risiko terukur), win-rate engine terukur (Conf3 69,5% dan naik), anti-spam/anti-duplikat. Trading tetap berisiko; kelola lot sesuai modal.' },
-    { q: 'Lifetime beneran selamanya? Termasuk update?', a: 'Ya. Sekali bayar Rp254.000: semua sinyal + semua fitur ELITE + semua update engine selamanya. Tidak ada biaya bulanan, tahunan, atau "biaya server".' },
-  ];
 
   return (
     <Layout
-      title="Vilona AI — Berhenti Rugi Sendirian (Lifetime Rp254rb)"
-      description="Setiap bulan tanpa SL jelas dan entry telat = uang terbakar. Vilona: 9 engine + AI consensus, sinyal Entry/SL/TP, EA auto-eksekusi MT5. Lifetime Rp254.000 sekali bayar."
+      title="Vilona AI — Berhenti Bakar Uang (Lifetime Rp254rb)"
+      description="Setiap hari tanpa SL = uang terbakar. MC hapus profit, entry telat rusak RR, langganan bulanan menguras dompet. Vilona: 9 engine + AI consensus, SL eksplisit, EA auto MT5. Lifetime Rp254.000."
     >
       <div className={s.wrapper}>
         <LPVariantTracker variant={92} service="vilonafx" />
@@ -133,11 +118,9 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
         {/* ── HERO ── */}
         <section className={s.hero}>
           <div className={s.badge}>⏳ HARGA NAIK DALAM <span className={s.tick}>{fmtCountdown(left)}</span></div>
-          <h1>Berapa Lama Lagi Kamu Mau <span className={s.red}>Bakar Uang</span> Sendirian?</h1>
+          <h1>Setiap Hari Tanpa SL = <span className={s.burn}>Uang Terbakar.</span></h1>
           <p className={s.sub}>
-            Satu MC tanpa SL menghapus <b>berbulan-bulan profit</b>. Satu entry telat 30 menit
-            merusak RR. Grup premium Rp300–500rb/bulan menguras dompet — <b>berhenti bayar = sinyal stop</b>.
-            Vilona menghentikan ketiganya: SL eksplisit tiap sinyal, EA eksekusi dalam detik, sekali bayar selamanya.
+            MC tanpa SL hapus <b>bulanan profit</b>. Entry telat rusak RR. Langganan bulanan menguras dompet.
           </p>
           <div className={s.price}>
             <div className={s.priceOld}>Rp{NORMAL.toLocaleString('id-ID')}</div>
@@ -145,56 +128,53 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
             <div className={s.priceNote}>sekali bayar · selamanya · hemat Rp{SAVED.toLocaleString('id-ID')}</div>
           </div>
           <div className={s.ctaRow}>
-            <a href={CHECKOUT} onClick={onCheckout} className={s.ctaPrimary}>
-              🛑 Hentikan Kerugian — Klaim Rp254rb
-            </a>
-            <TrackedCTA href={CHANNEL} productName={`${PRODUCT} - Hero Join`} productId="vilonafx-sales2" service="vilonafx" variant="secondary">
-              ✈️ Lihat Dulu di Channel
+            <TrackedCTA href={CHECKOUT} className={s.ctaPrimary} productName={`${PRODUCT} - Hero Checkout`} productId="vilonafx-sales2-checkout" service="vilonafx" lpVariant={92} value={PROMO} variant="primary">
+              🛑 Hentikan Kerugian — Rp254rb
+            </TrackedCTA>
+            <TrackedCTA href={CHANNEL} className={s.ctaSecondary} productName={`${PRODUCT} - Hero Join`} productId="vilonafx-sales2" service="vilonafx" lpVariant={92} variant="secondary">
+              ✈️ Lihat Dulu
             </TrackedCTA>
           </div>
-          <div className={s.trust}>✅ Tanpa kartu kredit · ✅ Garansi tier aktif · ✅ Update selamanya</div>
+          <p className={s.trust}>✅ Tanpa kartu kredit · ✅ Garansi tier aktif · ✅ Update selamanya</p>
         </section>
 
-        {/* ── LOSS CALCULATOR ── */}
+        {/* ── CALCULATOR ── */}
         <section className={s.section}>
           <h2>Hitung Berapa yang Sudah Terbakar</h2>
-          <p className={s.center}>Geser lot dan isi berapa bulan kamu trading tanpa sistem. Angka langganan pakai asumsi tengah Rp400rb/bln (rentang pasar Rp300–500rb/bln).</p>
           <div className={s.calc}>
             <label className={s.calcLabel}>
-              Ukuran lot per trade: <b>{lot.toFixed(2)} lot</b>
-              <input type="range" min={0.01} max={5} step={0.01} value={lot} onChange={(e) => setLot(Number(e.target.value))} className={s.slider} />
-            </label>
-            <label className={s.calcLabel}>
-              Bulan trading tanpa sistem:
-              <input type="number" min={1} max={60} value={months} onChange={(e) => setMonths(Math.max(1, Number(e.target.value) || 1))} className={s.numInput} />
+              Bulan trading tanpa sistem: <b>{months} bulan</b>
+              <input type="range" min={1} max={12} step={1} value={months} onChange={(e) => setMonths(Number(e.target.value))} className={s.slider} />
             </label>
             <div className={s.calcOut}>
               <div className={s.calcRow}><span>Uang langganan terbakar ({months} bln × Rp400rb)</span><b className={s.red}>Rp{subBurn.toLocaleString('id-ID')}</b></div>
-              <div className={s.calcRow}><span>Vilona lifetime (sekali bayar)</span><b>Rp{PROMO.toLocaleString('id-ID')}</b></div>
-              <div className={s.calcRow}><span>Selisih</span><b className={diff >= 0 ? s.red : s.green}>{diff >= 0 ? `+Rp${diff.toLocaleString('id-ID')} (lebih mahal langganan)` : `Rp${Math.abs(diff).toLocaleString('id-ID')} (Vilona lebih hemat)`}</b></div>
-              <div className={s.calcRow}><span>Setup tervalidasi terlewat (ilustrasi ±20/bln)</span><b>±{missedSetups} setup</b></div>
+              <div className={s.calcRow}><span>Vilona lifetime (sekali bayar)</span><b className={s.grn}>Rp{PROMO.toLocaleString('id-ID')}</b></div>
+              <div className={s.calcRow}><span>Selisih</span><b className={s.red}>+Rp{diff.toLocaleString('id-ID')} (lebih mahal langganan)</b></div>
             </div>
-            <p className={s.calcNote}>Ilustrasi biaya langganan, bukan janji profit. Trading tetap berisiko — SL eksplisit membatasi tiap trade, bukan menghapus risiko.</p>
-            <a href={CHECKOUT} onClick={onCheckout} className={s.ctaPrimary}>
-              🛑 Stop Bayar Bulanan — Rp254rb Sekali
-            </a>
+            <TrackedCTA href={CHECKOUT} className={s.ctaPrimary} productName={`${PRODUCT} - Calc Checkout`} productId="vilonafx-sales2-checkout" service="vilonafx" lpVariant={92} value={PROMO} variant="primary">
+              🛑 Stop Bayar Bulanan — Rp254rb
+            </TrackedCTA>
           </div>
         </section>
 
-        {/* ── PAIN ── */}
+        {/* ── 3 PAIN CARDS ── */}
         <section className={s.section}>
-          <h2>Tiga Cara Trader Kehilangan Uang Tiap Minggu</h2>
+          <h2>3 Cara Trader Kehilangan Uang</h2>
           <div className={s.cards3}>
-            <div className={s.card}><b>💥 MC tanpa SL</b><p>"BUY XAUUSD sekarang!" — tanpa stop loss. Sekali salah arah, floating membengkak sampai margin call menghapus akun.</p></div>
-            <div className={s.card}><b>⏰ Entry selalu telat</b><p>Sinyal manual dibaca 30 menit kemudian = harga sudah jalan. Entry basi, RR rusak, SL makin lebar.</p></div>
-            <div className={s.card}><b>🩸 Langganan abadi</b><p>Rp300–500rb/bulan = Rp3,6–6 juta setahun. Berhenti bayar = sinyal stop. Uangnya hilang, ilmunya tidak nempel.</p></div>
+            {PAINS.map((p) => (
+              <div className={s.card} key={p.title}>
+                <span className={s.cicon}>{p.icon}</span>
+                <b>{p.title}</b>
+                <p>{p.body}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* ── ENGINE WALL ── */}
+        {/* ── 9 ENGINES ── */}
         <section className={s.section}>
-          <h2>9 Engine Menjaga Kamu dari 3 Hal Itu</h2>
-          <p className={s.center}>Tanpa voting mayoritas = tanpa sinyal. SL eksplisit + RR minimum + anti-spam 2/jam + pair-lock di setiap pengiriman.</p>
+          <h2>9 Engine Melindungi Kamu</h2>
+          <p className={s.center}>Tanpa voting mayoritas = tanpa sinyal. SL eksplisit + RR minimum + anti-spam 2/jam.</p>
           <div className={s.engines}>
             {ENGINES.map((e) => (
               <div className={s.engine} key={e.name}>
@@ -204,32 +184,20 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
               </div>
             ))}
           </div>
-        </section>
-
-        {/* ── GUARANTEE ── */}
-        <section className={s.section}>
-          <h2>Garansi Tanpa Drama</h2>
-          <div className={s.guarantee}>
-            <div className={s.guarIcon}>🛡️</div>
-            <div>
-              <b>Tier tidak aktif = uang kembali.</b>
-              <p>Bayar via lynk.id (QRIS/VA/e-wallet, link 24 jam). Bot verifikasi otomatis dan tier LIFETIME aktif. Kalau tidak aktif, admin @codergaboets refund. Bukan garansi profit — garansi sistem jalan.</p>
-            </div>
-          </div>
           <div className={s.ctaRow}>
-            <a href={CHECKOUT} onClick={onCheckout} className={s.ctaPrimary}>
-              🛑 Amankan Slot — Rp254rb
-            </a>
-            <TrackedCTA href={CHANNEL} productName={`${PRODUCT} - Mid Join`} productId="vilonafx-sales2" service="vilonafx" variant="secondary">
-              ✈️ Gabung Channel Dulu
+            <TrackedCTA href={CHECKOUT} className={s.ctaPrimary} productName={`${PRODUCT} - Engine Checkout`} productId="vilonafx-sales2-checkout" service="vilonafx" lpVariant={92} value={PROMO} variant="primary">
+              🛑 Amankan Pelindung — Rp254rb
+            </TrackedCTA>
+            <TrackedCTA href={CHANNEL} className={s.ctaSecondary} productName={`${PRODUCT} - Engine Join`} productId="vilonafx-sales2" service="vilonafx" lpVariant={92} variant="secondary">
+              ✈️ Lihat Sinyal Gratis
             </TrackedCTA>
           </div>
         </section>
 
         {/* ── FAQ ── */}
         <section className={s.section}>
-          <h2>Pertanyaan Jujur, Jawaban Jujur</h2>
-          {faqs.map((f, i) => (
+          <h2>Pertanyaan Jujur</h2>
+          {FAQS.map((f, i) => (
             <div className={s.faq} key={i}>
               <button className={s.faqQ} onClick={() => setOpenFaq(openFaq === i ? null : i)}>
                 {f.q} <span>{openFaq === i ? '−' : '+'}</span>
@@ -239,25 +207,10 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
           ))}
         </section>
 
-        {/* ── FINAL ── */}
-        <section className={s.final}>
-          <h2>Jam Terus Jalan. Harga Ikut Naik.</h2>
-          <p>Sisa waktu harga promo hari ini: <b className={s.tick}>{fmtCountdown(left)}</b> — setelah itu kembali Rp{NORMAL.toLocaleString('id-ID')}.</p>
-          <div className={s.ctaRow}>
-            <a href={CHECKOUT} onClick={onCheckout} className={s.ctaPrimary}>
-              🛑 Klaim Sekarang — Rp254rb
-            </a>
-            <TrackedCTA href={CHANNEL} productName={`${PRODUCT} - Final Join`} productId="vilonafx-sales2" service="vilonafx" variant="secondary">
-              ✈️ Channel Gratis
-            </TrackedCTA>
-          </div>
-        </section>
-
-        <div className={s.sticky}>
-          <a href={CHECKOUT} onClick={onCheckout} className={s.stickyCta}>
-            🛑 Lifetime Rp254rb <s>Rp{NORMAL.toLocaleString('id-ID')}</s> · {fmtCountdown(left)}
-          </a>
-        </div>
+        {/* ── FLOATING TELEGRAM ── */}
+        <TrackedCTA href={TELEGRAM_CHAT} className={s.tgFloat} productName="VilonaFX - Sales2 - Telegram Float" productId="vilonafx-sales2-tg-float" service="vilonafx" lpVariant={92}>
+          💬 Tanya Dulu
+        </TrackedCTA>
       </div>
     </Layout>
   );
