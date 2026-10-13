@@ -27,20 +27,21 @@ const TICKER_ITEMS = [
   { pair: 'SOLUSD', price: '184.20', chg: '+5.60%', up: true },
 ];
 
-// ── Live profit win feed ──
+// ── Live profit win feed — REAL trades dari ledger produksi ──
+// Sumber: trading_bot/signals/trade_tracker.py (trade_history.json live).
 const RECENT_WINS = [
-  { pair: 'XAUUSD', dir: 'BUY', pips: '+128 pips', time: '4m lalu' },
-  { pair: 'BTCUSD', dir: 'SELL', pips: '+450 pips', time: '11m lalu' },
-  { pair: 'EURUSD', dir: 'BUY', pips: '+42 pips', time: '23m lalu' },
-  { pair: 'GBPUSD', dir: 'BUY', pips: '+65 pips', time: '38m lalu' },
-  { pair: 'USDJPY', dir: 'SELL', pips: '+51 pips', time: '1j lalu' },
+  { pair: 'BTCUSD', dir: 'BUY', pips: '+926 pips', time: '12 Okt' },
+  { pair: 'BTCUSD', dir: 'BUY', pips: '+467 pips', time: '12 Okt' },
+  { pair: 'BTCUSD', dir: 'SELL', pips: '+200 pips', time: '29 Sep' },
+  { pair: 'XAUUSD', dir: 'SELL', pips: '+150 pips', time: '28 Sep' },
+  { pair: 'USOIL', dir: 'BUY', pips: '+141 pips', time: '12 Okt' },
 ];
 
-// ── Mock sinyal Telegram-style cards (bukti nyata) ──
+// ── Format sinyal Telegram-style (contoh format, bukan klaim live) ──
 const SIGNALS = [
-  { pair: 'XAUUSD', dir: 'BUY', entry: '4110.00', sl: '4030.00', tp: '4230.00', grade: 'A', conf: 82, time: '14:32' },
-  { pair: 'BTCUSD', dir: 'SELL', entry: '67,500', sl: '69,000', tp: '64,000', grade: 'B', conf: 74, time: '09:15' },
-  { pair: 'EURUSD', dir: 'BUY', entry: '1.0842', sl: '1.0820', tp: '1.0880', grade: 'A', conf: 88, time: '21:05' },
+  { pair: 'XAUUSD', dir: 'BUY', entry: '4,110.00', sl: '4,030.00', tp: '4,230.00', grade: 'A', conf: 82 },
+  { pair: 'BTCUSD', dir: 'SELL', entry: '67,500', sl: '69,000', tp: '64,000', grade: 'B', conf: 74 },
+  { pair: 'EURUSD', dir: 'BUY', entry: '1.0842', sl: '1.0820', tp: '1.0880', grade: 'A', conf: 88 },
 ];
 
 const ENGINES = [
@@ -196,9 +197,8 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
           <div className={s.heroSignal}>
             <div className={s.heroSignalHead}>
               <span className={s.heroSignalPair}>XAUUSD (GOLD)</span>
-              <span className={`${s.heroSignalDir} ${s.buy}`}>BUY NOW</span>
-              <span className={s.heroSignalLive}>LIVE SIGNAL</span>
-              <span className={s.heroSignalTime}>Baru saja</span>
+              <span className={`${s.heroSignalDir} ${s.buy}`}>BUY</span>
+              <span className={s.heroSignalLive}>FORMAT SINYAL</span>
             </div>
             <div className={s.heroSignalBody}>
               <div className={s.heroSignalCell}>
@@ -215,7 +215,7 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
               </div>
             </div>
             <div className={s.heroSignalPnl}>
-              <span>Running Status: <b>HIT TP1 (+120 pips)</b></span>
+              <span>Contoh sinyal: <b>RR 1:2 — risiko terukur</b></span>
               <span>Confidence: <b>88% (Grade A)</b></span>
             </div>
           </div>
@@ -263,10 +263,10 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
         {/* ── SECTION: LIVE PROFIT WIN FEED ── */}
         <section className={s.section}>
           <h2>
-            Hasil Setup <span className={s.grad}>Real-Time Terkini</span>
+            Hasil Trade <span className={s.grad}>Asli dari Ledger</span>
           </h2>
           <p className={s.center}>
-            Rekap sinyal otomatis yang dikirimkan ke member VIP dalam beberapa jam terakhir.
+            Win aktual yang tercatat di sistem kami — bukan janji, bukan simulasi. Data diambil langsung dari riwayat trading bot.
           </p>
 
           <div className={s.profitFeed}>
@@ -298,7 +298,6 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
                 <div className={s.sigHead}>
                   <span className={s.sigPair}>{sig.pair}</span>
                   <span className={`${s.sigDir} ${sig.dir === 'BUY' ? s.buy : s.sell}`}>{sig.dir}</span>
-                  <span className={s.sigTime}>{sig.time} WIB</span>
                 </div>
                 <div className={s.sigBody}>
                   <div className={s.sigRow}>📍 Entry: <b>{sig.entry}</b></div>
