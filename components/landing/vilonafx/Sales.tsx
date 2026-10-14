@@ -44,6 +44,23 @@ const SIGNALS = [
   { pair: 'EURUSD', dir: 'BUY', entry: '1.0842', sl: '1.0820', tp: '1.0880', grade: 'A', conf: 88 },
 ];
 
+// ── Bukti nyata: screenshot fitur bot + withdrawal asli ──
+const PROOF_FEATURES = [
+  { img: '/assets/vilonafx/proof/analisa-gbpusd.png', label: 'Analisa GBPUSD — Entry/SL/TP2 + RR 1:2', tall: true },
+  { img: '/assets/vilonafx/proof/analisa-usdjpy.png', label: 'Analisa USDJPY — confidence 65.4%', tall: true },
+  { img: '/assets/vilonafx/proof/smc-pullback.png', label: 'SMC Pullback XAUUSD — WR 57% · PF 1.71', tall: true },
+  { img: '/assets/vilonafx/proof/mtf-matrix.png', label: 'MTF Matrix — consensus 86%', tall: true },
+  { img: '/assets/vilonafx/proof/pusat-perintah.png', label: 'Pusat Perintah — Tier Premium', tall: false },
+  { img: '/assets/vilonafx/proof/pair-kripto.png', label: '12 Pair Crypto 24/7', tall: false },
+];
+
+const PROOF_WITHDRAWALS = [
+  { img: '/assets/vilonafx/proof/withdraw-1.png', label: 'WD 08 Okt — $39.99 & 02 Okt — $21.31' },
+  { img: '/assets/vilonafx/proof/withdraw-2.png', label: '4x WD September — invoice lengkap' },
+  { img: '/assets/vilonafx/proof/withdraw-3.png', label: 'WD $137.46 — Internet Banking' },
+  { img: '/assets/vilonafx/proof/withdraw-4.png', label: 'Riwayat WD — real, terverifikasi' },
+];
+
 const ENGINES = [
   { name: 'S-TIER Zone', desc: 'Setup probabilitas tertinggi berdasar zone orderblock valid', icon: '⚡' },
   { name: 'SBR/BRS Killer', desc: 'Zona supply-demand institusi Support Becomes Resistance', icon: '🎯' },
@@ -284,6 +301,45 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* ── SECTION: BUKTI NYATA — SCREENSHOT FITUR BOT ── */}
+        <section className={s.section}>
+          <h2>
+            Lihat Sendiri <span className={s.grad}>Fitur Bot</span> — Bukan Rendering
+          </h2>
+          <p className={s.center}>
+            Screenshot asli dari Telegram bot Vilona AI. Analisa lengkap: zona entry, SL, TP bertingkat, RR terukur, confidence tertera.
+          </p>
+          <div className={s.proofGrid}>
+            {PROOF_FEATURES.map((p) => (
+              <figure className={`${s.proofCard} ${p.tall ? s.proofTall : ''}`} key={p.img}>
+                <img src={p.img} alt={p.label} loading="lazy" />
+                <figcaption>{p.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        {/* ── SECTION: BUKTI WITHDRAWAL ── */}
+        <section className={s.section}>
+          <h2>
+            Bukti <span className={s.grad}>Withdrawal Asli</span> Member
+          </h2>
+          <p className={s.center}>
+            Bukan janji profit — ini bukti sistem bekerja: member menarik hasil tradingnya via Internet Banking.
+          </p>
+          <div className={s.proofGrid}>
+            {PROOF_WITHDRAWALS.map((w) => (
+              <figure className={s.proofCard} key={w.img}>
+                <img src={w.img} alt={w.label} loading="lazy" />
+                <figcaption>{w.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <p className={s.disclaimer}>
+            ⚠️ Trading tetap berisiko. Hasil di atas adalah performa historis member — bukan jaminan profit untuk Anda.
+          </p>
         </section>
 
         {/* ── SECTION 1: FORMAT SINYAL TELEGRAM ── */}

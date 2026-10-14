@@ -715,10 +715,70 @@
 .stickyCta s { font-weight: 400; opacity: .5; margin-left: .3rem; font-size: .8rem; }
 
 /* ════════════════════════════════════════════════════════════
+   PROOF GRID — real screenshots + withdrawals
+   ════════════════════════════════════════════════════════════ */
+.proofGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.proofCard {
+  margin: 0;
+  background: var(--card);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all .25s;
+  display: flex;
+  flex-direction: column;
+}
+.proofCard:hover {
+  border-color: rgba(245, 197, 66, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+.proofCard img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  object-position: top;
+}
+.proofTall img {
+  max-height: 420px;
+  object-fit: cover;
+  object-position: top;
+}
+.proofCard figcaption {
+  padding: .7rem .9rem;
+  font-size: .78rem;
+  color: var(--mut);
+  text-align: center;
+  border-top: 1px solid var(--line);
+  line-height: 1.4;
+}
+.disclaimer {
+  max-width: 640px;
+  margin: 1.4rem auto 0;
+  text-align: center;
+  font-size: .76rem;
+  color: var(--mut);
+  opacity: .8;
+  line-height: 1.6;
+}
+
+/* ════════════════════════════════════════════════════════════
    MOBILE
    ════════════════════════════════════════════════════════════ */
 @media (max-width: 720px) {
   .signals, .engines, .steps3 { grid-template-columns: 1fr; }
+  .proofGrid { grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+  .proofTall img { max-height: 300px; }
+  .proofCard figcaption { font-size: .72rem; padding: .5rem .6rem; }
   .heroSignalBody { grid-template-columns: repeat(3, 1fr); gap: .3rem; }
   .heroSignalCell { padding: .4rem .4rem; }
   .heroSignalCell b { font-size: .78rem; }
