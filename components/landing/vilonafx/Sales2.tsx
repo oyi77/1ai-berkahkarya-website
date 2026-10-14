@@ -98,7 +98,7 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
     <Layout
       title="Vilona AI — Berhenti Bakar Uang (Lifetime Rp254rb)"
       description="Setiap hari tanpa SL = uang terbakar. MC hapus profit, entry telat rusak RR, langganan bulanan menguras dompet. Vilona: 9 engine + AI consensus, SL eksplisit, EA auto MT5. Lifetime Rp254.000."
-      ogImage="/assets/vilonafx/og-sales2.png"
+      ogImage="/assets/vilonafx/og-sales2-v2.png"
     >
       <div className={s.wrapper}>
         <LPVariantTracker variant={92} service="vilonafx" />

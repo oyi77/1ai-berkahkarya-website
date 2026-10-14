@@ -159,7 +159,7 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
     <Layout
       title="Vilona AI — Trading Terminal & Sinyal Presisi (Lifetime Rp254rb)"
       description="Sinyal presisi 9 engine teknikal + AI consensus 5 LLM. SL & TP eksplisit, auto-eksekusi MT5. Promo lifetime Rp254.000 sekali seumur hidup."
-      ogImage="/assets/vilonafx/og-sales.png"
+      ogImage="/assets/vilonafx/og-sales-v2.png"
     >
       <div className={s.wrapper}>
         <LPVariantTracker variant={1} service="vilonafx" />
