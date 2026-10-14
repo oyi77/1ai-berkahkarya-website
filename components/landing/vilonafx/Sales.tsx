@@ -36,6 +36,13 @@ const RECENT_WINS = [
   { pair: 'XAUUSD', dir: 'SELL', pips: '+150 pips', time: '28 Sep' },
   { pair: 'USOIL', dir: 'BUY', pips: '+141 pips', time: '12 Okt' },
 ];
+const AI_LOGS = [
+  { pair: 'XAUUSD', tf: 'M15', engine: 'S-TIER Zone', text: 'OB Valid 2.650,00 — Konsensus 9/9 BUY', conf: '88%' },
+  { pair: 'BTCUSD', tf: 'H1', engine: 'SMC Scalper', text: 'Liquidity Sweep 67.420 selesai — BOS terkonfirmasi', conf: '92%' },
+  { pair: 'EURUSD', tf: 'M30', engine: 'Conf3 Trend', text: 'Pullback London Killzone — RR 1:2.4 terukur', conf: '85%' },
+  { pair: 'USOIL', tf: 'H1', engine: 'AHZ Radar', text: 'Reversal zona institusi — target +140 pip', conf: '86%' },
+];
+
 
 // ── Format sinyal Telegram-style (contoh format, bukan klaim live) ──
 const SIGNALS = [
@@ -112,6 +119,15 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [spots, setSpots] = useState(11);
   const [countdown, setCountdown] = useState({ min: 14, sec: 42 });
+  const [activeLog, setActiveLog] = useState(0);
+
+  // Rotating AI terminal log
+  useEffect(() => {
+    const t = setInterval(() => {
+      setActiveLog((prev) => (prev + 1) % AI_LOGS.length);
+    }, 3400);
+    return () => clearInterval(t);
+  }, []);
 
   // Urgency spots countdown
   useEffect(() => {
@@ -181,6 +197,15 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
         {/* ── HERO ── */}
         <section className={s.hero}>
           <div className={s.liveBadge}>LIVE MARKET TERMINAL · 9 ENGINES ACTIVE</div>
+          <div className={s.terminalStream}>
+            <div className={s.terminalStreamInner} key={activeLog}>
+              <span className={s.terminalPulse} />
+              <span className={s.terminalTag}>[{AI_LOGS[activeLog].pair} · {AI_LOGS[activeLog].tf}]</span>
+              <span className={s.terminalEngine}>{AI_LOGS[activeLog].engine}:</span>
+              <span className={s.terminalText}>{AI_LOGS[activeLog].text}</span>
+              <span className={s.terminalConf}>Acc {AI_LOGS[activeLog].conf}</span>
+            </div>
+          </div>
 
           <h1>
             Berhenti Trading Pakai Feeling.<br />

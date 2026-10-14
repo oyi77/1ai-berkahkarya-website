@@ -66,6 +66,10 @@ export default function VilonaFxSales3({ locale = 'id' }: { locale?: string }) {
         {/* ── HERO — app-store centered minimal ── */}
         <section className={s.hero}>
           <span className={s.badge}>◆ EA AUTO-EXECUTE · LIFETIME</span>
+          <div className={s.bridgeStatus}>
+            <span className={s.bridgeDot} />
+            MT5 Cloud Bridge Active · Latency 14ms · 9 Engines Standby
+          </div>
           <h1 className={s.h1}>
             Sinyal Masuk. Posisi Open. <span className={s.grad}>Kamu Tidur.</span>
           </h1>
