@@ -39,6 +39,14 @@ const FAQS = [
   { q: 'Apakah dijamin profit?', a: 'Tidak ada yang bisa menjamin profit di trading. Yang kami jamin: SL eksplisit, RR minimum, dan disiplin sistem — bukan emosi.' },
 ];
 
+// ── Screenshot fitur bot (phone-frame gallery) ──
+const SCREENSHOTS = [
+  { img: '/assets/vilonafx/proof/analisa-gbpusd.png', label: 'Analisa lengkap Entry/SL/TP' },
+  { img: '/assets/vilonafx/proof/smc-pullback.png', label: 'SMC Pullback — WR 57%' },
+  { img: '/assets/vilonafx/proof/pusat-perintah.png', label: 'Pusat perintah premium' },
+  { img: '/assets/vilonafx/proof/pair-kripto.png', label: '12 pair crypto 24/7' },
+];
+
 export default function VilonaFxSales3({ locale = 'id' }: { locale?: string }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -54,7 +62,7 @@ export default function VilonaFxSales3({ locale = 'id' }: { locale?: string }) {
     >
       <LPVariantTracker variant={3} service="vilonafx" />
       <div className={s.wrapper}>
-        {/* ── HERO ── */}
+        {/* ── HERO — app-store centered minimal ── */}
         <section className={s.hero}>
           <span className={s.badge}>◆ EA AUTO-EXECUTE · LIFETIME</span>
           <h1 className={s.h1}>
@@ -64,30 +72,13 @@ export default function VilonaFxSales3({ locale = 'id' }: { locale?: string }) {
             EA auto-eksekusi langsung di MT5. <b>9 engine + AI voting</b> tiap sinyal. Tanpa VPS, tanpa coding, tanpa begadang.
           </p>
 
-          {/* ── EA TERMINAL CARD ── */}
-          <div className={s.eaCard}>
-            <div className={s.eaHead}>
-              <span className={s.eaTitle}>EA MT5 — AUTO MODE</span>
-              <span className={s.eaStatus}>ONLINE</span>
-            </div>
-            <div className={s.eaBody}>
-              <div className={s.eaCell}>
-                <span>POSISI</span>
-                <b>XAUUSD BUY</b>
-              </div>
-              <div className={s.eaCell}>
-                <span>STOP LOSS</span>
-                <b>Auto ✓</b>
-              </div>
-              <div className={s.eaCell}>
-                <span>TAKE PROFIT</span>
-                <b>Auto ✓</b>
-              </div>
-            </div>
-            <div className={s.eaFoot}>
-              <span>Status: <b>Berjalan tanpa kamu pantau</b></span>
-              <span>Confidence 88%</span>
-            </div>
+          {/* ── PHONE FRAME gallery ── */}
+          <div className={s.phoneRow}>
+            {SCREENSHOTS.slice(0, 2).map((sc) => (
+              <figure className={s.phone} key={sc.img}>
+                <img src={sc.img} alt={sc.label} loading="lazy" />
+              </figure>
+            ))}
           </div>
 
           <div className={s.price}>
@@ -136,6 +127,20 @@ export default function VilonaFxSales3({ locale = 'id' }: { locale?: string }) {
                 <b className={s.stepT}>{st.t}</b>
                 <p className={s.stepD}>{st.d}</p>
               </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── SCREENSHOT GALLERY ── */}
+        <section className={s.section}>
+          <h2 className={s.h2}>Di Dalam Bot-nya</h2>
+          <p className={s.center}>Lihat sendiri tampilan asli fitur-fitur bot Vilona AI.</p>
+          <div className={s.gallery}>
+            {SCREENSHOTS.map((sc) => (
+              <figure className={s.galleryCard} key={sc.img}>
+                <img src={sc.img} alt={sc.label} loading="lazy" />
+                <figcaption>{sc.label}</figcaption>
+              </figure>
             ))}
           </div>
         </section>

@@ -37,8 +37,16 @@ const PAINS = [
 
 const FAQS = [
   { q: 'Kenapa semurah ini? Rp254rb lifetime, apa jebakannya?', a: 'Tidak ada jebakan. Rp254.000 = harga 1 bulan ELITE. Promo launching agar channel cepat penuh 1.000 member pertama — setelah kuota habis, lifetime kembali Rp1.990.900. Yang terkunci harga promo selamanya, tanpa biaya lanjutan.' },
-  { q: 'Bedanya dengan grup sinyal gratis?', a: 'Grup gratis = 1 admin, feeling, tanpa SL/TP, spam. Vilona = 9 engine voting + AI consensus 5 model LLM + SL/TP eksplisit tiap sinyal + EA auto-eksekusi MT5. Free tier kami saja (3 sinyal/hari) sudah lebih ketat dari kebanyakan grup berbayar.' },
+  { q: 'Bedanya dengan grup sinyal gratis?', a: 'Grup gratis = 1 admin, feeling, tanpa SL/TP, spam. Vilona = 9 engine voting + AI consensus 5 model LLM + SL/TP eksplisit tiap sinyal + EA auto-eksekusi MT5.' },
   { q: 'Lifetime beneran selamanya? Termasuk update?', a: 'Ya. Sekali bayar Rp254.000: semua sinyal + semua fitur ELITE + semua update engine selamanya. Tidak ada biaya bulanan, tahunan, atau biaya server.' },
+];
+
+// ── Bukti nyata: withdrawal asli (paling relevan untuk loss-aversion) ──
+const PROOF_WITHDRAWALS = [
+  { img: '/assets/vilonafx/proof/withdraw-3.png', label: 'WD $137.46 — Internet Banking' },
+  { img: '/assets/vilonafx/proof/withdraw-1.png', label: 'WD $39.99 & $21.31' },
+  { img: '/assets/vilonafx/proof/withdraw-2.png', label: '4x WD September' },
+  { img: '/assets/vilonafx/proof/withdraw-4.png', label: 'Riwayat WD terverifikasi' },
 ];
 
 function msToMidnight(): number {
@@ -113,18 +121,41 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
         <LPVariantTracker variant={92} service="vilonafx" />
         <div className={s.progress} id="sales2Progress" />
 
-        {/* ── HERO ── */}
+        {/* ── HERO — editorial left-aligned ── */}
         <section className={s.hero}>
           <div className={s.urgentBadge}>🔥 HARGA NAIK DALAM <span className={s.tick}>{fmtCountdown(left)}</span></div>
           <h1>Setiap Hari Tanpa SL = <span className={s.burn}>Uang Terbakar.</span></h1>
           <p className={s.sub}>
             MC tanpa SL hapus <b>bulanan profit</b>. Entry telat rusak RR. Langganan bulanan menguras dompet.
           </p>
+
+          {/* ── RECEIPT: kalkulator kerugian ── */}
+          <div className={s.receipt}>
+            <div className={s.receiptHead}>
+              <span>LAPORAN PEMBAKARAN UANG</span>
+              <span className={s.receiptStamp}>BUKTI KERUGIAN</span>
+            </div>
+            <label className={s.calcLabel}>
+              Sudah berapa bulan kamu trading tanpa sistem?
+              <input type="range" min={1} max={12} step={1} value={months} onChange={(e) => setMonths(Number(e.target.value))} className={s.slider} />
+              <b>{months} bulan</b>
+            </label>
+            <div className={s.calcOut}>
+              <div className={s.calcRow}><span>Uang langganan terbakar ({months} bln × Rp400rb)</span><b className={s.red}>Rp{subBurn.toLocaleString('id-ID')}</b></div>
+              <div className={s.calcRow}><span>Vilona lifetime (sekali bayar)</span><b className={s.grn}>Rp{PROMO.toLocaleString('id-ID')}</b></div>
+              <div className={s.calcRow}><span>Selisih yang kamu buang</span><b className={s.red}>+Rp{diff.toLocaleString('id-ID')}</b></div>
+            </div>
+            <div className={s.burnDiff}>
+              💸 Rp{diff.toLocaleString('id-ID')} bisa jadi modal trading, bukan uang langganan yang hilang.
+            </div>
+          </div>
+
           <div className={s.price}>
-            <div className={s.priceOld}>Rp{NORMAL.toLocaleString('id-ID')}</div>
+            <div className={s.priceOld}>Normal Rp{NORMAL.toLocaleString('id-ID')}</div>
             <div className={s.priceNew}>Rp254<span className={s.rb}>rb</span></div>
             <div className={s.priceNote}>sekali bayar · selamanya · hemat Rp{SAVED.toLocaleString('id-ID')}</div>
           </div>
+
           <div className={s.ctaRow}>
             <TrackedCTA href={CHECKOUT} className={s.ctaPrimary} productName={`${PRODUCT} - Hero Checkout`} productId="vilonafx-sales2-checkout" service="vilonafx" lpVariant={92} value={PROMO} variant="primary">
               🛑 Hentikan Kerugian — Rp254rb
@@ -140,28 +171,23 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
           </p>
         </section>
 
-        {/* ── CALCULATOR ── */}
+        {/* ── BUKTI: orang lain sudah tarik uang ── */}
         <section className={s.section}>
-          <h2>Hitung Berapa yang Sudah Terbakar</h2>
-          <div className={s.calc}>
-            <label className={s.calcLabel}>
-              Bulan trading tanpa sistem: <b>{months} bulan</b>
-              <input type="range" min={1} max={12} step={1} value={months} onChange={(e) => setMonths(Number(e.target.value))} className={s.slider} />
-            </label>
-            <div className={s.calcOut}>
-              <div className={s.calcRow}><span>Uang langganan terbakar ({months} bln × Rp400rb)</span><b className={s.red}>Rp{subBurn.toLocaleString('id-ID')}</b></div>
-              <div className={s.calcRow}><span>Vilona lifetime (sekali bayar)</span><b className={s.grn}>Rp{PROMO.toLocaleString('id-ID')}</b></div>
-              <div className={s.calcRow}><span>Selisih</span><b className={s.red}>+Rp{diff.toLocaleString('id-ID')} (lebih mahal langganan)</b></div>
-            </div>
-            <div className={s.burnDiff}>
-              💸 Rp{diff.toLocaleString('id-ID')} yang bisa kamu simpan — langsung masuk modal trading.
-            </div>
-            <div className={s.ctaRow}>
-              <TrackedCTA href={CHECKOUT} className={s.ctaPrimary} productName={`${PRODUCT} - Calc Checkout`} productId="vilonafx-sales2-checkout" service="vilonafx" lpVariant={92} value={PROMO} variant="primary">
-                🛑 Stop Bayar Bulanan — Rp254rb
-              </TrackedCTA>
-            </div>
+          <h2>Orang Lain Sudah Tarik Profit.<br />Kamu Masih Bakar Uang.</h2>
+          <p className={s.center}>
+            Ini bukti withdrawal asli member Vilona. Bukan simulasi — uangnya benar-benar sampai ke rekening mereka.
+          </p>
+          <div className={s.proofStrip}>
+            {PROOF_WITHDRAWALS.map((w) => (
+              <figure className={s.proofCard} key={w.img}>
+                <img src={w.img} alt={w.label} loading="lazy" />
+                <figcaption>{w.label}</figcaption>
+              </figure>
+            ))}
           </div>
+          <p className={s.disclaimer}>
+            ⚠️ Trading tetap berisiko. Hasil di atas adalah performa historis member — bukan jaminan profit untuk Anda.
+          </p>
         </section>
 
         {/* ── 3 PAIN CARDS ── */}
