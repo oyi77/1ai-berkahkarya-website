@@ -46,19 +46,19 @@ const SIGNALS = [
 
 // ── Bukti nyata: screenshot fitur bot + withdrawal asli ──
 const PROOF_FEATURES = [
-  { img: '/assets/vilonafx/proof/analisa-gbpusd.png', label: 'Analisa GBPUSD — Entry/SL/TP2 + RR 1:2', tall: true },
-  { img: '/assets/vilonafx/proof/analisa-usdjpy.png', label: 'Analisa USDJPY — confidence 65.4%', tall: true },
-  { img: '/assets/vilonafx/proof/smc-pullback.png', label: 'SMC Pullback XAUUSD — WR 57% · PF 1.71', tall: true },
-  { img: '/assets/vilonafx/proof/mtf-matrix.png', label: 'MTF Matrix — consensus 86%', tall: true },
-  { img: '/assets/vilonafx/proof/pusat-perintah.png', label: 'Pusat Perintah — Tier Premium', tall: false },
-  { img: '/assets/vilonafx/proof/pair-kripto.png', label: '12 Pair Crypto 24/7', tall: false },
+  { img: '/assets/vilonafx/proof/analisa-gbpusd.webp', label: 'Analisa GBPUSD — Entry/SL/TP2 + RR 1:2', tall: true },
+  { img: '/assets/vilonafx/proof/analisa-usdjpy.webp', label: 'Analisa USDJPY — confidence 65.4%', tall: true },
+  { img: '/assets/vilonafx/proof/smc-pullback.webp', label: 'SMC Pullback XAUUSD — WR 57% · PF 1.71', tall: true },
+  { img: '/assets/vilonafx/proof/mtf-matrix.webp', label: 'MTF Matrix — consensus 86%', tall: true },
+  { img: '/assets/vilonafx/proof/pusat-perintah.webp', label: 'Pusat Perintah — Tier Premium', tall: false },
+  { img: '/assets/vilonafx/proof/pair-kripto.webp', label: '12 Pair Crypto 24/7', tall: false },
 ];
 
 const PROOF_WITHDRAWALS = [
-  { img: '/assets/vilonafx/proof/withdraw-1.png', label: 'WD 08 Okt — $39.99 & 02 Okt — $21.31' },
-  { img: '/assets/vilonafx/proof/withdraw-2.png', label: '4x WD September — invoice lengkap' },
-  { img: '/assets/vilonafx/proof/withdraw-3.png', label: 'WD $137.46 — Internet Banking' },
-  { img: '/assets/vilonafx/proof/withdraw-4.png', label: 'Riwayat WD — real, terverifikasi' },
+  { img: '/assets/vilonafx/proof/withdraw-1.webp', label: 'WD 08 Okt — $39.99 & 02 Okt — $21.31' },
+  { img: '/assets/vilonafx/proof/withdraw-2.webp', label: '4x WD September — invoice lengkap' },
+  { img: '/assets/vilonafx/proof/withdraw-3.webp', label: 'WD $137.46 — Internet Banking' },
+  { img: '/assets/vilonafx/proof/withdraw-4.webp', label: 'Riwayat WD — real, terverifikasi' },
 ];
 
 const ENGINES = [
@@ -178,6 +178,7 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
     <Layout
       title="Vilona AI — Trading Terminal & Sinyal Presisi (Lifetime Rp254rb)"
       description="Sinyal presisi 9 engine teknikal + AI consensus 5 LLM. SL & TP eksplisit, auto-eksekusi MT5. Promo lifetime Rp254.000 sekali seumur hidup."
+      ogImage="/assets/vilonafx/og-sales.png"
     >
       <div className={s.wrapper}>
         <LPVariantTracker variant={1} service="vilonafx" />
@@ -452,7 +453,7 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
           </a>
         </section>
 
-        {/* ── FLOATING TELEGRAM BUTTON ── */}
+        {/* ── FLOATING TELEGRAM BUTTON (satu-satunya tombol melayang) ── */}
         <TrackedCTA
           href={TELEGRAM_CHAT}
           productName="VilonaFX - Sales1 - Telegram Float"
@@ -465,13 +466,6 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
             <span className={s.tgLabel}>Tanya CS Dulu</span>
           </span>
         </TrackedCTA>
-
-        {/* ── STICKY MOBILE CTA BAR ── */}
-        <div className={s.sticky}>
-          <a href={CHECKOUT} onClick={onCheckout} className={s.stickyCta}>
-            ⚡ Klaim Lifetime Rp254rb <s>Rp{NORMAL.toLocaleString('id-ID')}</s>
-          </a>
-        </div>
       </div>
     </Layout>
   );

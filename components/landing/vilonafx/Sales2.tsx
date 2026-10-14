@@ -43,10 +43,10 @@ const FAQS = [
 
 // ── Bukti nyata: withdrawal asli (paling relevan untuk loss-aversion) ──
 const PROOF_WITHDRAWALS = [
-  { img: '/assets/vilonafx/proof/withdraw-3.png', label: 'WD $137.46 — Internet Banking' },
-  { img: '/assets/vilonafx/proof/withdraw-1.png', label: 'WD $39.99 & $21.31' },
-  { img: '/assets/vilonafx/proof/withdraw-2.png', label: '4x WD September' },
-  { img: '/assets/vilonafx/proof/withdraw-4.png', label: 'Riwayat WD terverifikasi' },
+  { img: '/assets/vilonafx/proof/withdraw-3.webp', label: 'WD $137.46 — Internet Banking' },
+  { img: '/assets/vilonafx/proof/withdraw-1.webp', label: 'WD $39.99 & $21.31' },
+  { img: '/assets/vilonafx/proof/withdraw-2.webp', label: '4x WD September' },
+  { img: '/assets/vilonafx/proof/withdraw-4.webp', label: 'Riwayat WD terverifikasi' },
 ];
 
 function msToMidnight(): number {
@@ -116,6 +116,7 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
     <Layout
       title="Vilona AI — Berhenti Bakar Uang (Lifetime Rp254rb)"
       description="Setiap hari tanpa SL = uang terbakar. MC hapus profit, entry telat rusak RR, langganan bulanan menguras dompet. Vilona: 9 engine + AI consensus, SL eksplisit, EA auto MT5. Lifetime Rp254.000."
+      ogImage="/assets/vilonafx/og-sales2.png"
     >
       <div className={s.wrapper}>
         <LPVariantTracker variant={92} service="vilonafx" />

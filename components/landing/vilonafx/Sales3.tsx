@@ -41,10 +41,10 @@ const FAQS = [
 
 // ── Screenshot fitur bot (phone-frame gallery) ──
 const SCREENSHOTS = [
-  { img: '/assets/vilonafx/proof/analisa-gbpusd.png', label: 'Analisa lengkap Entry/SL/TP' },
-  { img: '/assets/vilonafx/proof/smc-pullback.png', label: 'SMC Pullback — WR 57%' },
-  { img: '/assets/vilonafx/proof/pusat-perintah.png', label: 'Pusat perintah premium' },
-  { img: '/assets/vilonafx/proof/pair-kripto.png', label: '12 pair crypto 24/7' },
+  { img: '/assets/vilonafx/proof/analisa-gbpusd.webp', label: 'Analisa lengkap Entry/SL/TP' },
+  { img: '/assets/vilonafx/proof/smc-pullback.webp', label: 'SMC Pullback — WR 57%' },
+  { img: '/assets/vilonafx/proof/pusat-perintah.webp', label: 'Pusat perintah premium' },
+  { img: '/assets/vilonafx/proof/pair-kripto.webp', label: '12 pair crypto 24/7' },
 ];
 
 export default function VilonaFxSales3({ locale = 'id' }: { locale?: string }) {
@@ -59,6 +59,7 @@ export default function VilonaFxSales3({ locale = 'id' }: { locale?: string }) {
     <Layout
       title="Vilona AI — Trading Otomatis, Sinyal Masuk Posisi Open (Lifetime Rp254rb)"
       description="EA auto-eksekusi MT5 + 9 engine AI voting. Sinyal Entry/SL/TP eksplisit, tanpa VPS, tanpa coding. Lifetime Rp254.000 sekali bayar."
+      ogImage="/assets/vilonafx/og-sales3.png"
     >
       <LPVariantTracker variant={3} service="vilonafx" />
       <div className={s.wrapper}>
