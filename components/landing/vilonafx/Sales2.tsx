@@ -6,7 +6,7 @@ import s from './Sales2.module.css';
 import TrackedCTA from '../TrackedCTA';
 import LPVariantTracker from '../LPVariantTracker';
 import { useEngagementTracking } from '@/hooks/useEngagementTracking';
-import { trackLead, trackViewContent } from '@/lib/tracking';
+import { trackViewContent } from '@/lib/tracking';
 
 const CHANNEL = 'https://t.me/vilonaaichanel';
 const CHECKOUT = 'https://lynk.id/jendralbot/ox33n8n04792';
@@ -78,24 +78,6 @@ export default function VilonaFxSales2({ locale = 'id' }: { locale?: string }) {
   useEffect(() => {
     const t = setInterval(() => setLeft(msToMidnight()), 1000);
     return () => clearInterval(t);
-  }, []);
-
-  useEffect(() => {
-    let fired = false;
-    window.history.pushState({ sales2: true }, '', window.location.href);
-    const onPop = () => {
-      if (fired) return;
-      fired = true;
-      trackLead({
-        content_name: `${PRODUCT} - Back Redirect`,
-        content_id: 'vilonafx-sales2-back',
-        destination: 'telegram_channel',
-        destination_url: CHANNEL,
-      });
-      window.location.href = CHANNEL;
-    };
-    window.addEventListener('popstate', onPop);
-    return () => window.removeEventListener('popstate', onPop);
   }, []);
 
   useEffect(() => {

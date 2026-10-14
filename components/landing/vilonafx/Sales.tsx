@@ -6,7 +6,7 @@ import s from './Sales.module.css';
 import TrackedCTA from '../TrackedCTA';
 import LPVariantTracker from '../LPVariantTracker';
 import { useEngagementTracking } from '@/hooks/useEngagementTracking';
-import { trackLead, trackInitiateCheckout, trackViewContent } from '@/lib/tracking';
+import { trackInitiateCheckout, trackViewContent } from '@/lib/tracking';
 
 const CHANNEL = 'https://t.me/vilonaaichanel';
 const CHECKOUT = 'https://lynk.id/jendralbot/ox33n8n04792';
@@ -130,25 +130,6 @@ export default function VilonaFxSales({ locale = 'id' }: { locale?: string }) {
       });
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
-
-  // Back redirect
-  useEffect(() => {
-    let fired = false;
-    window.history.pushState({ sales: true }, '', window.location.href);
-    const onPop = () => {
-      if (fired) return;
-      fired = true;
-      trackLead({
-        content_name: `${PRODUCT} - Back Redirect`,
-        content_id: 'vilonafx-sales1-back',
-        destination: 'telegram_channel',
-        destination_url: CHANNEL,
-      });
-      window.location.href = CHANNEL;
-    };
-    window.addEventListener('popstate', onPop);
-    return () => window.removeEventListener('popstate', onPop);
   }, []);
 
   // Scroll progress
