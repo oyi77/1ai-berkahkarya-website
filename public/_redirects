@@ -79,7 +79,6 @@
 /video-production		/id/lp/video-production/1		301
 /website-development		/id/lp/website-development/1		301
 
-
 # ── Short campaign URLs (ads / QR / WA) → direct LP ──
 /kontraktor              /id/lp/jasa-kontraktor/1   301
 /bangun-rumah            /id/lp/jasa-kontraktor/1   301
@@ -99,3 +98,6 @@
 /daftar                 /id/belajar/daftar        301
 /en/kurikulum           /en/belajar/kurikulum     301
 /en/daftar              /en/belajar/daftar        301
+
+# ── MICIN ──
+/micin                  /id/micin                 301
