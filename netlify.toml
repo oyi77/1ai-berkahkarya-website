@@ -109,3 +109,11 @@
   to = "/en/lp/vilonafx/1"
   status = 301
   force = true
+
+# MICIN → default locale (static export, middleware off)
+[[redirects]]
+  from = "/micin"
+  to = "/id/micin"
+  status = 301
+  force = true
+
