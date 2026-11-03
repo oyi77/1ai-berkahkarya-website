@@ -22,17 +22,17 @@ const content = {
       title: 'MICIN — Market & Coin Intelligence Nexus | BerkahKarya',
       description: 'MICIN: dashboard intelijen kripto — whale tracking, smart money analysis, dan sinyal harian berbasis data on-chain real-time. Segera hadir.',
     },
-    eyebrow: 'Segera Hadir',
+    eyebrow: 'Sekarang Live',
     h1: 'MICIN',
-    sub: 'Market Intelligence & Coin Intelligence Nexus — dashboard kripto dengan whale tracking, smart money analysis, dan sinyal harian berbasis data on-chain real-time.',
+    sub: 'Market Intelligence & Coin Intelligence Nexus — dashboard kripto dengan whale tracking, smart money analysis, dan sinyal harian real-time.',
     cards: [
       { icon: '🐋', title: 'Whale Tracking', desc: 'Pantau akumulasi & distribusi wallet besar secara real-time sebelum pergerakan harga.' },
       { icon: '🧠', title: 'Smart Money', desc: 'Analisis perilaku wallet terverifikasi yang konsisten profitable di berbagai market cycle.' },
       { icon: '📈', title: 'Sinyal Harian', desc: 'Ringkasan sinyal entry/exit tiap pagi berbasis konfluensi data on-chain dan momentum.' },
     ],
-    waitlistTitle: 'Gabung Waitlist',
-    waitlistDesc: 'Dapatkan akses awal saat MICIN rilis. Tim kami akan menghubungi kamu lebih dulu.',
-    cta: 'Hubungi Kami',
+    waitlistTitle: 'Buka Dashboard',
+    waitlistDesc: 'Akses penuh dashboard MICIN dengan whale tracking dan sinyal on-chain real-time.',
+    cta: 'Buka MICIN ↗',
     back: '← Kembali ke Beranda',
   },
   en: {
@@ -92,7 +92,7 @@ export default function MicinPage({ locale }: { locale: Locale }) {
         <div style={styles.waitlist}>
           <h2 style={styles.waitlistTitle}>{d.waitlistTitle}</h2>
           <p style={styles.waitlistDesc}>{d.waitlistDesc}</p>
-          <Link href={`/${locale}/contact`} className="btn btn--primary">{d.cta} →</Link>
+          <Link href="https://tracker.aitradepulse.com/micin" className="btn btn--primary">{d.cta} →</Link>
         </div>
       </div>
     </Layout>
