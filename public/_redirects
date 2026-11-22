@@ -79,6 +79,9 @@
 /video-production		/id/lp/video-production/1		301
 /website-development		/id/lp/website-development/1		301
 
+# ── Property asset analysis ──
+/property              /id/property              301
+
 # ── Short campaign URLs (ads / QR / WA) → direct LP ──
 /kontraktor              /id/lp/jasa-kontraktor/1   301
 /bangun-rumah            /id/lp/jasa-kontraktor/1   301
