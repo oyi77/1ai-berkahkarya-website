@@ -117,3 +117,15 @@
   status = 301
   force = true
 
+
+[[redirects]]
+  from = "/property"
+  to = "/id/property"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/property"
+  to = "/en/property"
+  status = 200
+  force = false
