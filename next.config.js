@@ -17,7 +17,8 @@ const nextConfig = {
       { source: '/id/1ai', destination: '/id/one-ai', permanent: true },
       { source: '/en/1ai', destination: '/en/one-ai', permanent: true },
       // /1ai-nexus → /id/1ai-nexus (301 permanent)
-      { source: '/1ai-nexus', destination: '/id/1ai-nexus', permanent: true },
+      { source: '/property', destination: '/id/property', permanent: true },
+    { source: '/property/', destination: '/id/property/', permanent: true },
     ];
   },
 };
