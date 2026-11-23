@@ -4,7 +4,7 @@ import Head from 'next/head';
 type Locale = 'id' | 'en';
 
 export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: [],
+  paths: [{ params: { locale: 'id' } }, { params: { locale: 'en' } }],
   fallback: false,
 });
 
