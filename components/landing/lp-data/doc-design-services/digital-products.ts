@@ -165,17 +165,17 @@ export const digitalProductsData: LPContent = {
         },
       },
       {
-        title: { id: '2. Pesan via WhatsApp', en: '2. Order via WhatsApp' },
+        title: { id: '2. Bayar Otomatis', en: '2. Check Out Instantly' },
         desc: {
-          id: 'Hubungi kami, sebutkan produk yang diinginkan, dan lakukan pembayaran via transfer bank atau e-wallet.',
-          en: 'Contact us, mention the product you want, and make payment via bank transfer or e-wallet.',
+          id: 'Pilih paket, isi nama & email, lalu bayar via QRIS atau e-wallet. Tanpa perlu chat manual.',
+          en: 'Pick a plan, enter your name and email, then pay via QRIS or e-wallet. No manual chat needed.',
         },
       },
       {
         title: { id: '3. Dapatkan Akses', en: '3. Get Instant Access' },
         desc: {
-          id: 'Link download + panduan penggunaan dikirim langsung ke WhatsApp Anda. Download dan mulai gunakan.',
-          en: 'Download link + usage guide sent directly to your WhatsApp. Download and start using immediately.',
+          id: 'Setelah pembayaran terverifikasi, link download langsung ditampilkan di halaman. Klik & mulai pakai.',
+          en: 'Once payment is verified, the download link appears on the confirmation page. Click and start using.',
         },
       },
       {
@@ -203,6 +203,8 @@ export const digitalProductsData: LPContent = {
         },
         cta: { id: 'Pilih Starter', en: 'Choose Starter' },
         ctaLink: waLink('Halo, saya mau pesan paket Starter Produk Digital.'),
+        checkoutAmount: 49000,
+        checkoutProduct: 'digital-products-starter',
       },
       {
         name: { id: 'Professional', en: 'Professional' },
@@ -220,6 +222,8 @@ export const digitalProductsData: LPContent = {
         badge: { id: 'Terpopuler', en: 'Most Popular' },
         cta: { id: 'Pilih Professional', en: 'Choose Professional' },
         ctaLink: waLink('Halo, saya mau pesan paket Professional Produk Digital.'),
+        checkoutAmount: 99000,
+        checkoutProduct: 'digital-products-professional',
       },
       {
         name: { id: 'Enterprise', en: 'Enterprise' },
@@ -235,6 +239,8 @@ export const digitalProductsData: LPContent = {
         },
         cta: { id: 'Pilih Enterprise', en: 'Choose Enterprise' },
         ctaLink: waLink('Halo, saya mau pesan paket Enterprise Produk Digital.'),
+        checkoutAmount: 199000,
+        checkoutProduct: 'digital-products-enterprise',
       },
     ],
   },
