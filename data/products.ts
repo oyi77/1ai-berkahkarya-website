@@ -1,6 +1,6 @@
 const WA = 'https://wa.me/6285732740006';
 const STORE = 'https://lynk.id/jendralbot';
-const SAAS = 'https://saas.aitradepulse.com/';
+const SAAS = 'https://content.aitradepulse.com/';
 
 export interface ProductFull {
   slug: string;

@@ -34,7 +34,7 @@ export default function LP2({ locale = 'id' }: { locale?: string }) {
             
             <div className={b.ctaRow}>
               <TrackedCTA 
-                href="https://saas.aitradepulse.com/" 
+                href="https://content.aitradepulse.com/"
                 className={b.btnPrimary}
                 productName="AI Video Studio - LP2 Hero"
                 productId="ai-video-studio-lp2"
@@ -104,7 +104,7 @@ export default function LP2({ locale = 'id' }: { locale?: string }) {
             </h2>
             <p className={b.subtitle}>{locale === 'en' ? '3 free credits. No credit card. No commitment.' : '3 kredit gratis. Tanpa kartu kredit. Tanpa commitment.'}</p>
             <TrackedCTA 
-              href="https://saas.aitradepulse.com/" 
+              href="https://content.aitradepulse.com/"
               className={b.btnPrimary}
               productName="AI Video Studio - LP2 Footer"
               productId="ai-video-studio-lp2-footer"

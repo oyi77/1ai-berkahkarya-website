@@ -42,7 +42,7 @@ Target branch: `refactor/solid-dry-kiss`
 export const WA = 'https://wa.me/6285732740006';
 export const APP_URL = 'https://omniroute.app';
 export const STORE = 'https://lynk.id/jendralbot';
-export const SAAS = 'https://saas.aitradepulse.com/';
+export const SAAS = 'https://content.aitradepulse.com/';
 export const SITE_URL = 'https://berkahkarya.org';
 ```
 
