@@ -51,6 +51,10 @@ const SKU_PRICES_IDR: Record<string, number> = {
   'digital-products-professional': 99000,
   'digital-products-enterprise': 199000,
   'one-ai-pro': 999000,
+  'academy-ai-produktivitas': 500000,
+  'academy-meta-ads': 500000,
+  'academy-affiliate-marketing': 500000,
+  'academy-ai-coding': 500000,
 };
 
 export const onRequestPost = async ({ request, env }: HandlerContext): Promise<Response> => {
@@ -127,6 +131,7 @@ export const onRequestPost = async ({ request, env }: HandlerContext): Promise<R
       sku,
       product_name: clean(body.product_name, 128) || 'Product',
       buyer_email: customerEmail,
+      ...(clean(body.customer_phone, 32) ? { buyer_phone: clean(body.customer_phone, 32) } : {}),
       fulfillment_type: fulfillmentType,
       ...(cohort ? { cohort } : {}),
     },

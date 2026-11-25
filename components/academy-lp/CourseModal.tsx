@@ -1,11 +1,13 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { trackWhatsAppClick } from '@/lib/tracking';
 import { COLORS, headingStyle } from './theme';
 import { WA_PHONE } from './data';
 import type { Course } from './types';
+import CheckoutDialog from './CheckoutDialog';
 
 export function CourseModal({ course, onClose }: { course: Course; onClose: () => void }) {
   const overlayRef = useRef<HTMLDivElement>(null);
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   const handleOverlay = useCallback((e: React.MouseEvent) => {
     if (e.target === overlayRef.current) onClose();
@@ -155,6 +157,22 @@ export function CourseModal({ course, onClose }: { course: Course; onClose: () =
             <span style={{ fontSize: '13px', color: COLORS['text-muted'], fontWeight: '500' }}>Investasi</span>
             <p style={{ ...headingStyle, fontSize: '28px', color: course.color, margin: 0 }}>{course.price}</p>
           </div>
+          <button
+            type="button"
+            onClick={() => setCheckoutOpen(true)}
+            style={{
+              padding: '14px 24px',
+              borderRadius: COLORS['btn-radius'],
+              border: 'none',
+              background: COLORS.accent,
+              color: COLORS.primary,
+              fontWeight: '700',
+              fontSize: '15px',
+              cursor: 'pointer',
+            }}
+          >
+            Daftar Sekarang
+          </button>
           <a
             href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(course.waText)}`}
             target="_blank"
@@ -195,6 +213,14 @@ export function CourseModal({ course, onClose }: { course: Course; onClose: () =
           </a>
         </div>
       </div>
+      {checkoutOpen && (
+        <CheckoutDialog
+          courseId={course.id}
+          courseTitle={course.title}
+          priceLabel={course.price}
+          onClose={() => setCheckoutOpen(false)}
+        />
+      )}
     </div>
   );
 }

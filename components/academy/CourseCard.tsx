@@ -1,6 +1,10 @@
+'use client';
+
+import { useState } from 'react';
 import type { Course } from './types';
 import { cardStyle, tagStyle, btnPrimary } from './styles';
 import { WA_PHONE } from './data';
+import CheckoutDialog from '../academy-lp/CheckoutDialog';
 
 export function CourseCard({
   course,
@@ -9,6 +13,8 @@ export function CourseCard({
   course: Course;
   onDetail: () => void;
 }) {
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+
   return (
     <div style={cardStyle}>
       <div
@@ -104,6 +110,13 @@ export function CourseCard({
           >
             Lihat Detail Materi
           </button>
+          <button
+            type="button"
+            onClick={() => setCheckoutOpen(true)}
+            style={{ ...btnPrimary, padding: '0.5rem 1rem', fontSize: '0.75rem', cursor: 'pointer' }}
+          >
+            Daftar Sekarang
+          </button>
           <a
             href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(course.waText)}`}
             target="_blank"
@@ -118,6 +131,14 @@ export function CourseCard({
           </a>
         </div>
       </div>
+      {checkoutOpen && (
+        <CheckoutDialog
+          courseId={course.id}
+          courseTitle={course.title}
+          priceLabel={course.price}
+          onClose={() => setCheckoutOpen(false)}
+        />
+      )}
     </div>
   );
 }

@@ -94,8 +94,13 @@ export const onRequestPost = async ({ request, env }: HandlerContext): Promise<R
   const token = env.TELEGRAM_BOT_TOKEN;
   const chat = env.TELEGRAM_ADMIN_CHAT_ID;
   if (token && chat) {
-    const product = String(event.metadata?.product_name || event.metadata?.sku || 'unknown');
-    const text = `💰 Sale confirmed\n${product}\n${event.amount} ${event.currency || 'IDR'}\nref: ${event.order_id || event.event_id || '-'}`;
+    const meta = event.metadata || {};
+    const product = String(meta.product_name || meta.sku || 'unknown');
+    const isClass = meta.fulfillment_type === 'cohort_class';
+    const detail = isClass
+      ? `\nWA: ${String(meta.buyer_phone || '-')}\nEmail: ${String(meta.buyer_email || '-')}\nKohort: ${String(meta.cohort || '-')}`
+      : `\nEmail: ${String(meta.buyer_email || '-')}`;
+    const text = `💰 Sale confirmed\n${product}\n${event.amount} ${event.currency || 'IDR'}${detail}\nref: ${event.order_id || event.event_id || '-'}`;
     try {
       await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: 'POST',

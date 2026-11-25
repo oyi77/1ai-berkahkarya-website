@@ -1,8 +1,16 @@
+'use client';
+
+import { useState } from 'react';
 import { trackWhatsAppClick } from '@/lib/tracking';
 import { COLORS, innerBase, headingStyle } from './theme';
-import { WA_PHONE } from './data';
+import { COURSES, WA_PHONE } from './data';
+import CheckoutDialog from './CheckoutDialog';
 
 export function ClosingCTA() {
+  const [selectedId, setSelectedId] = useState(COURSES[0]?.id || '');
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const selected = COURSES.find((c) => c.id === selectedId) || COURSES[0];
+
   return (
     <section
       style={{
@@ -35,6 +43,42 @@ export function ClosingCTA() {
         >
           Konsultasi dulu via WhatsApp. Tanya apa aja, nggak ada kewajiban daftar. Kami bantu pilihkan kelas yang paling cocok buat kamu.
         </p>
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center', alignItems: 'center', marginBottom: '18px' }}>
+          <select
+            value={selectedId}
+            onChange={(e) => setSelectedId(e.target.value)}
+            aria-label="Pilih kelas"
+            style={{
+              padding: '14px 16px',
+              borderRadius: COLORS['btn-radius'],
+              border: 'none',
+              fontSize: '15px',
+              color: COLORS.primary,
+              maxWidth: '100%',
+            }}
+          >
+            {COURSES.map((c) => (
+              <option key={c.id} value={c.id}>{c.title} — {c.price}</option>
+            ))}
+          </select>
+          <button
+            type="button"
+            onClick={() => selected && setCheckoutOpen(true)}
+            style={{
+              padding: '14px 32px',
+              borderRadius: COLORS['btn-radius'],
+              border: 'none',
+              background: COLORS.accent,
+              color: COLORS.primary,
+              fontWeight: '700',
+              fontSize: '16px',
+              cursor: 'pointer',
+            }}
+          >
+            Daftar Sekarang
+          </button>
+        </div>
 
         <a
           href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent('Halo, saya mau konsultasi kelas di Berkah Karya Academy. Apakah ada yang cocok untuk saya?')}`}
@@ -99,6 +143,14 @@ export function ClosingCTA() {
           ))}
         </div>
       </div>
+      {checkoutOpen && selected && (
+        <CheckoutDialog
+          courseId={selected.id}
+          courseTitle={selected.title}
+          priceLabel={selected.price}
+          onClose={() => setCheckoutOpen(false)}
+        />
+      )}
     </section>
   );
 }

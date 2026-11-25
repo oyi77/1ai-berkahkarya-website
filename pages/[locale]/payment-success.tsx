@@ -10,6 +10,10 @@ interface CheckoutInfo {
   product_name?: string;
   amount?: number;
   email?: string;
+  phone?: string;
+  fulfillment_type?: string;
+  class_id?: string;
+  cohort?: string;
 }
 
 interface DownloadLink {
@@ -83,12 +87,18 @@ export default function PaymentSuccess({ locale }: { locale: Locale }) {
         });
         const data = (await res.json()) as { paid?: boolean; status?: string };
         if (data.paid) {
-          const lr = await fetch(`/api/download-links?sku=${encodeURIComponent(stored.sku || '')}`);
-          const ld = (await lr.json()) as { links?: DownloadLink[] };
-          if (!cancelled) {
-            setLinks(Array.isArray(ld.links) ? ld.links : []);
-            setState('paid');
+          // Classes are fulfilled by a human via WhatsApp — never expose
+          // download links for a cohort-class SKU.
+          if (stored.fulfillment_type !== 'cohort_class') {
+            try {
+              const lr = await fetch(`/api/download-links?sku=${encodeURIComponent(stored.sku || '')}`);
+              const ld = (await lr.json()) as { links?: DownloadLink[] };
+              if (!cancelled) setLinks(Array.isArray(ld.links) ? ld.links : []);
+            } catch {
+              // downloads optional — WA fallback below still applies
+            }
           }
+          if (!cancelled) setState('paid');
           return;
         }
         if (['failed', 'expired', 'refunded', 'cancelled'].includes(data.status || '')) {
@@ -113,8 +123,12 @@ export default function PaymentSuccess({ locale }: { locale: Locale }) {
   }, []);
 
   const t = (id: string, en: string) => (locale === 'id' ? id : en);
-  const waMessage = `Halo, saya sudah bayar tapi belum mendapat link download.\nProduk: ${info.product_name || '-'}\nRef: ${info.ref || '-'}\nEmail: ${info.email || '-'}`;
-  const waHref = `https://wa.me/${WA_FALLBACK}?text=${encodeURIComponent(waMessage)}`;
+  const isClass = info.fulfillment_type === 'cohort_class';
+  const waNumber = isClass ? '6285280000449' : WA_FALLBACK;
+  const waMessage = isClass
+    ? `Halo, saya sudah bayar dan ingin mengikuti ${info.product_name || 'kelas'}.\nNama: ${info.email || '-'}\nWhatsApp: ${info.phone || '-'}\nKohort: ${info.cohort || 'tolong dibantu jadwalkan'}\nRef: ${info.ref || '-'}`
+    : `Halo, saya sudah bayar tapi belum mendapat link download.\nProduk: ${info.product_name || '-'}\nRef: ${info.ref || '-'}\nEmail: ${info.email || '-'}`;
+  const waHref = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
 
   return (
     <>
@@ -143,7 +157,33 @@ export default function PaymentSuccess({ locale }: { locale: Locale }) {
                 {info.product_name || t('Produk digital', 'Digital product')}
                 {info.email ? ` · ${info.email}` : ''}
               </p>
-              {links.length > 0 ? (
+              {isClass ? (
+                <div style={{ marginTop: '1.2rem' }}>
+                  <p style={{ color: '#0f766e', background: '#ecfdf5', padding: '0.85rem', borderRadius: 10, lineHeight: 1.6 }}>
+                    {t(
+                      'Pendaftaran Anda dikonfirmasi. Tim kami akan menghubungi WhatsApp Anda untuk jadwal, grup kelas, dan akses materi.',
+                      'Your enrollment is confirmed. Our team will contact you on WhatsApp for the schedule, class group, and material access.',
+                    )}
+                  </p>
+                  {info.cohort && (
+                    <p style={{ fontSize: '0.85rem', color: '#5a6472' }}>
+                      {t('Kohort pilihan', 'Preferred cohort')}: {info.cohort}
+                    </p>
+                  )}
+                  <a
+                    href={waHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-block', marginTop: '0.5rem', padding: '0.8rem 1.2rem',
+                      borderRadius: 10, background: '#16a34a', color: '#fff',
+                      textDecoration: 'none', fontWeight: 700,
+                    }}
+                  >
+                    {t('Hubungi WhatsApp untuk jadwal & akses', 'Contact WhatsApp for schedule & access')}
+                  </a>
+                </div>
+              ) : links.length > 0 ? (
                 <>
                   <h2 style={{ fontSize: '1rem', marginTop: '1.5rem' }}>
                     {t('Link download Anda', 'Your downloads')}

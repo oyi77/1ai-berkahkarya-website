@@ -3,9 +3,11 @@ import { trackWhatsAppClick, trackViewContent } from '@/lib/tracking';
 import { COLORS, headingStyle } from './theme';
 import { WA_PHONE } from './data';
 import type { Course } from './types';
+import CheckoutDialog from './CheckoutDialog';
 
 export function ProgramCard({ course, onDetail }: { course: Course; onDetail: (c: Course) => void }) {
   const [hovered, setHovered] = useState(false);
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   const cardHover: React.CSSProperties = hovered
     ? { transform: 'translateY(-6px)', boxShadow: `0 20px 40px ${COLORS['shadow-lg']}` }
@@ -148,6 +150,22 @@ export function ProgramCard({ course, onDetail }: { course: Course; onDetail: (c
           >
             Detail Materi
           </button>
+          <button
+            type="button"
+            onClick={() => setCheckoutOpen(true)}
+            style={{
+              padding: '8px 18px',
+              borderRadius: '12px',
+              background: COLORS.accent,
+              color: COLORS.primary,
+              fontWeight: '700',
+              fontSize: '13px',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          >
+            Daftar Sekarang
+          </button>
           <a
             href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(course.waText)}`}
             target="_blank"
@@ -181,6 +199,14 @@ export function ProgramCard({ course, onDetail }: { course: Course; onDetail: (c
           </a>
         </div>
       </div>
+      {checkoutOpen && (
+        <CheckoutDialog
+          courseId={course.id}
+          courseTitle={course.title}
+          priceLabel={course.price}
+          onClose={() => setCheckoutOpen(false)}
+        />
+      )}
     </div>
   );
 }
