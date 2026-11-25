@@ -36,7 +36,7 @@ export default function LP3({ locale = 'id' }: { locale?: string }) {
             
             <div className={b.ctaRow}>
               <TrackedCTA 
-                href="https://saas.aitradepulse.com/" 
+                href="https://content.aitradepulse.com/"
                 className={b.btnPrimary}
                 productName="AI Video Studio - LP3 Hero"
                 productId="ai-video-studio-lp3"
@@ -111,7 +111,7 @@ export default function LP3({ locale = 'id' }: { locale?: string }) {
             </h2>
             <p className={b.subtitle}>{locale === 'en' ? 'Let AI do the work. You focus on scaling your business.' : 'Biar AI yang kerja. Kamu fokus scaling bisnis.'}</p>
             <TrackedCTA 
-              href="https://saas.aitradepulse.com/" 
+              href="https://content.aitradepulse.com/"
               className={b.btnPrimary}
               productName="AI Video Studio - LP3 Footer"
               productId="ai-video-studio-lp3-footer"

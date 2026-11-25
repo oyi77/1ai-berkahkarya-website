@@ -37,7 +37,7 @@ export default function LP6({ locale = 'id' }: { locale?: string }) {
 
             <div className={b.ctaRow}>
               <TrackedCTA
-                href="https://saas.aitradepulse.com/"
+                href="https://content.aitradepulse.com/"
                 className={b.btnPrimary}
                 productName="AI Video Studio - LP6 Hero"
                 productId="ai-video-studio-lp6"
@@ -157,7 +157,7 @@ export default function LP6({ locale = 'id' }: { locale?: string }) {
             </h2>
             <p className={b.subtitle}>{locale === 'en' ? 'Join 500+ sellers who have experienced the results.' : 'Join 500+ seller yang udah rasain hasilnya.'}</p>
             <TrackedCTA
-              href="https://saas.aitradepulse.com/"
+              href="https://content.aitradepulse.com/"
               className={b.btnPrimary}
               productName="AI Video Studio - LP6 Footer"
               productId="ai-video-studio-lp6-footer"

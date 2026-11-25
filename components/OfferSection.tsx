@@ -5,7 +5,7 @@ interface OfferSectionProps {
   locale: 'id' | 'en';
 }
 
-const SAAS_BASE_URL = 'https://saas.aitradepulse.com/';
+const SAAS_BASE_URL = 'https://content.aitradepulse.com/';
 
 const copy = {
   id: {

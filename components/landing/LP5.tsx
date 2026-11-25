@@ -35,7 +35,7 @@ export default function LP5({ locale = 'id' }: { locale?: string }) {
 
             <div className={b.ctaRow}>
               <TrackedCTA
-                href="https://saas.aitradepulse.com/"
+                href="https://content.aitradepulse.com/"
                 className={b.btnPrimary}
                 productName="AI Video Studio - LP5 Hero"
                 productId="ai-video-studio-lp5"
@@ -118,7 +118,7 @@ export default function LP5({ locale = 'id' }: { locale?: string }) {
             </h2>
             <p className={b.subtitle}>{locale === 'en' ? 'Don\'t miss out. Your competitors are already using this.' : 'Jangan ketinggalan. Kompetitor udah pakai ini.'}</p>
             <TrackedCTA
-              href="https://saas.aitradepulse.com/"
+              href="https://content.aitradepulse.com/"
               className={b.btnPrimary}
               productName="AI Video Studio - LP5 Footer"
               productId="ai-video-studio-lp5-footer"

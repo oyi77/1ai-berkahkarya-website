@@ -82,7 +82,7 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=G-V9C14XZ9SG
 {
   content_name: 'ebook-suami-sejati',
   content_category: 'digital_product',
-  value: 49000,
+  value: 99000,
   currency: 'IDR',
   cta_section: 'hero' | 'offer' | 'final',
   // + session_id, utm params, etc.
@@ -176,7 +176,7 @@ curl -I https://berkahkarya.org/id/digital-products/ebook-suami-sejati
    Event: ViewContent (scroll_depth: 50)
 
 3. User clicks "Ambil Sekarang" button
-   Event: InitiateCheckout (value: 49000)
+   Event: InitiateCheckout (value: 99000)
 
 4. User redirects to LYNK → Completes payment
    Event: Purchase (tracked by LYNK webhook - manual setup)
@@ -201,7 +201,7 @@ fetch('https://graph.facebook.com/v18.0/771021905629860/events', {
       },
       custom_data: {
         currency: 'IDR',
-        value: 49000,
+        value: 99000,
         content_name: 'ebook-suami-sejati',
       }
     }],
