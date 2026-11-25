@@ -42,20 +42,31 @@ export const onRequestPost = async ({ request, env }: HandlerContext): Promise<R
       return Response.json({ success: false, error: 'name, email, or phone required' }, { status: 400 });
     }
 
+    // Telegram Markdown mode chokes on raw user punctuation. Escape it so a
+    // legitimate lead is never rejected for an underscore in an email.
+    const md = (v: string) => v.replace(/([_*\[\]`])/g, '\\$1');
     const text = [
       '🔔 *New Lead — berkahkarya.org*',
-      service ? `*Service:* ${service}` : '',
-      name ? `*Name:* ${name}` : '',
-      email ? `*Email:* ${email}` : '',
-      phone ? `*Phone:* ${phone}` : '',
-      message ? `*Message:* ${message}` : '',
-      url ? `*Source:* ${url}` : '',
+      service ? `*Service:* ${md(service)}` : '',
+      name ? `*Name:* ${md(name)}` : '',
+      email ? `*Email:* ${md(email)}` : '',
+      phone ? `*Phone:* ${md(phone)}` : '',
+      message ? `*Message:* ${md(message)}` : '',
+      url ? `*Source:* ${md(url)}` : '',
     ]
       .filter(Boolean)
       .join('\n');
 
+    if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) {
+      // Fail closed: never tell the visitor we captured a lead we just dropped.
+      return Response.json(
+        { success: false, error: 'Lead delivery is not configured' },
+        { status: 503 },
+      );
+    }
+
     let telegramSent = false;
-    if (env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_CHAT_ID) {
+    try {
       const res = await fetch(
         `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`,
         {
@@ -65,9 +76,18 @@ export const onRequestPost = async ({ request, env }: HandlerContext): Promise<R
         },
       );
       telegramSent = res.ok;
+    } catch {
+      telegramSent = false;
     }
 
-    return Response.json({ success: true, message: 'Lead captured', telegramSent });
+    if (!telegramSent) {
+      return Response.json(
+        { success: false, error: 'Lead delivery failed' },
+        { status: 502 },
+      );
+    }
+
+    return Response.json({ success: true, message: 'Lead captured', telegramSent: true });
   } catch (e) {
     return Response.json({ success: false, error: 'Invalid request' }, { status: 400 });
   }

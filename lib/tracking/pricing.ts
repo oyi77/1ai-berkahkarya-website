@@ -57,20 +57,16 @@ export function trackWhatsAppClick(params: {
     traffic_source: referrerSource,
   });
 
-  // Also track as AddToCart for funnel
-  trackMetaEvent('AddToCart', eventData);
-  sendMetaCAPI('AddToCart', eventData);
-
-  // Lead event for WhatsApp
-  trackMetaEvent('Lead', {
+  // WhatsApp is a conversation, not a purchase intent. Emit Lead only —
+  // AddToCart is reserved for real Buy Now clicks (see ecommerce.ts).
+  const leadData = {
     content_name: `WA: ${params.intent}`,
     content_category: 'WhatsApp',
-    value: params.product_value,
-  });
-  sendMetaCAPI('Lead', {
-    content_name: `WA: ${params.intent}`,
-    content_category: 'WhatsApp',
-  });
+    value: params.product_value || 0,
+    currency: 'IDR',
+  };
+  trackMetaEvent('Lead', leadData);
+  sendMetaCAPI('Lead', leadData);
 
   // TikTok
   trackTikTokEvent('Contact', eventData);

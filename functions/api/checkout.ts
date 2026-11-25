@@ -29,6 +29,8 @@ interface CheckoutBody {
   project_order_id?: string;
   idempotency_key?: string;
   callback_url?: string;
+  fulfillment_type?: string;
+  cohort?: string;
 }
 
 interface HandlerContext {
@@ -75,6 +77,13 @@ export const onRequestPost = async ({ request, env }: HandlerContext): Promise<R
   const locale = body.locale === 'en' ? 'en' : 'id';
   const sku = clean(body.sku || body.plan || 'default', 64) || 'default';
   const orderRef = clean(body.project_order_id || body.idempotency_key, 128);
+  const requestedType = clean(body.fulfillment_type, 32);
+  const fulfillmentType = ['digital_download', 'cohort_class', 'service'].includes(
+    requestedType,
+  )
+    ? requestedType
+    : 'digital_download';
+  const cohort = clean(body.cohort, 64);
 
   const payload = {
     gateway: clean(body.gateway, 32) || 'tripay',
@@ -96,7 +105,8 @@ export const onRequestPost = async ({ request, env }: HandlerContext): Promise<R
       sku,
       product_name: clean(body.product_name, 128) || 'Product',
       buyer_email: customerEmail,
-      fulfillment_type: 'digital_download',
+      fulfillment_type: fulfillmentType,
+      ...(cohort ? { cohort } : {}),
     },
   };
 

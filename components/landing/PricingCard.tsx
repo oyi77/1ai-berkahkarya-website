@@ -5,6 +5,51 @@ import { trackInitiateCheckout } from '@/lib/tracking';
 import TrackedCTA from './TrackedCTA';
 import styles from './_lp-base.module.css';
 
+const REF_STORAGE_KEY = 'bk_checkout_ref';
+const REF_TTL_MS = 30 * 60 * 1000;
+
+/**
+ * Reuse one idempotency key per SKU + amount for a short window.
+ * A retry after an ambiguous gateway failure must not create a second
+ * chargeable order. The key is shared across tabs via localStorage.
+ */
+function getOrCreateOrderRef(sku: string, amount: number): string {
+  const now = Date.now();
+  try {
+    const raw = localStorage.getItem(REF_STORAGE_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw) as {
+        sku?: string;
+        amount?: number;
+        ref?: string;
+        createdAt?: number;
+      };
+      if (
+        saved.sku === sku &&
+        saved.amount === amount &&
+        typeof saved.ref === 'string' &&
+        typeof saved.createdAt === 'number' &&
+        now - saved.createdAt < REF_TTL_MS
+      ) {
+        return saved.ref;
+      }
+    }
+  } catch {
+    // Storage disabled — fall through to a fresh key.
+  }
+
+  const ref = `bk_${now}_${Math.random().toString(36).slice(2, 8)}`;
+  try {
+    localStorage.setItem(
+      REF_STORAGE_KEY,
+      JSON.stringify({ sku, amount, ref, createdAt: now }),
+    );
+  } catch {
+    // Private mode: server-side idempotency is still keyed by the ref below.
+  }
+  return ref;
+}
+
 export interface PricingTier {
   name: { id: string; en: string };
   price: { id: string; en: string };
@@ -94,6 +139,7 @@ export default function PricingCard({ tier, locale = 'id', serviceName }: Pricin
 
   const handleCheckout = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (checking) return;
     setCheckoutError('');
 
     if (!buyerName.trim()) {
@@ -112,8 +158,8 @@ export default function PricingCard({ tier, locale = 'id', serviceName }: Pricin
       value: tier.checkoutAmount,
     });
 
-    // Stable key: a retry cannot create a second paid order.
-    const orderRef = `bk_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    // Stable key: a retry within the window cannot create a second paid order.
+    const orderRef = getOrCreateOrderRef(sku, tier.checkoutAmount || 0);
 
     try {
       const res = await fetch('/api/checkout', {
