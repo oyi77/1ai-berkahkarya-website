@@ -28,7 +28,8 @@ interface CheckoutBody {
   locale?: string;
   project_order_id?: string;
   idempotency_key?: string;
-  callback_url?: string;
+  fulfillment_type?: string;
+  cohort?: string;
 }
 
 interface HandlerContext {
@@ -38,6 +39,19 @@ interface HandlerContext {
 
 const clean = (v: unknown, max: number) =>
   typeof v === 'string' ? v.trim().slice(0, max) : '';
+
+/**
+ * Server-side price authority. A browser-supplied amount must never decide
+ * what a product costs — otherwise a Rp 500.000 class can be "purchased"
+ * for Rp 1.000 by posting directly to this endpoint.
+ * Keys are the SKUs used by the landing pages (normalised).
+ */
+const SKU_PRICES_IDR: Record<string, number> = {
+  'digital-products-starter': 49000,
+  'digital-products-professional': 99000,
+  'digital-products-enterprise': 199000,
+  'one-ai-pro': 999000,
+};
 
 export const onRequestPost = async ({ request, env }: HandlerContext): Promise<Response> => {
   const aggUrl = (env.PAYMENT_AGGREGATOR_URL || 'https://pay.berkahkarya.org').replace(/\/$/, '');
@@ -73,16 +87,33 @@ export const onRequestPost = async ({ request, env }: HandlerContext): Promise<R
 
   const origin = new URL(request.url).origin;
   const locale = body.locale === 'en' ? 'en' : 'id';
-  const sku = clean(body.sku || body.plan || 'default', 64) || 'default';
+  const sku = clean(body.sku || body.plan || '', 64);
+  const skuKey = sku.toLowerCase().replace(/\s+/g, '-');
+  const expectedAmount = SKU_PRICES_IDR[skuKey];
+  if (expectedAmount === undefined) {
+    return Response.json({ success: false, error: 'Unknown product' }, { status: 400 });
+  }
+  if (amount !== expectedAmount) {
+    return Response.json({ success: false, error: 'Amount does not match product price' }, { status: 400 });
+  }
+
   const orderRef = clean(body.project_order_id || body.idempotency_key, 128);
+  const requestedType = clean(body.fulfillment_type, 32);
+  const fulfillmentType = ['digital_download', 'cohort_class', 'service'].includes(
+    requestedType,
+  )
+    ? requestedType
+    : 'digital_download';
+  const cohort = clean(body.cohort, 64);
 
   const payload = {
     gateway: clean(body.gateway, 32) || 'tripay',
     amount,
     currency: clean(body.currency, 8) || 'IDR',
     payment_method: clean(body.payment_method, 64) || 'QRIS',
-    // Fulfillment endpoint — NOT a marketing/contact page.
-    callback_url: body.callback_url || `${origin}/api/payment-confirmed`,
+    // Fulfillment endpoint — NOT a marketing/contact page, and never a
+    // caller-supplied URL (that would forward buyer PII to a third party).
+    callback_url: `${origin}/api/payment-confirmed`,
     success_url: `${origin}/${locale}/payment-success`,
     cancel_url: `${origin}/${locale}/payment-success?cancelled=1`,
     ...(orderRef ? { project_order_id: orderRef, idempotency_key: orderRef } : {}),
@@ -96,7 +127,8 @@ export const onRequestPost = async ({ request, env }: HandlerContext): Promise<R
       sku,
       product_name: clean(body.product_name, 128) || 'Product',
       buyer_email: customerEmail,
-      fulfillment_type: 'digital_download',
+      fulfillment_type: fulfillmentType,
+      ...(cohort ? { cohort } : {}),
     },
   };
 
