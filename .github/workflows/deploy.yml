@@ -1,0 +1,31 @@
+name: deploy-berkahkarya-site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: cf-pages-berkahkarya-site
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      # No screener DB on CI: prebuild warns and keeps the committed snapshot.
+      - run: npm run build
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ''
+        run: |
+          bash -c 'unset CLOUDFLARE_API_TOKEN || true'
+          npx wrangler pages deploy out --project-name=berkahkarya-site --branch=main --commit-dirty=true
