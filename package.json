@@ -4,7 +4,7 @@
   "description": "Berkah Karya Digital Marketing & Agency Website — Next.js Bilingual (ID/EN)",
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "prebuild": "python3 scripts/generate-malang-assets.py",
     "start": "next start",
     "lint": "next lint"
   },
