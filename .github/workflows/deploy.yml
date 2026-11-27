@@ -1,13 +1,11 @@
 name: deploy-berkahkarya-site
 
+# NOTE: no push trigger — the GitHub account is currently locked due to a
+# billing issue, so push-triggered runs fail before any job starts. Keep this
+# manual for when Actions is re-enabled; nightly automation lives in the
+# local cron (scripts/nightly-property-refresh.sh) until then.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
-
-concurrency:
-  group: cf-pages-berkahkarya-site
-  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -19,13 +17,11 @@ jobs:
           node-version: '20'
           cache: npm
       - run: npm ci
-      # No screener DB on CI: prebuild warns and keeps the committed snapshot.
+      # No screener DB in CI: prebuild warns and keeps the committed snapshot.
       - run: npm run build
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
           CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
-          CLOUDFLARE_API_TOKEN: ''
         run: |
-          bash -c 'unset CLOUDFLARE_API_TOKEN || true'
           npx wrangler pages deploy out --project-name=berkahkarya-site --branch=main --commit-dirty=true
